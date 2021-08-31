@@ -15,7 +15,7 @@ In order to run the application you need to add the following configuration file
   - FIREBASE_PROJECT_ID=XXX
   - FIREBASE_STG_POST_UPLOADS=XXX
   - FIREBASE_STG_PROFILE_UPLOADS=XXX
-  - GOOGLE_APPLICATION_CREDENTIALS=./path/service-account.json
+  - GOOGLE_APPLICATION_CREDENTIALS=./XXX.json
   - REST_COUNTRIES_URL=https://restcountries.eu/rest/v2
   - SENDGRID_KEY=XXX
   - SENDGRID_TEMPLATE_GENERAL=XXX
