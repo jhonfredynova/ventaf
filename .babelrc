@@ -1,0 +1,15 @@
+{
+  "presets": [
+    [
+      "next/babel",
+      {
+        "styled-jsx": {
+          "optimizeForSpeed": true,
+          "plugins": [
+            ["styled-jsx-plugin-sass", { "sassOptions": { "includePaths": ["./node_modules"], "precision": 2 } }]
+          ] 
+        }
+      }
+    ]
+  ]
+}

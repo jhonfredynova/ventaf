@@ -1,0 +1,55 @@
+import React from 'react';
+import { useSelector } from 'react-redux';
+import SEO from '../components/seo';
+import NavigationBar from '../components/navigation-bar';
+import { initializeStore } from '../store/store';
+import { getConfiguration } from '../store/actions/config-actions';
+
+export const getStaticProps = async () => {
+  const store = initializeStore();
+  await store.dispatch(getConfiguration());
+  
+  return {
+    props: {
+      initialReduxState: store.getState() 
+    }
+  };
+};
+
+export default function Faq() {
+  const { translations } = useSelector(state => state.config);
+
+  return (
+    <main>
+      <SEO
+        title={translations['faqTitle']}
+        description={translations['faqDescription']}>
+      </SEO>
+      <NavigationBar
+        title={translations['faqTitle']}
+        description={translations['faqDescription']}
+        showBackBtn={true}
+        translations={translations}>
+      </NavigationBar>
+      <article dangerouslySetInnerHTML={{ __html: (translations['faqInfo']) }} />
+      <style jsx>{`
+        main {
+          max-width: var(--container-width);
+          margin: 0 auto;
+          padding: calc(var(--spacer) * 2);
+
+          article {
+            :global(h3) {
+              margin-bottom: 15px;
+            }
+
+            :global(p) {
+              margin-bottom: 10px;
+            }
+          }
+        }  
+      `}</style>
+    </main>
+  );
+
+}
