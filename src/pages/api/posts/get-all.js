@@ -15,9 +15,6 @@ export default async function getAllPosts(req, res) {
         ...(req.query.location && { 'location.placeId': { '==': req.query.location } }),
         ...(req.query.search && { searchTerms : { 'array-contains-any': searchTerms } }),
         ...(req.query.status && { status: { '==': req.query.status } }),
-        // If search terms exist not filter by tags, only a array contains by query is allowed
-        // This is because firestore limitations
-        ...(!req.query.search && req.query.tags && { tags: { 'array-contains-any': req.query.tags.split(',') } }),
         ...(req.query.user && { user: { '==': req.query.user } }),
       }
     };

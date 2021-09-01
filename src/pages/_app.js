@@ -1,8 +1,6 @@
 import 'normalize.css/normalize.css';
 import React, { useEffect } from 'react';
 import ReactGA from 'react-ga';
-import { QueryClient, QueryClientProvider } from 'react-query';
-import { Hydrate } from 'react-query/hydration';
 import { Provider } from 'react-redux';
 import { useRouter } from 'next/router';
 import Layout from '../components/layout';
@@ -14,11 +12,6 @@ import { loadPreferences } from '../utils/user-utils';
 export default function MyApp({ Component, pageProps }) {
   const store = useStore(pageProps.initialReduxState);
   const router = useRouter();
-  const queryClientRef = React.useRef();
-  
-  if (!queryClientRef.current) {
-    queryClientRef.current = new QueryClient();
-  }
 
   useEffect(() => {
     ReactGA.initialize(process.env.NEXT_PUBLIC_GOOGLE_ANALITYCS_KEY, {});
@@ -35,13 +28,9 @@ export default function MyApp({ Component, pageProps }) {
 
   return (
     <Provider store={store}>
-      <QueryClientProvider client={queryClientRef.current}>
-        <Hydrate state={pageProps.dehydratedState}>
-          <Layout>
-            <Component {...pageProps} />
-          </Layout>
-        </Hydrate>
-      </QueryClientProvider>
+      <Layout>
+        <Component {...pageProps} />
+      </Layout>
       <style global jsx>{`
         /* Font awesome */
         $fa-font-path: '/webfonts';

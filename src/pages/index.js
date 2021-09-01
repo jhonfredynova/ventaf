@@ -1,20 +1,23 @@
 import React, { useState, useEffect } from 'react';
-import { useSelector } from 'react-redux';
-import { useInfiniteQuery } from 'react-query';
+import { useSelector, useStore } from 'react-redux';
 import { useRouter } from 'next/router';
 import { geocodeByPlaceId } from 'react-places-autocomplete';
 import HomeFilters from '../components/page-home/home-filters';
 import PostList from '../components/post-list';
 import SEO from '../components/seo';
-import { getPosts } from '../services/posts-service';
 import { setUrlSearch } from '../utils/request-utils';
 import { getHomePageTitle } from '../utils/seo-utils';
 import { initializeStore } from '../store/store';
 import { getConfiguration } from '../store/actions/config-actions';
+import { getPosts, getMorePosts } from '../store/actions/post-actions';
 
-export const getStaticProps = async () => {
+export const getStaticProps = async ({ query }) => {
   const store = initializeStore();
-  await store.dispatch(getConfiguration());
+  
+  await Promise.all([
+    store.dispatch(getConfiguration()),
+    store.dispatch(getPosts(query))
+  ]);
   
   return {
     props: {
@@ -24,29 +27,24 @@ export const getStaticProps = async () => {
 };
 
 export default function Home() {
+  const store = useStore();
+  const [isLoadingMorePosts, setIsLoadingMorePosts] = useState(false);
+  const [hasMorePosts, setHasMorePosts] = useState(true);
   const [locationSelected, setLocationSelected] = useState({});
   const router = useRouter();
   const { query } = router;
-
-  const {
-    data: postPages,
-    fetchNextPage: onLoadMorePosts,
-    hasNextPage: hasMorePosts,
-    isFetching: isLoadingPosts,
-    isFetchingNextPage: isLoadingMorePosts
-  } = useInfiniteQuery(['posts', query], 
-    getPosts, 
-    {
-      getNextPageParam: lastPage => lastPage[lastPage.length - 1]?.createdAt,
-      refetchOnWindowFocus: false
-    }
-  );
-
   const authData = useSelector(state => state.auth.authData);
+  const posts = useSelector(state => state.post.records);
   const { translations } = useSelector(state => state.config);
-  const posts = postPages?.pages?.flatMap(page => page) || [];
   const pageTitle = getHomePageTitle({ query, translations });
   const pageDescription = translations['slogan'];
+
+  const onLoadMorePosts = async () => {
+    setIsLoadingMorePosts(true);
+    const newPosts = await store.dispatch(getMorePosts(query));
+    setHasMorePosts(newPosts.length > 0);
+    setIsLoadingMorePosts(false);
+  };
 
   useEffect(() => {
     if (!query.location) {
@@ -78,7 +76,6 @@ export default function Home() {
         onChange={query => router.push(`${router.pathname}${setUrlSearch(query)}`, undefined, { shallow: true })}>
       </HomeFilters>
       <PostList
-        isLoading={isLoadingPosts}
         isLoadingMore={isLoadingMorePosts}
         hasMoreData={hasMorePosts}
         authData={authData}

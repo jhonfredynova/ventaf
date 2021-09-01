@@ -116,13 +116,12 @@ export default function HomeContents(props) {
 					:global(.link-post) {
 						background: var(--color-primary);
 						border: none;
-						border-radius: var(--border-radius);
+						color: white;
 						cursor: pointer;
 						padding: var(--spacer);
 						display: inline-block;
 						margin-top: var(--spacer);
 						text-decoration: none;
-						color: var(--color-text);
 					}
 				}
 

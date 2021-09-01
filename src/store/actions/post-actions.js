@@ -15,14 +15,7 @@ export const TYPES = {
 
 export const getPosts = filters => async dispatch => {
   const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/posts/get-all${setUrlSearch(filters)}`);
-  let posts = response.data;
-  
-  // Temporary solution because of firestore limitations on the api  
-  if (filters.tags) {
-    posts = response.data.filter(post => post.tags.find(tag => (filters.tags || []).includes(tag)));
-  }
-
-  dispatch({ type: TYPES.GET_ALL, payload: posts });
+  dispatch({ type: TYPES.GET_ALL, payload: response.data });
 };
 
 export const getMorePosts = query => async dispatch => {
