@@ -28,7 +28,6 @@ export default function AlertModal(props) {
             .btn-ok {
 							background: var(--color-primary);
               border: none;
-							border-radius: var(--border-radius);
 							cursor: pointer;
 							padding: var(--spacer);
 						}

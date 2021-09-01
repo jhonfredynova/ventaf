@@ -82,8 +82,10 @@ export default function HomeLocation(props) {
           align-items: center;
 
           .btn-back {
+            background: var(--color-primary);
             border: none;
             cursor: pointer;
+            color: white;
             padding: var(--spacer);
           }
         }

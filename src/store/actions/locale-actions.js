@@ -39,8 +39,8 @@ export const createLocale = localeData => async dispatch => {
   return response.data;
 };
 
-export const updateLocale = (localeId, localeData) => async dispatch => {
-  const response = await axios.patch(`${process.env.NEXT_PUBLIC_API_URL}/locales/update?localeId${localeId}`, localeData);
+export const updateLocale = localeData => async dispatch => {
+  const response = await axios.patch(`${process.env.NEXT_PUBLIC_API_URL}/locales/update?localeId=${localeData.id}`, localeData);
   dispatch({ type: TYPES.UPDATE, payload: response.data });
 };
 

@@ -205,6 +205,7 @@ export default function NewPost() {
             .btn-post {
               background: var(--color-primary);
               border: none;
+              color: white;
               cursor: pointer;
               padding: var(--spacer);
 

@@ -63,8 +63,8 @@ export default function LocaleActionsBar(props) {
             button {
               background: var(--color-primary);
               border: none;
-              border-radius: var(--border-radius);
               cursor: pointer;
+              color: white;
               padding: var(--spacer);
 
               &:first-child {

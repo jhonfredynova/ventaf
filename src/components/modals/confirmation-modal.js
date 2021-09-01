@@ -19,7 +19,7 @@ export default function ConfirmationModal(props) {
           disabled={isLoading}
           onClick={onAccept}>
           {isLoading && <i className="fas fa-spinner fa-spin"></i>}
-          {translations.delete}
+          {translations.ok}
         </button>
       </div>
       <style jsx>{`
@@ -36,7 +36,6 @@ export default function ConfirmationModal(props) {
 						.btn-cancel,
 						.btn-accept, {
 							border: none;
-							border-radius: var(--border-radius);
 							cursor: pointer;
 							padding: var(--spacer);
 						}
@@ -48,6 +47,7 @@ export default function ConfirmationModal(props) {
 
 						.btn-accept {
 							background: var(--color-primary);
+              color: white;
 
 							.fa-spin {
 								margin-right: 4px;

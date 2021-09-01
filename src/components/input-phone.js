@@ -106,6 +106,7 @@ export default function InputPhone(props) {
               flex-grow: 1;
               border: 1px solid var(--border-color);
               padding: var(--spacer);
+              width: 100%;
             }
 
             .btn-clear,

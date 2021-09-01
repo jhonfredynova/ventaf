@@ -65,6 +65,7 @@ export default function FormUploadPhoto(props) {
           .btn-upload {
             background: var(--color-primary);
             border: none;
+            color: white;
             cursor: pointer;
             padding: var(--spacer);
             display: block;

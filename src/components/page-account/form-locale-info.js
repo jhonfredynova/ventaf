@@ -6,6 +6,7 @@ import { createLocale, updateLocale } from '../../store/actions/locale-actions';
 export default function FormLocaleInfo(props) {
   const { localeData, translations, onCancel, onSave } = props; 
   const store = useStore();
+  const [isSaving, setIsSaving] = useState(false);
   const [errors, setErrors] = useState({});
   const [model, setModel] = useState({
     id: localeData?.id,
@@ -19,6 +20,7 @@ export default function FormLocaleInfo(props) {
       }
 
       setErrors({});
+      setIsSaving(true);
 
       if (!model.id) {
         await store.dispatch(createLocale(model));
@@ -26,10 +28,12 @@ export default function FormLocaleInfo(props) {
         await store.dispatch(updateLocale(model));
       }
 
+      setIsSaving(false);
       onSave();
     } catch (error) {
       const { errors, code } = error?.response?.data;
       setErrors({ ...errors, general: code });
+      setIsSaving(false);
     }
   };
 
@@ -41,7 +45,7 @@ export default function FormLocaleInfo(props) {
         <input
           type="text"
           value={model.name}
-          onChange={e => setModel({ ...model, name: e.target.value.toLowerCase() })} />
+          onChange={e => setModel({ ...model, name: e.target.value })} />
         <p className="error-msg">{errors.name}</p>
       </div>
       <div className="form-row">
@@ -59,12 +63,15 @@ export default function FormLocaleInfo(props) {
       <div className="buttons-wrapper">
         <button 
           className="btn-cancel" 
+          disabled={isSaving}
           onClick={onCancel}>
           {translations['cancel']}
         </button>
         <button 
           className="btn-save" 
+          disabled={isSaving}
           type="submit">
+          {isSaving && <i className="fas fa-spinner fa-spin" title={translations.saving}></i>}
           {translations['save']}
         </button>
       </div>   
@@ -97,7 +104,6 @@ export default function FormLocaleInfo(props) {
             .btn-cancel {
               background: var(--color-secondary);
               border: none;
-              border-radius: var(--border-radius);
               cursor: pointer;
               margin-right: 5px;
               padding: var(--spacer)
@@ -106,9 +112,13 @@ export default function FormLocaleInfo(props) {
             .btn-save {
               background: var(--color-primary);
               border: none;
-              border-radius: var(--border-radius);
               cursor: pointer;
-              padding: var(--spacer)
+              color: white;
+              padding: var(--spacer);
+
+              .fa-spin {
+                margin-right: 5px;
+              }
             }
           }
         }  

@@ -24,7 +24,7 @@ export default function LoginButton(props) {
 
           &.email {
             background-color: var(--color-primary);
-            color: var(--color-text);
+            color: white;
 
             .provider {
               border-right: 1px solid var(--color-text);

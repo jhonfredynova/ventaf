@@ -201,7 +201,7 @@ export default function LoginEmail(props) {
             type="submit"
             disabled={isLoggingIn || isProcessing} 
             provider="email">
-            {isProcessing && <i className="fa fa-spinner fa-spin" />}
+            {isProcessing && <i className="btn-login fa fa-spinner fa-spin" />}
             {(currentLoginStep === LOGIN_STEPS.ENTER_EMAIL) && translations['loginWithEmail']}
             {(currentLoginStep === LOGIN_STEPS.LOGIN_USER) && translations['login']}
             {(currentLoginStep === LOGIN_STEPS.REGISTER_USER) && translations['register']}
@@ -237,7 +237,6 @@ export default function LoginEmail(props) {
               cursor: pointer;
               padding: var(--spacer);
             }
-
             .btn-edit {
               background: var(--color-secondary);
               border-left: none;
@@ -248,6 +247,10 @@ export default function LoginEmail(props) {
               background: var(--color-error);
               color: white;
             }
+          }
+
+          i.btn-login.fa-spin {
+            margin-right: 5px;
           }
         }
       `}</style>

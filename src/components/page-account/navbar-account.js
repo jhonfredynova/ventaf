@@ -11,19 +11,19 @@ export default function NavbarAccount(props) {
     <ul>
       <li>
         <Link href="/account/update-info">
-          <a className={pathname === '/account/update-info' && 'active'}>{translations['update-info']}</a>
+          <a className={pathname === '/account/update-info' && 'active'}>{translations.updateInfo}</a>
         </Link>
       </li>
       <li>
         <Link href="/account/change-password">
-          <a className={pathname === '/account/change-password' && 'active'}>{translations['change-password']}</a>
+          <a className={pathname === '/account/change-password' && 'active'}>{translations.changePassword}</a>
         </Link>
       </li>
       {
         authData && authData.claims.includes('admin') &&
         <li>
           <Link href="/account/manage-locales"> 
-            <a className={pathname === '/account/manage-locales' && 'active'}>{translations['translations']}</a>
+            <a className={pathname === '/account/manage-locales' && 'active'}>{translations.translations}</a>
           </Link>
         </li>
       }
@@ -43,6 +43,7 @@ export default function NavbarAccount(props) {
 
             :global(a.active) {
               background-color: var(--color-primary);
+              color: white;
               cursor: default;
             }
           }

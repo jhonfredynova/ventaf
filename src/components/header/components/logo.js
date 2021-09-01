@@ -22,7 +22,7 @@ export default function Logo(props) {
           }
 
           .text1 {
-            color: #9cb829;
+            color: var(--color-primary);
             margin-bottom: 2px;
           }
 

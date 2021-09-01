@@ -12,6 +12,7 @@ import { initializeStore } from '../../store/store';
 import { getConfiguration, syncConfiguration } from '../../store/actions/config-actions';
 import { getLocales, deleteLocale } from '../../store/actions/locale-actions';
 import { formatDate } from '../../utils/intl-utils';
+import ConfirmationModal from '../../components/modals/confirmation-modal';
 
 export const getServerSideProps = async () => {
   const store = initializeStore();
@@ -59,12 +60,12 @@ const ManageLocales = () => {
   return (
     <main>
       <SEO
-        title={translations['locales-title']}
-        description={translations['locales-description']}>
+        title={translations.localesTitle}
+        description={translations.localesDescription}>
       </SEO>
       <NavigationBar
-        title={translations['locales-title']}
-        description={translations['locales-description']}
+        title={translations.localesTitle}
+        description={translations.localesDescription}
         showBackBtn={true}
         translations={translations}>
       </NavigationBar>
@@ -85,7 +86,7 @@ const ManageLocales = () => {
       </LocaleActionsBar>
       {
         filteredLocales.length === 0 &&
-        <h3>{translations['noResults']}</h3>
+        <h3>{translations.noResults}</h3>
       }
       <InfiniteScroll
         hasMoreData={hasMoreLocales}
@@ -135,27 +136,19 @@ const ManageLocales = () => {
       <Lightbox 
         isOpen={isDeleteLocaleModalOpen} 
         onToggle={() => showDeleteLocaleModal(!isDeleteLocaleModalOpen)}>
-        <div className="lightbox-delete-locale">
-          <p>{translations['areYouSureToDeleteThis?']}</p>
-          <button 
-            className="btn-cancel" 
-            disabled={isDeletingLocale}
-            onClick={() => {
-              showDeleteLocaleModal(false);
-              setLocaleToDelete(null);
-            }}>
-            {translations['cancel']}
-          </button>
-          <button 
-            className="btn-delete" 
-            disabled={isDeletingLocale}
-            onClick={() => {
-              showDeleteLocaleModal(false);
-              onDeleteLocale(localeToDelete);
-            }}>
-            {translations['delete']}
-          </button>
-        </div>
+        <ConfirmationModal
+          isLoading={isDeletingLocale}
+          title={translations['areYouSureToDeleteThis?']}
+          translations={translations}
+          onCancel={() => {
+            showDeleteLocaleModal(false);
+            setLocaleToDelete(null);
+          }}
+          onAccept={() => {
+            showDeleteLocaleModal(false);
+            onDeleteLocale(localeToDelete);
+          }}>
+        </ConfirmationModal>
       </Lightbox>
       <style jsx>{`
         main {
@@ -187,32 +180,6 @@ const ManageLocales = () => {
                   margin-left: 5px;
                 }
               }
-            }
-          }
-
-          .lightbox-delete-locale {
-            text-align: center;
-
-            p {
-              margin-bottom: var(--spacer);
-            }
-            
-            .btn-cancel {
-              background: var(--color-secondary);
-              border: none;
-              border-radius: var(--border-radius);
-              cursor: pointer;
-              padding: var(--spacer);
-              margin-right: 5px;
-            }
-
-            .btn-delete {
-              background: var(--color-error);
-              border: none;
-              border-radius: var(--border-radius);
-              color: white;
-              cursor: pointer;
-              padding: var(--spacer);
             }
           }
         }  

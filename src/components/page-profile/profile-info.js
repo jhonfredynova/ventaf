@@ -19,7 +19,7 @@ export default function ProfileInfo(props) {
       <div className="navigation">
         <button
           className="btn-back"
-          title={translations['goBack']}
+          title={translations.goBack}
           onClick={() => router.back()}>
           <i className="fas fa-arrow-left" />
         </button>
@@ -40,7 +40,7 @@ export default function ProfileInfo(props) {
           authData &&
           <div className="account-buttons">
             <Link href="/account/update-info">
-              <a className="btn-profile">{translations['edit-profile']}</a>
+              <a className="btn-profile">{translations.editProfile}</a>
             </Link>
             <button className="btn-logout" onClick={() => store.dispatch(logout())}>
               {translations['logout']}
@@ -91,7 +91,6 @@ export default function ProfileInfo(props) {
               .btn-profile,
               .btn-logout {
                 border: none;
-                border-radius: var(--border-radius);
                 cursor: pointer;
                 padding: var(--spacer);
                 text-decoration: none;
@@ -99,6 +98,7 @@ export default function ProfileInfo(props) {
 
               .btn-profile {
                 background: var(--color-primary);
+                color: white;
                 margin-right: 5px;
               }
 

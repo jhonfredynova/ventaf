@@ -69,6 +69,7 @@ export default function InputMultiLanguage(props) {
 
               &.active {
                 background: var(--color-primary);
+                color: white;
               }
             }
           }
@@ -97,6 +98,7 @@ export default function InputMultiLanguage(props) {
               &.active {
                 background: var(--color-primary);
                 border: 1px solid var(--color-primary);
+                color: white;
               }
             }
           }

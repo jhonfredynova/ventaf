@@ -56,7 +56,7 @@ export default function MyApp({ Component, pageProps }) {
           --border-radius: 8px;
 
           --color-background: #f0f2f5;
-          --color-primary: #b0cd37;
+          --color-primary: #0076a3;
           --color-secondary: #e4e6eb;
           --color-error: #dc3545;
           --color-text: #333;

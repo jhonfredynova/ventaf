@@ -70,7 +70,7 @@ export default function PostPrice(props) {
         }
         <label htmlFor="price-free" className="price-free">
           <input id="price-free" type="checkbox" checked={isFree} onChange={onToggleFree} />
-          <i className="fas fa-gift error-msg"></i> {translations['free']}
+          <i className="fas fa-gift"></i> {translations['free']}
         </label>
         <InputNumeric
           id={id}
@@ -132,6 +132,7 @@ export default function PostPrice(props) {
               flex-grow: 1;
               border: 1px solid var(--border-color);
               padding: var(--spacer);
+              width: 100%;
             }
 
             .btn-indicative {
@@ -163,6 +164,7 @@ export default function PostPrice(props) {
               }
 
               i {
+                color: var(--color-primary);
                 margin-right: 4px;
               }
             }

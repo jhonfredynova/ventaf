@@ -132,7 +132,7 @@ const EditPost = () => {
           {
             isPosting && 
             <>
-              <i className="fas fa-spinner fa-spin" title={translations['saving']}></i>
+              <i className="fas fa-spinner fa-spin" title={translations.saving}></i>
               {translations['saving']}
             </>
           }
@@ -152,6 +152,7 @@ const EditPost = () => {
             .btn-post {
               background: var(--color-primary);
               border: none;
+              color: white;
               cursor: pointer;
               padding: var(--spacer);
 

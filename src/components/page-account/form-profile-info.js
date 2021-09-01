@@ -198,6 +198,7 @@ export default function FormProfileInfo(props) {
             .btn-submit {
               background: var(--color-primary);
               border: none;
+              color: white;
               cursor: pointer;
               padding: var(--spacer);
 

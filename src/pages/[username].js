@@ -58,7 +58,7 @@ export default function ProfileView() {
         translations={translations}
         userProfile={profileInfo}>
       </ProfileInfo>
-      <h2>{translations['ads']}</h2>
+      <h2>{translations.ads}</h2>
       <ProfileContents
         isLoading={false}
         authData={authData}
