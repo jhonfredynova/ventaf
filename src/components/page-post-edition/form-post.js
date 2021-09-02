@@ -14,6 +14,18 @@ export default function FormPost(props) {
   return (
     <form className="form-post" onSubmit={onSavePost}>
       <div className="form-row-full">
+      <label className="sr-only" htmlFor="city">{translations['whatAreYouSelling']} *</label>
+        <InputLocation
+          id="city"
+          placeholder={translations['city']}
+          searchOptions={{ types: ['(cities)'] }}
+          translations={translations}
+          value={model.location}
+          onChange={location => onChangeModel({ ...model, location: (location || {}) })}>
+        </InputLocation>
+        <p className="error-msg">{translations[errors.location?.placeId]}</p>
+      </div>
+      <div className="form-row">
         <label className="sr-only" htmlFor="price">{translations['price']} *</label>
         <PostPrice
           id="price"
@@ -24,18 +36,6 @@ export default function FormPost(props) {
           value={model.price}
           onChange={price => onChangeModel({ ...model, price })}>
         </PostPrice>
-      </div>
-      <div className="form-row">
-        <label className="sr-only" htmlFor="city">{translations['whatAreYouSelling']} *</label>
-        <InputLocation
-          id="city"
-          placeholder={translations['city']}
-          searchOptions={{ types: ['(cities)'] }}
-          translations={translations}
-          value={model.location}
-          onChange={location => onChangeModel({ ...model, location: (location || {}) })}>
-        </InputLocation>
-        <p className="error-msg">{errors.location?.placeId}</p>
       </div>
       <div className="form-row">
         <label className="sr-only" htmlFor="phoneNumber">{translations['phone']} *</label>
@@ -55,12 +55,12 @@ export default function FormPost(props) {
           aria-required="true" placeholder={translations['whatAreYouSelling?']}
           maxLength="" onChange={event => onChangeModel({ ...model, description: event.target.value })}>
         </textarea>
-        <p className="error-msg">{errors.description}</p>
+        <p className="error-msg">{translations[errors.description]}</p>
       </div>
       <div className="form-row">
         <label className="sr-only" htmlFor="photos">{translations['photos']} <span>*</span></label>
         <PostUploader
-          error={errors.photos}
+          error={translations[errors.photos]}
           photos={model.photos}
           translations={translations}
           onChange={photos => {

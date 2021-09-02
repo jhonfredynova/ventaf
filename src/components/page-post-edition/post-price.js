@@ -5,14 +5,15 @@ import InputNumeric from '../input-numeric';
 
 export default function PostPrice(props) {
   const { id, errors, required, suggestions, translations, value: priceValue, onChange } = props;
-  const [isFree, setIsFree] = useState(false);
   const [isModalOpen, setModalOpen] = useState(false);
   const selectedSuggestion = suggestions.find(item => item.value === priceValue.currency);
   const priceErrors = errors || {};
+
   const customValue = selectedSuggestion => {
     const formattedValue = selectedSuggestion.label;
     return formattedValue;
   };
+
   const customOption = suggestion => (
     <div className="custom-option">
       <img src={suggestion.countryFlag} alt={suggestion.countryName} width="30px" height="20px" />
@@ -29,49 +30,37 @@ export default function PostPrice(props) {
       `}</style>
     </div>
   );
+
   const onChangeValue = value => {
-    setIsFree(value === 0);
     onChange({ ...priceValue, value });
   };
+
   const onClearValue = () => {
-    setIsFree(false);
     onChange({ ...priceValue, value: '' });
-  };
-  const onToggleFree = event => {
-    const isFree = event.target.checked;
-    setIsFree(event.target.checked);
-    onChange({ ...priceValue, value: (isFree ? 0 : '') });
   };
 
   return (
     <div className="post-price">
       <div className="input-group">
-        {
-          !isFree &&
-          <button 
-            type="button"
-            className="btn-indicative" 
-            title={translations['currency']}
-            onClick={() => setModalOpen(!isModalOpen)}>   
-            {
-              selectedSuggestion &&
-              <>
-                <img src={selectedSuggestion.countryFlag} alt={selectedSuggestion.countryName} width="30px" height="20px" />              
-                <span style={{ display: 'inline-block', minWidth:'32px' }}>
-                  {selectedSuggestion.value}
-                </span>
-              </>
-            }
-            {
-              !selectedSuggestion &&
-              <i className="font-icon fas fa-dollar-sign"></i>
-            } 
-          </button>
-        }
-        <label htmlFor="price-free" className="price-free">
-          <input id="price-free" type="checkbox" checked={isFree} onChange={onToggleFree} />
-          <i className="fas fa-gift"></i> {translations['free']}
-        </label>
+        <button 
+          type="button"
+          className="btn-indicative" 
+          title={translations['currency']}
+          onClick={() => setModalOpen(!isModalOpen)}>   
+          {
+            selectedSuggestion &&
+            <>
+              <img src={selectedSuggestion.countryFlag} alt={selectedSuggestion.countryName} width="30px" height="20px" />              
+              <span style={{ display: 'inline-block', minWidth:'32px' }}>
+                {selectedSuggestion.value}
+              </span>
+            </>
+          }
+          {
+            !selectedSuggestion &&
+            <i className="font-icon fas fa-dollar-sign"></i>
+          } 
+        </button>
         <InputNumeric
           id={id}
           autocomplete="off"
@@ -93,8 +82,8 @@ export default function PostPrice(props) {
           </button>
         }
       </div>
-      <p className="error-msg">{priceErrors.currency && translations['selectCurrency']}</p>
-      <p className="error-msg">{priceErrors.value}</p>
+      <p className="error-msg">{translations[priceErrors.currency] && translations['selectCurrency']}</p>
+      <p className="error-msg">{translations[priceErrors.value]}</p>
       <Lightbox
         isOpen={isModalOpen}
         onToggle={() => setModalOpen(!isModalOpen)}>
@@ -145,26 +134,6 @@ export default function PostPrice(props) {
               text-transform: uppercase;
 
               img {
-                margin-right: 4px;
-              }
-            }
-
-            .price-free {
-              display: flex;
-              align-items: center;
-              background-color: var(--color-secondary);
-              border: 1px solid var(--border-color);
-              border-left: 0;
-              border-right: 0;
-              padding: 10px;
-
-              input {
-                width: 14px;
-                margin-right: 4px;;
-              }
-
-              i {
-                color: var(--color-primary);
                 margin-right: 4px;
               }
             }

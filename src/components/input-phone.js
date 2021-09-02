@@ -68,8 +68,8 @@ export default function InputPhone(props) {
           </button>
         }
       </div>
-      <p className="error-msg">{phoneErrors.prefix && translations['selectAreaCode']}</p>
-      <p className="error-msg">{phoneErrors.number}</p>
+      <p className="error-msg">{translations[phoneErrors.prefix] && translations['selectAreaCode']}</p>
+      <p className="error-msg">{translations[phoneErrors.number]}</p>
       <Lightbox
         isOpen={isModalOpen}
         onToggle={() => setModalOpen(!isModalOpen)}>

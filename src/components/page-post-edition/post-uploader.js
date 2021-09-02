@@ -90,20 +90,20 @@ export default function PostUploader(props) {
         <small>{uploadWarningFileSizeMessage}</small>
       </p>
       <p className="warning-msg">
-        <small>{translations['recommendedAspectRatio']}</small>
+        <small>{translations.recommendedAspectRatio}</small>
       </p>
       <Lightbox
         isOpen={showModalWarning}
         onToggle={() => setShowModalWarning(!showModalWarning)}>
         <section className="invalid-file-modal">
-          <h2><i className="fas fa-exclamation-triangle"></i> {translations['warning']}</h2>
+          <h2><i className="fas fa-exclamation-triangle"></i> {translations.warning}</h2>
           <p>{warningMsg}</p>
           {wrongFiles.length && <p>{wrongFiles.map(file => `${file.name} (${parseInt(file.size/(1024*1024))}mb)`).join(', ')}</p>}
           <button 
             type="button" 
             className="btn-close" 
             onClick={() => setShowModalWarning(false)}>
-            {translations['close']}
+            {translations.close}
           </button>
         </section>
       </Lightbox>
