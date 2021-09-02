@@ -65,12 +65,15 @@ export default function PostDetails() {
       </BreadcumbBar>
       <h1>{pageTitle}</h1>
       <section className="ad-details">
-        <div className="photos">
+        <div className="main-details">
          <PhotoCarousel 
             autofocus
             bgColor="black"
             photos={postData.photos}>  
           </PhotoCarousel>
+          <article>
+            {postData.description}
+          </article>
         </div>
         <div className="info">
           <MainInfo
@@ -116,8 +119,12 @@ export default function PostDetails() {
             display: flex;
             flex-direction: column;
 
-            .photos {
+            .main-details {
               margin-bottom: var(--spacer);
+
+              article {
+                margin-top: var(--spacer);
+              }
             }
 
             .info {

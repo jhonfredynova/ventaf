@@ -10,21 +10,17 @@ export default function MainInfo(props) {
     <section className="main-info">
       <PriceInfo currencies={currencies} price={price} translations={translations} /> 
       <p>
-        <i className="fas fa-map-marker-alt" title={translations['location']}></i>
+        <i className="fas fa-map-marker-alt" title={translations.location}></i>
         {postData.location.description}
       </p>
       <p>
-        <i className="far fa-clock" title={translations['date']}></i>
-        {formatDate(postData.createdAt, `${preferences.dateFormat} hrs:min:sec`)}
+        <i className="far fa-clock" title={translations.date}></i>
+        {formatDate(postData.createdAt, `${preferences.dateFormat} hrs:min`)}
       </p>
       <p>
-      <i className="far fa-eye" title={translations['views']}></i>
-        {translations['adNumViews'].replace(/{numViews}/g, postData.views)}
+      <i className="far fa-eye" title={translations.views}></i>
+        {postData.views} {translations.visits}
       </p>
-      <h3>{translations['description']}</h3>
-      <article>
-        {postData.description}
-      </article>
       <style jsx>{`
         .main-info {
           p {

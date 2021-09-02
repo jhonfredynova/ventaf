@@ -7,7 +7,7 @@ export default function ContactButtons(props) {
   const { phone } = seller;
   const phoneNumber = `${phone.prefix}${phone.number}`;
   const sharingUrl = (typeof(window) !== 'undefined' && window.location.href);
-  const shareMessage = translations['userInterestedInAd'].replace(/{adUrl}/g, sharingUrl);
+  const shareMessage = translations.userInterestedInAd.replace(/{adUrl}/g, sharingUrl);
   const onContactSeller = (action, value) => {
     ReactGA.event({
       category: 'Social',
@@ -36,7 +36,7 @@ export default function ContactButtons(props) {
       </a>
       <a 
         className="link btn btn-email"
-        href={`mailto:${postData.seller.email}?subject=VentaExitosa.com - ${pageTitle}&body=${shareMessage}`}
+        href={`mailto:${postData.seller.email}?subject=ConstruccionYTecnologiaSAS.com - ${pageTitle}&body=${shareMessage}`}
         rel="noreferrer"
         target="_blank"
         onClick={() => onContactSeller('Contact ad seller via email', 2)}>

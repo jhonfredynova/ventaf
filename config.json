@@ -1,5 +1,5 @@
 {
-  "appLastSync": 1630530615691,
+  "appLastSync": 1630588583127,
   "callingCodes": [
     {
       "countryFlag": "https://restcountries.eu/data/afg.svg",
@@ -4526,6 +4526,7 @@
       "contactEmail": "Contact email",
       "entity": "Entity",
       "billingDescription": "Billing history",
+      "visits": "Visits",
       "billingIsNotActive": "Billing selected is not active",
       "inactiveConfirmation": "Are you sure to inactive this?",
       "inactive": "Inactive",
@@ -5211,6 +5212,7 @@
       "contactEmail": "Email de contacto",
       "entity": "Entidad",
       "billingDescription": "Historial de facturación",
+      "visits": "Visitas",
       "billingIsNotActive": "La facturación seleccionada no está activa",
       "inactiveConfirmation": "¿Estas seguro de inactivar esto?",
       "inactive": "Inactivo",

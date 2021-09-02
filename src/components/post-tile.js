@@ -38,8 +38,6 @@ export default function PostTile(props) {
           :global(.post-tile) {
             background: none;
             border: 0;
-            border-radius: var(--border-radius);
-            box-shadow: rgb(0, 0, 0) 0px 0px 5px 0px;
             color: var(--color-text);
             display: flex;
             flex-flow: column;
@@ -59,7 +57,6 @@ export default function PostTile(props) {
               .thumbnail {
                 position: relative;
                 background: black;
-                border-radius: var(--border-radius) var(--border-radius) 0 0;
                 width: 100%;
                 padding-top: 56.25%;
                 flex-shrink: 0;
@@ -100,6 +97,7 @@ export default function PostTile(props) {
               }
 
               .description {
+                color: #777;
                 margin-top: 3px;
                 display: -webkit-box;
                 -webkit-line-clamp: 2;
