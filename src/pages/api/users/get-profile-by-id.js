@@ -8,7 +8,7 @@ export default async function getUserProfileById(req, res) {
     const modelDb = await getDbDocument(db, 'users', req.query.userId);
 
     if (!modelDb) {
-      res.status(400).json({ code: 'record-not-found' });
+      res.status(400).json({ code: 'recordNotFound' });
       return;
     }
 

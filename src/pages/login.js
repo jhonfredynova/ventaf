@@ -48,7 +48,7 @@ export default function Login() {
         translations={translations}>
       </NavigationBar>
       <section className="login-section">
-        {loginMessage && <div className="alert alert-info" role="alert">{loginMessage}</div>}
+        {loginMessage && <div className="login-message" role="alert">{loginMessage}</div>}
         <p className="link-forgot-password">
           <Link href="/recover-password">{translations['forgotPassword']}</Link>
         </p>
@@ -65,8 +65,17 @@ export default function Login() {
           margin: 0 auto;
           padding: calc(var(--spacer) * 2);
 
-          .link-forgot-password {
-            margin-bottom: var(--spacer);
+          .login-section {
+            .link-forgot-password {
+              margin-bottom: var(--spacer);
+            }
+
+            .login-message {
+              background: var(--color-secondary);
+              border-radius: var(--border-radius);
+              margin-bottom: var(--spacer);
+              padding: var(--spacer);
+            }
           }
         }  
       `}</style>

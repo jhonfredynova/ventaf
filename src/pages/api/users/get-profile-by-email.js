@@ -10,13 +10,13 @@ export default async function getUserProfileByEmail(req, res) {
     const errors = {};
 
     if (!modelData.email?.trim()) {
-      errors.email = 'field-required';
+      errors.email = 'fieldRequired';
     } else if (!isEmail(modelData.email)) {
-      errors.email = 'field-invalid-email';
+      errors.email = 'fieldInvalidEmail';
     }
 
     if (Object.keys(errors).length > 0) {
-      res.status(400).json({ code: 'model-errors', errors });
+      res.status(400).json({ code: 'modelErrors', errors });
       return;
     }
 

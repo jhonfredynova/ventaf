@@ -7,18 +7,18 @@ export default async function recoverPassword(req, res) {
     const errors = {};
 
     if (!email?.trim()) {
-      errors.email = 'enter-your-email';
+      errors.email = 'fieldRequired';
     } else if (!isEmail(email)) {
-      errors.email = 'email-invalid';
+      errors.email = 'fieldInvalidEmail';
     }
 
     if (Object.keys(errors).length > 0) {
-      res.status(400).json({ code: 'model-errors', errors });
+      res.status(400).json({ code: 'modelErrors', errors });
       return;
     }
 
     await firebaseClient.auth().sendPasswordResetEmail(email);
-    res.json({ code: 'recover-password-success' });
+    res.json({ code: 'recoverPasswordSuccess' });
   } catch (error) {
     res.status(500).json(error);
   }

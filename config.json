@@ -1,5 +1,5 @@
 {
-  "appLastSync": 1630588583127,
+  "appLastSync": 1630590338796,
   "callingCodes": [
     {
       "countryFlag": "https://restcountries.eu/data/afg.svg",
@@ -4605,6 +4605,7 @@
       "securePaymentInfo": "We protect your payment information with SSL (Secure Sockets Layer) when it is sent over the internet. SSL encrypts the payment information so it can not be intercepted by a third party. Venpad does not save your credit card information.",
       "createCompanyDescription": "Enter your company details",
       "summary": "Summary",
+      "changePasswordSuccess": "Your password has been changed correctly",
       "companyTaxEditionTitle": "Tax Edition",
       "linkWasCopied": "The link was copied",
       "initialRange": "Initial range",
@@ -5291,6 +5292,7 @@
       "securePaymentInfo": "Protegemos su información de pago con SSL (Secure Sockets Layer) cuando se envía a través de internet. SSL encripta la información de pago para que no pueda ser interceptada por un tercero. Venpad no guarda la información de su tarjeta de crédito.",
       "createCompanyDescription": "Ingresa los detalles de tu empresa",
       "summary": "Resumen",
+      "changePasswordSuccess": "Tu contraseña ha sido cambiada correctamente",
       "companyTaxEditionTitle": "Edición de Impuesto",
       "linkWasCopied": "El enlace fue copiado",
       "initialRange": "Rango inicial",

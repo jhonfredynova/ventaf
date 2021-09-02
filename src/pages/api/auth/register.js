@@ -1,4 +1,5 @@
 import { getUserProfileData } from '../../../utils/user-utils';
+import { isEmail } from '../../../utils/validation-utils';
 
 export default async function register(req, res) {
   try {
@@ -11,7 +12,7 @@ export default async function register(req, res) {
         : accum;
     }, {});
     const emailUsername = userData.email.split('@')[0];
-    let modelData = {
+    const modelData = {
       ...userData,
       createdAt: Date.now(),
       displayName: userData.displayName || emailUsername,
@@ -23,7 +24,29 @@ export default async function register(req, res) {
       }
     };
 
-    // registerig user
+    // validating
+    let errors = {};
+    const { email, password } = modelData;
+
+    if (!email?.trim()) {
+      errors.email = 'fieldRequired';
+    } else if (!isEmail(email)) {
+      errors.email = 'fieldInvalidEmail';
+    }
+
+    if (!password?.trim()) {
+      errors.password = 'fieldRequired';
+    } else if (password?.length < 6) {
+      errors.password = 'fieldPasswordInsecure';
+    }
+
+    if (Object.keys(errors).length > 0) {
+      res.status(400).json({ code: 'modelErrors', errors });
+      return;
+    }
+
+
+    // registering
     const userRegistered = await firebaseClient
       .auth()
       .createUserWithEmailAndPassword(modelData.email, modelData.password);

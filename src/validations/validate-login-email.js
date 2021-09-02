@@ -4,13 +4,13 @@ export default modelData => {
   let errors = {};
 
   if (!modelData.email?.trim()) {
-    errors.email = 'field-required';
+    errors.email = 'fieldRequired';
   } else if (!isEmail(modelData.email)) {
-    errors.email = 'field-email-invalid';
+    errors.email = 'fieldInvalidEmail';
   }
 
   if (!modelData.password?.trim()) {
-    errors.password = 'field-required';
+    errors.password = 'fieldRequired';
   }
 
   return errors;

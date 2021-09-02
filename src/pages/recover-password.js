@@ -32,7 +32,7 @@ export default function RecoverPassword() {
       setErrors({});
       setModel({ ...model, token: query.token });
       const response = await store.dispatch(recoverPassword(model));
-      const successMessage = response.message;
+      const successMessage = translations[response.code];
       router.push(`/login?message=${successMessage}`);
       setIsLoading(false);
     } catch (error) {

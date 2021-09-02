@@ -6,19 +6,27 @@ export default async function changePassword(req, res) {
     await runMiddleware(req, res, authorization('registered'));
     
     const firebaseAdmin = require('../../../firebase-admin').default;
-    const { password } = req.body;
+    let errors = {};
+    const { password, passwordConfirmation } = req.body;
 
     if (!password?.trim()) {
-      res.status(400).json({ 
-        code: 'model-errors', 
-        errors: { password: 'enter-new-password' }
-      });
+      errors.password = 'fieldRequired';
+    } else if (password?.length < 6) {
+      errors.password = 'fieldPasswordInsecure';
+    }
+
+    if (password !== passwordConfirmation) {
+      errors.passwordConfirmation = 'passwordsNotMatch';
+    }
+
+    if (Object.keys(errors).length > 0) {
+      res.status(400).json({ code: 'modelErrors', errors });
       return;
     }
 
     await firebaseAdmin.auth().updateUser(req.user.uid, { password });
 
-    res.json({ code: 'change-password-success' });
+    res.json({ code: 'changePasswordSuccess' });
   } catch (error) {
     res.status(500).json(error);
   }

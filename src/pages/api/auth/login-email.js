@@ -7,7 +7,7 @@ export default async function loginEmail(req, res) {
     const errors = valideLoginEmail(modelData);
 
     if (Object.keys(errors).length > 0) {
-      res.status(400).json({ code: 'model-errors', errors });
+      res.status(400).json({ code: 'modelErrors', errors });
       return;
     }
 
