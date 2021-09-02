@@ -104,6 +104,8 @@ export default function PostDetails() {
       }
       <style jsx>{`
         main {
+          max-width: var(--container-width);
+          margin: 0 auto;
           padding: calc(var(--spacer) * 2);
 
           h1 {
