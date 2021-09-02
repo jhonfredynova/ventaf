@@ -7,7 +7,7 @@ export const sendNotification = async (config, emailLibrary, emailData) => {
       to: emailData.to,
       templateId: config.template,
       'dynamic_template_data': {
-        slogan: 'Venta Exitosa - https://ventaexitosa.com',
+        slogan: 'Construccion y Tecnologia SAS - https://construccionytecnologiasas.com',
         subject: emailData.subject,
         message: emailData.message
       }

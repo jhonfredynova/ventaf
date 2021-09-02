@@ -11,7 +11,7 @@ export default function SEO(props) {
 
   return (
     <Head>
-      <title>{(title || '').concat(' | Venta Exitosa')}</title>
+      <title>{(title || '').concat(' | Construccion y Tecnologia SAS')}</title>
       {/* GOOGLE */}
       <meta charSet="utf-8" />
       <meta name="description" content={description} />
@@ -20,7 +20,7 @@ export default function SEO(props) {
       {/* FACEBOOK */}
       <meta property="og:title" content={title} />
       <meta property="og:type" content="business.business" />
-      <meta property="og:site_name" content="Venta Exitosa" />
+      <meta property="og:site_name" content="Construccion y Tecnologia SAS" />
       <meta property="og:description" content={title} />
       {/* TWITTER  */}
       <meta name="twitter:card" content={description} />
