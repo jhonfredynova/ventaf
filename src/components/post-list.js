@@ -44,6 +44,12 @@ export default function HomeContents(props) {
 			{
 				!isLoading && posts.length === 0 && 
 				<div className="no-results">
+					<img 
+						src={
+							'https://firebasestorage.googleapis.com/v0/b/construccionytecnologia-f556c.appspot.com/o/'
+							.concat('no-results.svg?alt=media&token=c3387719-ba87-4a58-93aa-618229db49d8')
+						}
+						alt={translations.noResults} />
 					<p>{translations.noResults}</p>
 					<Link href="/post">
 						<a className="link-post">
@@ -106,7 +112,6 @@ export default function HomeContents(props) {
 			<style jsx>{`
 				.no-results {
 					text-align: center;
-					margin-top: calc(var(--spacer) * 3);
 
 					h2 {
 						text-align: center;
