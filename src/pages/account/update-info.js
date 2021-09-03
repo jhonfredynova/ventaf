@@ -10,9 +10,10 @@ import NavigationBar from '../../components/navigation-bar';
 import { initializeStore } from '../../store/store';
 import { getConfiguration } from '../../store/actions/config-actions';
 
-export const getServerSideProps = async () => {
+export const getServerSideProps = async ({ locale }) => {
   const store = initializeStore();
-  await store.dispatch(getConfiguration());
+  await store.dispatch(getConfiguration(locale));
+  
   return {
     props: {
       initialReduxState: store.getState() 

@@ -21,7 +21,6 @@ export default async function updateUser(req, res) {
       ...req.body,
       ...(req.body.active ? { active: req.body.active } : null),
       ...(req.body.nextPlan ? { nextPlan: req.body.nextPlan } : null),
-      ...(req.body.preferences ? { preferences: req.body.preferences } : null),
       updatedAt: Date.now()
     };
 

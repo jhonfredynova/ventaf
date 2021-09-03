@@ -6,19 +6,15 @@ import { useRouter } from 'next/router';
 import Layout from '../components/layout';
 import { useStore } from '../store/store';
 import { me, setToken } from '../store/actions/auth-actions';
-import { setPreferences } from '../store/actions/preferences-actions';
-import { loadPreferences } from '../utils/user-utils';
 
 export default function MyApp({ Component, pageProps }) {
   const store = useStore(pageProps.initialReduxState);
   const router = useRouter();
 
-  useEffect(() => {
+  useEffect(async () => {
     ReactGA.initialize(process.env.NEXT_PUBLIC_GOOGLE_ANALITYCS_KEY, {});
-    store.dispatch(setToken(localStorage.token));
-    store.dispatch(me())
-      .catch(() => localStorage.removeItem('token'))
-      .finally(() => loadPreferences(store, setPreferences));
+    await store.dispatch(setToken(localStorage.token));
+    store.dispatch(me()).catch(() => localStorage.removeItem('token'));
   }, []);
 
 

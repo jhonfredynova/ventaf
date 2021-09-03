@@ -11,9 +11,9 @@ import { createPost } from '../../store/actions/post-actions';
 import { initializeStore } from '../../store/store';
 import { getConfiguration } from '../../store/actions/config-actions';
 
-export const getStaticProps = async () => {
+export const getStaticProps = async ({ locale }) => {
   const store = initializeStore();
-  await store.dispatch(getConfiguration());
+  await store.dispatch(getConfiguration(locale));
   
   return {
     props: {
@@ -49,7 +49,6 @@ export default function NewPost() {
   });
   const { authData, authLoaded } = useSelector(state => state.auth);  
   const { callingCodes, currencies, translations } = useSelector(state => state.config);
-  const preferences = useSelector(state => state.preferences);
   
   const pageTitle = translations['sellNowTitle'];
   const pageDescription = translations['sellNowDescription'];
@@ -186,7 +185,6 @@ export default function NewPost() {
         <div className="lightbox-login">
           <h2>{translations['login']}</h2>
           <UserLogin
-            preferences={preferences}
             translations={translations}
             onLoginSuccess={() => setShowModalUser(false)}>
           </UserLogin>

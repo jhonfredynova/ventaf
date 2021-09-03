@@ -1,23 +1,25 @@
 import React, { useState } from 'react';
 import ReactGA from 'react-ga';
 import { useStore } from 'react-redux';
+import { useRouter } from 'next/router';
 import firebaseApp from './firebase-app';
 import LoginButton from './login-button';
 import { setToken, me, loginGoogle, loginFacebook } from '../../../store/actions/auth-actions';
 
 export default function LoginSocialNetworks(props) {
   const store = useStore();
+  const router = useRouter();
   const [isProcessingFacebook, setIsProcessingFacebook] = useState(false);
   const [isProcessingGoogle, setIsProcessingGoogle] = useState(false);
   const [error, setError] = useState('');
-  const { isLoggingIn, preferences, translations, onLogginIn, onSuccess } = props;
+  const { isLoggingIn, translations, onLogginIn, onSuccess } = props;
 
   const loginWithFacebook = async () => {
     try {
       onLogginIn(true);
       setIsProcessingFacebook(true);
       setError('');
-      firebaseApp.auth().languageCode = preferences.language;
+      firebaseApp.auth().languageCode = router.locale;
       const facebookProvider = new firebaseApp.firebase_.auth.FacebookAuthProvider();
       facebookProvider.addScope('email');
       facebookProvider.setCustomParameters({ 'display': 'popup' });
@@ -48,7 +50,7 @@ export default function LoginSocialNetworks(props) {
       onLogginIn(true);
       setIsProcessingGoogle(true);
       setError('');
-      firebaseApp.auth().languageCode = preferences.language;
+      firebaseApp.auth().languageCode = router.locale;
       const googleProvider = new firebaseApp.firebase_.auth.GoogleAuthProvider();
       googleProvider.addScope('email');
       googleProvider.addScope('profile');

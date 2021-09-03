@@ -8,9 +8,10 @@ import UserLogin from '../components/user-login/user-login';
 import { initializeStore } from '../store/store';
 import { getConfiguration } from '../store/actions/config-actions';
 
-export const getStaticProps = async () => {
+export const getStaticProps = async ({ locale }) => {
   const store = initializeStore();
-  await store.dispatch(getConfiguration());
+  await store.dispatch(getConfiguration(locale));
+
   return {
     props: {
       initialReduxState: store.getState() 
@@ -21,7 +22,6 @@ export const getStaticProps = async () => {
 export default function Login() {
   const authData = useSelector(state => state.auth.authData); 
   const { translations } = useSelector(state => state.config); 
-  const preferences = useSelector(state => state.preferences); 
   const router = useRouter();
   const { query } = router;
   const loginMessage = query.message;
@@ -53,7 +53,6 @@ export default function Login() {
           <Link href="/recover-password">{translations['forgotPassword']}</Link>
         </p>
         <UserLogin
-          preferences={preferences}
           translations={translations}
           onLoginSuccess={onLoginSuccess}>
         </UserLogin>

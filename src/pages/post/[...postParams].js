@@ -14,12 +14,12 @@ import { BREAKPOINTS } from '../../utils/style-utils';
 import { initializeStore } from '../../store/store';
 import { getConfiguration } from '../../store/actions/config-actions';
 
-export const getServerSideProps = async ({ query }) => {
+export const getServerSideProps = async ({ locale, query }) => {
   const store = initializeStore();
   const postId = query?.postParams?.[1];
 
   await Promise.all([
-    store.dispatch(getConfiguration()),
+    store.dispatch(getConfiguration(locale)),
     store.dispatch(getPostById(postId))
   ]);
 
@@ -40,7 +40,6 @@ export default function PostDetails() {
   const store = useStore();
   const authData = useSelector(state => state.auth.authData);
   const { callingCodes, currencies, translations } = useSelector(state => state.config);
-  const preferences = useSelector(state => state.preferences);
   const relatedContent = useSelector(state => state.post.relatedContent);
   const profiles = useSelector(state => state.profile.records);
   const postData = useSelector(state => state.post.currentPost);
@@ -79,7 +78,6 @@ export default function PostDetails() {
           <MainInfo
             postData={postData}
             currencies={currencies}
-            preferences={preferences}
             translations={translations}>
           </MainInfo>
           <ContactInfo

@@ -7,9 +7,10 @@ import { recoverPassword } from '../store/actions/auth-actions';
 import { initializeStore } from '../store/store';
 import { getConfiguration } from '../store/actions/config-actions';
 
-export const getStaticProps = async () => {
+export const getStaticProps = async ({ locale }) => {
   const store = initializeStore();
-  await store.dispatch(getConfiguration());
+  await store.dispatch(getConfiguration(locale));
+  
   return {
     props: {
       initialReduxState: store.getState() 

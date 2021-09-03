@@ -14,12 +14,13 @@ import { getLocales, deleteLocale } from '../../store/actions/locale-actions';
 import { formatDate } from '../../utils/intl-utils';
 import ConfirmationModal from '../../components/modals/confirmation-modal';
 
-export const getServerSideProps = async () => {
+export const getServerSideProps = async ({ locale }) => {
   const store = initializeStore();
   await Promise.all([
-    store.dispatch(getConfiguration()),
+    store.dispatch(getConfiguration(locale)),
     store.dispatch(getLocales())
   ]);
+  
   return {
     props: {
       initialReduxState: store.getState() 

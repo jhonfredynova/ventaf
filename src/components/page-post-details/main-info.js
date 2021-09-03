@@ -3,7 +3,7 @@ import PriceInfo from './price-info';
 import { formatDate } from '../../utils/intl-utils';
 
 export default function MainInfo(props) {
-  const { currencies, preferences, translations, postData } = props;
+  const { currencies, translations, postData } = props;
   const price = (postData.price);
 
   return (
@@ -15,7 +15,7 @@ export default function MainInfo(props) {
       </p>
       <p>
         <i className="far fa-clock" title={translations.date}></i>
-        {formatDate(postData.createdAt, `${preferences.dateFormat} hrs:min`)}
+        {formatDate(postData.createdAt, 'dd/month/yyyy hrs:min')}
       </p>
       <p>
       <i className="far fa-eye" title={translations.views}></i>

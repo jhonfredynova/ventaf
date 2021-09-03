@@ -8,13 +8,13 @@ import { initializeStore } from '../store/store';
 import { getConfiguration } from '../store/actions/config-actions';
 import { getProfileByUsername, getProfileAds } from '../store/actions/profile-actions';
 
-export const getServerSideProps = async ({ query }) => {
+export const getServerSideProps = async ({ locale, query }) => {
   try {
     const store = initializeStore();
     const profile = await store.dispatch(getProfileByUsername(query.username));
 
     await Promise.all([
-      store.dispatch(getConfiguration()),
+      store.dispatch(getConfiguration(locale)),
       store.dispatch(getProfileAds(profile.id, {}))
     ]);
 

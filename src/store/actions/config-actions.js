@@ -7,10 +7,9 @@ export const TYPES = {
   SYNC_CONFIG: 'SYNC_CONFIGURATION'
 };
 
-export const getConfiguration = () => async (dispatch, getState) => {
-  const preferences = getState().preferences;
+export const getConfiguration = locale => async dispatch => {
   const configData = { ...config };
-  configData.translations = configData.translations[preferences.language];
+  configData.translations = configData.translations[locale];
   dispatch({ type: TYPES.GET_CONFIG, payload: configData });
 };
 

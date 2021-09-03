@@ -16,12 +16,7 @@ export default async function register(req, res) {
       ...userData,
       createdAt: Date.now(),
       displayName: userData.displayName || emailUsername,
-      username: userData.username || emailUsername,
-      preferences: {
-        currency: req.currency,
-        dateFormat: req.dateFormat,
-        language: req.language
-      }
+      username: userData.username || emailUsername
     };
 
     // validating
@@ -52,7 +47,7 @@ export default async function register(req, res) {
       .createUserWithEmailAndPassword(modelData.email, modelData.password);
     const { uid } = userRegistered.user;
 
-    const userProfile = getUserProfileData(modelData, req);
+    const userProfile = getUserProfileData(modelData);
     await db
       .collection('users')
       .doc(uid)

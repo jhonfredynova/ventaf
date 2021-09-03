@@ -10,7 +10,6 @@ import authReducer from './reducers/auth-reducer';
 import configReducer from './reducers/config-reducer';
 import localeReducer from './reducers/locale-reducer';
 import postReducer from './reducers/post-reducer';
-import preferencesReducer from './reducers/preferences-reducer';
 import profileReducer from './reducers/profile-reducer';
 import userReducer from './reducers/user-reducer';
 
@@ -21,7 +20,6 @@ const reducers = combineReducers({
   config: configReducer,
   locale: localeReducer,
   post: postReducer,
-  preferences: preferencesReducer,
   profile: profileReducer,
   user: userReducer
 });

@@ -4,13 +4,12 @@ import LoginSocialNetworks from './components/login-social-networks';
 
 export default function UserLogin(props) {
   const [isLoggingIn, setIsLogginIn] = useState(false);
-  const { preferences, translations, onLoginSuccess } = props;
+  const { translations, onLoginSuccess } = props;
 
   return (
     <div className="user-login">
       <LoginSocialNetworks
         isLoggingIn={isLoggingIn}
-        preferences={preferences}
         translations={translations}
         onLogginIn={setIsLogginIn}
         onSuccess={onLoginSuccess}>

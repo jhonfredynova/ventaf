@@ -20,7 +20,7 @@ export default async function loginFacebook(req, res) {
     const userExist = await getDbDocument(db, 'users', user.uid);
 
     if (!userExist) {
-      const userProfile = getUserProfileData(user, req);
+      const userProfile = getUserProfileData(user);
       await db
         .collection('users')
         .doc(user.uid)

@@ -11,12 +11,12 @@ import { initializeStore } from '../../store/store';
 import { getConfiguration } from '../../store/actions/config-actions';
 import { getFilesFromUrls } from '../../utils/upload-utils';
 
-export const getServerSideProps = async ({ query }) => {
+export const getServerSideProps = async ({ locale, query }) => {
   const store = initializeStore();
   const { postId } = query;
 
   await Promise.all([
-    store.dispatch(getConfiguration()),
+    store.dispatch(getConfiguration(locale)),
     store.dispatch(getPostById(postId))
   ]);
 

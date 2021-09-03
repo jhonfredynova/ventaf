@@ -11,11 +11,11 @@ import { initializeStore } from '../store/store';
 import { getConfiguration } from '../store/actions/config-actions';
 import { getPosts, getMorePosts } from '../store/actions/post-actions';
 
-export const getStaticProps = async ({ query }) => {
+export const getStaticProps = async ({ locale, query }) => {
   const store = initializeStore();
   
   await Promise.all([
-    store.dispatch(getConfiguration()),
+    store.dispatch(getConfiguration(locale)),
     store.dispatch(getPosts(query))
   ]);
   
