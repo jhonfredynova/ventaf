@@ -6,7 +6,7 @@ export default function Footer(props) {
   const { countries, translations } = props;
   const router = useRouter();
   const spain = countries.find(country => country.value === 'esp');
-  const usa = countries.find(country => country.value === 'usa');
+  const usa = countries.find(country => country.value === 'gbr');
 
   return (
     <footer className="footer">
@@ -32,14 +32,14 @@ export default function Footer(props) {
       <div className="languages-bar">
         <Link href={router.pathname} locale="es">
           <a className="link-language">
-            <img src={spain.flag} alt={spain.label} width="20px" /> 
-            {translations.spanish}
+            <img src={spain.flag} alt={spain.label} width="25px" /> 
+            ES
           </a>
         </Link>
         <Link href={router.pathname} locale="en">
           <a className="link-language">
-            <img src={usa.flag} alt={usa.label} width="20px" /> 
-            {translations.english}
+            <img src={usa.flag} alt={usa.label} width="30px" /> 
+            EN
           </a>
         </Link>
       </div>
@@ -75,6 +75,8 @@ export default function Footer(props) {
             margin-top: var(--spacer);
             
             .link-language {
+              display: flex;
+              align-items: center;
               border: 1px solid var(--border-color);
               border-radius: var(--border-radius);
               padding: var(--spacer);

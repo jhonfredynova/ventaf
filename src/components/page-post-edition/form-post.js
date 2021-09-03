@@ -80,8 +80,12 @@ export default function FormPost(props) {
           textarea {
             border: 1px solid var(--border-color);
             padding: var(--spacer);
-            height: 200px;
+            height: 100px;
             width: 100%;
+
+            @media screen and (min-width: ${BREAKPOINTS.TABLET}) {
+              height: 160px;
+            }
           }
 
           .error-msg {
