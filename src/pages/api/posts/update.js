@@ -72,8 +72,10 @@ export default async function updatePost(req, res) {
       ...postDb, 
       ...postData
     };
+
     res.json(postUpdated);
   } catch (error) {
+    console.error('Error updating post', error);
     res.status(500).json(error);
   }
 }

@@ -37,7 +37,7 @@ export default async function createPost(req, res) {
     const errors = validatePost(modelData);
 
     if (Object.keys(errors).length > 0) {
-      res.status(400).json({ code: 'model-errors', errors });
+      res.status(400).json({ code: 'modelErrors', errors });
       return;
     }
 
@@ -70,8 +70,10 @@ export default async function createPost(req, res) {
       id: newPostId, 
       photos: photoUrls 
     };
+
     res.json(postCreated);
   } catch (error) {
+    console.error('Error creating new post', error);
     res.status(500).json(error);
   }
 }
