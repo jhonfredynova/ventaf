@@ -99,7 +99,6 @@ export default function PostPrice(props) {
             suggestions={suggestions}
             translations={translations}
             value={priceValue.currency}
-            onBlur={() => setModalOpen(false)}
             onChange={currency => {
               onChange({ ...priceValue, currency });
               setModalOpen(false);

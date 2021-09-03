@@ -84,7 +84,6 @@ export default function InputPhone(props) {
             required={required}
             suggestions={suggestions}
             value={phoneValue.prefix}
-            onBlur={() => setModalOpen(false)}
             onChange={prefix => {
               onChange({ ...phoneValue, prefix });
               setModalOpen(false);

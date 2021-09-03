@@ -2,22 +2,29 @@ import React, { useEffect } from 'react';
 
 export default function Lightbox(props) {
   const { isOpen, onToggle } = props;
-  const closeOnKeyup = event => {
+
+  const onKeyup = event => {
     if (event.keyCode === 27 && isOpen) {
       onToggle();
     }
   };
 
+  const onClickOutside = event => {
+    if (event.target.className.includes('lightbox')) {
+      onToggle();
+    }
+  };
+
   useEffect(() => {
-    document.addEventListener('keyup', closeOnKeyup);
+    document.addEventListener('keyup', onKeyup);
 
     return () => {
-      document.removeEventListener('keyup', closeOnKeyup);
+      document.removeEventListener('keyup', onKeyup);
     };
-  }, [closeOnKeyup]);
+  }, [onKeyup]);
 
   return (
-    <div className={`lightbox ${isOpen ? 'show' : 'hide'}`}>
+    <div className={`lightbox ${isOpen ? 'show' : 'hide'}`} onClick={onClickOutside}>
       {
         isOpen &&
         <>
