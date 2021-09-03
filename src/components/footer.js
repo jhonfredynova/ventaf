@@ -32,13 +32,13 @@ export default function Footer(props) {
       <div className="languages-bar">
         <Link href={router.pathname} locale="es">
           <a className="link-language">
-            <img src={spain.flag} alt={spain.label} width="25px" /> 
+            <img src={spain?.flag} alt={spain?.label} width="25px" /> 
             ES
           </a>
         </Link>
         <Link href={router.pathname} locale="en">
           <a className="link-language">
-            <img src={usa.flag} alt={usa.label} width="30px" /> 
+            <img src={usa?.flag} alt={usa?.label} width="30px" /> 
             EN
           </a>
         </Link>
