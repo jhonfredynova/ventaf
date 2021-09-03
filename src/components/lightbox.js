@@ -87,7 +87,8 @@ export default function Lightbox(props) {
             margin: 0 auto;
             max-height: 100%;
             padding: 15px;
-            width: auto;
+            max-width: 600px;
+            width: 100%;
             z-index: 1050;
           }
 

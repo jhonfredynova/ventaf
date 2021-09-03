@@ -3,44 +3,55 @@ import React, { useState, useRef, useEffect } from 'react';
 export default function InputSuggestions(props) {
   const { 
     autofocus, id, className, translations, placeholder, customFilterLogic, customOption, 
-    style, required, suggestions, value, onChange 
+    style, required, suggestions, value, onBlur, onChange 
   } = props;
   const selectedSuggestion = suggestions.find(suggestion => suggestion.value === value);
   const inputRef = useRef(null);
   const [showSuggestions, setShowSuggestions] = useState(false);
   const [searchValue, setSearch] = useState('');
+
   const filterLogic = (suggestion, searchValue) => {
     const { label, value } = suggestion;
     return `${label} ${value}`.toLowerCase().includes(searchValue.toLowerCase());
   };
+
   const filteredSuggestions = suggestions.filter(suggestion => {
     if (customFilterLogic) {
       return customFilterLogic(suggestion, searchValue);
     }
     return filterLogic(suggestion, searchValue);
   });
+
   const onKeyDown = event => {
     if (['Enter', 13].includes(event.key)) {
       event.preventDefault();
       onChange(selectedSuggestion.value);
     }
   };
+
   const onClear = () => {
     setSearch('');
     onChange('');
   };
-  const onBlur = () => {
+
+  const onInputBlur = () => {
     setShowSuggestions(false);
     setSearch('');
+
+    if (onBlur) {
+      onBlur();
+    }
 
     if (!value) {
       onChange('');
     }
   };
+
   const onClickSuggestion = suggestion => {
     setSearch('');
     onChange(suggestion.value);
   };
+
   const onInputChange = event => {
     setSearch(event.target.value);
   };
@@ -63,10 +74,10 @@ export default function InputSuggestions(props) {
         value={searchValue}
         onChange={onInputChange}
         onFocus={() => setShowSuggestions(true)}
-        onBlur={onBlur}
+        onBlur={onInputBlur}
         onKeyDown={onKeyDown} />
       <ul 
-         className={!showSuggestions && 'd-none'}
+        className={!showSuggestions && 'd-none'}
         style={{ 
           ...(style && style.suggestions),
           top: `${inputRef.current ? inputRef.current.offsetHeight : 0}px`,
@@ -129,6 +140,7 @@ export default function InputSuggestions(props) {
 
           .btn-check {
             background: var(--color-primary);
+            color: white;
           }
 
           ul {
@@ -144,7 +156,11 @@ export default function InputSuggestions(props) {
               padding: var(--spacer);
 
               &:hover {
-                background-color: var(--color-primary);
+                background: var(--color-secondary);
+              }
+
+              &.active {
+                background: var(--color-secondary)
               }
             }
           }

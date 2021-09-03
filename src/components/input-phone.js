@@ -40,7 +40,7 @@ export default function InputPhone(props) {
             selectedSuggestion &&
             <>
               <img src={selectedSuggestion.countryFlag} alt={selectedSuggestion.countryName} width="30px" height="20px" />                
-              <span style={{ display: 'inline-block', minWidth:'32px' }}>
+              <span style={{ display: 'inline-block', marginLeft: '3px', minWidth:'32px' }}>
                 {selectedSuggestion.value}
               </span>
             </>
@@ -84,6 +84,7 @@ export default function InputPhone(props) {
             required={required}
             suggestions={suggestions}
             value={phoneValue.prefix}
+            onBlur={() => setModalOpen(false)}
             onChange={prefix => {
               onChange({ ...phoneValue, prefix });
               setModalOpen(false);

@@ -86,6 +86,10 @@ export default function FormPost(props) {
             @media screen and (min-width: ${BREAKPOINTS.TABLET}) {
               height: 160px;
             }
+
+            @media screen and (min-width: ${BREAKPOINTS.DESKTOP}) {
+              height: 215px;
+            }
           }
 
           .error-msg {
