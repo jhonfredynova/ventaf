@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import InputLocation from '../input-location/input-location';
+import InputLocation from '../../input-location/input-location';
 
-export default function HomeLocation(props) {
+export default function SearchLocation(props) {
   const LOCATION_STEPS = {
     EDITION: 'location-edition',
     SELECTED: 'location-selected'
@@ -16,13 +16,13 @@ export default function HomeLocation(props) {
         <div className="location-selected">
           <button className="btn-select-city" onClick={() => setLocationStep(LOCATION_STEPS.EDITION)}>
             <i className="fas fa-map-marker-alt"></i> 
-            <span className="city">{locationSelected.description || translations['allTheWorld']}</span>
+            <span className="city">{locationSelected.description || 'Global'}</span>
           </button>
           {
             locationSelected.description && 
             <button 
               className="btn-clear-city" 
-              title={translations['clean']} 
+              title={translations.clean} 
               onClick={() => onChange()}>
               <i className="fas fa-times"></i>
             </button>
@@ -32,23 +32,24 @@ export default function HomeLocation(props) {
       {
         locationStep === 'location-edition' &&
         <div className="location-edition">
-          <button className="btn-back" onClick={() => setLocationStep(LOCATION_STEPS.SELECTED)}>
-            <span className="sr-only">{translations['cancel']}</span>
-            <i className="fas fa-arrow-left"></i>
-          </button>
-          <label className="sr-only" htmlFor="location">{translations['location']}:</label>
+          <label className="sr-only" htmlFor="location">{translations.location}:</label>
           <InputLocation
             id="location"
             autofocus
             translations={translations}
-            placeholder={translations['allTheWorld']}
+            placeholder="Global"
             searchOptions={{ types: ['(cities)'] }}
             value={locationSelected}
+            onBlur={() => setLocationStep(LOCATION_STEPS.SELECTED)}
             onChange={location => {
               onChange(location.placeId);
               setLocationStep(LOCATION_STEPS.SELECTED);
             }}>
           </InputLocation>
+          <button className="btn-ok" onClick={() => setLocationStep(LOCATION_STEPS.SELECTED)}>
+            <span className="sr-only">{translations.cancel}</span>
+            <i className="fas fa-check"></i>
+          </button>
         </div>
       }
       <style jsx>{`
@@ -60,11 +61,11 @@ export default function HomeLocation(props) {
           .btn-clear-city {
             border: none;
             cursor: pointer;
-            padding: var(--spacer);
           }
 
           .btn-select-city {
             background: transparent;
+            padding: 0;
             
             .city {
               margin-left: 6px;
@@ -74,6 +75,7 @@ export default function HomeLocation(props) {
           .btn-clear-city {
             background: transparent;
             color: var(--color-error);
+            margin-left: 8px;
           }
         }
 
@@ -81,9 +83,9 @@ export default function HomeLocation(props) {
           display: flex;
           align-items: center;
 
-          .btn-back {
+          .btn-ok {
             background: var(--color-primary);
-            border: none;
+            border: 1px solid var(--color-primary);
             cursor: pointer;
             color: white;
             padding: var(--spacer);

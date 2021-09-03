@@ -1,11 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useSelector, useStore } from 'react-redux';
 import { useRouter } from 'next/router';
-import { geocodeByPlaceId } from 'react-places-autocomplete';
-import HomeFilters from '../components/page-home/home-filters';
 import PostList from '../components/post-list';
 import SEO from '../components/seo';
-import { setUrlSearch } from '../utils/request-utils';
 import { getHomePageTitle } from '../utils/seo-utils';
 import { initializeStore } from '../store/store';
 import { getConfiguration } from '../store/actions/config-actions';
@@ -30,7 +27,6 @@ export default function Home() {
   const store = useStore();
   const [isLoadingMorePosts, setIsLoadingMorePosts] = useState(false);
   const [hasMorePosts, setHasMorePosts] = useState(true);
-  const [locationSelected, setLocationSelected] = useState({});
   const router = useRouter();
   const { query } = router;
   const authData = useSelector(state => state.auth.authData);
@@ -46,21 +42,6 @@ export default function Home() {
     setIsLoadingMorePosts(false);
   };
 
-  useEffect(() => {
-    if (!query.location) {
-      setLocationSelected({});
-      return;
-    }
-    geocodeByPlaceId(query.location)
-      .then(location => {
-        const locationInfo = {
-          description: location[0].formatted_address,
-          placeId: location[0].place_id
-        };
-        setLocationSelected(locationInfo);
-      });
-  }, [query.location]);
-
   return (
     <main>
       <SEO
@@ -69,12 +50,6 @@ export default function Home() {
       </SEO>
       <h1 className="sr-only">{pageTitle}</h1>
       <article className="sr-only">{pageDescription}</article>
-      <HomeFilters
-        locationSelected={locationSelected}
-        translations={translations}
-        filters={query}
-        onChange={query => router.push(`${router.pathname}${setUrlSearch(query)}`, undefined, { shallow: true })}>
-      </HomeFilters>
       <PostList
         isLoadingMore={isLoadingMorePosts}
         hasMoreData={hasMorePosts}

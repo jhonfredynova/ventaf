@@ -3,11 +3,15 @@ import PlacesAutocomplete from 'react-places-autocomplete';
 import InputPlacesAutocomplete from './components/input-places-autocomplete';
 
 export default function InputLocation(props) {
-  const { id, className, translations, placeholder, searchOptions, value, onChange } = props;
+  const { id, className, translations, placeholder, searchOptions, value, onBlur, onChange } = props;
   const [searchValue, setSearch] = useState(value.description || '');
   const [locationId, setLocationId] = useState(value.placeId || '');
 
-  const onBlur = () => {
+  const onBlurPlace = () => {
+    if (onBlur) {
+      onBlur();
+    }
+
     if (!locationId && searchValue) {
       setSearch('');
       onChange(locationId);
@@ -49,7 +53,7 @@ export default function InputLocation(props) {
           getSuggestionItemProps={getSuggestionItemProps}
           suggestions={suggestions}
           translations={translations}
-          onBlur={onBlur}
+          onBlur={onBlurPlace}
           onClear={onClear}>
         </InputPlacesAutocomplete>
       )}
