@@ -1,8 +1,12 @@
 import React from 'react';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 
 export default function Footer(props) {
-  const { translations } = props;
+  const { countries, translations } = props;
+  const router = useRouter();
+  const spain = countries.find(country => country.value === 'esp');
+  const usa = countries.find(country => country.value === 'usa');
 
   return (
     <footer className="footer">
@@ -22,7 +26,24 @@ export default function Footer(props) {
           </a>
         </li>
       </ul>
+
       <p className="branding">Construccion y Tecnologia SAS &copy; 2020</p>
+
+      <div className="languages-bar">
+        <Link href={router.pathname} locale="es">
+          <a className="link-language">
+            <img src={spain.flag} alt={spain.label} width="20px" /> 
+            {translations.spanish}
+          </a>
+        </Link>
+        <Link href={router.pathname} locale="en">
+          <a className="link-language">
+            <img src={usa.flag} alt={usa.label} width="20px" /> 
+            {translations.english}
+          </a>
+        </Link>
+      </div>
+
       <style jsx>{`
         .footer {
           border-top: 1px solid var(--border-color);
@@ -45,6 +66,28 @@ export default function Footer(props) {
 
           .branding {
             font-weight: bold;
+          }
+
+          .languages-bar{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: var(--spacer);
+            
+            .link-language {
+              border: 1px solid var(--border-color);
+              border-radius: var(--border-radius);
+              padding: var(--spacer);
+              text-decoration: none;
+
+              img {
+                margin-right: 5px;
+              }
+
+              :first-child {
+                margin-right: 5px;
+              }
+            }
           }
         }
       `}</style>
