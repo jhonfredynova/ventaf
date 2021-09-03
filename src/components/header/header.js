@@ -11,12 +11,25 @@ export default function Header(props) {
   const router = useRouter();
   const { query } = router;
   const photoUrl = (authLoaded && authData?.profile?.photoURL) || '/anonymous.png';
+
   const onClickPost = () => {
     ReactGA.event({
       category: 'Users',
       action: 'Create new post',
       value: 3
     });
+  };
+
+  const onSearch = searchTerm => {
+    let newQuery = { ...query };
+
+    if (searchTerm.trim()) {
+      newQuery.search = searchTerm;
+    } else {
+      delete newQuery.search;
+    }
+
+    router.push({ pathname: '/', query: newQuery });
   };
 
   return (
@@ -36,7 +49,7 @@ export default function Header(props) {
             placeholder={translations.homeSearchInputPlaceholder}
             searchTerm={query.search}
             translations={translations}
-            onSubmit={search => router.push({ pathname: '/', query: { ...query, search } })}>
+            onSubmit={onSearch}>
           </SearchBar>
         </div>
 
