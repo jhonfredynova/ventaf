@@ -113,7 +113,7 @@ export default function Header(props) {
           
           .navbar {
             display: grid; 
-            grid-template-columns: 1fr 120px;
+            grid-template-columns: 1fr auto;
             gap: var(--spacer);
             margin: 0 auto;
             max-width: var(--container-width);
@@ -176,7 +176,7 @@ export default function Header(props) {
             }
 
             @media screen and (min-width: ${BREAKPOINTS.TABLET}) {
-              grid-template-columns: 290px 1fr 120px;
+              grid-template-columns: auto 1fr auto;
 
               .logo-wrapper {
                 grid-column: 1/2;
