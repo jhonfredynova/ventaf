@@ -2,13 +2,12 @@ import React from 'react';
 import ReactGA from 'react-ga';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
-import MenuPreferences from './components/menu-preferences';
 import Logo from './components/logo';
 import SearchBar from './components/search-bar';
 import { BREAKPOINTS } from '../../utils/style-utils';
 
 export default function Header(props) {
-  const { authData, authLoaded, preferences, translations } = props;
+  const { authData, authLoaded, translations } = props;
   const router = useRouter();
   const { query } = router;
   const photoUrl = (authLoaded && authData?.profile?.photoURL) || '/anonymous.png';
@@ -31,10 +30,10 @@ export default function Header(props) {
         </div>
 
         <div className="search-wrapper">
-          <label className="sr-only" htmlFor="searchTerms">{translations['search']}:</label>
+          <label className="sr-only" htmlFor="searchTerms">{translations.search}:</label>
           <SearchBar
             id="searchTerms"
-            placeholder={translations['homeSearchInputPlaceholder']}
+            placeholder={translations.homeSearchInputPlaceholder}
             searchTerm={query.search}
             translations={translations}
             onSubmit={search => router.push({ pathname: '/', query: { ...query, search } })}>
@@ -42,20 +41,17 @@ export default function Header(props) {
         </div>
 
         <div className="menu-wrapper">         
-          <MenuPreferences
-            authData={authData}
-            preferences={preferences}
-            translations={translations}>
-          </MenuPreferences>
-          <Link href="/post" title={translations['postAd']} onClick={onClickPost}>
-            <a className="btn-post"><i className="fas fa-plus" /></a>
+          <Link href="/post" title={translations.postAd} onClick={onClickPost}>
+            <a className="btn-post">
+              <i className="fas fa-plus" /> {translations.sell}
+            </a>
           </Link> 
           <button 
             className="btn-profile" 
-            title={translations['profile']}
+            title={translations.profile}
             onClick={() => (authLoaded && authData) ? router.push(`/${authData.profile.username}`) : router.push('/login')}>
-            {authLoaded && <img src={photoUrl} alt={translations['profile']} />}
-            {!authLoaded && <i className="fas fa-spinner fa-spin fa-2x" title={translations['loading']}></i>}
+            {authLoaded && <img src={photoUrl} alt={translations.profile} />}
+            {!authLoaded && <i className="fas fa-spinner fa-spin fa-2x" title={translations.loading}></i>}
           </button>
         </div>
 
@@ -94,11 +90,20 @@ export default function Header(props) {
               align-items: center;
 
               .btn-post {
+                display: flex;
+                align-items: center;
                 background: none;
                 border: none;
-                border-radius: 50%;
+                border: 3px solid var(--color-primary);
+                border-radius: 10px;
+                color: var(--color-primary);
                 cursor: pointer;
                 padding: var(--spacer);
+                text-decoration: none;
+
+                .fa-plus {
+                  margin-right: 5px;
+                }
               }
 
               .btn-profile {
