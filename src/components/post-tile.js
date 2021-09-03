@@ -80,7 +80,7 @@ export default function PostTile(props) {
 
             .info {
               text-align: left;
-              padding: 1.25rem;
+              padding: 1.25rem 0;
               width: 100%;
 
               h3 {

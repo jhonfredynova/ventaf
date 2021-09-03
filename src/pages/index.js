@@ -75,7 +75,6 @@ export default function Home() {
       </PostList>
       <style jsx>{`
         main {
-          --container-width: 1200px;
           min-height: 300px;
           max-width: var(--container-width);
           margin: 0 auto;
