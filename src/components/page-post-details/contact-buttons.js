@@ -36,7 +36,7 @@ export default function ContactButtons(props) {
       </a>
       <a 
         className="link btn btn-email"
-        href={`mailto:${postData.seller.email}?subject=ConstruccionYTecnologiaSAS.com - ${pageTitle}&body=${shareMessage}`}
+        href={`mailto:${postData.seller.email}?subject=Construccion y Tecnologia SAS - ${pageTitle}&body=${shareMessage}`}
         rel="noreferrer"
         target="_blank"
         onClick={() => onContactSeller('Contact ad seller via email', 2)}>
