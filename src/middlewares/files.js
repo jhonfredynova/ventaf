@@ -3,57 +3,56 @@ import os from 'os';
 import path from 'path';
 import Busboy from 'busboy';
 
-export default options => {
+export default uploadOptions => {
   return async (req, res, next) => {
     try {
-      const contentType = req.headers['content-type'];
-
-      if (!contentType || contentType.indexOf('application/json') > -1) {
-        return next();
-      }
-
-      // initialize req.body empty because we are not using nextjs body parse
+      // Initialize busboy and variables
+      // Init req.body because we disable nextjs parsing
       req.body = {};
-      const { maxFiles, maxFileSize } = options;
+      let isErrorFileLimit = false;
+      const { allowedExtentions, maxFiles, maxFileSize } = uploadOptions;
       const busboy = new Busboy({
         headers: req.headers,
         limits: {
           files: maxFiles || 1,
-          fileSize: (maxFileSize || 5) * 1024 * 1024
+          fileSize: (maxFileSize || 5) * 1024 * 1024 
         }
       });
 
-      let isErrorFileLimit = false;
-      busboy.on('field', (fieldname, val) => {
+      // On receive a new field
+      busboy.on('field', (fieldname, fieldValue) => {
         try {
-          req.body[fieldname] = JSON.parse(val);
+          req.body[fieldname] = JSON.parse(fieldValue);
         } catch (error) {
-          req.body[fieldname] = val;
+          req.body[fieldname] = fieldValue;
         }
       });
-      busboy.on('file', (fieldname, file, filename) => {
-        const allowedExtentions = options.allowedExtentions || ['jpg', 'jpeg', 'png', 'gif'];
 
-        if (!allowedExtentions.find(ext => filename.endsWith('.' + ext))) {
-          res.status(400).json({
-            code: 'upload-error-extentions',
-            message: allowedExtentions.join(', ')
+      // On receive a new file
+      busboy.on('file', async (fieldname, fileData, filename) => {
+        const allowedFileExtentions = allowedExtentions || ['jpg', 'jpeg', 'png', 'gif'];
+
+        if (!allowedFileExtentions.find(ext => filename.endsWith('.' + ext))) {
+          return res.status(400).json({
+            code: 'uploadErrorExtentions',
+            message: allowedFileExtentions.join(', ')
           });
-          return;
         }
 
-        file.on('limit', () => { 
+        fileData.on('limit', () => {
           isErrorFileLimit = true;
-          res.status(400).json({
-            code: 'upload-error-size',
+          return res.status(400).json({
+            code: 'uploadErrorSize',
             message: maxFileSize
           });
         });
 
         const tmpFilePath = path.join(os.tmpdir(), filename);
         req.body[fieldname] = (req.body[fieldname] || []).concat(tmpFilePath);
-        file.pipe(fs.createWriteStream(tmpFilePath));
+        fileData.pipe(fs.createWriteStream(tmpFilePath));
       });
+
+      // On finish request
       busboy.on('finish', () => {
         if (!isErrorFileLimit) {
           next();
@@ -61,6 +60,7 @@ export default options => {
       });
 
       req.pipe(busboy);
+
     } catch (error) {
       res.status(500).json(error);
     }
