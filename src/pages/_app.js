@@ -43,7 +43,7 @@ export default function MyApp({ Component, pageProps }) {
           --color-background: #f0f2f5;
           --color-primary: #0076a3;
           --color-secondary: #e4e6eb;
-          --color-error: #dc3545;
+          --color-alert: #dc3545;
           --color-text: #333;
 
           --container-width: 1200px;
@@ -67,19 +67,6 @@ export default function MyApp({ Component, pageProps }) {
 
             .sr-only {
               display: none;
-            }
-
-            a, button {
-              &:disabled {
-                opacity: 0.8;
-                cursor: not-allowed;
-              }
-
-              &:active,
-              &:focus,
-              &:visited {
-                color: var(--color-primary);
-              }
             }
           }
         }

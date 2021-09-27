@@ -82,8 +82,8 @@ export default function SearchBar(props) {
           }
 
           .btn-clean {
-            background: var(--color-error);
-            border: 1px solid var(--color-error);
+            background: var(--color-alert);
+            border: 1px solid var(--color-alert);
             color: white;
           }
 

@@ -102,7 +102,7 @@ export default function PostPrice(props) {
         .post-price {
 
           .error-msg {
-            color: var(--color-error);
+            color: var(--color-alert);
           }
           
           .input-group {
@@ -131,7 +131,7 @@ export default function PostPrice(props) {
             }
 
             .btn-clear {
-              background: var(--color-error);
+              background: var(--color-alert);
               border: none;
               cursor: pointer;
               color: white;

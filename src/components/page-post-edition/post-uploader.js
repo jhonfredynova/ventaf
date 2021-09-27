@@ -111,7 +111,7 @@ export default function PostUploader(props) {
         .post-uploader {
 
           .error-msg {
-            color: var(--color-error);
+            color: var(--color-alert);
           }
 
           .warning-msg {

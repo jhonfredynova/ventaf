@@ -104,8 +104,8 @@ export default function ProfileInfo(props) {
               }
 
               .btn-logout {
-                background: var(--color-error);
-                border: 1px solid var(--color-error);
+                background: var(--color-alert);
+                border: 1px solid var(--color-alert);
                 border-radius: var(--border-radius);
                 color: white;
               }

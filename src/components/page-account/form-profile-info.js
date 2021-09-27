@@ -134,7 +134,7 @@ export default function FormProfileInfo(props) {
             }
 
             .error-msg {
-              color: var(--color-error);
+              color: var(--color-alert);
             }
 
             input,
@@ -163,7 +163,7 @@ export default function FormProfileInfo(props) {
                 }
 
                 i.error {
-                  color: var(--color-error);
+                  color: var(--color-alert);
                 }
               }
 

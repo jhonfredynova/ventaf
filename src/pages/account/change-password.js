@@ -10,7 +10,8 @@ import { getConfiguration } from '../../store/actions/config-actions';
 
 export const getServerSideProps = async ({ locale }) => {
   const store = initializeStore();
-  await store.dispatch(getConfiguration({ locale }));
+  await store.dispatch(getConfiguration(locale));
+  
   return {
     props: {
       initialReduxState: store.getState() 
@@ -30,12 +31,12 @@ const ChangePassword = () => {
   return (
     <main>
       <SEO
-        title={translations['changePassword']}
-        description={translations['changePassswordDescription']}>
+        title={translations.changePassword}
+        description={translations.changePassswordDescription}>
       </SEO>
       <NavigationBar
-        title={translations['changePassword']}
-        description={translations['changePassswordDescription']}
+        title={translations.changePassword}
+        description={translations.changePassswordDescription}
         showBackBtn={true}
         translations={translations}>
       </NavigationBar>

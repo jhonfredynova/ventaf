@@ -65,7 +65,7 @@ export default function FormChangePassword(props) {
             margin-bottom: 10px;
 
             .error-msg {
-              color: var(--color-error);
+              color: var(--color-alert);
             }
           }
 
@@ -75,7 +75,9 @@ export default function FormChangePassword(props) {
             .btn-submit {
               background: var(--color-primary);
               border: none;
+              border-radius: var(--border-radius);
               color: white;
+              cursor: pointer;
               padding: var(--spacer);
             }
           }

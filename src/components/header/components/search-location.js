@@ -74,7 +74,7 @@ export default function SearchLocation(props) {
 
           .btn-clear-city {
             background: transparent;
-            color: var(--color-error);
+            color: var(--color-alert);
             margin-left: 8px;
           }
         }

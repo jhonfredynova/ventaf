@@ -134,7 +134,7 @@ export default function InputSuggestions(props) {
           }
 
           .btn-clear {
-            background: var(--color-error);
+            background: var(--color-alert);
             color: white;
           }
 

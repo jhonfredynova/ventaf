@@ -89,7 +89,7 @@ export default function FormPost(props) {
           }
 
           .error-msg {
-            color: var(--color-error);
+            color: var(--color-alert);
           }
 
           .btn-submit {

@@ -213,7 +213,7 @@ export default function LoginEmail(props) {
           margin-bottom: 10px;
 
           .error-msg {
-            color: var(--color-error);
+            color: var(--color-alert);
           }
 
           .input-group {
@@ -244,7 +244,7 @@ export default function LoginEmail(props) {
             }
 
             .btn-clear {
-              background: var(--color-error);
+              background: var(--color-alert);
               color: white;
             }
           }

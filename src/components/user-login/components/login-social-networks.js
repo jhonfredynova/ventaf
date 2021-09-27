@@ -103,7 +103,7 @@ export default function LoginSocialNetworks(props) {
       </section>
       <style jsx>{`
         .error-msg {
-          color: var(--color-error);
+          color: var(--color-alert);
         }
         
         .login-social-networks {

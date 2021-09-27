@@ -78,8 +78,8 @@ export default function InputPlacesAutocomplete(props) {
           }
 
           .btn-clear {
-            background: var(--color-error);
-            border: var(--color-error);
+            background: var(--color-alert);
+            border: var(--color-alert);
             color: white;
             cursor: pointer;
             padding: var(--spacer);

@@ -87,7 +87,7 @@ export default function PostTile(props) {
                 font-size: 1.8rem;
 
                 &.free-price {
-                  color: var(--color-error);
+                  color: var(--color-alert);
                 }
               }
 

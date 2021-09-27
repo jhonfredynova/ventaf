@@ -59,7 +59,7 @@ export default function FormUploadPhoto(props) {
           }
 
           .error-msg {
-            color: var(--color-error);
+            color: var(--color-alert);
           }
 
           .btn-upload {

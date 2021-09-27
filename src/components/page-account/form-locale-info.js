@@ -93,7 +93,7 @@ export default function FormLocaleInfo(props) {
             }
 
             .error-msg {
-              color: var(--color-error);
+              color: var(--color-alert);
             }
           }
 

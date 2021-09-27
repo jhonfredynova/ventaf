@@ -87,7 +87,7 @@ export default function InputPhone(props) {
         .input-phone {
 
           .error-msg {
-            color: var(--color-error);
+            color: var(--color-alert);
           }
 
           .input-group {
@@ -117,7 +117,7 @@ export default function InputPhone(props) {
             }
 
             .btn-clear {
-              background: var(--color-error);
+              background: var(--color-alert);
               color: white;
             }
           }
