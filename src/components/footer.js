@@ -3,10 +3,8 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 
 export default function Footer(props) {
-  const { countries, translations } = props;
+  const { translations } = props;
   const router = useRouter();
-  const spain = countries.find(country => country.value === 'esp');
-  const usa = countries.find(country => country.value === 'gbr');
 
   return (
     <footer className="footer">
@@ -32,14 +30,12 @@ export default function Footer(props) {
       <div className="languages-bar">
         <Link href={router.pathname} locale="es">
           <a className="link-language">
-            <img src={spain?.flag} alt={spain?.label} width="25px" /> 
-            ES
+            {translations.spanish}
           </a>
         </Link>
         <Link href={router.pathname} locale="en">
           <a className="link-language">
-            <img src={usa?.flag} alt={usa?.label} width="30px" /> 
-            EN
+          {translations.english}
           </a>
         </Link>
       </div>

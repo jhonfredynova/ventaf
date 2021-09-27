@@ -17,8 +17,8 @@ export default async function uploadPhoto(req, res) {
 
     const firebaseAdmin = require( '../../../firebase-admin').default;
     const db = firebaseAdmin.firestore();
-    const data = req.body;
-    const photo = (data.photo && data.photo[0]);
+    const { id: userId } = req.body;
+    const photo = req.files?.photo?.[0];
 
     if (!photo) {
       res.status(400).json({ code: 'uploadEmpty' });
@@ -36,7 +36,7 @@ export default async function uploadPhoto(req, res) {
 
     await db
       .collection('users')
-      .doc(data.id)
+      .doc(userId)
       .update({ photoURL });
 
     res.json({ photoURL });

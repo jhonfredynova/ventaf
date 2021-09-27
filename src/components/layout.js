@@ -5,7 +5,7 @@ import Footer from './footer';
 
 export default function Layout(props) {
   const { authData, authLoaded } = useSelector(state => state.auth);
-  const { countries, translations } = useSelector(state => state.config);
+  const { translations } = useSelector(state => state.config);
 
   return (
     <>         
@@ -15,9 +15,7 @@ export default function Layout(props) {
         translations={translations}>
       </Header>
       {props.children}
-      <Footer 
-        countries={countries}
-        translations={translations} />
+      <Footer translations={translations} />
     </> 
   );
 
