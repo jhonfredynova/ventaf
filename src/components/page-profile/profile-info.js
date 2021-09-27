@@ -90,7 +90,6 @@ export default function ProfileInfo(props) {
 
               .btn-profile,
               .btn-logout {
-                border: none;
                 cursor: pointer;
                 padding: var(--spacer);
                 text-decoration: none;
@@ -98,12 +97,16 @@ export default function ProfileInfo(props) {
 
               .btn-profile {
                 background: var(--color-primary);
+                border: 1px solid var(--color-primary);
+                border-radius: var(--border-radius);
                 color: white;
                 margin-right: 5px;
               }
 
               .btn-logout {
                 background: var(--color-error);
+                border: 1px solid var(--color-error);
+                border-radius: var(--border-radius);
                 color: white;
               }
             }

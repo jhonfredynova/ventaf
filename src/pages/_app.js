@@ -68,6 +68,19 @@ export default function MyApp({ Component, pageProps }) {
             .sr-only {
               display: none;
             }
+
+            a, button {
+              &:disabled {
+                opacity: 0.8;
+                cursor: not-allowed;
+              }
+
+              &:active,
+              &:focus,
+              &:visited {
+                color: var(--color-primary);
+              }
+            }
           }
         }
       `}</style>

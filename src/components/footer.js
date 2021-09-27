@@ -5,6 +5,7 @@ import { useRouter } from 'next/router';
 export default function Footer(props) {
   const { translations } = props;
   const router = useRouter();
+  const { locale } = router;
 
   return (
     <footer className="footer">
@@ -29,13 +30,13 @@ export default function Footer(props) {
 
       <div className="languages-bar">
         <Link href={router.pathname} locale="es">
-          <a className="link-language">
+          <a className={`link-language ${locale === 'es' ? 'active' : ''}`}>
             {translations.spanish}
           </a>
         </Link>
         <Link href={router.pathname} locale="en">
-          <a className="link-language">
-          {translations.english}
+          <a className={`link-language ${locale === 'en' ? 'active' : ''}`}>
+            {translations.english}
           </a>
         </Link>
       </div>
@@ -78,11 +79,16 @@ export default function Footer(props) {
               padding: var(--spacer);
               text-decoration: none;
 
-              img {
+              :first-child {
                 margin-right: 5px;
               }
 
-              :first-child {
+              &.active {
+                background-color: var(--color-secondary);
+                cursor: default;
+              }
+
+              img {
                 margin-right: 5px;
               }
             }

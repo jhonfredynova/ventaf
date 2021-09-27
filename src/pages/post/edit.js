@@ -152,11 +152,12 @@ const EditPost = () => {
 
             .btn-post {
               background: var(--color-primary);
-              border: none;
+              border: 1px solid var(--color-primary);
+              border-radius: var(--border-radius);
               color: white;
               cursor: pointer;
               padding: var(--spacer);
-
+              
               .fa-spin {
                 margin-right: 4px;
               }

@@ -42,7 +42,9 @@ export default function NavbarAccount(props) {
             }
 
             :global(a.active) {
-              background-color: var(--color-primary);
+              background: var(--color-primary);
+              border: 1px solid var(--color-primary);
+              border-radius: var(--border-radius);
               color: white;
               cursor: default;
             }
