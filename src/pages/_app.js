@@ -12,9 +12,15 @@ export default function MyApp({ Component, pageProps }) {
   const router = useRouter();
 
   useEffect(async () => {
-    ReactGA.initialize(process.env.NEXT_PUBLIC_GOOGLE_ANALITYCS_KEY, {});
+    ReactGA.initialize(window.gAnalyticsKey, {});
     await store.dispatch(setToken(localStorage.token));
     store.dispatch(me()).catch(() => localStorage.removeItem('token'));
+
+    ReactGA.event({
+      category: 'Users',
+      action: 'Logged in with facebook',
+      value: 2
+    });
   }, []);
 
 
@@ -50,6 +56,7 @@ export default function MyApp({ Component, pageProps }) {
           --spacer: 10px;
         }
 
+        /* General styles */
         html {
           font-size: 62.5%;
 

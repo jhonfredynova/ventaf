@@ -8,7 +8,7 @@ export default class HTML extends Document {
   }
 
   render() {
-    const googleMapsKey = process.env.NEXT_PUBLIC_GOOGLE_MAPS_KEY;
+    const googleMapsKey = process.env.GOOGLE_MAPS_KEY;
 
     return (
       <Html>
@@ -18,7 +18,10 @@ export default class HTML extends Document {
           <NextScript />
           <script dangerouslySetInnerHTML={{
             __html: `
-            window.googlePlacesCb = function() {
+            window.fDomain = "${process.env.FIREBASE_AUTH_DOMAIN}"
+            window.fKey = "${process.env.FIREBASE_KEY}"
+            window.gAnalyticsKey = "${process.env.GOOGLE_ANALITYCS_KEY}"
+            window.gPlacesCb = function() {
               window.initOne && window.initOne();
               window.initTwo && window.initTwo();
             }
@@ -28,7 +31,7 @@ export default class HTML extends Document {
           <script 
             async 
             defer 
-            src={`https://maps.googleapis.com/maps/api/js?key=${googleMapsKey}&libraries=places&callback=googlePlacesCb`}>
+            src={`https://maps.googleapis.com/maps/api/js?key=${googleMapsKey}&libraries=places&callback=gPlacesCb`}>
           </script>
         </body>
       </Html>
