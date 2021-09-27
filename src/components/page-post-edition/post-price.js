@@ -16,16 +16,11 @@ export default function PostPrice(props) {
 
   const customOption = suggestion => (
     <div className="custom-option">
-      <img src={suggestion.countryFlag} alt={suggestion.countryName} width="30px" height="20px" />
-      <div>{suggestion.label} ({suggestion.value.toUpperCase()})</div>
+      <div>{suggestion.label}</div>
       <style jsx>{`
         .custom-option {
           display: flex;
           align-items: center;
-
-          img {
-            margin-right: 4px;
-          }
         }  
       `}</style>
     </div>
@@ -49,12 +44,9 @@ export default function PostPrice(props) {
           onClick={() => setModalOpen(!isModalOpen)}>   
           {
             selectedSuggestion &&
-            <>
-              <img src={selectedSuggestion.countryFlag} alt={selectedSuggestion.countryName} width="30px" height="20px" />              
-              <span style={{ display: 'inline-block', minWidth:'32px' }}>
-                {selectedSuggestion.value}
-              </span>
-            </>
+            <span style={{ display: 'inline-block', minWidth:'32px' }}>
+              {selectedSuggestion.value}
+            </span>
           }
           {
             !selectedSuggestion &&

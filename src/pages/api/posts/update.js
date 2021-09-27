@@ -48,7 +48,7 @@ export default async function updatePost(req, res) {
 
     // updating post in transaction
     await db.runTransaction(async transaction => {
-      const uploadedPhotos = req.body.photos || [];
+      const uploadedPhotos = req.files.photos || [];
       if (uploadedPhotos.length > 0) {
         // deleting post photos
         await deletePostImages(postId, postDb.photos);

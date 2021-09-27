@@ -13,16 +13,11 @@ export default function InputPhone(props) {
   };
   const customOption = suggestion => (
     <div className="custom-option">
-      <img src={suggestion.countryFlag} alt={suggestion.countryName} width="30px" height="20px" />
       <div>{suggestion.countryName} ({suggestion.value})</div>
       <style jsx>{`
         .custom-option {
           display: flex;
           align-items: center;
-
-          img {
-            margin-right: 5px;
-          }
         }
       `}</style>
     </div>
@@ -38,12 +33,9 @@ export default function InputPhone(props) {
           onClick={() => setModalOpen(!isModalOpen)}>   
           {
             selectedSuggestion &&
-            <>
-              <img src={selectedSuggestion.countryFlag} alt={selectedSuggestion.countryName} width="30px" height="20px" />                
-              <span style={{ display: 'inline-block', marginLeft: '3px', minWidth:'32px' }}>
-                {selectedSuggestion.value}
-              </span>
-            </>
+            <span style={{ display: 'inline-block', marginLeft: '3px', minWidth:'32px' }}>
+              {selectedSuggestion.value}
+            </span>
           }
           {
             !selectedSuggestion &&

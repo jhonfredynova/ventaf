@@ -26,7 +26,7 @@ export default async function createPost(req, res) {
       ...postData,
       createdAt: Date.now(),
       status: 'active',
-      photos: req.body.photos || [],
+      photos: req.files.photos || [],
       searchTerms: getSearchTerms(postData),
       likes: 0,
       views: 0,
@@ -52,7 +52,7 @@ export default async function createPost(req, res) {
       newPostId = newPostRef.id;
 
       // uploading photos
-      const uploadedPhotos = req.body.photos;
+      const uploadedPhotos = req.files.photos;
       const storageData = {
         bucketName: process.env.FIREBASE_STG_POST_UPLOADS,
         bucketPath: newPostId,
