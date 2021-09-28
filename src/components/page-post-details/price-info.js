@@ -2,9 +2,8 @@ import React from 'react';
 import { formatMoney } from '../../utils/intl-utils';
 
 export default function PriceInfo(props) {
-  const { currencies, price, translations } = props;
+  const { price, translations } = props;
   const { currency, value } = price;
-  const selectedCurrency = currencies.find(item => item.value === currency);
 
   return (
     <h2 className="price-info">
@@ -19,11 +18,6 @@ export default function PriceInfo(props) {
         price.value > 0 && 
         <>
           <div className="currency">
-            <img 
-              alt={selectedCurrency.label} 
-              src={selectedCurrency.countryFlag} 
-              title={selectedCurrency.label} 
-              width="30px" />
             <span className="icon">{currency}</span>
           </div>
           <div className="value">${formatMoney(value)}</div>
@@ -42,7 +36,6 @@ export default function PriceInfo(props) {
             margin-right: 5px;
 
             .icon {
-              margin-left: 4px;
               margin-right: 4px;
             }
           }

@@ -114,11 +114,8 @@ export default function PostDetails() {
           }
 
           .ad-details {
-            display: flex;
-            flex-direction: column;
-
             .main-details {
-              margin-bottom: var(--spacer);
+              margin-bottom: calc(var(--spacer) * 2);
 
               article {
                 margin-top: var(--spacer);
@@ -126,15 +123,20 @@ export default function PostDetails() {
             }
 
             .info {
-              padding: var(--spacer);
-              margin-bottom: var(--spacer);
+              margin-bottom: calc(var(--spacer) * 2);
             }
 
             @media screen and (min-width: ${BREAKPOINTS.DESKTOP}) {
-              flex-direction: row;
+              display: flex;
 
-              .photos {
-                min-width: 70%;
+              .main-details {
+                flex-grow: 1;
+              }
+
+              .info {
+                flex-shrink: 0;
+                width: 300px;
+                margin-left: var(--spacer);
               }
             }
 
@@ -147,6 +149,7 @@ export default function PostDetails() {
               margin-bottom: var(--spacer);
             }
           }
+
         }  
       `}</style>
     </main>
