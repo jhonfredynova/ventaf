@@ -17,11 +17,15 @@ export default function LoginSocialNetworks(props) {
   const { isLoggingIn, translations, onLogginIn, onSuccess } = props;
 
   useEffect(() => {
-    const firebaseApp = firebaseClient.initializeApp({
-      apiKey: window.fKey,
-      authDomain: window.fDomain
-    });
-    firebaseApp.auth().languageCode = router.locale;
+    let firebaseApp = firebaseClient.apps[0];
+    
+    if (!firebaseApp) {
+      firebaseApp = firebaseClient.initializeApp({
+        apiKey: window.fKey,
+        authDomain: window.fDomain
+      });
+    }
+
     setFirebaseApp(firebaseApp);
   }, []);
 
@@ -31,6 +35,7 @@ export default function LoginSocialNetworks(props) {
       setIsProcessingFacebook(true);
       setError('');
       
+      firebaseApp.auth().languageCode = router.locale;
       const facebookProvider = new firebaseApp.firebase_.auth.FacebookAuthProvider();
       facebookProvider.addScope('email');
       facebookProvider.setCustomParameters({ 'display': 'popup' });
@@ -62,6 +67,7 @@ export default function LoginSocialNetworks(props) {
       setIsProcessingGoogle(true);
       setError('');
 
+      firebaseApp.auth().languageCode = router.locale;
       const googleProvider = new firebaseApp.firebase_.auth.GoogleAuthProvider();
       googleProvider.addScope('email');
       googleProvider.addScope('profile');

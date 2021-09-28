@@ -98,6 +98,7 @@ export default function RecoverPassword() {
             .btn-submit {
               background: var(--color-primary);
               border: none;
+              border-radius: var(--border-radius);
               color: white;
               cursor: pointer;
               padding: var(--spacer);
