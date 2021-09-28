@@ -203,11 +203,17 @@ export default function NewPost() {
 
             .btn-post {
               background: var(--color-primary);
-              border: 1px solid var(--color-primary);
+              border: 1px solid var(--border-color);
               border-radius: var(--border-radius);
               color: white;
               cursor: pointer;
               padding: var(--spacer);
+
+              &:disabled {
+                background-color: var(--color-secondary);
+                color: var(--color-text);
+                cursor: default;
+              }
 
               .fa-spin {
                 margin-right: 4px;

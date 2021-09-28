@@ -26,7 +26,7 @@ export default function InputPassword(props) {
 
           button {
             background: var(--color-secondary);
-            border: none;
+            border: 1px solid var(--border-color);
             cursor: pointer;  
             border-left: none;
             padding: var(--spacer);

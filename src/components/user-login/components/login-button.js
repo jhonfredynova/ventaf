@@ -15,12 +15,12 @@ export default function LoginButton(props) {
       {props.children}
       <style jsx>{`
         .login-button {
-          border: none;
+          border: 1px solid var(--border-color);
           cursor: pointer;
           padding: var(--spacer);
           display: flex;
           align-items: center;
-          width: 100%;
+          width: 100%;          
 
           &.email {
             background-color: var(--color-primary);
@@ -41,13 +41,19 @@ export default function LoginButton(props) {
             color: white;
           }
 
+          &:disabled {
+            background-color: var(--color-secondary);
+            color: var(--color-text);
+            cursor: default;
+          }
+
           &:hover,
           &:focus {
-            opacity: 0.9;
+            opacity: 0.8;
           }
 
           .provider {
-            border-right: 1px solid white;
+            border-right: 1px solid currentColor;
             text-align: left;
             margin-right: 10px;
             width: 25px;

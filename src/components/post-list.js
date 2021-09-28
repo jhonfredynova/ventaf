@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { useStore } from 'react-redux';
 import { useRouter } from 'next/router';
-import Link from 'next/link';
 import PostTile from './post-tile';
 import Lightbox from './lightbox';
 import InfiniteScroll from './infinite-scroll';
+import NoResults from './no-results';
 import PostEditionBar from './post-edition-bar';
 import { BREAKPOINTS } from '../utils/style-utils';
 import { getProfileAds, deleteProfileAd } from '../store/actions/profile-actions';
@@ -43,20 +43,7 @@ export default function HomeContents(props) {
 		<>
 			{
 				!isLoading && posts.length === 0 && 
-				<div className="no-results">
-					<img 
-						src={
-							'https://firebasestorage.googleapis.com/v0/b/construccionytecnologia-f556c.appspot.com/o/'
-							.concat('no-results.svg?alt=media&token=c3387719-ba87-4a58-93aa-618229db49d8')
-						}
-						alt={translations.noResults} />
-					<p>{translations.noResults}</p>
-					<Link href="/post">
-						<a className="link-post">
-							{translations.postAd} <i className="fas fa-arrow-right"></i>
-						</a>
-					</Link>
-				</div>
+				<NoResults translations={translations} />
 			}
 			<InfiniteScroll
 				isLoading={isLoadingMore}
@@ -110,26 +97,6 @@ export default function HomeContents(props) {
 				</AlertModal>
       </Lightbox>
 			<style jsx>{`
-				.no-results {
-					text-align: center;
-
-					h2 {
-						text-align: center;
-						font-size: 2rem;
-					}
-
-					:global(.link-post) {
-						background: var(--color-primary);
-						border: none;
-						color: white;
-						cursor: pointer;
-						padding: var(--spacer);
-						display: inline-block;
-						margin-top: var(--spacer);
-						text-decoration: none;
-					}
-				}
-
 				.posts-section {
 					display: grid;
 					grid-template-columns: 1fr;
