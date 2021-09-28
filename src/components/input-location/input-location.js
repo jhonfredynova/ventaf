@@ -41,7 +41,7 @@ export default function InputLocation(props) {
       value={searchValue}
       onChange={onChangePlace}
       onSelect={onSelect}
-      googleCallbackName="googlePlacesCb">
+      googleCallbackName="gPlacesCb">
       {({ getInputProps, suggestions, getSuggestionItemProps }) => (
         <InputPlacesAutocomplete 
           id={id}
