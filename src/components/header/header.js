@@ -90,18 +90,17 @@ export default function Header(props) {
         </div>
 
         <div className="menu-wrapper">         
-          <Link href="/post" title={translations.postAd} onClick={onClickPost}>
-            <a className="btn-post">
+          <Link href="/post">
+            <a className="btn-post" onClick={onClickPost}>
               <i className="fas fa-plus" /> {translations.sell}
             </a>
           </Link> 
-          <button 
-            className="btn-profile" 
-            title={translations.profile}
-            onClick={() => (authLoaded && authData) ? router.push(`/${authData.profile.username}`) : router.push('/login')}>
-            {authLoaded && <img src={photoUrl} alt={translations.profile} />}
-            {!authLoaded && <i className="fas fa-spinner fa-spin fa-2x" title={translations.loading}></i>}
-          </button>
+          <Link href={(authLoaded && authData) ? `/${authData.profile.username}` : '/login'}>
+            <a className="btn-profile" title={translations.profile}>
+              {authLoaded && <img src={photoUrl} alt={translations.profile} />}
+              {!authLoaded && <i className="fas fa-spinner fa-spin fa-2x" title={translations.loading}></i>}
+            </a>
+          </Link>
         </div>
 
       </nav>
@@ -158,10 +157,9 @@ export default function Header(props) {
               }
 
               .btn-profile {
-                background: none;
-                border: none;
-                cursor: pointer;
+                color: var(--color-text); 
                 margin-left: 6px;
+                text-decoration: none;
 
                 i {
                   pointer-events: none;
