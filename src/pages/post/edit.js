@@ -96,9 +96,9 @@ const EditPost = () => {
       setIsPosting(false);
       router.push(`/${authData.profile.username}`);
     } catch (error) { 
-      const { errors, code } = error?.response?.data || {};
+      const { errors, code, message } = error?.response?.data || {};
       setIsPosting(false);
-      setErrors({ ...errors, general: translations[code] });
+      setErrors({ ...errors, general: (translations[code] || message) });
     }
   };
 

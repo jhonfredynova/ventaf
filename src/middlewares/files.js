@@ -8,6 +8,7 @@ export default uploadOptions => async (req, res, next) => {
     // Initialize busboy and variables
     // Initialize req.body because we disable nextjs parsing
     req.body = {};
+    let isErrorFileLimit = false;
     const { allowedExtentions, maxFiles, maxFileSize } = uploadOptions;
     const busboy = new Busboy({
       headers: req.headers,
@@ -41,14 +42,9 @@ export default uploadOptions => async (req, res, next) => {
           };
         }
 
-        /*
         file.on('limit', () => {
-          reject({
-            code: 'uploadErrorSize',
-            message: maxFileSize
-          });
+          isErrorFileLimit = true;
         });
-        */
 
         const filepath = path.join(tmpdir, filename);
         files[fieldname] = (files[fieldname] || []).concat(filepath);
@@ -63,11 +59,19 @@ export default uploadOptions => async (req, res, next) => {
 
     // On finish request
     busboy.on('finish', () => {
+      if (isErrorFileLimit) {
+        return res.status(400).json({
+          code: 'uploadErrorSize',
+          message: maxFileSize
+        });
+      }
+
       req.body = fields;
       req.files = files;
       next();
     });
 
+    // Process files in request
     if (process.env.NODE_ENV === 'development') {
       req.pipe(busboy);
     } else {
