@@ -1,11 +1,10 @@
 import React from 'react';
-import { useStore, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
-import { logout } from '../../store/actions/auth-actions';
+import { BREAKPOINTS } from '../../utils/style-utils';
 
 export default function ProfileInfo(props) {
-  const store = useStore();
   const { authData } = useSelector(state => state.auth);
   const { translations, userProfile } = props;
   const router = useRouter();
@@ -42,16 +41,11 @@ export default function ProfileInfo(props) {
             <Link href="/account/update-info">
               <a className="btn-profile">{translations.editProfile}</a>
             </Link>
-            <button className="btn-logout" onClick={() => store.dispatch(logout())}>
-              {translations['logout']}
-            </button>
           </div>
         }
       </div>
       <style jsx>{`
         .profile-info {
-          display: flex;
-          align-items: center;
           margin-bottom: calc(var(--spacer) * 2);
 
           .navigation {
@@ -68,11 +62,12 @@ export default function ProfileInfo(props) {
 
             img {
               border-radius: 50%;
+              margin: 0 auto;
             }
           }
 
           .details {
-            display: block;
+            text-align: center;
             margin-left: 15px;
 
             h2 {
@@ -84,33 +79,38 @@ export default function ProfileInfo(props) {
             }
 
             .account-buttons {
-              display: flex;
-              align-items: center;
+              text-align: center;
               margin-top: 10px;
-
-              .btn-profile,
-              .btn-logout {
+              .btn-profile {
+                display: block;
                 cursor: pointer;
                 padding: var(--spacer);
                 text-decoration: none;
-              }
-
-              .btn-profile {
                 background: var(--color-primary);
                 border: 1px solid var(--color-primary);
                 border-radius: var(--border-radius);
                 color: white;
                 margin-right: 5px;
               }
+            }
+          }
 
-              .btn-logout {
-                background: var(--color-alert);
-                border: 1px solid var(--color-alert);
-                border-radius: var(--border-radius);
-                color: white;
+          @media screen and (min-width: ${BREAKPOINTS.DESKTOP}) {
+            display: flex;
+            align-items: center;
+
+            .details {
+              flex-grow: 1;
+              text-align: left;
+              .account-buttons {
+                text-align: left;
+                .btn-profile {
+                  display: inline-block;
+                }
               }
             }
           }
+
         }
       `}</style>
     </header>
