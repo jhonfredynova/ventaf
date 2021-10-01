@@ -1,12 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useRouter } from 'next/router';
-import Link from 'next/link';
+import Lightbox from '../../components/lightbox';
+import ProfileMenu from '../page-profile/profile-menu';
 import { BREAKPOINTS } from '../../utils/style-utils';
 
 export default function ProfileInfo(props) {
-  const { authData } = useSelector(state => state.auth);
   const { translations, userProfile } = props;
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const { authData } = useSelector(state => state.auth);
   const isProfileOwner = (authData?.uid === userProfile.id);
   const router = useRouter();
 
@@ -16,6 +18,7 @@ export default function ProfileInfo(props) {
 
   return (
     <header className="profile-info">
+
       <div className="navigation">
         <button
           className="btn-back"
@@ -23,11 +26,24 @@ export default function ProfileInfo(props) {
           onClick={() => router.back()}>
           <i className="fas fa-arrow-left" />
         </button>
-        <img 
-          src={userProfile.photoURL || '/anonymous.png'} 
-          alt={userProfile.username} 
-          width="150px" />
+        {
+          isProfileOwner &&
+          <button
+            className="btn-profile-menu"
+            title={userProfile.username}
+            onClick={() => setIsMenuOpen(true)}>
+            <img src={userProfile.photoURL || '/anonymous.png'} alt={userProfile.username} width="150px" />
+          </button>
+        }
+        {
+          !isProfileOwner &&
+          <img 
+            src={userProfile.photoURL || '/anonymous.png'} 
+            alt={userProfile.username} 
+            width="150px" />
+        }
       </div>
+
       <div className="details">
         <h2>{userProfile.displayName || userProfile.username}</h2>
         {userProfile.bio && <p>{userProfile.bio}</p>}
@@ -36,18 +52,18 @@ export default function ProfileInfo(props) {
           userProfile.website && 
           <p><a href={userProfile.website} rel="noreferrer" target="_blank">{userProfile.website}</a></p>
         }
-        {
-          isProfileOwner &&
-          <div className="account-buttons">
-            <Link href="/account/update-info"> 
-              <a className="lnk-profile"><i className="fas fa-pen" /> {translations.editProfile}</a>
-            </Link>
-            <Link href="/account/change-password">
-              <a className="lnk-password"><i className="fas fa-lock" />  {translations.changePassword}</a>
-            </Link>
-          </div>
-        }
       </div>
+
+      <Lightbox
+        isOpen={isMenuOpen}
+        onToggle={() => setIsMenuOpen(!isMenuOpen)}>
+        <ProfileMenu
+          authData={authData}
+          translations={translations}
+          onClose={() => setIsMenuOpen(false)}>
+        </ProfileMenu>
+      </Lightbox>
+
       <style jsx>{`
         .profile-info {
           margin-bottom: calc(var(--spacer) * 2);
@@ -57,10 +73,14 @@ export default function ProfileInfo(props) {
             align-items: center;
             margin-right: 15px;
 
-            .btn-back {
+            .btn-back,
+            .btn-profile-menu {
               background: none;
               border: none;
               cursor: pointer;
+            }
+
+            .btn-back {
               padding: var(--spacer);
             }
 
@@ -81,28 +101,6 @@ export default function ProfileInfo(props) {
             p {
               margin-bottom: 4px;
             }
-
-            .account-buttons {
-              text-align: center;
-              margin-top: 10px;
-
-              .lnk-profile,
-              .lnk-password {
-                display: block;
-                cursor: pointer;
-                padding: var(--spacer);
-                text-decoration: none;
-                background: var(--color-primary);
-                border: 1px solid var(--color-primary);
-                border-radius: var(--border-radius);
-                color: white;
-                margin-right: 5px;
-              }
-
-              .lnk-profile {
-                margin-bottom: var(--spacer);
-              }
-            }
           }
 
           @media screen and (min-width: ${BREAKPOINTS.TABLET}) {
@@ -112,14 +110,6 @@ export default function ProfileInfo(props) {
             .details {
               flex-grow: 1;
               text-align: left;
-              .account-buttons {
-                text-align: left;
-
-                .lnk-profile,
-                .lnk-password {
-                  display: inline-block;
-                }
-              }
             }
           }
 

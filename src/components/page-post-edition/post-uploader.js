@@ -2,6 +2,7 @@ import React, { useRef, useState } from 'react';
 import PostUploaderItem from './post-uploader-item';
 import Lightbox from '../lightbox';
 import Sortable from '../sortable';
+import PostInvalidFiles from './port-invalid-files';
 import { resizeImage, validateFiles } from '../../utils/upload-utils';
 import { BREAKPOINTS } from '../../utils/style-utils';
 
@@ -32,12 +33,12 @@ export default function PostUploader(props) {
     setWarningMsg('');
     const selectedFiles = [...event.target.files];
     const validFiles = validateFiles(selectedFiles, allowedExtentions, maxFileSizeMb);
-    const optimizedFiles = await resizeImage(selectedFiles, 800, 800);    
+    const optimizedFiles = await resizeImage(validFiles, 800, 800);    
     const updatedPhotos = [...photos, ...validFiles]
       .filter(photo => photo)
       .slice(0, 6);
 
-    if (optimizedFiles.length !== validFiles.length) {
+    if (selectedFiles.length !== validFiles.length) {
       const warningMsg = translations['wrongUploadedFiles']
         .replace(/{extentions}/g, allowedExtentions.join(', '))
         .replace(/{maxFilesize}/g, maxFileSizeMb);
@@ -95,17 +96,12 @@ export default function PostUploader(props) {
       <Lightbox
         isOpen={showModalWarning}
         onToggle={() => setShowModalWarning(!showModalWarning)}>
-        <section className="invalid-file-modal">
-          <h2><i className="fas fa-exclamation-triangle"></i> {translations.warning}</h2>
-          <p>{warningMsg}</p>
-          {wrongFiles.length && <p>{wrongFiles.map(file => `${file.name} (${parseInt(file.size/(1024*1024))}mb)`).join(', ')}</p>}
-          <button 
-            type="button" 
-            className="btn-close" 
-            onClick={() => setShowModalWarning(false)}>
-            {translations.close}
-          </button>
-        </section>
+        <PostInvalidFiles
+          warningMsg={warningMsg}
+          wrongFiles={wrongFiles}
+          translations={translations}
+          onClose={() => setShowModalWarning(false)}>
+        </PostInvalidFiles>
       </Lightbox>
       <style jsx>{`
         .post-uploader {
@@ -121,22 +117,6 @@ export default function PostUploader(props) {
 
           .input-file {
             display: none;
-          }
-
-          .invalid-file-modal {
-            text-align: center;
-
-            h2 {
-              margin-bottom: calc(var(--spacer) * 2);
-            }
-
-            .btn-close {
-              background: var(--color-primary);
-              border: none;
-              cursor: pointer;
-              margin-top: calc(var(--spacer) * 2);
-              padding: var(--spacer);
-            }
           }
 
           :global(section.photos) {

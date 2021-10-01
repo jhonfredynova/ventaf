@@ -80,8 +80,7 @@ export default function InputSuggestions(props) {
         className={!showSuggestions && 'd-none'}
         style={{ 
           ...(style && style.suggestions),
-          top: `${inputRef.current ? inputRef.current.offsetHeight : 0}px`,
-          zIndex: 10
+          top: `${inputRef.current ? inputRef.current.offsetHeight : 0}px`
         }}>
         {(searchValue ? filteredSuggestions : suggestions).map((suggestion, index) => 
           <li
@@ -128,22 +127,24 @@ export default function InputSuggestions(props) {
 
           .btn-clear,
           .btn-check {
-            border: 1px solid var(--border-color);
             cursor: pointer;
             padding: var(--spacer);
           }
 
           .btn-clear {
             background: var(--color-alert);
+            border: 1px solid var(--color-alert);
             color: white;
           }
 
           .btn-check {
             background: var(--color-primary);
+            border: 1px solid var(--color-primary);
             color: white;
           }
 
           ul {
+            background: white;
             border: 1px solid #ccc;
             border-top: 0;
             max-height: 250px;

@@ -221,6 +221,14 @@ export default function NewPost() {
           }
 
           .lightbox-login {
+            background-color: white;
+            border-radius: var(--border-radius);
+            text-align: center;
+            padding: var(--spacer);
+            max-width: 100%;
+            max-width: 100%;
+            width: 500px;
+
             h2 {
               margin-bottom: var(--spacer);
             }

@@ -117,7 +117,7 @@ export default function HomeContents(props) {
 							position: absolute;
 							top: 0;
 							right: 0;
-							z-index: 2;
+							z-index: 1;
 						}
 					}
 				}

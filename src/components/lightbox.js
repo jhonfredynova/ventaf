@@ -55,15 +55,15 @@ export default function Lightbox(props) {
           display: flex;
           flex-direction: column;
           justify-content: center;
-          background-color: rgba(255, 255, 255, 0.9);
+          background-color: rgba(0, 0, 0, .65);
           margin: 0;
-          padding: 0;
+          padding: calc(var(--spacer) * 2);
           height: 100vh;
           width: 100vw;
           overflow-x: hidden;
           overflow-y: auto;
           transition: transform ease-in-out 200ms, opacity ease-in-out 300ms;
-          z-index: 1040;
+          z-index: 2;
 
           &.show {
             opacity: 1;
@@ -78,6 +78,7 @@ export default function Lightbox(props) {
           .btn-close {
             background: none;
             border: none;
+            color: white;
             font-size: 5rem;
             position: fixed;
             top: 10px;
@@ -92,11 +93,10 @@ export default function Lightbox(props) {
             border-radius: 10px;
             position: relative;
             margin: 0 auto;
+            padding: 0;
+            width: auto;
+            max-width: 100%;
             max-height: 100%;
-            padding: 15px;
-            max-width: 600px;
-            width: 100%;
-            z-index: 1050;
           }
 
         }

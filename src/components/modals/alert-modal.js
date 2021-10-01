@@ -16,7 +16,12 @@ export default function AlertModal(props) {
       </div>
       <style jsx>{`
         .alert-modal {
+          background-color: white;
+          border-radius: var(--border-radius);
           text-align: center;
+          padding: var(--spacer);
+          max-width: 100%;
+          width: 400px;
 
           h2 {
 						margin-bottom: var(--spacer);
@@ -28,7 +33,9 @@ export default function AlertModal(props) {
             .btn-ok {
 							background: var(--color-primary);
               border: none;
+              border-radius: var(--border-radius);
 							cursor: pointer;
+              color: white;
 							padding: var(--spacer);
 						}
           }
