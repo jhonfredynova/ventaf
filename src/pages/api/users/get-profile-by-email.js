@@ -20,8 +20,13 @@ export default async function getUserProfileByEmail(req, res) {
       return;
     }
 
-    const userResults = await getDbQuery(db, 'users', { where: { email: { '==': modelData.email } } });
-    const responseData = userResults[0] ? getPublicProfileData(userResults[0]) : null;
+    const userProfile = await getDbQuery(db, 'users', { where: { email: { '==': modelData.email } } });    
+    const responseData = userProfile[0] ? getPublicProfileData(userProfile[0]) : null;
+
+    if (responseData?.id) {
+      const userAccount = await firebaseAdmin.auth().getUser(responseData.id);
+      responseData.providers = userAccount.providerData.map(provider => provider.providerId);
+    }
     
     res.json(responseData);
   } catch (error) {

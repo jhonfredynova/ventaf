@@ -1,5 +1,5 @@
 {
-  "appLastSync": 1633049971554,
+  "appLastSync": 1633059036934,
   "callingCodes": [
     {
       "countryFlag": "https://restcountries.eu/data/afg.svg",
@@ -4502,7 +4502,7 @@
       "active": "Active",
       "spendingInvoices": "Spending invoices",
       "transactionApprovedTitle": "Approved transaction",
-      "loginWithEmail": "Continue with your email",
+      "loginWithEmail": "Continue with Email",
       "mailSubscriptionCreatedSubject": "Your subscription to {appName} has started",
       "subTotal": "Subtotal",
       "login": "Login",
@@ -5195,7 +5195,7 @@
       "active": "Activo",
       "spendingInvoices": "Facturas de gasto",
       "transactionApprovedTitle": "Transacción aprobada",
-      "loginWithEmail": "Continuar con correo electrónico",
+      "loginWithEmail": "Continuar con Correo electrónico",
       "mailSubscriptionCreatedSubject": "Tu suscripción a {appName} ha iniciado",
       "subTotal": "Subtotal",
       "login": "Iniciar sesión",

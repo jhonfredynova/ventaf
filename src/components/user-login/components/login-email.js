@@ -14,13 +14,14 @@ export default function LoginEmail(props) {
   };
   const { isLoggingIn, translations, onLogginIn, onSuccess } = props;
   const store = useStore();
-  const [userInfo, setUserInfo] = useState(null);
   const [loginInfo, setLoginInfo] = useState({ email:'', password: '' });
   const [errors, setErrors] = useState({});
   const [currentLoginStep, setLoginStep] = useState(LOGIN_STEPS.ENTER_EMAIL);
   const [isProcessing, setIsProcessing] = useState(false);
+  const [userInfo, setUserInfo] = useState(null);
   const authData = useSelector(state => state.auth.authData);
   const userPhotoUrl = (userInfo && userInfo.photoURL) || '/anonymous.png';
+  const userHasEmailProvider = (userInfo?.providers?.includes('password'));
 
   const onClearEmail = () => {
     setLoginStep(LOGIN_STEPS.ENTER_EMAIL);
@@ -174,15 +175,38 @@ export default function LoginEmail(props) {
           <p className="error-msg">{translations[errors.email]}</p>
         </div>
         {
-          currentLoginStep === LOGIN_STEPS.LOGIN_USER &&
+          currentLoginStep === LOGIN_STEPS.ENTER_EMAIL &&
           <div className="form-row">
-            <label className="sr-only" htmlFor="password">{translations['password']} <span>*</span></label>
-            <InputPassword id="password" value={loginInfo.password} 
-              aria-required="true" placeholder={`${translations['password']} *`} autoComplete="off"
-              onChange={event => setLoginInfo({ ...loginInfo, password: event.target.value })} />
-            <p className="error-msg">{translations[errors.password]}</p>
-            <p className="error-msg">{translations[errors.general]}</p>
+            <LoginButton 
+              type="submit"
+              disabled={isLoggingIn || isProcessing} 
+              provider="email">
+              {isProcessing && <i className="btn-login fa fa-spinner fa-spin" />}
+              {translations.loginWithEmail}
+            </LoginButton>
           </div>
+        }
+        {
+          currentLoginStep === LOGIN_STEPS.LOGIN_USER && userHasEmailProvider &&
+          <>
+            <div className="form-row">
+              <label className="sr-only" htmlFor="password">{translations['password']} <span>*</span></label>
+              <InputPassword id="password" value={loginInfo.password} 
+                aria-required="true" placeholder={`${translations['password']} *`} autoComplete="off"
+                onChange={event => setLoginInfo({ ...loginInfo, password: event.target.value })} />
+              <p className="error-msg">{translations[errors.password]}</p>
+              <p className="error-msg">{translations[errors.general]}</p>
+            </div>
+            <div className="form-row">
+              <LoginButton 
+                type="submit"
+                disabled={isLoggingIn || isProcessing} 
+                provider="email">
+                {isProcessing && <i className="btn-login fa fa-spinner fa-spin" />}
+                {translations.login}
+              </LoginButton>
+            </div>
+          </>
         }
         {
           currentLoginStep === LOGIN_STEPS.REGISTER_USER &&
@@ -194,19 +218,17 @@ export default function LoginEmail(props) {
                 onChange={event => setLoginInfo({ ...loginInfo, password: event.target.value })} />
               <p className="error-msg">{translations[errors.password]}</p>
             </div>
+            <div className="form-row">
+              <LoginButton 
+                type="submit"
+                disabled={isLoggingIn || isProcessing} 
+                provider="email">
+                {isProcessing && <i className="btn-login fa fa-spinner fa-spin" />}
+                {translations.register}
+              </LoginButton>
+            </div>
           </>
         }
-        <div className="form-row">
-          <LoginButton 
-            type="submit"
-            disabled={isLoggingIn || isProcessing} 
-            provider="email">
-            {isProcessing && <i className="btn-login fa fa-spinner fa-spin" />}
-            {(currentLoginStep === LOGIN_STEPS.ENTER_EMAIL) && translations['loginWithEmail']}
-            {(currentLoginStep === LOGIN_STEPS.LOGIN_USER) && translations['login']}
-            {(currentLoginStep === LOGIN_STEPS.REGISTER_USER) && translations['register']}
-          </LoginButton>
-        </div>
       </form>
       <style jsx>{`
         .form-row {

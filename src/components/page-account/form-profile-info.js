@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
 import { useStore } from 'react-redux';
+import { useRouter } from 'next/router';
 import InputPhone from '../input-phone';
 import { updateUser } from '../../store/actions/user-actions';
 
 export default function FormProfileInfo(props) {
   const { authData, callingCodes, profile, translations } = props;
   const store = useStore();
+  const router = useRouter();
   const [isUpdatingProfile, setIsUpdatingProfile] = useState(false);
   const [errors, setErrors] = useState({});
   const [userInfo, setUserInfo] = useState({ 
@@ -25,6 +27,7 @@ export default function FormProfileInfo(props) {
       setErrors({});
       await store.dispatch(updateUser(userInfo));
       setIsUpdatingProfile(false);
+      router.push(`/${profile.username}`);
     } catch (error) {
       const { errors } = error?.response?.data || {};
       setErrors(errors || {});

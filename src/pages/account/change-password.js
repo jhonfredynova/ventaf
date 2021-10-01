@@ -47,13 +47,13 @@ const ChangePassword = () => {
       </section>
       <style jsx>{`
         main {
+          --container-width: 600px;
           max-width: var(--container-width);
           margin: 0 auto;
           padding: calc(var(--spacer) * 2);
 
           .form-change-password {
             margin: 0 auto;
-            max-width: 600px;
           }
         }  
       `}</style>
