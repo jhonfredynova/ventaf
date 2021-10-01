@@ -7,13 +7,16 @@ import { resizeImage, validateFiles } from '../../utils/upload-utils';
 import { BREAKPOINTS } from '../../utils/style-utils';
 
 export default function PostUploader(props) {
+  const { translations, error, photos, onChange } = props;
+
+  const [isProcessingPhotos, setIsProcessingPhotos] = useState(false);
   const [showModalWarning, setShowModalWarning] = useState(false);
   const [warningMsg, setWarningMsg] = useState('');
   const [wrongFiles, setWrongFiles] = useState([]);
-  const { translations, error, photos, onChange } = props;
   const fileInput = useRef(null);
+
   const allowedExtentions = ['jpg', 'jpeg', 'gif', 'png'];
-  const maxFileSizeMb = 10;
+  const maxFileSizeMb = 20;
   const uploadWarningFileExtentionsMessage = (translations['uploadWarningFileExtentionsMessage'] || '')
     .replace(/{allowedExtentions}/g, allowedExtentions.join(', '));
   const uploadWarningFileSizeMessage = (translations['uploadWarningFileSizeMessage'] || '')
@@ -31,13 +34,11 @@ export default function PostUploader(props) {
   const onUpload = async event => {
     setShowModalWarning(false);
     setWarningMsg('');
+    
     const selectedFiles = [...event.target.files];
     const validFiles = validateFiles(selectedFiles, allowedExtentions, maxFileSizeMb);
-    const optimizedFiles = await resizeImage(validFiles, 800, 800);    
-    const updatedPhotos = [...photos, ...validFiles]
-      .filter(photo => photo)
-      .slice(0, 6);
 
+    // If there are file errros 
     if (selectedFiles.length !== validFiles.length) {
       const warningMsg = translations['wrongUploadedFiles']
         .replace(/{extentions}/g, allowedExtentions.join(', '))
@@ -48,6 +49,15 @@ export default function PostUploader(props) {
       setWrongFiles(wrongFiles);
     }
 
+    // optimizing files size
+    setIsProcessingPhotos(true);
+    const optimizedFiles = await resizeImage(validFiles, 800, 800);    
+    const updatedPhotos = [...photos, ...optimizedFiles]
+      .filter(photo => photo)
+      .slice(0, 6);
+    setIsProcessingPhotos(false);
+
+    // trigering on change event
     onChange(updatedPhotos);
     fileInput.current.value = '';
   };
@@ -72,6 +82,7 @@ export default function PostUploader(props) {
           [...Array(6).keys()].map((mediaSequence, mediaIndex) =>
             <PostUploaderItem
               key={(photos[mediaIndex] && photos[mediaIndex].name) || mediaSequence}
+              isLoading={isProcessingPhotos}
               allowDeletion={photos.length > 1}
               className={`${photos[mediaIndex] ? 'drag' : ''} media-${mediaSequence}`}
               translations={translations}

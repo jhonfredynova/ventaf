@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
 export default function PostUploaderItem(props) {
-  const { allowDeletion, className, translations, mediaIndex, mediaData, onUpload, onDelete } = props;
+  const { isLoading, allowDeletion, className, translations, mediaIndex, mediaData, onUpload, onDelete } = props;
   const [mediaUrl, setMediaUrl] = useState(null);
 
   useEffect(() => {
@@ -13,7 +13,9 @@ export default function PostUploaderItem(props) {
 
     const mediaReader = new FileReader();
     mediaReader.readAsDataURL(mediaData);
-    mediaReader.onload = readerEvent => setMediaUrl(readerEvent.target.result);
+    mediaReader.onload = readerEvent => {
+      setMediaUrl(readerEvent.target.result);
+    };
   }, [mediaData]);
 
   return (
@@ -24,8 +26,19 @@ export default function PostUploaderItem(props) {
           type="button"
           className="btn-placeholder"
           onClick={() => onUpload(mediaIndex)}>
-          <div><i className="fas fa-photo-video"></i></div>
-          <div>{translations['photo']}</div>
+          {
+            isLoading && 
+            <div className="loader">
+              <i className="fas fa-spinner fa-spin fa-2x" title={translations.loading} />
+            </div>
+          }
+          {
+            !isLoading && 
+            <>
+              <div><i className="fas fa-photo-video"></i></div>
+              <div>{translations['photo']}</div>
+            </>
+          }
         </button>
       }
       {
@@ -51,6 +64,14 @@ export default function PostUploaderItem(props) {
           padding-top: 56.25%;
           position: relative;
           width: 100%;
+
+          .loader {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 150px;
+            height: 150px;
+          }
 
           .btn-placeholder {
             position: absolute;
