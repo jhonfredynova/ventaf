@@ -100,15 +100,14 @@ export default function HomeContents(props) {
 				.posts-section {
 					display: grid;
 					grid-template-columns: 1fr;
-					column-gap: calc(var(--spacer) * 2);
-					row-gap: calc(var(--spacer) * 2);
+					gap: calc(var(--spacer) * 2);
 
 					@media screen and (min-width: ${BREAKPOINTS.TABLET}) {
 						grid-template-columns: repeat(2	, 1fr);
 					}
 
 					@media screen and (min-width: ${BREAKPOINTS.DESKTOP}) {
-						grid-template-columns: repeat(4, 1fr);
+						grid-template-columns: repeat(3, 1fr);
 					}
 
 					.post-wrapper {

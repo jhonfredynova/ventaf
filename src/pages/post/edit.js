@@ -141,7 +141,6 @@ const EditPost = () => {
       </div>  
       <style jsx>{`
         main {
-          --container-width: 900px;
           max-width: var(--container-width);
           margin: 0 auto;
           padding: calc(var(--spacer) * 2);

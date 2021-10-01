@@ -52,7 +52,7 @@ export default function MyApp({ Component, pageProps }) {
           --color-alert: #dc3545;
           --color-text: #333;
 
-          --container-width: 1200px;
+          --container-width: 900px;
           --spacer: 10px;
         }
 
