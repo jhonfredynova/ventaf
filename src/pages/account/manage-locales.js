@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { useSelector, useStore } from 'react-redux';
+import { useRouter } from 'next/router';
 import Authorization from '../../components/authorization';
 import SEO from '../../components/seo';
 import InfiniteScroll from '../../components/infinite-scroll';
 import NavigationBar from '../../components/navigation-bar';
-import NavbarAccount from '../../components/page-account/navbar-account';
 import LocaleActionsBar from '../../components/page-account/locale-actions-bar';
 import FormLocaleInfo from '../../components/page-account/form-locale-info';
 import Lightbox from '../../components/lightbox';
@@ -30,6 +30,7 @@ export const getServerSideProps = async ({ locale }) => {
 
 const ManageLocales = () => {
   const store = useStore();
+  const router = useRouter();
   const [searchTerm, setSearchTerm] = useState('');
   const [pageSize, setPageSize] = useState(20);
   const [localeToEdit, setLocaleToEdit] = useState(null);
@@ -38,7 +39,6 @@ const ManageLocales = () => {
   const [isDeleteLocaleModalOpen, showDeleteLocaleModal] = useState(false);
   const [isSyncingConfig, setIsSyncingConfig] = useState(false);
   const [isDeletingLocale, setIsDeletingLocale] = useState(false);
-  const authData = useSelector(state => state.auth.authData);
   const { translations } = useSelector(state => state.config);
   const locales = useSelector(state => state.locale.records);
   const filteredLocales = locales
@@ -54,7 +54,7 @@ const ManageLocales = () => {
 
   const onSyncConfig = () => {
     setIsSyncingConfig(true);
-    store.dispatch(syncConfiguration())
+    store.dispatch(syncConfiguration(router.locale))
       .finally(() => setIsSyncingConfig(false));
   };
 
@@ -64,16 +64,14 @@ const ManageLocales = () => {
         title={translations.localesTitle}
         description={translations.localesDescription}>
       </SEO>
+
       <NavigationBar
         title={translations.localesTitle}
         description={translations.localesDescription}
         showBackBtn={true}
         translations={translations}>
       </NavigationBar>
-      <NavbarAccount 
-        authData={authData}
-        translations={translations}>
-      </NavbarAccount>
+
       <LocaleActionsBar
         isSyncingConfig={isSyncingConfig}
         searchTerm={searchTerm}
@@ -85,6 +83,7 @@ const ManageLocales = () => {
           showLocaleModal(true);
         }}>
       </LocaleActionsBar>
+
       {
         filteredLocales.length === 0 &&
         <h3>{translations.noResults}</h3>

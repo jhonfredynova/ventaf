@@ -1,18 +1,22 @@
-import { isEmail } from '../validation-utils';
+import { isEmail } from '../utils/validation-utils';
 
 export default modelData => {
   let errors = {};
 
-  if (modelData.email?.trim()) {
-    errors.email = 'field-is-required';
-  } else if (isEmail(modelData.email)) {
-    errors.email = 'field-email-invalid';
+  if (!modelData.email?.trim()) {
+    errors.email = 'fieldRequired';
+  } else if (!isEmail(modelData.email)) {
+    errors.email = 'fieldInvalidEmail';
   }
 
-  if (modelData.password?.trim()) {
-    errors.password = 'field-is-required';
+  if (!modelData.password?.trim()) {
+    errors.password = 'fieldRequired';
   } else if (modelData.password?.length < 6) {
-    errors.password = 'field-password-invalid';
+    errors.password = 'fieldPasswordInsecure';
+  }
+
+  if (!modelData.username?.trim()) {
+    errors.username = 'fieldRequired';
   }
 
   return errors;

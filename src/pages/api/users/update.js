@@ -1,6 +1,7 @@
 import { getDbDocument, getDbQuery } from '../../../utils/database-utils';
 import { runMiddleware } from '../../../utils/api-utils';
 import authorization from '../../../middlewares/authorization';
+import validateProfileInfo from '../../../validations/validate-profile-info';
 
 export default async function updateUser(req, res) {
   try {
@@ -9,7 +10,8 @@ export default async function updateUser(req, res) {
     const firebaseAdmin = require('../../../firebase-admin').default;
     const firebaseClient = require('../../../firebase-client').default;
     const db = firebaseAdmin.firestore();
-    const modelDb = await getDbDocument(db, 'users', req.query.userId);
+    const { userId } = req.query;
+    const modelDb = await getDbDocument(db, 'users', userId);
 
     if (!modelDb) {
       res.status(400).json({ code: 'record-not-found' });
@@ -18,11 +20,19 @@ export default async function updateUser(req, res) {
 
     // validate model
     const modelData = {
-      ...req.body,
-      ...(req.body.active ? { active: req.body.active } : null),
-      ...(req.body.nextPlan ? { nextPlan: req.body.nextPlan } : null),
+      username: req.body.username,
+      phone: req.body.phone,
+      displayName: req.body.displayName,
+      bio: req.body.bio,
+      website: req.body.website,
       updatedAt: Date.now()
     };
+    const errors = validateProfileInfo(modelData);
+
+    if (Object.keys(errors).length > 0) {
+      res.status(400).json({ code: 'modelErrors', errors });
+      return;
+    }
 
     if (modelData.username) {
       const dbClient = firebaseClient.firestore();
@@ -34,14 +44,14 @@ export default async function updateUser(req, res) {
       });
 
       if (queryUsername.length > 0) {
-        res.status(400).json({ code: 'userAreadyExist' });
+        res.status(400).json({ code: 'usernameAlreadyExist' });
       }
     }
 
     // update user
     await db
       .collection('users')
-      .doc(req.params.id)
+      .doc(userId)
       .update(modelData);
 
     const response = Object.assign(modelDb, modelData);

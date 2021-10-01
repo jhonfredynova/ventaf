@@ -4,7 +4,6 @@ import FormChangePassword from '../../components/page-account/form-change-passwo
 import Authorization from '../../components/authorization';
 import SEO from '../../components/seo';
 import NavigationBar from '../../components/navigation-bar';
-import NavbarAccount from '../../components/page-account/navbar-account';
 import { initializeStore } from '../../store/store';
 import { getConfiguration } from '../../store/actions/config-actions';
 
@@ -40,10 +39,6 @@ const ChangePassword = () => {
         showBackBtn={true}
         translations={translations}>
       </NavigationBar>
-      <NavbarAccount 
-        authData={authData}
-        translations={translations}>
-      </NavbarAccount>
       <section className="form-change-password">
         <FormChangePassword
           translations={translations}

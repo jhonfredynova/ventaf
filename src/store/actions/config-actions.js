@@ -13,7 +13,8 @@ export const getConfiguration = locale => async dispatch => {
   dispatch({ type: TYPES.GET_CONFIG, payload: configData });
 };
 
-export const syncConfiguration = data => async dispatch => {
-  const response = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/config/sync-config`, data);
-  dispatch({ type: TYPES.SYNC_CONFIG, payload: response.data });
+export const syncConfiguration = locale => async dispatch => {
+  const configData = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/config/sync-config`);
+  configData.translations = configData.data.translations[locale];
+  dispatch({ type: TYPES.SYNC_CONFIG, payload: configData });
 };

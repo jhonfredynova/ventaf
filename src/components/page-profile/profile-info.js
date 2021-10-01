@@ -7,6 +7,7 @@ import { BREAKPOINTS } from '../../utils/style-utils';
 export default function ProfileInfo(props) {
   const { authData } = useSelector(state => state.auth);
   const { translations, userProfile } = props;
+  const isProfileOwner = (authData?.uid === userProfile.id);
   const router = useRouter();
 
   if (!userProfile) {
@@ -24,11 +25,11 @@ export default function ProfileInfo(props) {
         </button>
         <img 
           src={userProfile.photoURL || '/anonymous.png'} 
-          alt={userProfile.displayName} 
+          alt={userProfile.username} 
           width="150px" />
       </div>
       <div className="details">
-        <h2>{userProfile.displayName}</h2>
+        <h2>{userProfile.displayName || userProfile.username}</h2>
         {userProfile.bio && <p>{userProfile.bio}</p>}
         {userProfile.isEmailPublic && <p>{userProfile.email}</p>}
         {
@@ -36,10 +37,13 @@ export default function ProfileInfo(props) {
           <p><a href={userProfile.website} rel="noreferrer" target="_blank">{userProfile.website}</a></p>
         }
         {
-          authData &&
+          isProfileOwner &&
           <div className="account-buttons">
-            <Link href="/account/update-info">
-              <a className="btn-profile">{translations.editProfile}</a>
+            <Link href="/account/update-info"> 
+              <a className="lnk-profile"><i className="fas fa-pen" /> {translations.editProfile}</a>
+            </Link>
+            <Link href="/account/change-password">
+              <a className="lnk-password"><i className="fas fa-lock" />  {translations.changePassword}</a>
             </Link>
           </div>
         }
@@ -81,7 +85,9 @@ export default function ProfileInfo(props) {
             .account-buttons {
               text-align: center;
               margin-top: 10px;
-              .btn-profile {
+
+              .lnk-profile,
+              .lnk-password {
                 display: block;
                 cursor: pointer;
                 padding: var(--spacer);
@@ -92,10 +98,14 @@ export default function ProfileInfo(props) {
                 color: white;
                 margin-right: 5px;
               }
+
+              .lnk-profile {
+                margin-bottom: var(--spacer);
+              }
             }
           }
 
-          @media screen and (min-width: ${BREAKPOINTS.DESKTOP}) {
+          @media screen and (min-width: ${BREAKPOINTS.TABLET}) {
             display: flex;
             align-items: center;
 
@@ -104,7 +114,9 @@ export default function ProfileInfo(props) {
               text-align: left;
               .account-buttons {
                 text-align: left;
-                .btn-profile {
+
+                .lnk-profile,
+                .lnk-password {
                   display: inline-block;
                 }
               }

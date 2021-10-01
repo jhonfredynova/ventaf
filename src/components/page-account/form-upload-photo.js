@@ -25,8 +25,8 @@ export default function FormUploadPhoto(props) {
       await store.dispatch(uploadProfilePhoto(formData));
       setIsUploadingPhoto(false);
     } catch (error) {
-      const { errors, message } = error?.response?.data || {};
-      setErrors({ ...errors, general: message });
+      const { errors, code, message } = error?.response?.data || {};
+      setErrors({ ...errors, general: (translations[code] || message) });
       setIsUploadingPhoto(false);
     }
   };
@@ -45,7 +45,7 @@ export default function FormUploadPhoto(props) {
         className="btn-upload"
         disabled={isUploadingPhoto}
         onClick={() => inputPhoto.current.click()}>
-        {translations['uploadPhoto']}
+        <i className="fas fa-upload" /> {translations.uploadPhoto}
       </button>
       <p className="error-msg">{errors.general}</p>
       <p className="error-msg">{errors.logoURL}</p>

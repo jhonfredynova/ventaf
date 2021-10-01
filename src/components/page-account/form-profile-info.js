@@ -35,44 +35,22 @@ export default function FormProfileInfo(props) {
   return (
     <form className="form-profile-info" onSubmit={onUpdateInfo}>
       <div className="form-row">
-        <label htmlFor="email">{translations['email']} *</label>
-        <div className="input-group">
-          <div 
-            title={authData.email_verified ? translations['emailConfirmed'] : translations['emailUnconfirmed']} 
-            className="email-status">
-            <i className={`${(authData && authData.email_verified) ? 'fas fa-check success' : 'fas fa-times error'}`}/>
-          </div>
-          <span id="email" className="email-data">{profile.email}</span>
-          <label className="email-check" htmlFor="email-is-public">
-            <input 
-              id="email-is-public"
-              type="checkbox" 
-              title={translations['isEmailPublic']}
-              checked={userInfo.isEmailPublic}
-              onChange={event => setUserInfo({ ...userInfo, isEmailPublic: event.target.checked })}>
-            </input> 
-            {translations['public']}
-          </label>
-        </div>
-      </div>
-      <div className="form-row">
-        <label htmlFor="username">{translations['username']} *</label>
+        <label htmlFor="username">{translations.username} *</label>
         <div className="input-group">
           <div className="url-placeholder">
-            https://ventaexitosa.com/
+            https://cytsas.com/
           </div>
           <input
             id="username"
             type="text"
-            placeholder={`${translations['username']} *`}
             value={userInfo.username}
-            onChange={e => setUserInfo({ ...userInfo, username: e.target.value.replace(/[^a-z0-9]/gi, '') })}>
+            onChange={e => setUserInfo({ ...userInfo, username: e.target.value.toLowerCase().replace(/[^a-z0-9@.]/gi, '') })}>
           </input>
         </div>
-        <p className="error-msg">{errors.username}</p>
+        <p className="error-msg">{translations[errors.username]}</p>
       </div>
       <div className="form-row">
-        <label htmlFor="phone">{translations['phone']} *</label>
+        <label htmlFor="phone">{translations.phone} *</label>
         <InputPhone
           id="phone"
           translations={translations}
@@ -83,47 +61,43 @@ export default function FormProfileInfo(props) {
         </InputPhone>
       </div>
       <div className="form-row">
-        <label htmlFor="displayName">{translations['displayName']} *</label>
+        <label htmlFor="displayName">{translations.displayName}</label>
         <input
           id="displayName"
           type="text"
-          placeholder={`${translations['displayName']} *`}
           value={userInfo.displayName}
           onChange={e => setUserInfo({ ...userInfo, displayName: e.target.value })}
         />
-        <p className="error-msg">{errors.displayName}</p>
+        <p className="error-msg">{translations[errors.displayName]}</p>
       </div>
       <div className="form-row">
         <label htmlFor="website">{translations['website']}</label>
         <input
           id="website"
           type="text"
-          placeholder={translations['website']}
           value={userInfo.website}
           onChange={e => setUserInfo({ ...userInfo, website: e.target.value })}>
         </input>
-        <p className="error-msg">{errors.website}</p>
+        <p className="error-msg">{translations[errors.website]}</p>
       </div>
       <div className="form-row">
-        <label htmlFor="bio">{translations['bio']}</label>
+        <label htmlFor="bio">{translations.bio}</label>
         <textarea
           id="bio"
           type="text"
-          placeholder={translations['bio']}
           value={userInfo.bio}
           onChange={e => setUserInfo({ ...userInfo, bio: e.target.value })}>
         </textarea>
-        <p className="error-msg">{errors.bio}</p>
+        <p className="error-msg">{translations[errors.bio]}</p>
       </div>
       <div className="buttons-wrapper">
         <button type="submit" className="btn-submit" disabled={isUpdatingProfile}>
           {isUpdatingProfile && <i className="fas fa-spinner fa-spin"></i>}
-          {translations['save']}
+          {translations.update}
         </button>
       </div>
       <style jsx>{`
         .form-profile-info {
-          padding: 15px;
 
           .form-row {
             margin-bottom: 10px;
@@ -147,42 +121,7 @@ export default function FormProfileInfo(props) {
             .input-group {
               display: flex;
               align-items: center;
-
-              .email-status,
-              .email-data,
-              .email-check {
-                border: 1px solid #ccc;
-                padding: 10px;
-              }
-
-              .email-status {
-                border-right: 0;
-
-                i.success {
-                  color: var(--color-primary);
-                }
-
-                i.error {
-                  color: var(--color-alert);
-                }
-              }
-
-              .email-data {
-                flex-grow: 1;
-              }
-
-              label.email-check {
-                display: flex;
-                align-items: center;
-                border-left: 0;
-
-                input {
-                  width: 12px;
-                  margin-right: 4px;
-                  margin-top: -2px;
-                }
-              }
-
+              
               .url-placeholder {
                 background-color: var(--color-secondary);
                 border: 1px solid var(--border-color);

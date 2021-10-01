@@ -1,4 +1,5 @@
 import { getDbQuery } from './database-utils';
+import config from '../../config.json';
 
 export const MONTHS = [
   'January',
@@ -85,12 +86,12 @@ export const formatTime = (datetime, format) => {
   return response;
 };
 
-export const getIntlData = async (config, axios, db) => {
+export const getIntlData = async (configIntl, axios, db) => {
+  /*
   let sourceIntl = await axios.get(
-    `${config.url}/all?fields=alpha3Code;callingCodes;currencies;flag;languages;name;translations`
+    `${configIntl.url}/all?fields=alpha3Code;callingCodes;currencies;flag;languages;name;translations`
   );
   sourceIntl = sourceIntl.data;
-  let response = {};
 
   // countries 
   response.countries = sourceIntl
@@ -158,10 +159,18 @@ export const getIntlData = async (config, axios, db) => {
     }, [])
     .filter((item, index, array) => array.findIndex(obj => obj.value === item.value) === index)
     .sort((a, b) => a.countryName.localeCompare(b.countryName));
+  */
+  let response = {};
+  
+  // international data
+  response.countries = config.countries;
+  response.callingCodes = config.callingCodes;
+  response.currencies = config.currencies;
+  response.languages = config.languages;
 
-  // translations
+  // locales data
   const locales = await getDbQuery(db, 'locales', {});
-  response.translations = formatLocales(config.appLanguages, locales);
+  response.translations = formatLocales(configIntl.appLanguages, locales);
 
   return response;
 };
