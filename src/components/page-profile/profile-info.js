@@ -1,16 +1,44 @@
 import React, { useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useStore } from 'react-redux';
 import { useRouter } from 'next/router';
 import Lightbox from '../../components/lightbox';
+import LoginMethods from '../page-profile/login-methods';
 import ProfileMenu from '../page-profile/profile-menu';
 import { BREAKPOINTS } from '../../utils/style-utils';
+import { uploadProfilePhoto, logout } from '../../store/actions/auth-actions';
 
 export default function ProfileInfo(props) {
   const { translations, userProfile } = props;
+  const store = useStore();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isUploadingPhoto, setIsUploadingPhoto] = useState(false);
+  const [uploadError, setUploadError] = useState('');
   const { authData } = useSelector(state => state.auth);
-  const isProfileOwner = (authData?.uid === userProfile.id);
   const router = useRouter();
+  const isProfileOwner = (authData?.uid === userProfile.id);
+  const identities = (authData && authData.firebase.identities) || {};
+
+  const onUploadPhoto = async event => {
+    try {
+      setIsMenuOpen(false);
+      setIsUploadingPhoto(true);
+      setUploadError('');
+      let formData = new FormData();
+      formData.append('id', authData.uid);
+      formData.append('photo', event.target.files[0]);
+      await store.dispatch(uploadProfilePhoto(formData));
+      setIsUploadingPhoto(false);
+    } catch (error) {
+      const { code, message } = error?.response?.data || {};
+      setUploadError(translations[code] || message);
+      setIsUploadingPhoto(false);
+    }
+  };
+
+  const onLogout = () => {
+    store.dispatch(logout());
+    setIsMenuOpen(false);
+  };
 
   if (!userProfile) {
     return null;
@@ -32,20 +60,34 @@ export default function ProfileInfo(props) {
             className="btn-profile-menu"
             title={userProfile.username}
             onClick={() => setIsMenuOpen(true)}>
-            <img src={userProfile.photoURL || '/anonymous.png'} alt={userProfile.username} width="150px" />
+            {
+              isUploadingPhoto &&
+              <div className="loader"><i className="fas fa-spinner fa-spin fa-4x" title={translations.loading} /></div>
+            }
+            {
+              !isUploadingPhoto &&
+              <img src={userProfile.photoURL || '/anonymous.png'} alt={userProfile.username} />
+            }
+            {uploadError && <p className="error-msg">{uploadError}</p>}
           </button>
         }
         {
           !isProfileOwner &&
-          <img 
-            src={userProfile.photoURL || '/anonymous.png'} 
-            alt={userProfile.username} 
-            width="150px" />
+          <img src={userProfile.photoURL || '/anonymous.png'} alt={userProfile.username} />
         }
       </div>
 
       <div className="details">
         <h2>{userProfile.displayName || userProfile.username}</h2>
+        {
+          isProfileOwner &&
+          <div className="logins">
+            <LoginMethods
+              identities={identities}
+              translations={translations}>
+            </LoginMethods>
+          </div>
+        }
         {userProfile.bio && <p>{userProfile.bio}</p>}
         {userProfile.isEmailPublic && <p>{userProfile.email}</p>}
         {
@@ -60,6 +102,8 @@ export default function ProfileInfo(props) {
         <ProfileMenu
           authData={authData}
           translations={translations}
+          onUploadPhoto={onUploadPhoto}
+          onLogout={onLogout}
           onClose={() => setIsMenuOpen(false)}>
         </ProfileMenu>
       </Lightbox>
@@ -67,6 +111,10 @@ export default function ProfileInfo(props) {
       <style jsx>{`
         .profile-info {
           margin-bottom: calc(var(--spacer) * 2);
+
+          .error-msg {
+            color: var(--color-alert);
+          }
 
           .navigation {
             display: flex;
@@ -84,15 +132,24 @@ export default function ProfileInfo(props) {
               padding: var(--spacer);
             }
 
+            .loader {
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              width: 150px;
+              height: 150px;
+            }
+
             img {
               border-radius: 50%;
               margin: 0 auto;
+              width: 150px;
+              height: 150px;
             }
           }
 
           .details {
             text-align: center;
-            margin-left: 15px;
 
             h2 {
               margin-bottom: var(--spacer);
@@ -107,9 +164,16 @@ export default function ProfileInfo(props) {
             display: flex;
             align-items: center;
 
+            .navigation {
+              flex-grow: 0;
+              width: 190px;
+            }
+
             .details {
               flex-grow: 1;
+              flex-shrink: 0;
               text-align: left;
+              margin-left: calc(var(--spacer) * 2);
             }
           }
 

@@ -1,25 +1,33 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import Link from 'next/link';
 
 export default function ProfileMenu(props) {
-  const { authData, translations, onLogout, onUploadPhoto, onClose } = props;
+  const { authData, translations, onUploadPhoto, onLogout, onClose } = props;
+  const inputPhoto = useRef(null);
 
   return (
     <nav className="profile-menu">
+
       <ul>
         <li>
-          <button className="item primary" onClick={onUploadPhoto}>
+          <input
+            ref={inputPhoto}
+            type="file"
+            hidden
+            onChange={onUploadPhoto}>
+          </input>
+          <button className="item primary" onClick={() => inputPhoto.current.click()}>
             {translations.uploadPhoto}
           </button>
         </li>
         <li>
-          <Link href="/account/update-info">
-            <a className='item'>{translations.editProfile}</a>
+          <Link href="/account/change-password">
+            <a className='item'>{translations.changePassword}</a>
           </Link>
         </li>
         <li>
-          <Link href="/account/change-password">
-            <a className='item'>{translations.changePassword}</a>
+          <Link href="/account/update-info">
+            <a className='item'>{translations.updateInfo}</a>
           </Link>
         </li>
         {
@@ -36,11 +44,12 @@ export default function ProfileMenu(props) {
           </button>
         </li>
         <li>
-          <button className="item" onClick={onClose}>
+          <button className="item last" onClick={onClose}>
             {translations.cancel}
           </button>
         </li>
-      </ul>  
+      </ul> 
+
       <style jsx>{`
         .profile-menu {
           background-color: white;
@@ -74,11 +83,16 @@ export default function ProfileMenu(props) {
                 color: var(--color-primary);
                 font-weight: bold;
               }
+
+              &.last {
+                border-bottom: none;
+              }
             }
           }
 
         }  
       `}</style>
+      
     </nav>
   );
 

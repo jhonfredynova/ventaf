@@ -37,6 +37,7 @@ export default function FormProfileInfo(props) {
 
   return (
     <form className="form-profile-info" onSubmit={onUpdateInfo}>
+
       <div className="form-row">
         <label htmlFor="username">{translations.username} *</label>
         <div className="input-group">
@@ -52,6 +53,7 @@ export default function FormProfileInfo(props) {
         </div>
         <p className="error-msg">{translations[errors.username]}</p>
       </div>
+
       <div className="form-row">
         <label htmlFor="phone">{translations.phone} *</label>
         <InputPhone
@@ -63,6 +65,7 @@ export default function FormProfileInfo(props) {
           onChange={phone => setUserInfo({ ...userInfo, phone })}>
         </InputPhone>
       </div>
+
       <div className="form-row">
         <label htmlFor="displayName">{translations.displayName}</label>
         <input
@@ -73,6 +76,7 @@ export default function FormProfileInfo(props) {
         />
         <p className="error-msg">{translations[errors.displayName]}</p>
       </div>
+
       <div className="form-row">
         <label htmlFor="website">{translations['website']}</label>
         <input
@@ -83,6 +87,7 @@ export default function FormProfileInfo(props) {
         </input>
         <p className="error-msg">{translations[errors.website]}</p>
       </div>
+
       <div className="form-row">
         <label htmlFor="bio">{translations.bio}</label>
         <textarea
@@ -93,12 +98,14 @@ export default function FormProfileInfo(props) {
         </textarea>
         <p className="error-msg">{translations[errors.bio]}</p>
       </div>
+
       <div className="buttons-wrapper">
         <button type="submit" className="btn-submit" disabled={isUpdatingProfile}>
           {isUpdatingProfile && <i className="fas fa-spinner fa-spin"></i>}
           {translations.update}
         </button>
       </div>
+
       <style jsx>{`
         .form-profile-info {
 
@@ -158,6 +165,7 @@ export default function FormProfileInfo(props) {
           }
         }
       `}</style>
+      
     </form>
   );
 
