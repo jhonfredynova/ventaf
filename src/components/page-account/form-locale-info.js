@@ -13,6 +13,7 @@ export default function FormLocaleInfo(props) {
     name: localeData?.name || '',
     value: localeData?.value || {}
   });
+
   const onSaveLocale = async e => {
     try {
       if (e) {
@@ -38,7 +39,7 @@ export default function FormLocaleInfo(props) {
   };
 
   return (
-    <form onSubmit={onSaveLocale}>
+    <form className="form-locale" onSubmit={onSaveLocale}>
       <p>{translations[errors.general]}</p>
       <div className="form-row">
         <label>{translations['name']} *</label>
@@ -76,7 +77,10 @@ export default function FormLocaleInfo(props) {
         </button>
       </div>   
       <style jsx>{`
-        form {
+        .form-locale {
+          background-color: white;
+          border-radius: var(--border-radius);
+          padding: calc(var(--spacer) * 2);
 
           .form-row {
             margin-bottom: var(--spacer);
@@ -104,6 +108,7 @@ export default function FormLocaleInfo(props) {
             .btn-cancel {
               background: var(--color-secondary);
               border: none;
+              border-radius: var(--border-radius);
               cursor: pointer;
               margin-right: 5px;
               padding: var(--spacer)
@@ -112,6 +117,7 @@ export default function FormLocaleInfo(props) {
             .btn-save {
               background: var(--color-primary);
               border: none;
+              border-radius: var(--border-radius);
               cursor: pointer;
               color: white;
               padding: var(--spacer);
