@@ -65,14 +65,14 @@ export default function InputPlacesAutocomplete(props) {
 
           .icon-place {
             background-color: var(--color-secondary);
-            border: 1px solid var(--border-color);
+            border: 1px solid var(--color-border);
             border-right: 0;
             color: var(--color-primary);
             padding: var(--spacer);
           }
 
           input {
-            border: 1px solid var(--border-color);
+            border: 1px solid var(--color-border);
             padding: var(--spacer);
             width: 100%;
           }
@@ -87,9 +87,9 @@ export default function InputPlacesAutocomplete(props) {
 
           .list-suggestions {
             position: absolute;
-            border-radius: 6px;
+            border-radius: var(--spacer);
             box-shadow: 0 .5rem 1rem rgba(0,0,0,.15);
-            background: white;
+            background: var(--color-background);
             width: 100%;
             list-style: none;
 

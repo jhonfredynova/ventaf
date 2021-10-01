@@ -202,8 +202,8 @@ export default function NewPost() {
 
             .btn-post {
               background: var(--color-primary);
-              border: 1px solid var(--border-color);
-              border-radius: var(--border-radius);
+              border: 1px solid var(--color-border);
+              border-radius: var(--spacer);
               color: white;
               cursor: pointer;
               padding: var(--spacer);
@@ -221,8 +221,8 @@ export default function NewPost() {
           }
 
           .lightbox-login {
-            background-color: white;
-            border-radius: var(--border-radius);
+            background-color: var(--color-background);
+            border-radius: var(--spacer);
             text-align: center;
             padding: var(--spacer);
             max-width: 100%;

@@ -60,7 +60,7 @@ export default function Popover(props) {
       <style jsx>{`
         .popover {
           display: none;
-          background: white;
+          background: var(--color-background);
           border: 1px solid #ccc;
           border-radius: 6px;
           box-shadow: rgba(0, 0, 0, 0.2) 1px 1px 10px 1px;

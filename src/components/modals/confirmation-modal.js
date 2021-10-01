@@ -24,8 +24,8 @@ export default function ConfirmationModal(props) {
       </div>
       <style jsx>{`
         .confirmation-modal {
-          background-color: white;
-          border-radius: var(--border-radius);
+          background-color: var(--color-background);
+          border-radius: var(--spacer);
           text-align: center;
           padding: var(--spacer);
           max-width: 100%;
@@ -41,7 +41,7 @@ export default function ConfirmationModal(props) {
 						.btn-cancel,
 						.btn-accept, {
 							border: none;
-              border-radius: var(--border-radius);
+              border-radius: var(--spacer);
 							cursor: pointer;
 							padding: var(--spacer);
 						}

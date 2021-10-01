@@ -80,7 +80,7 @@ export default function InputMultiLanguage(props) {
             overflow: hidden;
 
             textarea {
-              border: 1px solid var(--border-color);
+              border: 1px solid var(--color-border);
               padding: var(--spacer);
               width: 100%;
             }

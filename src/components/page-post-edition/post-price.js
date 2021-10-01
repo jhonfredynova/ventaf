@@ -111,7 +111,7 @@ export default function PostPrice(props) {
 
             :global(.input-price) {
               flex-grow: 1;
-              border: 1px solid var(--border-color);
+              border: 1px solid var(--color-border);
               padding: var(--spacer);
               width: 100%;
             }
@@ -119,7 +119,7 @@ export default function PostPrice(props) {
             .btn-indicative {
               display: flex;
               background: var(--color-secondary);
-              border: 1px solid var(--border-color);
+              border: 1px solid var(--color-border);
               cursor: pointer;
               align-items: center;
               padding: 9px;

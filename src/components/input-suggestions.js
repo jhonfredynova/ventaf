@@ -121,7 +121,7 @@ export default function InputSuggestions(props) {
 
           input {
             flex-grow: 1;
-            border: 1px solid var(--border-color);
+            border: 1px solid var(--color-border);
             padding: var(--spacer);
           }
 
@@ -144,7 +144,7 @@ export default function InputSuggestions(props) {
           }
 
           ul {
-            background: white;
+            background: var(--color-background);
             border: 1px solid #ccc;
             border-top: 0;
             max-height: 250px;

@@ -43,7 +43,7 @@ export default function Footer(props) {
 
       <style jsx>{`
         .footer {
-          border-top: 1px solid var(--border-color);
+          border-top: 1px solid var(--color-border);
           padding: calc(var(--spacer) * 2);
           text-align: center;
 
@@ -74,8 +74,10 @@ export default function Footer(props) {
             .link-language {
               display: flex;
               align-items: center;
-              border: 1px solid var(--border-color);
-              border-radius: var(--border-radius);
+              border: 1px solid var(--color-border);
+              border-radius: var(--spacer);
+              background-color: var(--color-secondary);
+              color: var(--color-text);
               padding: var(--spacer);
               text-decoration: none;
 
@@ -84,7 +86,8 @@ export default function Footer(props) {
               }
 
               &.active {
-                background-color: var(--color-secondary);
+                background-color: var(--color-primary);
+                color: white;
                 cursor: default;
               }
 

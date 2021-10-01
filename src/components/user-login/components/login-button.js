@@ -15,7 +15,7 @@ export default function LoginButton(props) {
       {props.children}
       <style jsx>{`
         .login-button {
-          border: 1px solid var(--border-color);
+          border: 1px solid var(--color-border);
           cursor: pointer;
           padding: var(--spacer);
           display: flex;

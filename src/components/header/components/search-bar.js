@@ -70,7 +70,7 @@ export default function SearchBar(props) {
 
           .input-search {
             flex-grow: 1;
-            border: 1px solid var(--border-color);
+            border: 1px solid var(--color-border);
             padding: var(--spacer);
             width: 100%;
           }
@@ -89,7 +89,7 @@ export default function SearchBar(props) {
 
           .btn-search {
             background: var(--color-secondary);
-            border: 1px solid var(--border-color);
+            border: 1px solid var(--color-border);
             border-left: none;
           }
         }

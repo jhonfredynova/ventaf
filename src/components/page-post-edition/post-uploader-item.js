@@ -55,7 +55,7 @@ export default function PostUploaderItem(props) {
           .btn-placeholder {
             position: absolute;
             background: var(--color-secondary);
-            border: 1px solid var(--border-color);
+            border: 1px solid var(--color-border);
             cursor: pointer;
             left: 0;
             top: 0;
@@ -70,7 +70,7 @@ export default function PostUploaderItem(props) {
           }
 
           .btn-delete {
-            background: white;
+            background: var(--color-background);
             border: 0;
             border-radius: 50%;
             box-shadow: -1px 2px 5px 0px #333;

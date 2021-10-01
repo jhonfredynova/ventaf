@@ -26,8 +26,8 @@ export default function PostInvalidFiles(props) {
       </button>
       <style jsx>{`
         .post-invalid-files {
-          background-color: white;
-          border-radius: var(--border-radius);
+          background-color: var(--color-background);
+          border-radius: var(--spacer);
           text-align: center;
           padding: var(--spacer);
           max-width: 100%;
@@ -44,7 +44,7 @@ export default function PostInvalidFiles(props) {
           .btn-close {
             background: var(--color-primary);
             border: none;
-            border-radius: var(--border-radius);
+            border-radius: var(--spacer);
             color: white;
             cursor: pointer;
             margin-top: calc(var(--spacer) * 2);

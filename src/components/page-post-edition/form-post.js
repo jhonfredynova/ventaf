@@ -88,7 +88,7 @@ export default function FormPost(props) {
           margin-top: var(--spacer);
 
           textarea {
-            border: 1px solid var(--border-color);
+            border: 1px solid var(--color-border);
             padding: var(--spacer);
             height: 100px;
             width: 100%;

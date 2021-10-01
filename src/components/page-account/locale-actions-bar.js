@@ -44,7 +44,7 @@ export default function LocaleActionsBar(props) {
 
             input {
               flex-grow: 1;
-              border: 1px solid var(--border-color);
+              border: 1px solid var(--color-border);
               padding: var(--spacer);
             }
 
@@ -63,7 +63,7 @@ export default function LocaleActionsBar(props) {
             button {
               background: var(--color-primary);
               border: none;
-              border-radius: var(--border-radius);
+              border-radius: var(--spacer);
               cursor: pointer;
               color: white;
               padding: var(--spacer);

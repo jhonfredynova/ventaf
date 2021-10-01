@@ -71,7 +71,7 @@ export default function Login() {
 
             .login-message {
               background: var(--color-secondary);
-              border-radius: var(--border-radius);
+              border-radius: var(--spacer);
               margin-bottom: var(--spacer);
               padding: var(--spacer);
             }

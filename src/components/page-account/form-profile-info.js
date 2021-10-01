@@ -123,7 +123,7 @@ export default function FormProfileInfo(props) {
 
             input,
             textarea {
-              border: 1px solid var(--border-color);
+              border: 1px solid var(--color-border);
               padding: var(--spacer);
               width: 100%;
             }
@@ -134,7 +134,7 @@ export default function FormProfileInfo(props) {
               
               .url-placeholder {
                 background-color: var(--color-secondary);
-                border: 1px solid var(--border-color);
+                border: 1px solid var(--color-border);
                 border-right: 0;
                 padding: 10px;
               }
@@ -146,8 +146,8 @@ export default function FormProfileInfo(props) {
 
             .btn-submit {
               background: var(--color-primary);
-              border: 1px solid var(--border-color);
-              border-radius: var(--border-radius);
+              border: 1px solid var(--color-border);
+              border-radius: var(--spacer);
               color: white;
               cursor: pointer;
               padding: var(--spacer);

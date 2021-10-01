@@ -52,8 +52,8 @@ export default function ProfileMenu(props) {
 
       <style jsx>{`
         .profile-menu {
-          background-color: white;
-          border-radius: var(--border-radius);
+          background-color: var(--color-background);
+          border-radius: var(--spacer);
           text-align: center;
           max-width: 100%;
           width: 400px;
@@ -66,7 +66,7 @@ export default function ProfileMenu(props) {
             li > .item {
               display: block;
               border: none;
-              border-bottom: 1px solid var(--border-color);
+              border-bottom: 1px solid var(--color-border);
               background-color: transparent;
               color: var(--color-text);
               cursor: pointer;

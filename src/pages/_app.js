@@ -43,10 +43,8 @@ export default function MyApp({ Component, pageProps }) {
 
         /* Global styles */
         :root {
-          --border-color: #ccc;
-          --border-radius: 8px;
-
           --color-background: #fff;
+          --color-border: #ccc;
           --color-primary: #0076a3;
           --color-secondary: #e4e6eb;
           --color-alert: #dc3545;

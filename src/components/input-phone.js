@@ -96,14 +96,14 @@ export default function InputPhone(props) {
 
             input {
               flex-grow: 1;
-              border: 1px solid var(--border-color);
+              border: 1px solid var(--color-border);
               padding: var(--spacer);
               width: 100%;
             }
 
             .btn-clear,
             .btn-prefix {
-              border: 1px solid var(--border-color);
+              border: 1px solid var(--color-border);
               cursor: pointer;
               padding: var(--spacer);
             }

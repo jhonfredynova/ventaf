@@ -22,7 +22,7 @@ export default function UserCard(props) {
         <style jsx>{`
           :global(.user-card) {
             background: var(--color-secondary);
-            border: 1px solid var(--border-color);
+            border: 1px solid var(--color-border);
             color: var(--color-text);
             margin-top: var(--spacer);
             margin-bottom: var(--spacer);

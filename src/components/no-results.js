@@ -30,7 +30,7 @@ export default function NoResults(props) {
           .link-post {
             background: none;
             border: 3px solid var(--color-primary);
-            border-radius: var(--border-radius);
+            border-radius: var(--spacer);
             color: var(--color-primary);
             cursor: pointer;
             padding: var(--spacer);

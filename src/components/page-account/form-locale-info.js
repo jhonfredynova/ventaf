@@ -78,8 +78,8 @@ export default function FormLocaleInfo(props) {
       </div>   
       <style jsx>{`
         .form-locale {
-          background-color: white;
-          border-radius: var(--border-radius);
+          background-color: var(--color-background);
+          border-radius: var(--spacer);
           padding: calc(var(--spacer) * 2);
 
           .form-row {
@@ -91,7 +91,7 @@ export default function FormLocaleInfo(props) {
             }
 
             input {
-              border: 1px solid var(--border-color);
+              border: 1px solid var(--color-border);
               padding: var(--spacer);
               width: 100%;
             }
@@ -108,7 +108,7 @@ export default function FormLocaleInfo(props) {
             .btn-cancel {
               background: var(--color-secondary);
               border: none;
-              border-radius: var(--border-radius);
+              border-radius: var(--spacer);
               cursor: pointer;
               margin-right: 5px;
               padding: var(--spacer)
@@ -117,7 +117,7 @@ export default function FormLocaleInfo(props) {
             .btn-save {
               background: var(--color-primary);
               border: none;
-              border-radius: var(--border-radius);
+              border-radius: var(--spacer);
               cursor: pointer;
               color: white;
               padding: var(--spacer);

@@ -243,7 +243,7 @@ export default function LoginEmail(props) {
             align-items: center;
 
             input {
-              border: 1px solid var(--border-color);
+              border: 1px solid var(--color-border);
               padding: var(--spacer);
               width: 100%;
             }
@@ -255,7 +255,7 @@ export default function LoginEmail(props) {
 
             .btn-edit,
             .btn-clear {
-              border: 1px solid var(--border-color);
+              border: 1px solid var(--color-border);
               cursor: pointer;
               padding: var(--spacer);
             }

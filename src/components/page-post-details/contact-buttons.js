@@ -50,7 +50,7 @@ export default function ContactButtons(props) {
           .link {
             display: flex;
             align-items: center;
-            border: 1px solid var(--border-color);
+            border: 1px solid var(--color-border);
             text-align: left;
             padding: var(--spacer);
             margin-bottom: 5px;
