@@ -81,6 +81,8 @@ export default function FormLocaleInfo(props) {
           background-color: var(--color-background);
           border-radius: var(--spacer);
           padding: calc(var(--spacer) * 2);
+          max-width: 100%;
+          width: 500px;
 
           .form-row {
             margin-bottom: var(--spacer);

@@ -152,9 +152,9 @@ const ManageLocales = () => {
       </Lightbox>
       <style jsx>{`
         main {
-          width: 900px;
+          max-width: var(--container-width);
           margin: 0 auto;
-          padding: 15px;
+          padding: calc(var(--spacer) * 2);
 
           ul.locales-list {
             list-style: none;

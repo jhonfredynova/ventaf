@@ -75,8 +75,6 @@ export default function InputMultiLanguage(props) {
           }
 
           .editor-wrapper {
-            height: 250px;
-            width: 400px;
             overflow: hidden;
 
             textarea {

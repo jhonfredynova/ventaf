@@ -1,5 +1,5 @@
 {
-  "appLastSync": 1633136249127,
+  "appLastSync": 1633185762191,
   "callingCodes": [
     {
       "countryFlag": "https://restcountries.eu/data/afg.svg",
@@ -4806,7 +4806,7 @@
       "propertyType": "Property type",
       "contactViaWhatsapp": "Contact on Whatsapp",
       "privacyDescription": "Below we explaine how Construccion y Tecnologia SAS manages your registered data",
-      "userInterestedInAd": "Hi, I saw your ad for successful sale and I'm interested, {adUrl}\n",
+      "userInterestedInAd": "Hi, I saw your ad and I'm interested, {adUrl}\n",
       "savePassword": "Save Password",
       "referenceId": "Reference Number",
       "send": "Send",
@@ -5499,7 +5499,7 @@
       "propertyType": "Tipo de inmueble",
       "contactViaWhatsapp": "Contactar en Whatsapp",
       "privacyDescription": "Abajo te explicamos como Construccion y Tecnologia SAS maneja tus datos registrados",
-      "userInterestedInAd": "Hola vi tu anuncio en venta exitosa y estoy interesad@, {adUrl}",
+      "userInterestedInAd": "Hola, vi su anuncio y estoy interesad@, {adUrl}",
       "savePassword": "Guardar Contraseña",
       "referenceId": "Número de referencia",
       "send": "Enviar",
