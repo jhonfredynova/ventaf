@@ -41,7 +41,7 @@ export default function InputPlacesAutocomplete(props) {
         suggestions.length > 0 &&
         <ul 
           className="list-suggestions"
-          style={{ zIndex: 10, top: '38px' }}>
+          style={{ zIndex: 1, top: '40px' }}>
           {suggestions
             .map(suggestion => {
               return (
@@ -87,7 +87,6 @@ export default function InputPlacesAutocomplete(props) {
 
           .list-suggestions {
             position: absolute;
-            border-radius: var(--spacer);
             box-shadow: 0 .5rem 1rem rgba(0,0,0,.15);
             background: var(--color-background);
             width: 100%;

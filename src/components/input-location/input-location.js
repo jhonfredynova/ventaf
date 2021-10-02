@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import PlacesAutocomplete from 'react-places-autocomplete';
-import InputPlacesAutocomplete from './components/input-places-autocomplete';
+import InputPlacesAutocomplete from './input-places-autocomplete';
 
 export default function InputLocation(props) {
   const { id, autofocus, className, translations, placeholder, searchOptions, value, onBlur, onChange } = props;
