@@ -31,11 +31,6 @@ export default function MainInfo(props) {
             }
           }
 
-          h3 {
-            margin-top: var(--spacer);
-            margin-bottom: calc(var(--spacer) * 2);
-          }
-
           article {
             max-height: 150px;
             overflow: auto;

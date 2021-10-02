@@ -7,7 +7,7 @@ export default function ContactInfo(props) {
 
   return (
     <div className="contact-info">
-      <h3>{translations['sellerInfo']}</h3>
+      <h2>{translations['sellerInfo']}</h2>
       <UserCard profile={userProfile}>
       </UserCard>
       <ContactButtons 
