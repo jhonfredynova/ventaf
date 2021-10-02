@@ -122,7 +122,7 @@ export default function PostPrice(props) {
               border: 1px solid var(--color-border);
               cursor: pointer;
               align-items: center;
-              padding: 9px;
+              padding: var(--spacer);
               text-transform: uppercase;
 
               img {
@@ -140,6 +140,12 @@ export default function PostPrice(props) {
           }
 
           .lightbox-post-price {
+            background-color: var(--color-background);
+            border-radius: var(--spacer);
+            text-align: center;
+            max-width: 100%;
+            width: 400px;
+            padding: var(--spacer);
             h2 {
               margin-bottom: var(--spacer);
             }

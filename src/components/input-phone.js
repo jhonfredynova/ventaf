@@ -123,6 +123,13 @@ export default function InputPhone(props) {
           }
 
           .lightbox-phone-number {
+            background-color: var(--color-background);
+            border-radius: var(--spacer);
+            text-align: center;
+            max-width: 100%;
+            width: 400px;
+            padding: var(--spacer);
+            
             h2 {
               margin-bottom: var(--spacer);
             }
