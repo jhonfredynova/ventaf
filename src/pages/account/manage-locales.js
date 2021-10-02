@@ -158,12 +158,17 @@ const ManageLocales = () => {
 
           ul.locales-list {
             list-style: none;
+            margin-top: calc(var(--spacer) * 3);
 
             li {
               display: flex;
               align-items: center;
               padding: 10px;
               border-bottom: 1px solid #ccc;
+
+              &:last-child {
+                border-bottom: none;
+              }
 
               .info {
                 flex-grow: 1;
