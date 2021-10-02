@@ -81,12 +81,10 @@ export default function ProfileInfo(props) {
         <h2>{userProfile.displayName || userProfile.username}</h2>
         {
           isProfileOwner &&
-          <div className="logins">
-            <LoginMethods
-              identities={identities}
-              translations={translations}>
-            </LoginMethods>
-          </div>
+          <LoginMethods
+            identities={identities}
+            translations={translations}>
+          </LoginMethods>
         }
         {userProfile.bio && <p>{userProfile.bio}</p>}
         {userProfile.isEmailPublic && <p>{userProfile.email}</p>}
@@ -110,7 +108,7 @@ export default function ProfileInfo(props) {
 
       <style jsx>{`
         .profile-info {
-          margin-bottom: calc(var(--spacer) * 2);
+          margin-bottom: calc(var(--spacer) * 3);
 
           .error-msg {
             color: var(--color-alert);
@@ -130,6 +128,10 @@ export default function ProfileInfo(props) {
 
             .btn-back {
               padding: var(--spacer);
+            }
+
+            .btn-profile-menu {
+              margin: 0 auto;
             }
 
             .loader {

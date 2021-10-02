@@ -18,9 +18,6 @@ export default function LoginMethods(props) {
       ))}
       <style jsx>{`
         .login-methods {
-          display: flex;
-          align-items: center;
-          justify-content: flex-start;
           margin-bottom: 5px;
 
           label {

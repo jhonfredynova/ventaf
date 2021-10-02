@@ -23,6 +23,7 @@ export default function UserCard(props) {
           :global(.user-card) {
             background: var(--color-secondary);
             border: 1px solid var(--color-border);
+            border-radius: var(--spacer);
             color: var(--color-text);
             margin-top: var(--spacer);
             margin-bottom: var(--spacer);
@@ -32,8 +33,8 @@ export default function UserCard(props) {
             text-decoration: none;
 
             img {
-              border-radius: 5px;
-              margin-right: 4px;
+              border-radius: 50%;
+              margin-right: var(--spacer);
             }
 
             .arrow-right {

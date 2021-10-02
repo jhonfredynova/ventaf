@@ -50,6 +50,7 @@ export default function ContactButtons(props) {
           .link {
             display: flex;
             align-items: center;
+            border-radius: var(--spacer);
             border: 1px solid var(--color-border);
             text-align: left;
             padding: var(--spacer);
@@ -57,7 +58,7 @@ export default function ContactButtons(props) {
             text-decoration: none;
 
             &.btn-call {
-              background-color: #13577b;
+              background-color: var(--color-primary);
               color: white;
             }
 
@@ -72,7 +73,7 @@ export default function ContactButtons(props) {
             }
 
             i {
-              margin-right: 5px;
+              margin-right: var(--spacer);
             }
           }
         }
