@@ -58,7 +58,7 @@ export default function PostTile(props) {
                 position: relative;
                 background: black;
                 width: 100%;
-                padding-top: 56.25%;
+                padding-top: 75%;
                 flex-shrink: 0;
                 overflow: hidden;
 
@@ -80,7 +80,7 @@ export default function PostTile(props) {
 
             .info {
               text-align: left;
-              padding: 1.25rem 0;
+              padding-top: var(--spacer);
               width: 100%;
 
               h3 {

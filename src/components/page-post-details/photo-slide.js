@@ -11,7 +11,7 @@ export default function PhotoSlide(props) {
         .photo-slide {
           position: relative;
           width: 100%;
-          padding-top: 56.25%;
+          padding-top: 75%;
           flex-shrink: 0;
           overflow: hidden;
 

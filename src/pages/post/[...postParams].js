@@ -110,7 +110,12 @@ export default function PostDetails() {
           padding: calc(var(--spacer) * 2);
 
           h1 {
+            font-size: 2.4rem;
             margin-bottom: var(--spacer);
+
+            @media screen and (min-width: ${BREAKPOINTS.TABLET}) {
+              font-size: 2.8rem;
+            }
           }
 
           .ad-details {
