@@ -8,7 +8,8 @@ export default async function loginFacebook(req, res) {
     const facebookResponse = req.body;
 
     // get firebase token
-    const credential = firebaseClient.firebase_.auth
+    const credential = firebaseClient
+      .auth
       .FacebookAuthProvider
       .credential(facebookResponse.credential.oauthAccessToken);
     let loginResponse = await firebaseClient.auth().signInWithCredential(credential);

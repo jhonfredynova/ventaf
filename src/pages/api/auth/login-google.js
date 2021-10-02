@@ -8,7 +8,8 @@ export default async function loginGoogle(req, res) {
     const googleResponse = req.body;
 
     // get firebase token
-    const credential = firebaseClient.firebase_.auth
+    const credential = firebaseClient
+      .auth
       .GoogleAuthProvider
       .credential(googleResponse.credential.oauthIdToken);
     let loginResponse = await firebaseClient.auth().signInWithCredential(credential);
