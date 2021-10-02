@@ -4,6 +4,7 @@ import { useRouter } from 'next/router';
 import Authorization from '../../components/authorization';
 import SEO from '../../components/seo';
 import InfiniteScroll from '../../components/infinite-scroll';
+import NoResults from '../../components/no-results';
 import NavigationBar from '../../components/navigation-bar';
 import LocaleActionsBar from '../../components/page-account/locale-actions-bar';
 import FormLocaleInfo from '../../components/page-account/form-locale-info';
@@ -86,7 +87,7 @@ const ManageLocales = () => {
 
       {
         filteredLocales.length === 0 &&
-        <h3>{translations.noResults}</h3>
+        <NoResults translations={translations} />
       }
       <InfiniteScroll
         hasMoreData={hasMoreLocales}
