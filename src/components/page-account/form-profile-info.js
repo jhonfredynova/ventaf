@@ -29,8 +29,8 @@ export default function FormProfileInfo(props) {
       setIsUpdatingProfile(false);
       router.push(`/${profile.username}`);
     } catch (error) {
-      const { errors } = error?.response?.data || {};
-      setErrors(errors || {});
+      const { errors, code } = error?.response?.data || {};
+      setErrors({ ...errors, general: code });
       setIsUpdatingProfile(false);
     }
   };

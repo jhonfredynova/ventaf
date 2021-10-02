@@ -29,11 +29,6 @@ export default async function updateUser(req, res) {
     };
     const errors = validateProfileInfo(modelData);
 
-    if (Object.keys(errors).length > 0) {
-      res.status(400).json({ code: 'modelErrors', errors });
-      return;
-    }
-
     if (modelData.username) {
       const dbClient = firebaseClient.firestore();
       const queryUsername = await getDbQuery(dbClient, 'users', {
@@ -44,8 +39,13 @@ export default async function updateUser(req, res) {
       });
 
       if (queryUsername.length > 0) {
-        res.status(400).json({ code: 'usernameAlreadyExist' });
+        errors.username = 'usernameAlreadyExist';
       }
+    }
+
+    if (Object.keys(errors).length > 0) {
+      res.status(400).json({ code: 'modelErrors', errors });
+      return;
     }
 
     // update user
