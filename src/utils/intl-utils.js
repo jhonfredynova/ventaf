@@ -25,18 +25,19 @@ export const formatDate = (datetime, format) => {
   const minutes = date.getMinutes();
   const seconds = date.getSeconds();
   const miliseconds = date.getMilliseconds();
-  const response = format
+  const dateTime = format
     .toLowerCase()
     .replace(new RegExp('dd', 'g'), day.toString().padStart(2, '0'))
     .replace(new RegExp('mm', 'g'), (month + 1).toString().padStart(2, '0'))
     .replace(new RegExp('month', 'g'), (MONTHS[month] || '').substring(0, 3))
     .replace(new RegExp('yyyy', 'g'), year)
-    .replace(new RegExp('hrs', 'g'), hours)
-    .replace(new RegExp('min', 'g'), minutes)
-    .replace(new RegExp('sec', 'g'), seconds)
-    .replace(new RegExp('ms', 'g'), miliseconds);
+    .replace(new RegExp('hrs', 'g'), (hours % 12 || hours))
+    .replace(new RegExp('min', 'g'), minutes.toString().padStart(2, '0'))
+    .replace(new RegExp('sec', 'g'), seconds.toString().padStart(2, '0'))
+    .replace(new RegExp('ms', 'g'), miliseconds)
+    .concat(` ${hours >= 12 ? 'pm' : 'am'}`);
 
-  return response;
+  return dateTime;
 };
 
 export const formatLocales = (languages, locales) => {

@@ -9,6 +9,7 @@ export default function PhotoCarousel(props) {
     <>
       <Carousel 
         autoFocus={autofocus} 
+        autoPlay={false}
         className="carousel"
         showArrows={true}
         showThumbs={false}
