@@ -8,7 +8,6 @@ export default async function updateUser(req, res) {
     await runMiddleware(req, res, authorization('registered'));
     
     const firebaseAdmin = require('../../../firebase-admin').default;
-    const firebaseClient = require('../../../firebase-client').default;
     const db = firebaseAdmin.firestore();
     const { userId } = req.query;
     const modelDb = await getDbDocument(db, 'users', userId);
@@ -30,8 +29,7 @@ export default async function updateUser(req, res) {
     const errors = validateProfileInfo(modelData);
 
     if (modelData.username) {
-      const dbClient = firebaseClient.firestore();
-      const queryUsername = await getDbQuery(dbClient, 'users', {
+      const queryUsername = await getDbQuery(db, 'users', {
         where: {
           email: { '!=': modelDb.email },
           username: { '==': modelData.username }
