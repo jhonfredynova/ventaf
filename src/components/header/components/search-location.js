@@ -15,8 +15,8 @@ export default function SearchLocation(props) {
         locationStep === 'location-selected' &&
         <div className="location-selected">
           <button className="btn-select-city" onClick={() => setLocationStep(LOCATION_STEPS.EDITION)}>
-            <i className="fas fa-map-marker-alt"></i> 
-            <span className="city">{locationSelected.description || 'Global'}</span>
+            <i className="fas fa-location-arrow"></i> 
+            <span className="city">{locationSelected.description || translations.allCities}</span>
           </button>
           {
             locationSelected.description && 
@@ -37,7 +37,7 @@ export default function SearchLocation(props) {
             id="location"
             autofocus
             translations={translations}
-            placeholder="Global"
+            placeholder={translations.allCities}
             searchOptions={{ types: ['(cities)'] }}
             value={locationSelected}
             onBlur={() => setLocationStep(LOCATION_STEPS.SELECTED)}

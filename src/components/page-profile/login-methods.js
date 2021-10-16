@@ -18,8 +18,6 @@ export default function LoginMethods(props) {
       ))}
       <style jsx>{`
         .login-methods {
-          margin-bottom: 5px;
-
           label {
             font-size: 3rem;
             padding: 0 8px;

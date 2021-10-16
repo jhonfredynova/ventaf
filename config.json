@@ -1,5 +1,5 @@
 {
-  "appLastSync": 1633185762191,
+  "appLastSync": 1634392432904,
   "callingCodes": [
     {
       "countryFlag": "https://restcountries.eu/data/afg.svg",
@@ -4567,6 +4567,7 @@
       "documentTypeDIE": "DIE (Foreign identification document)\n",
       "customMessage": "Custom message",
       "auth/user-not-found": "The user is not registered.",
+      "allCities": "All cities",
       "creditCardHolder": "Credit card holder",
       "currencyCodeIncorrect": "Currency code incorrect",
       "decrease": "Decrease",
@@ -5260,6 +5261,7 @@
       "documentTypeDIE": "DIE (Documento de identificación extranjero)",
       "customMessage": "Mensage personalizado",
       "auth/user-not-found": "El usuario no esta registrado.",
+      "allCities": "Todas las ciudades",
       "creditCardHolder": "Títular de la tarjeta de crédito",
       "currencyCodeIncorrect": "Código de moneda incorrecto",
       "decrease": "Decrementar",

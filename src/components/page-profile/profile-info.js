@@ -38,6 +38,7 @@ export default function ProfileInfo(props) {
   const onLogout = () => {
     store.dispatch(logout());
     setIsMenuOpen(false);
+    router.push('/');
   };
 
   if (!userProfile) {
@@ -81,10 +82,16 @@ export default function ProfileInfo(props) {
         <h2>{userProfile.displayName || userProfile.username}</h2>
         {
           isProfileOwner &&
-          <LoginMethods
-            identities={identities}
-            translations={translations}>
-          </LoginMethods>
+          <div className="profile-options">
+            <LoginMethods
+              identities={identities}
+              translations={translations}>
+            </LoginMethods>
+            <button className="btn-profile-settings" onClick={() => setIsMenuOpen(true)}>
+              <i className="fas fa-cog" />
+              <span className="text">{translations.options}</span>
+            </button>
+          </div>
         }
         {userProfile.bio && <p>{userProfile.bio}</p>}
         {userProfile.isEmailPublic && <p>{userProfile.email}</p>}
@@ -160,6 +167,25 @@ export default function ProfileInfo(props) {
             p {
               margin-bottom: 4px;
             }
+
+            .profile-options {
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              margin-bottom: 8px;
+
+              .btn-profile-settings {
+                background: var(--color-secondary);
+                border: 1px solid var(--color-border);
+                border-radius: var(--spacer);
+                cursor: pointer;
+                padding: var(--spacer);
+
+                .fas {
+                  margin-right: 4px;
+                }
+              }
+            }
           }
 
           @media screen and (min-width: ${BREAKPOINTS.TABLET}) {
@@ -176,6 +202,10 @@ export default function ProfileInfo(props) {
               flex-shrink: 0;
               text-align: left;
               margin-left: calc(var(--spacer) * 2);
+
+              .profile-options { 
+                justify-content: flex-start;
+              }
             }
           }
 
