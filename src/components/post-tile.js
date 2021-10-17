@@ -29,7 +29,7 @@ export default function PostTile(props) {
             }
           </h3>
           <p className="location">
-            <i className="fas fa-map-marker-alt" title={translations['location']}></i>
+            <i className="fas fa-location-arrow" title={translations['location']}></i>
             {data.location.description}
           </p>
           <p className="description">{data.description}</p>

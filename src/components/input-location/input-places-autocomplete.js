@@ -16,7 +16,7 @@ export default function InputPlacesAutocomplete(props) {
   return (
     <div className="input-places-autocomplete">
       <div className="icon-place">
-        <i className="fas fa-map-marker-alt"></i>
+        <i className="fas fa-location-arrow"></i>
       </div>
       <input
         {...getInputProps({

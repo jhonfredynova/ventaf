@@ -10,7 +10,7 @@ export default function MainInfo(props) {
     <section className="main-info">
       <PriceInfo currencies={currencies} price={price} translations={translations} /> 
       <p>
-        <i className="fas fa-map-marker-alt" title={translations.location}></i>
+        <i className="fas fa-location-arrow" title={translations.location}></i>
         {postData.location.description}
       </p>
       <p>
