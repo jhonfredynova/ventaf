@@ -12,6 +12,7 @@ import ConfirmationModal from './modals/confirmation-modal';
 import AlertModal from './modals/alert-modal';
 
 export default function HomeContents(props) {
+	const { isLoading, isLoadingMore, hasMoreData, authData, translations, posts, showEditBtns, onLoadMore } = props;
 	const router = useRouter();
 	const store = useStore();  
 	const [isDeletingPost, setIsDeletingPost] = useState(false);
@@ -19,7 +20,6 @@ export default function HomeContents(props) {
 	const [postToDelete, setPostToDelete] = useState(null);
 	const [showModalDeleteAd, setShowModalDeleteAd] = useState(false);
   const [showModalDeleteError, setShowModalDeleteError] = useState(false);
-	const { isLoading, isLoadingMore, hasMoreData, authData, translations, posts, onLoadMore } = props;
 
 	const onDelete = async () => {
     try {
@@ -53,7 +53,7 @@ export default function HomeContents(props) {
 					{posts.map(post => 
 						<div key={post.id} className="post-wrapper">
 							{
-								authData?.uid === post.user &&
+								showEditBtns && authData?.uid === post.user &&
 								<PostEditionBar
 									isLoading={isLoadingMore}
 									translations={translations}

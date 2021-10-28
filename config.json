@@ -1,5 +1,5 @@
 {
-  "appLastSync": 1634392432904,
+  "appLastSync": 1635446140256,
   "callingCodes": [
     {
       "countryFlag": "https://restcountries.eu/data/afg.svg",
@@ -4322,7 +4322,7 @@
       "update": "Update",
       "notAvailable": "Not available",
       "fieldPasswordInsecure": "Password is insecure, write a strong password",
-      "slogan": "Publish your ad and reach potential customers or buyers around the world. What you need is on VentaExitosa.com!",
+      "slogan": "Publish your product and service and reach potential clients around the world.\n",
       "billingTitle": "Billing",
       "message": "Message",
       "welcomeToVenpadSubject": "Welcome to VentaExitosa!",
@@ -5016,7 +5016,7 @@
       "update": "Actualizar",
       "notAvailable": "No disponible",
       "fieldPasswordInsecure": "Contraseña es insegura, escribe una contraseña ams segura",
-      "slogan": "Publique su anuncio y llegue a clientes o compradores potenciales en todo el mundo. ¡Lo que necesitas está en VentaExitosa.com!",
+      "slogan": "Publique su producto y/o servicio y llegué a potenciales clientes alrededor del mundo.",
       "billingTitle": "Facturación",
       "message": "Mensaje",
       "welcomeToVenpadSubject": "Bienvenido a VentaExitosa!",

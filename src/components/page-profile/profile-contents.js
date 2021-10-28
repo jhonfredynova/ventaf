@@ -29,6 +29,7 @@ export default function ProfileContents(props) {
         authData={authData}
         translations={translations}
         posts={posts}
+        showEditBtns={true}
         onLoadMore={onLoadMore}>
       </PostList>
     </>
