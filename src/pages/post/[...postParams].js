@@ -1,5 +1,5 @@
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector, useStore } from 'react-redux';
 import PhotoCarousel from '../../components/page-post-details/photo-carousel';
 import MainInfo from '../../components/page-post-details/main-info';
@@ -31,13 +31,14 @@ export const getServerSideProps = async ({ locale, query }) => {
   
   return {
     props: {
-      initialReduxState: store.getState() 
+      initialReduxState: store.getState()
     }
   };
 };
 
 export default function PostDetails() {
   const store = useStore();
+  const [sharingUrl, setSharingUrl] = useState('');
   const authData = useSelector(state => state.auth.authData);
   const { callingCodes, currencies, translations } = useSelector(state => state.config);
   const relatedContent = useSelector(state => state.post.relatedContent);
@@ -50,6 +51,7 @@ export default function PostDetails() {
     store.dispatch(getProfileById(postData.user));
     store.dispatch(updatePostViews(postData.id));
     store.dispatch(getRelatedContent(postData.id));
+    setSharingUrl(window.location.href);
   }, [postData]);
 
   return (
@@ -60,7 +62,8 @@ export default function PostDetails() {
       </SEO>
       <BreadcumbBar
         translations={translations}
-        postData={postData}>
+        postData={postData}
+        sharingUrl={sharingUrl}>
       </BreadcumbBar>
       <h1>{pageTitle}</h1>
       <section className="ad-details">
@@ -84,6 +87,7 @@ export default function PostDetails() {
             postData={postData}
             callingCodes={callingCodes}
             pageTitle={pageTitle}
+            sharingUrl={sharingUrl}
             translations={translations}
             userProfile={userProfile}>
           </ContactInfo>

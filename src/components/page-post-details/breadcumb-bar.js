@@ -4,10 +4,9 @@ import { useRouter } from 'next/router';
 import { copyToClipboard } from '../../utils/text-utils'; 
 
 export default function BreadcumbBar(props) {
-  const { translations, postData } = props;
+  const { translations, postData, sharingUrl } = props;
   const tooltipCopyClipboard = useRef();
   const router = useRouter();
-  const sharingUrl = (typeof(window) !== 'undefined' && window.location.href);
 
   const onShareAd = (action, value) => {
     ReactGA.event({

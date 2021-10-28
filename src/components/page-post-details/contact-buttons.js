@@ -2,11 +2,10 @@ import React from 'react';
 import ReactGA from 'react-ga';
 
 export default function ContactButtons(props) {
-  const { postData, translations, pageTitle } = props;
+  const { postData, translations, pageTitle, sharingUrl } = props;
   const { seller } = postData;
   const { phone } = seller;
   const phoneNumber = `${phone.prefix}${phone.number}`;
-  const sharingUrl = (typeof(window) !== 'undefined' && window.location.href);
   const shareMessage = translations.userInterestedInAd.replace(/{adUrl}/g, sharingUrl);
   const onContactSeller = (action, value) => {
     ReactGA.event({
