@@ -11,9 +11,7 @@ export default function PostInvalidFiles(props) {
         <ul>
           {wrongFiles.map((file, index) => {
             return (
-              <li key={index}>
-                {file.name} {parseInt(file.size/(1024*1024))}
-              </li>
+              <li key={index}>- {file.name}</li>
             );
           })}
         </ul>
@@ -39,6 +37,7 @@ export default function PostInvalidFiles(props) {
 
           ul {
             margin-top: var(--spacer);
+            list-style: none;
           }
 
           .btn-close {

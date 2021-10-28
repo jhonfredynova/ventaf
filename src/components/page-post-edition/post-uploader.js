@@ -43,7 +43,7 @@ export default function PostUploader(props) {
       const warningMsg = translations['wrongUploadedFiles']
         .replace(/{extentions}/g, allowedExtentions.join(', '))
         .replace(/{maxFilesize}/g, maxFileSizeMb);
-      const wrongFiles = optimizedFiles.filter(item => !validFiles.find(file => file.name === item.name));
+      const wrongFiles = selectedFiles.filter(item => !validFiles.find(file => file.name === item.name));
       setShowModalWarning(true);
       setWarningMsg(warningMsg);
       setWrongFiles(wrongFiles);
@@ -83,7 +83,7 @@ export default function PostUploader(props) {
             <PostUploaderItem
               key={(photos[mediaIndex] && photos[mediaIndex].name) || mediaSequence}
               isLoading={isProcessingPhotos}
-              allowDeletion={photos.length > 1}
+              allowDeletion={true}
               className={`${photos[mediaIndex] ? 'drag' : ''} media-${mediaSequence}`}
               translations={translations}
               mediaIndex={mediaIndex}

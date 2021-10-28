@@ -95,6 +95,7 @@ export default function PostUploaderItem(props) {
             border: 0;
             border-radius: 50%;
             box-shadow: -1px 2px 5px 0px #333;
+            cursor: pointer;
             margin: 0;
             padding: 0;
             position: absolute;

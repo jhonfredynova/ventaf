@@ -18,15 +18,12 @@ export const getFilesFromUrls = async fileUrls => {
 };
 
 export const resizeImage = async (files, width = 200, height = 200) => {
-  let optimizedFiles = [];
-  let optimizedFile = null;
-
-  for (const file of files) {
-    optimizedFile = await new Promise(resolve => {
+  const optimizedPromises = files.map(file => {
+    return new Promise(resolve => {
       Resizer.imageFileResizer(file, width, height, 'WEBP', 80, 0, uri => resolve(uri), 'file');
     });
-    optimizedFiles = optimizedFiles.concat(optimizedFile);
-  }
+  });
+  const optimizedFiles = await Promise.all(optimizedPromises);
 
   return optimizedFiles;
 };
