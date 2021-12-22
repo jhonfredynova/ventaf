@@ -5,16 +5,15 @@ import { Provider } from 'react-redux';
 import { useRouter } from 'next/router';
 import Layout from '../components/layout';
 import { useStore } from '../store/store';
-import { me, setToken } from '../store/actions/auth-actions';
+import { me } from '../store/actions/auth-actions';
 
 export default function MyApp({ Component, pageProps }) {
   const store = useStore(pageProps.initialReduxState);
   const router = useRouter();
 
   useEffect(async () => {
+    store.dispatch(me());
     ReactGA.initialize(window.gAnalyticsKey, {});
-    await store.dispatch(setToken(localStorage.token));
-    store.dispatch(me()).catch(() => localStorage.removeItem('token'));
 
     ReactGA.event({
       category: 'Users',

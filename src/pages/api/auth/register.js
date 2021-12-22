@@ -4,8 +4,8 @@ import validateRegister from '../../../validations/validate-register';
 export default async function register(req, res) {
   try {
     const firebaseAdmin = require('../../../firebase-admin').default;
-    const firebaseClient = require('../../../firebase-client').default;
     const db = firebaseAdmin.firestore();
+    const { id: userId }= req.body;
     const userData = Object.keys(req.body).reduce((accum, key) => {
       return !['id'].includes(key)
         ? Object.assign(accum, { [key]: req.body[key] })
@@ -27,27 +27,15 @@ export default async function register(req, res) {
       return;
     }
 
-
     // registering
-    const userRegistered = await firebaseClient
-      .auth()
-      .createUserWithEmailAndPassword(modelData.email, modelData.password);
-    const { uid } = userRegistered.user;
-
     const userProfile = getUserProfileData(modelData);
     await db
       .collection('users')
-      .doc(uid)
+      .doc(userId)
       .set(userProfile);
-    await firebaseAdmin.auth().setCustomUserClaims(uid, { registered: true });
+    await firebaseAdmin.auth().setCustomUserClaims(userId, { registered: true });
 
-    // loging user to refresh custom claims
-    const response = await firebaseClient
-      .auth()
-      .signInWithEmailAndPassword(modelData.email, modelData.password);
-    const token = await response.user.getIdToken();
-
-    res.json({ token });
+    res.json(userProfile);
   } catch (error) {
     res.status(500).json(error);
   }

@@ -1,11 +1,12 @@
 import axios from 'axios';
+import { getAuthToken } from '../../utils/firebase-utils';
 
-const request = store => next => action => {
-  const { auth } = store.getState();
+const request = () => next => async action => {
+  const authToken = await getAuthToken();
   delete axios.defaults.headers.common.authorization;
 
-  if (auth.token) {
-    axios.defaults.headers.common['authorization'] = `Bearer ${auth.token}`;
+  if (authToken) {
+    axios.defaults.headers.common['authorization'] = `Bearer ${authToken}`;
   }
 
   return next(action);
