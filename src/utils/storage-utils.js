@@ -1,4 +1,4 @@
-const getFileReference = async data => {
+export const getFileReference = async data => {
   const { Storage } = await require('@google-cloud/storage');
   const gcs = new Storage();
   const bucket = gcs.bucket(data.bucketName);
