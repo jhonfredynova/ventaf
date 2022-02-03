@@ -3,7 +3,8 @@ import { TYPES } from '../actions/auth-actions';
 const initialState = {
   authData: null,
   authLoaded: false,
-  temp: null
+  temp: null,
+  token: null
 };
 
 export default function reducer(state = initialState, action) {
@@ -20,10 +21,19 @@ export default function reducer(state = initialState, action) {
         temp: action.payload
       };
 
+    case TYPES.LOGIN_EMAIL:
+    case TYPES.LOGIN_FACEBOOK:
+    case TYPES.LOGIN_GOOGLE:
+      return {
+        ...state,
+        token: action.payload.token
+      };
+
     case TYPES.LOGOUT:
       return {
         ...state,
-        authData: null
+        authData: null,
+        token: null
       };
 
     case TYPES.ME:
@@ -36,13 +46,20 @@ export default function reducer(state = initialState, action) {
     case TYPES.REGISTER:
       return {
         ...state,
-        temp: action.payload.messsage
+        temp: action.payload.messsage,
+        token: action.payload.token
       };
 
     case TYPES.RECOVER_PASSWORD:
       return {
         ...state,
         temp: action.payload
+      };
+
+    case TYPES.SET_TOKEN:
+      return {
+        ...state,
+        token: action.payload
       };
 
     case TYPES.UPDATE_PHOTO:

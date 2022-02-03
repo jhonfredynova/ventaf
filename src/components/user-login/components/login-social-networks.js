@@ -1,4 +1,6 @@
-import React, { useState } from 'react';
+import 'firebase/auth';
+import firebaseClient from 'firebase/app';
+import React, { useState, useEffect } from 'react';
 import ReactGA from 'react-ga';
 import { useStore } from 'react-redux';
 import { useRouter } from 'next/router';
@@ -8,10 +10,24 @@ import { setToken, me, loginGoogle, loginFacebook } from '../../../store/actions
 export default function LoginSocialNetworks(props) {
   const store = useStore();
   const router = useRouter();
+  const [firebaseApp, setFirebaseApp] = useState(null);
   const [isProcessingFacebook, setIsProcessingFacebook] = useState(false);
   const [isProcessingGoogle, setIsProcessingGoogle] = useState(false);
   const [error, setError] = useState('');
   const { isLoggingIn, translations, onLogginIn, onSuccess } = props;
+
+  useEffect(() => {
+    let firebaseApp = firebaseClient.apps[0];
+    
+    if (!firebaseApp) {
+      firebaseApp = firebaseClient.initializeApp({
+        apiKey: window.fKey,
+        authDomain: window.fDomain
+      });
+    }
+
+    setFirebaseApp(firebaseApp);
+  }, []);
 
   const loginWithFacebook = async () => {
     try {
@@ -19,7 +35,13 @@ export default function LoginSocialNetworks(props) {
       setIsProcessingFacebook(true);
       setError('');
       
-      const loginResponse = await store.dispatch(loginFacebook(router.locale));
+      firebaseApp.auth().languageCode = router.locale;
+      const facebookProvider = new firebaseApp.firebase_.auth.FacebookAuthProvider();
+      facebookProvider.addScope('email');
+      facebookProvider.setCustomParameters({ 'display': 'popup' });
+
+      const facebookResponse = await firebaseApp.auth().signInWithPopup(facebookProvider);
+      const loginResponse = await store.dispatch(loginFacebook(facebookResponse));
       await store.dispatch(setToken(loginResponse.token));
       await store.dispatch(me());
 
@@ -45,7 +67,13 @@ export default function LoginSocialNetworks(props) {
       setIsProcessingGoogle(true);
       setError('');
 
-      const loginResponse = await store.dispatch(loginGoogle(router.locale));
+      firebaseApp.auth().languageCode = router.locale;
+      const googleProvider = new firebaseApp.firebase_.auth.GoogleAuthProvider();
+      googleProvider.addScope('email');
+      googleProvider.addScope('profile');
+
+      const googleResponse = await firebaseApp.auth().signInWithPopup(googleProvider);
+      const loginResponse = await store.dispatch(loginGoogle(googleResponse));
       await store.dispatch(setToken(loginResponse.token));
       await store.dispatch(me());
 

@@ -1,10 +1,14 @@
 import 'firebase/auth';
+import 'firebase/database';
+import 'firebase/firestore';
+import 'firebase/storage';
 import firebaseClient from 'firebase/app';
 
 if (firebaseClient.apps.length === 0) {
   firebaseClient.initializeApp({
-    apiKey: 'AIzaSyByveqP60-11qxt6wBsuKoXRh65hSj8QB8',
-    authDomain: 'construccionytecnologia-f556c.firebaseapp.com'
+    apiKey: process.env.FIREBASE_KEY,
+    authDomain: process.env.FIREBASE_AUTH_DOMAIN,
+    projectId: process.env.FIREBASE_PROJECT_ID
   });
 }
 
