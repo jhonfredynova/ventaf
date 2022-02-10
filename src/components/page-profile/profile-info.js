@@ -16,7 +16,7 @@ export default function ProfileInfo(props) {
   const { authData } = useSelector(state => state.auth);
   const router = useRouter();
   const isProfileOwner = (authData?.uid === userProfile.id);
-  const identities = (authData && authData.firebase.identities) || {};
+  const identities = (authData?.providerData) || {};
 
   const onUploadPhoto = async event => {
     try {
