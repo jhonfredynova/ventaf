@@ -26,7 +26,7 @@ export default async function loginEmail(req, res) {
       emailVerified: userData.emailVerified,
       providerData: userData.providerData,
     };
-    const jwtToken = jsonwebtoken.sign(tokenPayload, process.env.FIREBASE_KEY, { expiresIn: '12m' });
+    const jwtToken = jsonwebtoken.sign(tokenPayload, process.env.FIREBASE_KEY, { expiresIn: '365d' });
 
     res.json({ token: jwtToken });
   } catch (error) {
