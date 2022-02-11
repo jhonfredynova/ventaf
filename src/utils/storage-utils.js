@@ -107,15 +107,13 @@ export const uploadToStorage = async data => {
       bucket.upload(filePath, {
         destination: `${data.bucketPath}/${uploadedFileName}`
       })
-        .then((uploadResponse) => {
+        .then(async (uploadResponse) => {
           uploadedFile = uploadResponse[0];
-          return uploadedFile.getSignedUrl({
-            action: 'read',
-            expires: '01-01-3000'
-          });
+          await uploadedFile.makePublic();
+          return uploadedFile.publicUrl();
         })
-        .then(uploadSignerUrl => {
-          resolve(uploadSignerUrl[0]);
+        .then(uploadedPublicUrl => {
+          resolve(uploadedPublicUrl);
         })
         .catch(error => {
           console.error('Error uplading file', error);
