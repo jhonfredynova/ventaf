@@ -1,5 +1,5 @@
-import jsonwebtoken from 'jsonwebtoken';
 import valideLoginEmail from '../../../validations/validate-login-email';
+import { createJsonWebToken } from '../../../utils/auth-utils';
 
 export default async function loginEmail(req, res) {
   try {
@@ -17,17 +17,8 @@ export default async function loginEmail(req, res) {
       .auth()
       .signInWithEmailAndPassword(modelData.email, modelData.password);
     const userData = await firebaseAdmin.auth().getUser(signInResponse.user.uid);
-
-    const tokenPayload = {
-      uid: userData.uid,
-      claims: Object.keys(userData.customClaims),
-      displayName: userData.displayName,
-      email: userData.email,
-      emailVerified: userData.emailVerified,
-      providerData: userData.providerData,
-    };
-    const jwtToken = jsonwebtoken.sign(tokenPayload, process.env.FIREBASE_KEY, { expiresIn: '365d' });
-
+    const jwtToken = createJsonWebToken(userData, process.env.FIREBASE_KEY);
+    
     res.json({ token: jwtToken });
   } catch (error) {
     res.status(500).json(error);

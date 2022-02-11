@@ -26,13 +26,13 @@ export const loginEmail = data => async dispatch => {
 };
 
 export const loginFacebook = data => async dispatch => {
-  const response = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/auth/login-facebook`, data);
+  const response = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/auth/login-oauth`, data);
   dispatch({ type: TYPES.LOGIN_FACEBOOK, payload: response.data });
   return response.data;
 };
 
 export const loginGoogle = data => async dispatch => {
-  const response = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/auth/login-google`, data);
+  const response = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/auth/login-oauth`, data);
   dispatch({ type: TYPES.LOGIN_GOOGLE, payload: response.data });
   return response.data;
 };
