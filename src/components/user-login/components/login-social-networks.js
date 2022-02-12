@@ -29,28 +29,41 @@ export default function LoginSocialNetworks(props) {
     setFirebaseApp(firebaseApp);
   }, []);
 
+  const signInWithPopupSocialNetwork = async provider => {
+    firebaseApp.auth().languageCode = router.locale;
+    let providerAuth = null;
+    
+    if (provider === 'facebook') {
+      providerAuth = new firebaseApp.firebase_.auth.FacebookAuthProvider();
+    } else if (provider === 'google') {
+      providerAuth = new firebaseApp.firebase_.auth.GoogleAuthProvider();
+    }
+  
+    providerAuth.addScope('email');
+    providerAuth.setCustomParameters({ 'display': 'popup' });
+  
+    try {
+      await firebaseApp.auth().signInWithPopup(providerAuth);  
+    } catch (error) {
+      if (error.code === 'auth/account-exists-with-different-credential') {
+        firebaseApp.auth().currentUser.linkWithCredential(error.credential);
+      } else {
+        throw error;
+      }
+    }
+  
+    const user = firebaseApp.auth().currentUser;
+  
+    return user;
+  };
+
   const loginWithFacebook = async () => {
     try {
       onLogginIn(true);
       setIsProcessingFacebook(true);
       setError('');
       
-      firebaseApp.auth().languageCode = router.locale;
-      const facebookProvider = new firebaseApp.firebase_.auth.FacebookAuthProvider();
-      facebookProvider.addScope('email');
-      facebookProvider.setCustomParameters({ 'display': 'popup' });
-      
-      try {
-        await firebaseApp.auth().signInWithPopup(facebookProvider);  
-      } catch (error) {
-        if (error.code === 'auth/account-exists-with-different-credential') {
-          firebaseApp.auth().currentUser.linkWithCredential(error.credential);
-        } else {
-          throw error;
-        }
-      }
-      
-      const userOAuth = firebaseApp.auth().currentUser;
+      const userOAuth = await signInWithPopupSocialNetwork('facebook');
       const loginResponse = await store.dispatch(loginFacebook(userOAuth));
       await store.dispatch(setToken(loginResponse.token));
       await store.dispatch(me());
@@ -77,15 +90,8 @@ export default function LoginSocialNetworks(props) {
       setIsProcessingGoogle(true);
       setError('');
 
-      firebaseApp.auth().languageCode = router.locale;
-      const googleProvider = new firebaseApp.firebase_.auth.GoogleAuthProvider();
-      googleProvider.addScope('email');
-      googleProvider.addScope('profile');
-      googleProvider.setCustomParameters({ 'display': 'popup' });
-
-      const googleResponse = await firebaseApp.auth().signInWithPopup(googleProvider);
-      const { user } = googleResponse;
-      const loginResponse = await store.dispatch(loginGoogle(user));
+      const userOAuth = await signInWithPopupSocialNetwork('google');
+      const loginResponse = await store.dispatch(loginGoogle(userOAuth));
       await store.dispatch(setToken(loginResponse.token));
       await store.dispatch(me());
 

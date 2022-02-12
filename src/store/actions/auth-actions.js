@@ -2,27 +2,12 @@ import axios from 'axios';
 
 export const TYPES = {
   CLEAN: 'CLEAN_AUTH',
-  CHANGE_PASSWORD: 'CHANGE_PASSWORD',
-  LOGIN_EMAIL: 'LOGIN_EMAIL',
   LOGIN_FACEBOOK: 'LOGIN_FACEBOOK',
   LOGIN_GOOGLE: 'LOGIN_GOOGLE',
   LOGOUT: 'LOGOUT',
   ME: 'ME',
-  REGISTER: 'REGISTER',
-  RECOVER_PASSWORD: 'RECOVER_PASSWORD',
   SET_TOKEN: 'SET_TOKEN',
   UPDATE_PHOTO: 'UPDATE_PROFILE_PHOTO',
-};
-
-export const changeUserPassword = data => async dispatch => {
-  const response = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/auth/change-password`, data);
-  dispatch({ type: TYPES.CHANGE_PASSWORD, payload: response.data.message });
-};
-
-export const loginEmail = data => async dispatch => {
-  const response = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/auth/login-email`, data);
-  dispatch({ type: TYPES.LOGIN_EMAIL, payload: response.data });
-  return response.data;
 };
 
 export const loginFacebook = data => async dispatch => {
@@ -49,17 +34,6 @@ export const me = () => async dispatch => {
   } catch (e) {
     dispatch({ type: TYPES.ME, payload: null });
   }
-};
-
-export const register = data => async dispatch => {
-  const response = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/auth/register`, data);
-  dispatch({ type: TYPES.REGISTER, payload: response.data });
-};
-
-export const recoverPassword = data => async dispatch => {
-  const response = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/auth/recover-password`, data);
-  dispatch({ type: TYPES.RECOVER_PASSWORD, payload: response.data });
-  return response.data;
 };
 
 export const setToken = token => async dispatch => {

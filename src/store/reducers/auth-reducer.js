@@ -15,13 +15,6 @@ export default function reducer(state = initialState, action) {
     case TYPES.CLEAN:
       return initialState;
 
-    case TYPES.CHANGE_PASSWORD:
-      return {
-        ...state,
-        temp: action.payload
-      };
-
-    case TYPES.LOGIN_EMAIL:
     case TYPES.LOGIN_FACEBOOK:
     case TYPES.LOGIN_GOOGLE:
       return {
@@ -41,19 +34,6 @@ export default function reducer(state = initialState, action) {
         ...state,
         authData: action.payload,
         authLoaded: true
-      };
-
-    case TYPES.REGISTER:
-      return {
-        ...state,
-        temp: action.payload.messsage,
-        token: action.payload.token
-      };
-
-    case TYPES.RECOVER_PASSWORD:
-      return {
-        ...state,
-        temp: action.payload
       };
 
     case TYPES.SET_TOKEN:

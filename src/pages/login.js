@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
-import Link from 'next/link';
 import { useRouter } from 'next/router';
 import SEO from '../components/seo';
 import NavigationBar from '../components/navigation-bar';
@@ -49,9 +48,6 @@ export default function Login() {
       </NavigationBar>
       <section className="login-section">
         {loginMessage && <div className="login-message" role="alert">{loginMessage}</div>}
-        <p className="link-forgot-password">
-          <Link href="/recover-password">{translations['forgotPassword']}</Link>
-        </p>
         <UserLogin
           translations={translations}
           onLoginSuccess={onLoginSuccess}>

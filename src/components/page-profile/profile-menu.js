@@ -21,11 +21,6 @@ export default function ProfileMenu(props) {
           </button>
         </li>
         <li>
-          <Link href="/account/change-password">
-            <a className='item'>{translations.changePassword}</a>
-          </Link>
-        </li>
-        <li>
           <Link href="/account/update-info">
             <a className='item'>{translations.updateInfo}</a>
           </Link>
@@ -45,7 +40,7 @@ export default function ProfileMenu(props) {
         </li>
         <li>
           <button className="item last" onClick={onClose}>
-            {translations.cancel}
+            {translations.close}
           </button>
         </li>
       </ul> 
