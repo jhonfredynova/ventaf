@@ -3,6 +3,8 @@ import ReactGA from 'react-ga';
 import { useSelector, useStore } from 'react-redux';
 import LoginButton from './login-button';
 import InputPassword from '../../input-password';
+import Lightbox from '../../lightbox';
+import AlertModal from '../../modals/alert-modal';
 import { register, loginEmail, me, setToken } from '../../../store/actions/auth-actions';
 import { getProfileByEmail } from '../../../store/actions/profile-actions';
 
@@ -18,10 +20,10 @@ export default function LoginEmail(props) {
   const [errors, setErrors] = useState({});
   const [currentLoginStep, setLoginStep] = useState(LOGIN_STEPS.ENTER_EMAIL);
   const [isProcessing, setIsProcessing] = useState(false);
+  const [showModalProvidersError, setShowModalProvidersError] = useState(false);
   const [userInfo, setUserInfo] = useState(null);
   const authData = useSelector(state => state.auth.authData);
   const userPhotoUrl = (userInfo && userInfo.photoURL) || '/anonymous.png';
-  const userHasEmailProvider = (userInfo?.providers?.includes('password'));
 
   const onClearEmail = () => {
     setLoginStep(LOGIN_STEPS.ENTER_EMAIL);
@@ -104,11 +106,14 @@ export default function LoginEmail(props) {
       setIsProcessing(true);
       setErrors({});
       const userData = await store.dispatch(getProfileByEmail(loginInfo.email));
-      setUserInfo(userData);
-      setLoginStep(LOGIN_STEPS.LOGIN_USER);
+      setUserInfo(userData);    
       
       if (userData) {
-        setLoginStep(LOGIN_STEPS.LOGIN_USER);
+        if (userData?.providers?.includes('password')) {
+          setLoginStep(LOGIN_STEPS.LOGIN_USER);
+        } else {
+          setShowModalProvidersError(true);
+        }
       } else {
         setLoginStep(LOGIN_STEPS.REGISTER_USER);
       }
@@ -187,7 +192,7 @@ export default function LoginEmail(props) {
           </div>
         }
         {
-          currentLoginStep === LOGIN_STEPS.LOGIN_USER && userHasEmailProvider &&
+          currentLoginStep === LOGIN_STEPS.LOGIN_USER &&
           <>
             <div className="form-row">
               <label className="sr-only" htmlFor="password">{translations['password']} <span>*</span></label>
@@ -229,6 +234,16 @@ export default function LoginEmail(props) {
             </div>
           </>
         }
+        <Lightbox
+          isOpen={showModalProvidersError}
+          onToggle={()=> setShowModalProvidersError(!showModalProvidersError)}>
+          <AlertModal
+            title={translations.error}
+            message={translations.alreadyRegisteredWithSocialProviders.replace(/{providers}/g, userInfo?.providers?.join(', '))}
+            translations={translations}
+            onClose={() => setShowModalProvidersError(!showModalProvidersError)}>
+          </AlertModal>
+        </Lightbox>
       </form>
       <style jsx>{`
         .form-row {

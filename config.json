@@ -1,5 +1,5 @@
 {
-  "appLastSync": 1635446140256,
+  "appLastSync": 1644684002417,
   "callingCodes": [
     {
       "countryFlag": "https://restcountries.eu/data/afg.svg",
@@ -4335,6 +4335,7 @@
       "messages": "Messages",
       "goBack": "Go back",
       "areYouSureLeavePage?": "Are you sure you want to leave this page?",
+      "alreadyRegisteredWithSocialProviders": "You have already registered with the providers ({providers}), log in with one of them and then you can create a password for your account.",
       "changePassword": "Change password",
       "taxesTitle": "Taxes",
       "sellNow": "Sell Now!",
@@ -4692,6 +4693,7 @@
       "excelReport": "Excel Report",
       "invoicesUploadDescription": "Bulk upload of invoices",
       "notFoundDescription": "The link you followed was may broken, or the page may have been removed",
+      "error": "Error",
       "prefix": "Prefix",
       "invoicesUploadTitle": "Upload Invoices",
       "incomeAndExpenses": "Income and Expenses",
@@ -5029,6 +5031,7 @@
       "messages": "Mensajes",
       "goBack": "Ir atrás",
       "areYouSureLeavePage?": "¿Esta seguro de querer salir de esta página?",
+      "alreadyRegisteredWithSocialProviders": "Ya te has registrado con los proveedores ({providers}), inicia sesión con alguno de ellos y luego podrás crear una contraseña para tu cuenta.",
       "changePassword": "Cambiar contraseña",
       "taxesTitle": "Impuestos",
       "sellNow": "Vender Ya!",
@@ -5386,6 +5389,7 @@
       "excelReport": "Reporte Excel",
       "invoicesUploadDescription": "Carga masiva de facturas",
       "notFoundDescription": "El enlace que seguiste puede estar roto, o la pagina ha sido removida",
+      "error": "Error",
       "prefix": "Prefijo",
       "invoicesUploadTitle": "Subir Facturas",
       "incomeAndExpenses": "Ingresos y Gastos",
