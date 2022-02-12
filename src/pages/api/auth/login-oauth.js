@@ -5,16 +5,15 @@ import { getUserProfileData } from '../../../utils/user-utils';
 export default async function loginGoogle(req, res) {
   try {
     const firebaseAdmin = require('../../../firebase-admin').default;
-    const oAuthResponse = req.body;
+    const userOAuth = req.body;
+    const { uid } = userOAuth;
 
     // register user profile
-    const { user } = oAuthResponse;
-    const { uid } = user;
     const db = firebaseAdmin.firestore();
     const userExist = await getDbDocument(db, 'users', uid);
 
     if (!userExist) {
-      const userProfile = getUserProfileData(user);
+      const userProfile = getUserProfileData(userOAuth);
       await db
         .collection('users')
         .doc(uid)

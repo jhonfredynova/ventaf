@@ -39,9 +39,19 @@ export default function LoginSocialNetworks(props) {
       const facebookProvider = new firebaseApp.firebase_.auth.FacebookAuthProvider();
       facebookProvider.addScope('email');
       facebookProvider.setCustomParameters({ 'display': 'popup' });
-
-      const facebookResponse = await firebaseApp.auth().signInWithPopup(facebookProvider);
-      const loginResponse = await store.dispatch(loginFacebook(facebookResponse));
+      
+      try {
+        await firebaseApp.auth().signInWithPopup(facebookProvider);  
+      } catch (error) {
+        if (error.code === 'auth/account-exists-with-different-credential') {
+          firebaseApp.auth().currentUser.linkWithCredential(error.credential);
+        } else {
+          throw error;
+        }
+      }
+      
+      const userOAuth = firebaseApp.auth().currentUser;
+      const loginResponse = await store.dispatch(loginFacebook(userOAuth));
       await store.dispatch(setToken(loginResponse.token));
       await store.dispatch(me());
 
@@ -71,9 +81,11 @@ export default function LoginSocialNetworks(props) {
       const googleProvider = new firebaseApp.firebase_.auth.GoogleAuthProvider();
       googleProvider.addScope('email');
       googleProvider.addScope('profile');
+      googleProvider.setCustomParameters({ 'display': 'popup' });
 
       const googleResponse = await firebaseApp.auth().signInWithPopup(googleProvider);
-      const loginResponse = await store.dispatch(loginGoogle(googleResponse));
+      const { user } = googleResponse;
+      const loginResponse = await store.dispatch(loginGoogle(user));
       await store.dispatch(setToken(loginResponse.token));
       await store.dispatch(me());
 
