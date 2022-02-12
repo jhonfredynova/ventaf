@@ -56,7 +56,7 @@ export default function BreadcumbBar(props) {
         </li>
         <li>
           <a 
-            href={`mailto:?subject=${postData.title}&body=${sharingUrl}`} 
+            href={`mailto:?subject=${postData.description}&body=${sharingUrl}`} 
             rel="noreferrer" 
             target="_blank"
             title={translations['shareViaEmail']}

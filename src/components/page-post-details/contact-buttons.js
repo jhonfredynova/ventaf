@@ -2,7 +2,7 @@ import React from 'react';
 import ReactGA from 'react-ga';
 
 export default function ContactButtons(props) {
-  const { postData, translations, pageTitle, sharingUrl } = props;
+  const { postData, translations, sharingUrl } = props;
   const { seller } = postData;
   const { phone } = seller;
   const phoneNumber = `${phone.prefix}${phone.number}`;
@@ -33,14 +33,6 @@ export default function ContactButtons(props) {
         onClick={() => onContactSeller('Contact ad seller via whatsapp', 2)}>
         <i className="fab fa-whatsapp fa-2x"></i> Whatsapp
       </a>
-      <a 
-        className="link btn btn-email"
-        href={`mailto:${postData.seller.email}?subject=Construccion y Tecnologia SAS - ${pageTitle}&body=${shareMessage}`}
-        rel="noreferrer"
-        target="_blank"
-        onClick={() => onContactSeller('Contact ad seller via email', 2)}>
-        <i className="fas fa-envelope fa-2x"></i> {translations['email']}
-      </a>
       <style jsx>{`
         .contact-buttons {
           margin-top: 5px;
@@ -63,11 +55,6 @@ export default function ContactButtons(props) {
 
             &.btn-whatsapp {
               background-color: rgb(61, 150, 70);
-              color: white;
-            }
-
-            &.btn-email {
-              background-color: #d48815;
               color: white;
             }
 
