@@ -16,7 +16,8 @@ export default function LoginMethods(props) {
         .login-methods {
           label {
             font-size: 3rem;
-            padding: 0 8px;
+            padding: 0;
+            padding-right: 8px;
           }
         }  
       `}</style>
