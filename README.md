@@ -6,7 +6,8 @@ Firebase web application with server side rendering + Google cloud function conf
 
 In order to run the application you need to add the following configuration files with your app data:
 - env.development.local
-  - NEXT_PUBLIC_API_URL=http://localhost:3000/api
+  - NEXT_PUBLIC_API_URL=https://localhost:3001/api
+  - NODE_TLS_REJECT_UNAUTHORIZED=0
 - env.production.local
   - NEXT_PUBLIC_API_URL=http://yourdomain.com/api
 - .env.local
@@ -56,7 +57,7 @@ Runs the app in production mode.
 
 ### `npm run dev`
 
-Runs the app in development mode. Open [http://localhost:3000](http://localhost:3000)
+Runs the app in development mode. Open [https://localhost:3001](https://localhost:3001)
 
 ### `npm run build`
 
