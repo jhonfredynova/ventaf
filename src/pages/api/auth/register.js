@@ -1,4 +1,5 @@
 import { getUserProfileData } from '../../../utils/user-utils';
+import { createJsonWebToken } from '../../../utils/auth-utils';
 import validateRegister from '../../../validations/validate-register';
 
 export default async function register(req, res) {
@@ -42,12 +43,10 @@ export default async function register(req, res) {
     await firebaseAdmin.auth().setCustomUserClaims(uid, { registered: true });
 
     // loging user to refresh custom claims
-    const response = await firebaseClient
-      .auth()
-      .signInWithEmailAndPassword(modelData.email, modelData.password);
-    const token = await response.user.getIdToken();
+    const userDataPayload = await firebaseAdmin.auth().getUser(uid);
+    const jwtToken = createJsonWebToken(userDataPayload, process.env.FIREBASE_KEY);
 
-    res.json({ token });
+    res.json({ token: jwtToken });
   } catch (error) {
     res.status(500).json(error);
   }
