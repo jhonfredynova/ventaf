@@ -50,7 +50,8 @@ export default function ProfileView() {
     <main>
       <SEO
         title={pageTitle}
-        description={pageDescription}>
+        description={pageDescription}
+        imageUrl={profileInfo.photoURL}>
       </SEO>
       <h1 className="sr-only">{pageTitle}</h1>
       <article className="sr-only">{pageDescription}</article>

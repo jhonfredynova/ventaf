@@ -58,7 +58,8 @@ export default function PostDetails() {
     <main>
       <SEO
         title={pageTitle}
-        description={postData.description}>
+        description={postData.description}
+        imageUrl={postData.photos[0]}>
       </SEO>
       <BreadcumbBar
         translations={translations}

@@ -3,7 +3,8 @@ import Head from 'next/head';
 import { toSearchTerms } from '../utils/text-utils';
 
 export default function SEO(props) {
-  const { title, description } = props;
+  const { title, description, imageUrl } = props;
+  const siteName = 'Construccion y Tecnologia SAS';
   const keywords = ['construccion', 'tecnologia', 'technology', 'realstate', 'jhonfredynova']
     .concat(toSearchTerms(title))
     .concat(toSearchTerms(description))
@@ -11,7 +12,7 @@ export default function SEO(props) {
 
   return (
     <Head>
-      <title>{(title || '').concat(' | Construccion y Tecnologia SAS')}</title>
+      <title>{(title || '').concat(` | ${siteName}`)}</title>
       {/* GOOGLE */}
       <meta charSet="utf-8" />
       <meta name="description" content={description} />
@@ -20,12 +21,14 @@ export default function SEO(props) {
       {/* FACEBOOK */}
       <meta property="og:title" content={title} />
       <meta property="og:type" content="business.business" />
-      <meta property="og:site_name" content="Construccion y Tecnologia SAS" />
+      <meta property="og:site_name" content={siteName} />
       <meta property="og:description" content={title} />
+      {imageUrl && <meta property="og:image" content={imageUrl} />}
       {/* TWITTER  */}
       <meta name="twitter:card" content={description} />
-      <meta name="twitter:creator" content="@jhonfredynova" />
-      <meta name="twitter:site" content="@jhonfredynova" />
+      <meta name="twitter:creator" content={siteName} />
+      <meta name="twitter:site" content={siteName} />
+      {imageUrl && <meta property="twitter:image" content={imageUrl} />}
       {/* APP */}
       <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no" />
       <link rel="apple-touch-icon" sizes="120x120" href="/apple-touch-icon.png" />
