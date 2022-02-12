@@ -13,14 +13,11 @@ export default function MyApp({ Component, pageProps }) {
 
   useEffect(async () => {
     ReactGA.initialize(window.gAnalyticsKey, {});
-    await store.dispatch(setToken(localStorage.token));
-    store.dispatch(me()).catch(() => localStorage.removeItem('token'));
-
-    ReactGA.event({
-      category: 'Users',
-      action: 'Logged in with facebook',
-      value: 2
-    });
+    
+    if (localStorage.token) {
+      await store.dispatch(setToken(localStorage.token));
+      store.dispatch(me()).catch(() => localStorage.removeItem('token'));
+    }
   }, []);
 
 

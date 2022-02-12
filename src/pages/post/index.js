@@ -86,7 +86,7 @@ export default function NewPost() {
       if (!authData) {
         ReactGA.event({
           category: 'Users',
-          action: 'Login modal before create post',
+          action: 'Opened login modal before creating a new post',
           value: 3
         });
         setShowModalUser(true);

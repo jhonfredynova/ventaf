@@ -34,7 +34,7 @@ export default function Header(props) {
   const onClickPost = () => {
     ReactGA.event({
       category: 'Users',
-      action: 'Create new post',
+      action: 'Clicked new post from header',
       value: 3
     });
   };
