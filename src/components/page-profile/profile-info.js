@@ -1,16 +1,15 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { useSelector, useStore } from 'react-redux';
+import Link from 'next/link';
 import { useRouter } from 'next/router';
-import Lightbox from '../../components/lightbox';
 import LoginMethods from '../page-profile/login-methods';
-import ProfileMenu from '../page-profile/profile-menu';
 import { BREAKPOINTS } from '../../utils/style-utils';
-import { uploadProfilePhoto, logout } from '../../store/actions/auth-actions';
+import { uploadProfilePhoto } from '../../store/actions/auth-actions';
 
 export default function ProfileInfo(props) {
+  const uploadInputPhoto = useRef(null);
   const { translations, userProfile } = props;
   const store = useStore();
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isUploadingPhoto, setIsUploadingPhoto] = useState(false);
   const [uploadError, setUploadError] = useState('');
   const { authData } = useSelector(state => state.auth);
@@ -20,7 +19,6 @@ export default function ProfileInfo(props) {
 
   const onUploadPhoto = async event => {
     try {
-      setIsMenuOpen(false);
       setIsUploadingPhoto(true);
       setUploadError('');
       let formData = new FormData();
@@ -33,12 +31,6 @@ export default function ProfileInfo(props) {
       setUploadError(translations[code] || message);
       setIsUploadingPhoto(false);
     }
-  };
-
-  const onLogout = () => {
-    store.dispatch(logout());
-    setIsMenuOpen(false);
-    router.push('/');
   };
 
   if (!userProfile) {
@@ -55,12 +47,18 @@ export default function ProfileInfo(props) {
           onClick={() => router.back()}>
           <i className="fas fa-arrow-left" />
         </button>
+        <input
+          ref={uploadInputPhoto}
+          type="file"
+          hidden
+          onChange={onUploadPhoto}>
+        </input>
         {
           isProfileOwner &&
           <button
             className="btn-profile-menu"
             title={userProfile.username}
-            onClick={() => setIsMenuOpen(true)}>
+            onClick={() => uploadInputPhoto.current.click()}>
             {
               isUploadingPhoto &&
               <div className="loader"><i className="fas fa-spinner fa-spin fa-4x" title={translations.loading} /></div>
@@ -87,10 +85,9 @@ export default function ProfileInfo(props) {
               identities={identities}
               translations={translations}>
             </LoginMethods>
-            <button className="btn-profile-settings" onClick={() => setIsMenuOpen(true)}>
-              <i className="fas fa-cog" />
-              <span className="text">{translations.options}</span>
-            </button>
+            <Link href="/account/update-info">
+              <a className='btn-edit-profile'>{translations.editProfile}</a>
+            </Link>
           </div>
         }
         {userProfile.bio && <p>{userProfile.bio}</p>}
@@ -100,18 +97,6 @@ export default function ProfileInfo(props) {
           <p><a href={userProfile.website} rel="noreferrer" target="_blank">{userProfile.website}</a></p>
         }
       </div>
-
-      <Lightbox
-        isOpen={isMenuOpen}
-        onToggle={() => setIsMenuOpen(!isMenuOpen)}>
-        <ProfileMenu
-          authData={authData}
-          translations={translations}
-          onUploadPhoto={onUploadPhoto}
-          onLogout={onLogout}
-          onClose={() => setIsMenuOpen(false)}>
-        </ProfileMenu>
-      </Lightbox>
 
       <style jsx>{`
         .profile-info {
@@ -174,16 +159,14 @@ export default function ProfileInfo(props) {
               justify-content: center;
               margin-bottom: 8px;
 
-              .btn-profile-settings {
+              .btn-edit-profile {
                 background: var(--color-secondary);
                 border: 1px solid var(--color-border);
                 border-radius: var(--spacer);
+                color: var(--color-text);
+                text-decoration: none;
                 cursor: pointer;
                 padding: var(--spacer);
-
-                .fas {
-                  margin-right: 4px;
-                }
               }
             }
           }
