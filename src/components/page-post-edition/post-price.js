@@ -122,8 +122,11 @@ export default function PostPrice(props) {
               border: 1px solid var(--color-border);
               cursor: pointer;
               align-items: center;
-              padding: var(--spacer);
+              justify-content: center;
+              padding: var(--spacer);              
               text-transform: uppercase;
+              border-right: none;
+              min-width: 60px;
 
               img {
                 margin-right: 4px;

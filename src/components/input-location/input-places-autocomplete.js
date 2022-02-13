@@ -67,8 +67,10 @@ export default function InputPlacesAutocomplete(props) {
             background-color: var(--color-secondary);
             border: 1px solid var(--color-border);
             border-right: 0;
-            color: var(--color-primary);
+            color: var(--color-text);
             padding: var(--spacer);
+            text-align: center;
+            min-width: 60px;
           }
 
           input {

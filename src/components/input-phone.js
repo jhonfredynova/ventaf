@@ -113,7 +113,9 @@ export default function InputPhone(props) {
               flex-shrink: 0;
               display: flex;
               align-items: center;
+              justify-content: center;
               border-right: 0;
+              min-width: 60px;
             }
 
             .btn-clear {

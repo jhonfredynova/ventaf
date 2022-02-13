@@ -1,5 +1,5 @@
 {
-  "appLastSync": 1644684002417,
+  "appLastSync": 1644765567857,
   "callingCodes": [
     {
       "countryFlag": "https://restcountries.eu/data/afg.svg",
@@ -4788,7 +4788,7 @@
       "mailSubscriptionSuspendedSubject": "<p>Your subscription to {appName} has been suspended</p>",
       "previewReportLink": "Preview report link>>>aaabbbb",
       "selectBilling": "Select billing",
-      "loginDescription": "Login quickly with your email or social networks.",
+      "loginDescription": "Login quickly with your social networks.",
       "formErrors": "There are errors in the form, please check them and try again",
       "notRegisteredYet?": "Not registered yet?",
       "status": "Status",
@@ -5484,7 +5484,7 @@
       "mailSubscriptionSuspendedSubject": "<p>Tu suscripción a {appName} ha sido suspendida</p>",
       "previewReportLink": "Prevsualizar enlace de reporte",
       "selectBilling": "Seleccione facturación",
-      "loginDescription": "Inicia sesión rápidamente con tu correo electrónico o redes sociales.",
+      "loginDescription": "Inicia sesión rápidamente con tus redes sociales.",
       "formErrors": "Hay errores en el formulario, por favor revisalos e intente nuevamente",
       "notRegisteredYet?": "¿Todavía no estas registrado?",
       "status": "Estado",
