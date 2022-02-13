@@ -86,6 +86,7 @@ export const uploadToStorage = async data => {
   const { Storage } = await require('@google-cloud/storage');
   const gcs = new Storage();
   const bucket = gcs.bucket(data.bucketName);
+
   const cleanFileName = uploadedFileName => {
     const fileExtention = uploadedFileName.split('.').pop();
     const fileName = uploadedFileName
@@ -95,31 +96,25 @@ export const uploadToStorage = async data => {
       .replace(/--/g, '-')
       .replace(/[^a-z0-9-]/gi, '')
       .toLowerCase();
+
     return `${fileName}.${fileExtention}`;
   };
-  let uploadedFile = null;
-  let uploadedFileName = null;
+
+  const uploadFile = async (filePath, storageOptions) => {
+    const uploadedFileName = cleanFileName(path.basename(filePath));
+    const uploadResponse = await bucket.upload(filePath, {
+      destination: (storageOptions.bucketPath ? `${storageOptions.bucketPath}/${uploadedFileName}` : uploadedFileName)
+    });
+    const uploadedFile = uploadResponse[0];
+    await uploadedFile.makePublic();
+
+    return uploadedFile.publicUrl();
+  };
 
   const uploadPromises = data.filePaths.map(filePath => {
-    return new Promise(resolve => {
-      uploadedFileName = path.basename(filePath);
-      uploadedFileName = cleanFileName(uploadedFileName);
-      bucket.upload(filePath, {
-        destination: `${data.bucketPath}/${uploadedFileName}`
-      })
-        .then(async (uploadResponse) => {
-          uploadedFile = uploadResponse[0];
-          await uploadedFile.makePublic();
-          return uploadedFile.publicUrl();
-        })
-        .then(uploadedPublicUrl => {
-          resolve(uploadedPublicUrl);
-        })
-        .catch(error => {
-          console.error('Error uplading file', error);
-        });
-    });
+    return uploadFile(filePath, data);
   });
+
   const uploadedFiles = await Promise.all(uploadPromises);
 
   return uploadedFiles;

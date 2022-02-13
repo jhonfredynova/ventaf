@@ -14,7 +14,7 @@ export default function UserCard(props) {
   return (
     <Link href={`/${profile.username}`}>
       <a className="user-card">
-        <img src={photoURL} width={40} alt={username} />
+        <img src={photoURL} width={35} height={35} alt={username} />
         <span className="text-truncate">{username}</span>
         <span className="arrow-right">
           <i className="fas fa-arrow-right"></i>

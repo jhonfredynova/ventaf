@@ -28,7 +28,6 @@ export default async function uploadPhoto(req, res) {
     const filePath = renameFile(photo, `${req.user.uid}.jpg`);
     const dataToUpload = {
       bucketName: process.env.FIREBASE_STG_PROFILE_UPLOADS,
-      bucketPath: 'users',
       filePaths: [filePath]
     };
     const uploadedFiles = await uploadToStorage(dataToUpload);
