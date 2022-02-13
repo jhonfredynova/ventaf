@@ -50,8 +50,11 @@ export default function PostDetails() {
   useEffect(() => {
     store.dispatch(getProfileById(postData.user));
     store.dispatch(updatePostViews(postData.id));
-    store.dispatch(getRelatedContent(postData.id));
     setSharingUrl(window.location.href);
+
+    if (window.screen.width > parseInt(BREAKPOINTS.PHONE)) {
+      store.dispatch(getRelatedContent(postData.id));
+    }
   }, [postData]);
 
   return (
