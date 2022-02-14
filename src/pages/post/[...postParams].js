@@ -9,7 +9,6 @@ import SEO from '../../components/seo';
 import PostList from '../../components/post-list';
 import { getRelatedContent, getPostById, updatePostViews } from '../../store/actions/post-actions';
 import { getProfileById } from '../../store/actions/profile-actions';
-import { trimTextWithEllipsis } from '../../utils/text-utils';
 import { BREAKPOINTS } from '../../utils/style-utils';
 import { initializeStore } from '../../store/store';
 import { getConfiguration } from '../../store/actions/config-actions';
@@ -45,7 +44,10 @@ export default function PostDetails() {
   const profiles = useSelector(state => state.profile.records);
   const postData = useSelector(state => state.post.currentPost);
   const userProfile = (postData && profiles[postData.user]);
-  const pageTitle = trimTextWithEllipsis((postData && postData.description) || '', 100);
+  const pageTitle = (postData?.description || '')
+    .trim()
+    .concat(', ')
+    .concat(postData?.location?.description);
 
   useEffect(() => {
     store.dispatch(getProfileById(postData.user));
@@ -118,6 +120,7 @@ export default function PostDetails() {
           padding: calc(var(--spacer) * 2);
 
           h1 {
+            display: none;
             font-size: 2.4rem;
             margin-bottom: var(--spacer);
 
@@ -131,6 +134,7 @@ export default function PostDetails() {
               margin-bottom: calc(var(--spacer) * 2);
 
               article {
+                font-size: 1.8rem;
                 margin-top: var(--spacer);
               }
             }
@@ -144,6 +148,9 @@ export default function PostDetails() {
 
               .main-details {
                 flex-grow: 1;
+                article {
+                  font-size: 2.0rem;
+                }
               }
 
               .info {
