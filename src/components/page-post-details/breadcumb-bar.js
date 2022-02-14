@@ -4,7 +4,7 @@ import { useRouter } from 'next/router';
 import { copyToClipboard } from '../../utils/text-utils'; 
 
 export default function BreadcumbBar(props) {
-  const { translations, postData, sharingUrl } = props;
+  const { translations, pageTitle, sharingUrl } = props;
   const tooltipCopyClipboard = useRef();
   const router = useRouter();
 
@@ -56,7 +56,7 @@ export default function BreadcumbBar(props) {
         </li>
         <li>
           <a 
-            href={`mailto:?subject=${postData.description}&body=${sharingUrl}`} 
+            href={`mailto:?subject=${pageTitle}&body=${sharingUrl}`} 
             rel="noreferrer" 
             target="_blank"
             title={translations['shareViaEmail']}

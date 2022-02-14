@@ -46,6 +46,7 @@ export default function PostDetails() {
   const userProfile = (postData && profiles[postData.user]);
   const pageTitle = (postData?.description || '')
     .trim()
+    .substring(0, 80)
     .concat(', ')
     .concat(postData?.location?.description);
 
@@ -68,7 +69,7 @@ export default function PostDetails() {
       </SEO>
       <BreadcumbBar
         translations={translations}
-        postData={postData}
+        pageTitle={pageTitle}
         sharingUrl={sharingUrl}>
       </BreadcumbBar>
       <h1>{pageTitle}</h1>

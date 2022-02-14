@@ -8,9 +8,7 @@ export default function PostTile(props) {
   const { isLoading, translations, data } = props;
   const { price } = data;
   const featurePhoto = data.photos[0];
-  const titleSlug = data.description.length > 160
-    ? toUrl(data.description.substring(0, 80)).concat('...')
-    : toUrl(data.description);
+  const titleSlug = toUrl(data.description.substring(0, 80).concat(', ').concat(data.location.description));
 
   return (
     <Link href={`/post/${titleSlug}/${data.id}`}>

@@ -63,6 +63,19 @@ export const toUrl = value => {
     .trim()
     .toLowerCase();
 
+  // replacing accents
+  encodedUrl = encodedUrl.replace(new RegExp(/[àáâãäå]/g),'a');
+  encodedUrl = encodedUrl.replace(new RegExp(/æ/g),'ae');
+  encodedUrl = encodedUrl.replace(new RegExp(/ç/g),'c');
+  encodedUrl = encodedUrl.replace(new RegExp(/[èéêë]/g),'e');
+  encodedUrl = encodedUrl.replace(new RegExp(/[ìíîï]/g),'i');
+  encodedUrl = encodedUrl.replace(new RegExp(/ñ/g),'n');                
+  encodedUrl = encodedUrl.replace(new RegExp(/[òóôõö]/g),'o');
+  encodedUrl = encodedUrl.replace(new RegExp(/œ/g),'oe');
+  encodedUrl = encodedUrl.replace(new RegExp(/[ùúûü]/g),'u');
+  encodedUrl = encodedUrl.replace(new RegExp(/[ýÿ]/g),'y');
+
+  // replacing weird characteres with blank spaces and spaces with hyppens
   encodedUrl = encodedUrl.replace(/[^\w ]+/g, '');
   encodedUrl = encodedUrl.replace(/ +/g, '-');
 

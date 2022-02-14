@@ -28,7 +28,7 @@ export default function SEO(props) {
       <meta name="twitter:card" content={description} />
       <meta name="twitter:creator" content={siteName} />
       <meta name="twitter:site" content={siteName} />
-      {imageUrl && <meta property="twitter:image" content={imageUrl} />}
+      {imageUrl && <meta name="twitter:image" content={imageUrl} />}
       {/* APP */}
       <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no" />
       <link rel="apple-touch-icon" sizes="120x120" href="/apple-touch-icon.png" />
