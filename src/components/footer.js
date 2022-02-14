@@ -26,7 +26,7 @@ export default function Footer(props) {
         </li>
       </ul>
 
-      <p className="branding">Construccion y Tecnologia SAS &copy; 2020</p>
+      <p className="branding">Construccion y Tecnologia SAS</p>
 
       <div className="languages-bar">
         <Link href={{ pathname, query }} locale="es">
