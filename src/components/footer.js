@@ -5,7 +5,7 @@ import { useRouter } from 'next/router';
 export default function Footer(props) {
   const { translations } = props;
   const router = useRouter();
-  const { locale } = router;
+  const { locale, pathname, query } = router;
 
   return (
     <footer className="footer">
@@ -29,12 +29,12 @@ export default function Footer(props) {
       <p className="branding">Construccion y Tecnologia SAS &copy; 2020</p>
 
       <div className="languages-bar">
-        <Link href={router.pathname} locale="es">
+        <Link href={{ pathname, query }} locale="es">
           <a className={`link-language ${locale === 'es' ? 'active' : ''}`}>
             {translations.spanish}
           </a>
         </Link>
-        <Link href={router.pathname} locale="en">
+        <Link href={{ pathname, query }} locale="en">
           <a className={`link-language ${locale === 'en' ? 'active' : ''}`}>
             {translations.english}
           </a>
