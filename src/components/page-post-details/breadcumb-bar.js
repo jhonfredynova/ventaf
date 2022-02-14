@@ -84,6 +84,7 @@ export default function BreadcumbBar(props) {
         .breadcumb-bar {
           display: flex;
           align-items: center;
+          margin-bottom: var(--spacer);
 
           .btn-back {
             background: none;
