@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { useSelector, useStore } from 'react-redux';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
@@ -11,11 +11,16 @@ export default function ProfileInfo(props) {
   const { translations, userProfile } = props;
   const store = useStore();
   const [isUploadingPhoto, setIsUploadingPhoto] = useState(false);
+  const [profilePhotoUrl, setProfilePhotoUrl] = useState(userProfile.photoURL || '/anonymous.png');
   const [uploadError, setUploadError] = useState('');
   const { authData } = useSelector(state => state.auth);
   const router = useRouter();
   const isProfileOwner = (authData?.uid === userProfile.id);
   const identities = (authData?.providerData) || {};
+
+  useEffect(() => {
+    setProfilePhotoUrl(`${profilePhotoUrl}?${Date.now()}`);
+  }, [authData]);
 
   const onUploadPhoto = async event => {
     try {
@@ -65,14 +70,14 @@ export default function ProfileInfo(props) {
             }
             {
               !isUploadingPhoto &&
-              <img src={userProfile.photoURL || '/anonymous.png'} alt={userProfile.username} />
+              <img src={profilePhotoUrl} alt={userProfile.username} />
             }
             {uploadError && <p className="error-msg">{uploadError}</p>}
           </button>
         }
         {
           !isProfileOwner &&
-          <img src={userProfile.photoURL || '/anonymous.png'} alt={userProfile.username} />
+          <img src={profilePhotoUrl} alt={userProfile.username} />
         }
       </div>
 
