@@ -21,6 +21,16 @@ export default function HomeContents(props) {
 	const [showModalDeleteAd, setShowModalDeleteAd] = useState(false);
   const [showModalDeleteError, setShowModalDeleteError] = useState(false);
 
+	const getDefaultNoResultMsg = pathname => {
+		switch (pathname) {
+			default:
+				return translations.noResults;
+
+			case '/[username]':
+				return translations.youHaveNotPostAnyAd;
+		}
+	};
+
 	const onDelete = async () => {
     try {
       setIsDeletingPost(true);
@@ -43,7 +53,7 @@ export default function HomeContents(props) {
 		<>
 			{
 				!isLoading && posts.length === 0 && 
-				<NoResults translations={translations} />
+				<NoResults message={getDefaultNoResultMsg(router.pathname)} translations={translations} />
 			}
 			<InfiniteScroll
 				isLoading={isLoadingMore}

@@ -1,5 +1,5 @@
 {
-  "appLastSync": 1644874239251,
+  "appLastSync": 1645479660785,
   "callingCodes": [
     {
       "countryFlag": "https://restcountries.eu/data/afg.svg",
@@ -4499,6 +4499,7 @@
       "updateCreditCard": "Update credit card",
       "updateInfo": "Update info",
       "taggingYourAd": "Tagging your ad",
+      "youHaveNotPostAnyAd": "You have not posted any ads yet.",
       "fieldInvalidUrl": "Invalid url",
       "active": "Active",
       "spendingInvoices": "Spending invoices",
@@ -5195,6 +5196,7 @@
       "updateCreditCard": "Actualizar tarjeta de crédito",
       "updateInfo": "Actualizar información",
       "taggingYourAd": "Clasificar aviso",
+      "youHaveNotPostAnyAd": "Aún no has publicado ningún anuncio.",
       "fieldInvalidUrl": "Url invalida",
       "active": "Activo",
       "spendingInvoices": "Facturas de gasto",
