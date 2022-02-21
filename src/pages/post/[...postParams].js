@@ -88,15 +88,15 @@ export default function PostDetails() {
           <MainInfo
             postData={postData}
             currencies={currencies}
-            translations={translations}>
+            translations={translations}
+            userProfile={userProfile}>
           </MainInfo>
           <ContactInfo
             postData={postData}
             callingCodes={callingCodes}
             pageTitle={pageTitle}
             sharingUrl={sharingUrl}
-            translations={translations}
-            userProfile={userProfile}>
+            translations={translations}>
           </ContactInfo>
         </div>
       </section>

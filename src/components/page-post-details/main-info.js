@@ -1,9 +1,10 @@
 import React from 'react';
 import PriceInfo from './price-info';
+import UserCard from './user-card';
 import { formatDate } from '../../utils/intl-utils';
 
 export default function MainInfo(props) {
-  const { currencies, translations, postData } = props;
+  const { currencies, translations, postData, userProfile } = props;
   const price = (postData.price);
 
   return (
@@ -18,9 +19,11 @@ export default function MainInfo(props) {
         {formatDate(postData.createdAt, 'dd/month/yyyy hrs:min')}
       </p>
       <p>
-      <i className="far fa-eye" title={translations.views}></i>
+        <i className="far fa-eye" title={translations.views}></i>
         {postData.views} {translations.visits}
       </p>
+      <UserCard profile={userProfile}>
+      </UserCard>
       <style jsx>{`
         .main-info {
           p {

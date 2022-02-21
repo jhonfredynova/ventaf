@@ -1,16 +1,13 @@
 import React from 'react';
-import UserCard from './user-card';
 import ContactButtons from './contact-buttons';
 import { BREAKPOINTS } from '../../utils/style-utils';
 
 export default function ContactInfo(props) {
-  const { postData, pageTitle, sharingUrl, translations, userProfile } = props;
+  const { postData, pageTitle, sharingUrl, translations } = props;
 
   return (
     <div className="contact-info">
       <h2>{translations['sellerInfo']}</h2>
-      <UserCard profile={userProfile}>
-      </UserCard>
       <ContactButtons 
         postData={postData} 
         pageTitle={pageTitle}
@@ -20,15 +17,14 @@ export default function ContactInfo(props) {
       <style jsx>{`
         .contact-info {
           margin-top: var(--spacer);          
+
+          h2 {
+            display: none;
+          }
         }
 
         @media screen and (max-width: ${BREAKPOINTS.DESKTOP}) {
           .contact-info {
-            h2,
-            :global(.user-card) {
-              display: none;
-            }
-
             :global(.contact-buttons) {
               position: fixed;
               left: 0;
