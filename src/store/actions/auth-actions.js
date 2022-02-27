@@ -32,6 +32,7 @@ export const me = () => async dispatch => {
     let response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/auth/me`);
     dispatch({ type: TYPES.ME, payload: response.data });
   } catch (e) {
+    localStorage.removeItem('token');
     dispatch({ type: TYPES.ME, payload: null });
   }
 };

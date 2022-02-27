@@ -18,7 +18,7 @@ export default function MyApp({ Component, pageProps }) {
       await store.dispatch(setToken(localStorage.token));
     }
 
-    store.dispatch(me()).catch(() => localStorage.removeItem('token'));
+    store.dispatch(me());
   }, []);
 
 

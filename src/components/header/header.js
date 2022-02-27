@@ -95,7 +95,7 @@ export default function Header(props) {
               <i className="fas fa-plus" /> {translations.sell}
             </a>
           </Link> 
-          <Link href={(authLoaded && authData) ? `/${authData.profile.username}` : '/login'}>
+          <Link href={(authLoaded && authData) ? `/${authData?.profile?.username}` : '/login'}>
             <a className="btn-profile" title={translations.profile}>
               {authLoaded && <img src={photoUrl.concat(`?${Date.now()}`)} alt={translations.profile} />}
               {!authLoaded && <i className="fas fa-spinner fa-spin fa-2x" title={translations.loading} />}

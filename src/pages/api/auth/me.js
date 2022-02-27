@@ -7,15 +7,17 @@ export default async function me(req, res) {
     await runMiddleware(req, res, authorization('registered'));
 
     const firebaseAdmin = require('../../../firebase-admin').default;
-    let user = req.user;
+    const userData = req.user;
+    const db = firebaseAdmin.firestore();
+    const profile = await getDbDocument(db, 'users', userData.uid);
 
-    if (user) {
-      const db = firebaseAdmin.firestore();
-      const profile = await getDbDocument(db, 'users', user.uid);
-      user = Object.assign(user, { profile });
+    // If user does not have a profile token is not valid
+    if (!profile) {
+      res.status(403).json({ code: 'auth-no-token' });
+      return;
     }
 
-    res.json(user);
+    res.json({ ...userData, profile });
   } catch (error) {
     res.status(500).json(error);
   }
