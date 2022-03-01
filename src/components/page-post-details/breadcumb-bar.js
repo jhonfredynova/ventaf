@@ -89,6 +89,7 @@ export default function BreadcumbBar(props) {
           .btn-back {
             background: none;
             border: none;
+            color: var(--color-text);
             cursor: pointer;
             padding: var(--spacer);
           }
@@ -110,6 +111,7 @@ export default function BreadcumbBar(props) {
               .btn-clipboard {
                 background: none;
                 border: none;
+                color: var(--color-text);
                 cursor: pointer;
                 position: relative;
 

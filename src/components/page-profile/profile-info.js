@@ -124,6 +124,7 @@ export default function ProfileInfo(props) {
             }
 
             .btn-back {
+              color: var(--color-text);
               padding: var(--spacer);
             }
 
