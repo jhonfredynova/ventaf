@@ -89,6 +89,7 @@ export default function SearchBar(props) {
 
           .btn-search {
             background: var(--color-secondary);
+            color: var(--color-text);
             border: 1px solid var(--color-border);
             border-left: none;
           }

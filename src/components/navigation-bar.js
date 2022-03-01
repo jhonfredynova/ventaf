@@ -33,8 +33,9 @@ export default function NavigationBar(props) {
             text-align: left;
 
             .btn-back {
-              background: none;
+              background: none;              
               border: none;
+              color: var(--color-text);
               cursor: pointer;
               padding: var(--spacer);
             }

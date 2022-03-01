@@ -77,6 +77,7 @@ export default function PostUploaderItem(props) {
             position: absolute;
             background: var(--color-secondary);
             border: 1px solid var(--color-border);
+            color: var(--color-text);
             cursor: pointer;
             left: 0;
             top: 0;

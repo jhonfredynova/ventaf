@@ -120,6 +120,7 @@ export default function PostPrice(props) {
               display: flex;
               background: var(--color-secondary);
               border: 1px solid var(--color-border);
+              color: var(--color-text);
               cursor: pointer;
               align-items: center;
               justify-content: center;

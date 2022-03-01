@@ -110,6 +110,7 @@ export default function InputPhone(props) {
 
             .btn-prefix {
               background: var(--color-secondary);
+              color: var(--color-text);
               flex-shrink: 0;
               display: flex;
               align-items: center;

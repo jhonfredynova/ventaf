@@ -65,6 +65,7 @@ export default function SearchLocation(props) {
 
           .btn-select-city {
             background: transparent;
+            color: var(--color-text);
             padding: 0;
             
             .city {
