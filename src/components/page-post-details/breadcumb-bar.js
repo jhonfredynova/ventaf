@@ -125,6 +125,7 @@ export default function BreadcumbBar(props) {
                   color: white;
                   padding: 3px 8px;
                   width: max-content;
+                  z-index: 2;
 
                   &.show {
                     display: block;
