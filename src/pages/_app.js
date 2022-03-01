@@ -58,12 +58,12 @@ export default function MyApp({ Component, pageProps }) {
 
           body {
             background-color: var(--color-background);
-            color: var(--color-text);
             font-family: Helvetica, Arial, sans-serif;
             font-size: 1.6rem;
 
             &, * {
               box-sizing: border-box;
+              color: var(--color-text);
               margin: 0;
               padding: 0;
             }
