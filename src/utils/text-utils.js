@@ -76,8 +76,8 @@ export const toUrl = value => {
   encodedUrl = encodedUrl.replace(new RegExp(/[ýÿ]/g),'y');
 
   // replacing weird characteres with blank spaces and spaces with hyppens
-  encodedUrl = encodedUrl.replace(/[^\w ]+/g, '');
-  encodedUrl = encodedUrl.replace(/ +/g, '-');
+  encodedUrl = encodedUrl.replace(/[^\w\s]+/g, '');
+  encodedUrl = encodedUrl.replace(/\s+/g, '-');
 
   return encodedUrl;
 };
