@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useStore } from 'react-redux';
 import { useRouter } from 'next/router';
 import InputPhone from '../input-phone';
+import { me } from '../../store/actions/auth-actions';
 import { updateUser } from '../../store/actions/user-actions';
 
 export default function FormProfileInfo(props) {
@@ -26,8 +27,9 @@ export default function FormProfileInfo(props) {
       setIsUpdatingProfile(true);
       setErrors({});
       await store.dispatch(updateUser(userInfo));
+      await store.dispatch(me());
       setIsUpdatingProfile(false);
-      router.push(`/${profile.username}`);
+      router.push(`/${userInfo.username}`);
     } catch (error) {
       const { errors, code } = error?.response?.data || {};
       setErrors({ ...errors, general: code });
