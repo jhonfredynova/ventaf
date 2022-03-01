@@ -1,7 +1,5 @@
-import { getDbDocument } from '../../../utils/database-utils';
 import { getSearchTerms } from '../../../utils/post-utils';
 import { runMiddleware } from '../../../utils/api-utils';
-import authorization from '../../../middlewares/authorization';
 import files from '../../../middlewares/files';
 import validatePost from '../../../validations/validate-post';
 
@@ -14,14 +12,14 @@ export const config = {
 
 export default async function createPost(req, res) {
   try {
-    await runMiddleware(req, res, authorization('registered'));
     await runMiddleware(req, res, files({ maxFileSize: 1, maxFiles: 6 }));
 
     const firebaseAdmin = require('../../../firebase-admin').default;
     const { uploadToStorage } = require('../../../utils/storage-utils');
     const db = firebaseAdmin.firestore();
-    const userInfo = await getDbDocument(db, 'users', req.user.uid);
     const postData = req.body.data;
+    const anonymousId = 'LSI37DT7bdhbF2GmFOfOW7ryJmo2';
+    const anonymousEmail = 'construccionytecnologiasas@gmail.com';
     const modelData = {
       ...postData,
       createdAt: Date.now(),
@@ -30,7 +28,11 @@ export default async function createPost(req, res) {
       searchTerms: getSearchTerms(postData),
       likes: 0,
       views: 0,
-      user: (userInfo && userInfo.id)
+      seller: {
+        ...postData.seller,
+        email: (postData?.email || anonymousEmail)
+      },
+      user: (postData.user || anonymousId)
     };
 
     // validate data

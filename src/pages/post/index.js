@@ -1,12 +1,9 @@
 import React, { useState, useEffect, useRef } from 'react';
-import ReactGA from 'react-ga';
 import { useSelector, useStore } from 'react-redux';
 import { useRouter } from 'next/router';
-import UserLogin from '../../components/user-login/user-login';
 import SEO from '../../components/seo';
 import NavigationBar from '../../components/navigation-bar';
 import FormPost from '../../components/page-post-edition/form-post';
-import Lighbox from '../../components/lightbox';
 import { createPost } from '../../store/actions/post-actions';
 import { initializeStore } from '../../store/store';
 import { getConfiguration } from '../../store/actions/config-actions';
@@ -28,7 +25,6 @@ export default function NewPost() {
   const changedData = useRef(false);
   const [isPosting, setIsPosting] = useState(false);
   const [errors, setErrors] = useState(false);
-  const [showModalUser, setShowModalUser] = useState(false);
   const [model, setModel] = useState({
     price: {
       currency: 'cop',
@@ -47,7 +43,7 @@ export default function NewPost() {
     },
     user: null
   });
-  const { authData, authLoaded } = useSelector(state => state.auth);  
+  const { authData } = useSelector(state => state.auth);  
   const { callingCodes, currencies, translations } = useSelector(state => state.config);
   
   const pageTitle = translations['sellNowTitle'];
@@ -83,30 +79,16 @@ export default function NewPost() {
         event.preventDefault();
       }
 
-      if (!authData) {
-        ReactGA.event({
-          category: 'Users',
-          action: 'Opened login modal before creating a new post',
-          value: 3
-        });
-        setShowModalUser(true);
-        return;
-      }
-
       // parsing post data
       setIsPosting(true);
       const { photos, ...modelData } = model;
       const postInfo = {
         ...modelData,
-        seller: {
-          ...model.seller,
-          email: (authData && authData.email)
-        },
-        user: (authData && authData.uid)
+        user: authData?.uid
       };
 
       // create post
-      let formData = new FormData();
+      const formData = new FormData();
       formData.append('data', JSON.stringify(postInfo));
       photos.forEach(file => formData.append('photos', file));
       await store.dispatch(createPost(formData));
@@ -114,7 +96,7 @@ export default function NewPost() {
       // redirecting to the user ads
       setIsPosting(false);
       changedData.current = false;
-      router.push(`/${authData.profile.username}`);
+      router.push('/');
     } catch (error) { 
       const { errors, code, message } = error?.response?.data || {};
       setIsPosting(false);
@@ -160,36 +142,21 @@ export default function NewPost() {
         onChangeModel={onChangeModel}
         onSavePost={onSavePost}>
       </FormPost>
-      {
-        authLoaded &&
-        <div className="buttons-wrapper">
-          <button 
-            className="btn-post" 
-            disabled={isPosting}
-            onClick={onSavePost}>
-            {
-              isPosting && 
-              <>
-                <i className="fas fa-spinner fa-spin" title={translations['saving']}></i>
-                {translations['saving']}
-              </>
-            }
-            {!isPosting && !authData && translations['login']}
-            {!isPosting && authData && translations['postNow']}
-          </button>
-        </div>  
-      }
-      <Lighbox
-        isOpen={showModalUser}
-        onToggle={() => setShowModalUser(!showModalUser)}>
-        <div className="lightbox-login">
-          <h2>{translations['login']}</h2>
-          <UserLogin
-            translations={translations}
-            onLoginSuccess={() => setShowModalUser(false)}>
-          </UserLogin>
-        </div>
-      </Lighbox>
+      <div className="buttons-wrapper">
+        <button 
+          className="btn-post" 
+          disabled={isPosting}
+          onClick={onSavePost}>
+          {
+            isPosting && 
+            <>
+              <i className="fas fa-spinner fa-spin" title={translations['saving']}></i>
+              {translations['saving']}
+            </>
+          }
+          {!isPosting && translations['postNow']}
+        </button>
+      </div>  
       <style jsx>{`
         main {
           max-width: var(--container-width);
