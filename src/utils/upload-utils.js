@@ -33,7 +33,7 @@ export const validateFiles = (files, allowedExtentions, maxSize) => {
     return filename.split('.').pop();
   };
   const allowedFiles = files.filter(file => {
-    if (file.size > (1024 * 1024 * maxSize)) {
+    if (maxSize && file.size > (1024 * 1024 * maxSize)) {
       return false;
     } else if (!allowedExtentions.includes(getFileExtention(file.name))) {
       return false;

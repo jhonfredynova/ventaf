@@ -154,7 +154,13 @@ export default function NewPost() {
               {translations['saving']}
             </>
           }
-          {!isPosting && translations['postNow']}
+          {
+            !isPosting && 
+            <>
+              <i className="fas fa-solid fa-check" title={translations['sell']} />
+              {translations['sell']}
+            </>
+          }
         </button>
       </div>  
       <style jsx>{`
@@ -181,8 +187,8 @@ export default function NewPost() {
                 cursor: default;
               }
 
-              .fa-spin {
-                margin-right: 4px;
+              .fas {
+                margin-right: 6px;
               }
             }
           }

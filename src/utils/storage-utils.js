@@ -6,9 +6,14 @@ export const getFileReference = async data => {
     const baseUrl = `https://storage.googleapis.com/${data.bucketName}`;
     let imagePath = fileUrl.replace(baseUrl, '');
     const indexOfEndPath = imagePath.indexOf('?');
-    imagePath = imagePath.substring(0, indexOfEndPath);
-    imagePath = imagePath.replace('%2F','/'); 
-    imagePath = (imagePath.startsWith('/') ? imagePath.substring(1) : imagePath);
+
+    // In case url has a query parameters get rid of those to get a clean file path
+    if (indexOfEndPath > -1) {
+      imagePath = imagePath.substring(0, indexOfEndPath);
+      imagePath = imagePath.replace('%2F','/'); 
+      imagePath = (imagePath.startsWith('/') ? imagePath.substring(1) : imagePath);
+    }
+    
     return imagePath; 
   };
   const fileReference = bucket.file(getPathStorageFromUrl(data.fileUrl));

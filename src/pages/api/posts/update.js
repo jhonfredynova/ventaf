@@ -3,6 +3,7 @@ import { runMiddleware } from '../../../utils/api-utils';
 import authorization from '../../../middlewares/authorization';
 import files from '../../../middlewares/files';
 import { getSearchTerms, deletePostImages } from '../../../utils/post-utils';
+import validatePost from '../../../validations/validate-post';
 
 export const config = {
   api: {
@@ -46,12 +47,20 @@ export default async function updatePost(req, res) {
       updatedAt: Date.now()
     };
 
+    // validate data
+    const errors = validatePost(modelData);
+
+    if (Object.keys(errors).length > 0) {
+      res.status(400).json({ code: 'modelErrors', errors });
+      return;
+    }
+
     // updating post in transaction
     await db.runTransaction(async transaction => {
       const uploadedPhotos = req.files.photos || [];
       if (uploadedPhotos.length > 0) {
         // deleting post photos
-        await deletePostImages(postId, postDb.photos);
+        await deletePostImages(postDb.photos);
 
         // uploading photos
         const storageData = {

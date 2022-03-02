@@ -37,7 +37,7 @@ export const getSearchTerms = postData => {
   return searchTerms;
 };
 
-export const deletePostImages = async (postId, photosToDelete) => {
+export const deletePostImages = async photosToDelete => {
   if (photosToDelete.length === 0) {
     return;
   }

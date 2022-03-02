@@ -33,7 +33,7 @@ export default function Logo(props) {
           }
 
           .text3 {
-            color: #dc3545;
+            color: var(--color-alert);
             margin-top: 2px;
           }
 

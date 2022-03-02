@@ -43,9 +43,9 @@ export default function MyApp({ Component, pageProps }) {
         :root {
           --color-background: #fff;
           --color-border: #ccc;
-          --color-primary: #0076a3;
+          --color-primary: #00709a;
           --color-secondary: #e4e6eb;
-          --color-alert: #dc3545;
+          --color-alert: #bc2c39;
           --color-text: #333;
 
           --container-width: 1200px;

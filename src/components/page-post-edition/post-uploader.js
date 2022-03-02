@@ -16,11 +16,8 @@ export default function PostUploader(props) {
   const fileInput = useRef(null);
 
   const allowedExtentions = ['jpg', 'jpeg', 'gif', 'png'];
-  const maxFileSizeMb = 20;
   const uploadWarningFileExtentionsMessage = (translations['uploadWarningFileExtentionsMessage'] || '')
     .replace(/{allowedExtentions}/g, allowedExtentions.join(', '));
-  const uploadWarningFileSizeMessage = (translations['uploadWarningFileSizeMessage'] || '')
-    .replace(/{maxFileSizeMb}/g, maxFileSizeMb);
 
   const onUploadMedia = () => {
     fileInput.current.click();
@@ -36,13 +33,11 @@ export default function PostUploader(props) {
     setWarningMsg('');
     
     const selectedFiles = [...event.target.files];
-    const validFiles = validateFiles(selectedFiles, allowedExtentions, maxFileSizeMb);
+    const validFiles = validateFiles(selectedFiles, allowedExtentions);
 
     // If there are file errros 
     if (selectedFiles.length !== validFiles.length) {
-      const warningMsg = translations['wrongUploadedFiles']
-        .replace(/{extentions}/g, allowedExtentions.join(', '))
-        .replace(/{maxFilesize}/g, maxFileSizeMb);
+      const warningMsg = translations['wrongUploadedFiles'].replace(/{extentions}/g, allowedExtentions.join(', '));
       const wrongFiles = selectedFiles.filter(item => !validFiles.find(file => file.name === item.name));
       setShowModalWarning(true);
       setWarningMsg(warningMsg);
@@ -97,9 +92,6 @@ export default function PostUploader(props) {
       <span className="error-msg">{error}</span>
       <p className="warning-msg">
         <small>{uploadWarningFileExtentionsMessage}</small>
-      </p>
-      <p className="warning-msg">
-        <small>{uploadWarningFileSizeMessage}</small>
       </p>
       <p className="warning-msg">
         <small>{translations.recommendedAspectRatio}</small>

@@ -95,7 +95,7 @@ export default function PostTile(props) {
               }
 
               .description {
-                color: #777;
+                color: var(--color-text);
                 margin-top: 3px;
                 display: -webkit-box;
                 -webkit-line-clamp: 2;

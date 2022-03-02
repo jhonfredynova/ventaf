@@ -136,7 +136,13 @@ const EditPost = () => {
               {translations['saving']}
             </>
           }
-          {!isPosting && translations['update']}
+          {
+            !isPosting && 
+            <>
+              <i className="fas fa-solid fa-check" title={translations['update']} />
+              {translations['update']}
+            </>
+          }
         </button>
       </div>  
       <style jsx>{`
@@ -163,7 +169,7 @@ const EditPost = () => {
                 cursor: default;
               }
               
-              .fa-spin {
+              .fas {
                 margin-right: 4px;
               }
             }
