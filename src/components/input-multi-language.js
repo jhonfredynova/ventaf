@@ -28,7 +28,6 @@ export default function InputMultiLanguage(props) {
       <div className="editor-wrapper">
         {isHtmlText 
           ? (<RichEditor
-              style={{ height: '208px' }}
               value={value[activeLang] || ''}
               onChange={newValue => onChange({ ...value, [activeLang]: newValue })} />
             ) 
@@ -76,6 +75,10 @@ export default function InputMultiLanguage(props) {
 
           .editor-wrapper {
             overflow: hidden;
+
+            :global(.quill .ql-container) {
+              height: 208px;
+            }
 
             textarea {
               border: 1px solid var(--color-border);
