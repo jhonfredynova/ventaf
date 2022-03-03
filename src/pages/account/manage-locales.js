@@ -43,7 +43,7 @@ const ManageLocales = () => {
   const { translations } = useSelector(state => state.config);
   const locales = useSelector(state => state.locale.records);
   const filteredLocales = locales
-    .filter(locale => locale.name.includes(searchTerm))
+    .filter(locale => locale.name.toLowerCase().includes(searchTerm.toLowerCase()))
     .slice(0, pageSize);
   const hasMoreLocales = filteredLocales.length < locales.length;
 

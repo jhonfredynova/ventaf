@@ -9,12 +9,6 @@ export default function Lightbox(props) {
     }
   };
 
-  const onClickOutside = event => {
-    if (event.target.className.includes('lightbox')) {
-      onToggle();
-    }
-  };
-
   useEffect(() => {
     document.addEventListener('keyup', onKeyup);
 
@@ -24,7 +18,7 @@ export default function Lightbox(props) {
   }, [onKeyup]);
 
   return (
-    <div className={`lightbox ${isOpen ? 'show' : 'hide'}`} onClick={onClickOutside}>
+    <div className={`lightbox ${isOpen ? 'show' : 'hide'}`}>
       {
         isOpen &&
         <>
