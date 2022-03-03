@@ -120,16 +120,20 @@ export default function FormPost(props) {
 
           .buttons-wrapper {
             grid-column: span 2;
-            margin-top: calc(var(--spacer) * 2);
-            text-align: right;
+            margin-top: var(--spacer);
 
             .btn-post {
+              display: flex;
+              align-items: center;
+              justify-content: center;
               background: var(--color-primary);
               border: 1px solid var(--color-border);
               border-radius: var(--spacer);
               color: white;
               cursor: pointer;
+              font-size: 2.0rem;
               padding: var(--spacer);
+              margin-left: auto;
 
               &:disabled {
                 background-color: var(--color-secondary);
@@ -149,8 +153,32 @@ export default function FormPost(props) {
             .form-row-full {
               grid-column: 1/3;
             }
+          } 
+        }
+
+        @media screen and (max-width: ${BREAKPOINTS.DESKTOP}) {
+          .form-post {
+            .buttons-wrapper{
+              position: fixed;
+              left: 0;
+              bottom: 0;
+              z-index: 2;
+              display: flex;
+              width: 100%;
+
+              .btn-post {
+                flex: 1;
+                margin: 0;
+                border-radius: 0;
+              }
+            }
+          }
+
+          :global(.footer) {
+            margin-bottom: 50px;
           }
         }
+
       `}</style>
     </>
   );
