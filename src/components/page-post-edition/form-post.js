@@ -113,7 +113,7 @@ export default function FormPost(props) {
             height: 100px;
             width: 100%;
 
-            @media screen and (min-width: ${BREAKPOINTS.TABLET}) {
+            @media screen and (min-width: ${BREAKPOINTS.DESKTOP}) {
               height: 160px;
             }
           }
@@ -147,7 +147,7 @@ export default function FormPost(props) {
             }
           }
 
-          @media screen and (min-width: ${BREAKPOINTS.TABLET}) {
+          @media screen and (min-width: ${BREAKPOINTS.DESKTOP}) {
             grid-template-columns: 1fr 1fr;
 
             .form-row-full {
