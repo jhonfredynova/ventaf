@@ -71,9 +71,11 @@ export default function PostUploader(props) {
         value={photos}
         onChange={onChange}>
         {
-          [...Array(6).keys()].map((mediaSequence, mediaIndex) =>
+          [...Array(6).keys()]
+          .filter((mediaSequence, mediaIndex) => photos[mediaIndex])
+          .map((mediaSequence, mediaIndex) =>
             <PostUploaderItem
-              key={(photos[mediaIndex] && photos[mediaIndex].name) || mediaSequence}
+              key={mediaSequence}
               isLoading={isProcessingPhotos}
               allowDeletion={true}
               className={`${photos[mediaIndex] ? 'drag' : ''} media-${mediaSequence}`}
@@ -84,6 +86,16 @@ export default function PostUploader(props) {
               onDelete={onDeleteMedia}>
             </PostUploaderItem>
           )
+        }
+        {
+          photos.length < 6 &&
+          <PostUploaderItem
+            key="addNewPhoto"
+            isLoading={isProcessingPhotos}
+            allowDeletion={true}
+            translations={translations}            
+            onUpload={onUploadMedia}>
+          </PostUploaderItem>
         }
       </Sortable>
       <span className="error-msg">{error}</span>

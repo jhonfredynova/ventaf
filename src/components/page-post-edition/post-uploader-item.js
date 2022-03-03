@@ -35,8 +35,8 @@ export default function PostUploaderItem(props) {
           {
             !isLoading && 
             <>
-              <div><i className="fas fa-photo-video"></i></div>
-              <div>{translations['photo']}</div>
+              <div className='icon-add'><i className="fas fa-plus fa-2x"></i></div>
+              <div>{translations.addPhoto}</div>
             </>
           }
         </button>
@@ -89,6 +89,10 @@ export default function PostUploaderItem(props) {
             justify-content: center;
             width: 100%;
             height: 100%;
+
+            .icon-add {
+              margin-bottom: 5px;
+            }
           }
 
           .btn-delete {
