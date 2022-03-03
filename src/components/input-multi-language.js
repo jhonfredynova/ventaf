@@ -4,12 +4,14 @@ import { isHtml } from '../utils/text-utils';
 
 export default function InputMultiLanguage(props) {
   const { languages, value, onChange } = props;
-  const [activeLang, setActiveLang] = useState('en');
   const [isHtmlText, setIsHtmlText] = useState(null);
+  const [currentLang, setCurrentLang] = useState('en');
 
   useEffect(() => {
-    setIsHtmlText(isHtml(value[activeLang]));
-  }, [value]);
+    if (isHtmlText === null) {
+      setIsHtmlText(isHtml(value[currentLang]));
+    }
+  }, [value[currentLang]]);
 
   return (
     <div className="input-multi-language">
@@ -18,25 +20,26 @@ export default function InputMultiLanguage(props) {
           <li key={lang}>
             <button 
               type="button"
-              className={`btn-tab ${activeLang === lang && 'active'}`}
-              onClick={() => setActiveLang(lang)}>
+              className={`btn-tab ${currentLang === lang && 'active'}`}
+              onClick={() => setCurrentLang(lang)}>
               {lang}
             </button>
           </li>
         ))}
       </ul>
       <div className="editor-wrapper">
-        {isHtmlText 
-          ? (<RichEditor
-              value={value[activeLang] || ''}
-              onChange={newValue => onChange({ ...value, [activeLang]: newValue })} />
-            ) 
-          : (<textarea
-              style={{ height: '250px' }}
-              value={value[activeLang] || ''}
-              onChange={event => onChange({ ...value, [activeLang]: event.target.value })} />
-            )
-        }
+        {languages.map(lang => (
+          <div key={lang} style={{ display: (currentLang === lang ? 'block' : 'none') }}>
+            <RichEditor
+              style={{ display: (isHtmlText ? 'block' : 'none') }}
+              value={value[lang] || ''}
+              onChange={newValue => onChange({ ...value, [lang]: newValue })} />
+            <textarea
+              style={{ display: (isHtmlText ? 'none' : 'block'), height: '250px' }}
+              value={value[lang] || ''}
+              onChange={event => onChange({ ...value, [lang]: event.target.value })} />
+          </div>
+        ))}
       </div>
       <div className="buttons">
         <button
