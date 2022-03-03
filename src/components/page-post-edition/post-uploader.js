@@ -14,10 +14,7 @@ export default function PostUploader(props) {
   const [warningMsg, setWarningMsg] = useState('');
   const [wrongFiles, setWrongFiles] = useState([]);
   const fileInput = useRef(null);
-
   const allowedExtentions = ['jpg', 'jpeg', 'gif', 'png'];
-  const uploadWarningFileExtentionsMessage = (translations['uploadWarningFileExtentionsMessage'] || '')
-    .replace(/{allowedExtentions}/g, allowedExtentions.join(', '));
 
   const onUploadMedia = () => {
     fileInput.current.click();
@@ -90,12 +87,6 @@ export default function PostUploader(props) {
         }
       </Sortable>
       <span className="error-msg">{error}</span>
-      <p className="warning-msg">
-        <small>{uploadWarningFileExtentionsMessage}</small>
-      </p>
-      <p className="warning-msg">
-        <small>{translations.recommendedAspectRatio}</small>
-      </p>
       <Lightbox
         isOpen={showModalWarning}
         onToggle={() => setShowModalWarning(!showModalWarning)}>

@@ -115,6 +115,8 @@ const EditPost = () => {
         showBackBtn>
       </NavigationBar>
       <FormPost
+        isPosting={isPosting}
+        btnLabel={translations.update}
         callingCodes={callingCodes}
         currencies={currencies}
         errors={errors}
@@ -123,57 +125,12 @@ const EditPost = () => {
         onChangePhotos={setChangePhotos}
         onChangeModel={setModel}
         onSavePost={onSavePost}>
-      </FormPost>
-      <div className="buttons-wrapper">
-        <button 
-          className="btn-post" 
-          disabled={isPosting}
-          onClick={onSavePost}>
-          {
-            isPosting && 
-            <>
-              <i className="fas fa-spinner fa-spin" title={translations.saving}></i>
-              {translations['saving']}
-            </>
-          }
-          {
-            !isPosting && 
-            <>
-              <i className="fas fa-solid fa-check" title={translations['update']} />
-              {translations['update']}
-            </>
-          }
-        </button>
-      </div>  
+      </FormPost> 
       <style jsx>{`
         main {
           max-width: var(--container-width);
           margin: 0 auto;
           padding: calc(var(--spacer) * 2);
-
-          .buttons-wrapper {
-            margin-top: calc(var(--spacer) * 2);
-            text-align: right;
-
-            .btn-post {
-              background: var(--color-primary);
-              border: 1px solid var(--color-border);
-              border-radius: var(--spacer);
-              color: white;
-              cursor: pointer;
-              padding: var(--spacer);
-
-              &:disabled {
-                background-color: var(--color-secondary);
-                color: var(--color-text);
-                cursor: default;
-              }
-              
-              .fas {
-                margin-right: 4px;
-              }
-            }
-          }
         }    
       `}</style>
     </main>

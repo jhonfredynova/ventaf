@@ -7,7 +7,7 @@ import { BREAKPOINTS } from '../../utils/style-utils';
 
 export default function FormPost(props) {
   const { 
-    currencies, callingCodes, errors, model, translations, 
+    isPosting, btnLabel, currencies, callingCodes, errors, model, translations, 
     onChangePhotos, onChangeModel, onSavePost 
   } = props;
 
@@ -74,7 +74,27 @@ export default function FormPost(props) {
             }}>
           </PostUploader>
         </div>
-        <button className="btn-submit">Submit</button>
+        <div className="buttons-wrapper">
+          <button 
+            className="btn-post" 
+            disabled={isPosting}
+            onClick={onSavePost}>
+            {
+              isPosting && 
+              <>
+                <i className="fas fa-spinner fa-spin" title={translations['saving']}></i>
+                {translations['saving']}
+              </>
+            }
+            {
+              !isPosting && 
+              <>
+                <i className="fas fa-solid fa-check" title={btnLabel} />
+                {btnLabel}
+              </>
+            }
+          </button>
+        </div>
       </form>
       <style jsx>{`
         .error-msg {
@@ -98,8 +118,29 @@ export default function FormPost(props) {
             }
           }
 
-          .btn-submit {
-            display: none;
+          .buttons-wrapper {
+            grid-column: span 2;
+            margin-top: calc(var(--spacer) * 2);
+            text-align: right;
+
+            .btn-post {
+              background: var(--color-primary);
+              border: 1px solid var(--color-border);
+              border-radius: var(--spacer);
+              color: white;
+              cursor: pointer;
+              padding: var(--spacer);
+
+              &:disabled {
+                background-color: var(--color-secondary);
+                color: var(--color-text);
+                cursor: default;
+              }
+
+              .fas {
+                margin-right: 6px;
+              }
+            }
           }
 
           @media screen and (min-width: ${BREAKPOINTS.TABLET}) {

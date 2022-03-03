@@ -134,6 +134,8 @@ export default function NewPost() {
         showBackBtn>
       </NavigationBar>
       <FormPost
+        isPosting={isPosting}
+        btnLabel={translations.post}
         callingCodes={callingCodes}
         currencies={currencies}
         errors={errors}
@@ -141,58 +143,12 @@ export default function NewPost() {
         translations={translations}
         onChangeModel={onChangeModel}
         onSavePost={onSavePost}>
-      </FormPost>
-      <div className="buttons-wrapper">
-        <button 
-          className="btn-post" 
-          disabled={isPosting}
-          onClick={onSavePost}>
-          {
-            isPosting && 
-            <>
-              <i className="fas fa-spinner fa-spin" title={translations['saving']}></i>
-              {translations['saving']}
-            </>
-          }
-          {
-            !isPosting && 
-            <>
-              <i className="fas fa-solid fa-check" title={translations['sell']} />
-              {translations['sell']}
-            </>
-          }
-        </button>
-      </div>  
+      </FormPost>  
       <style jsx>{`
         main {
           max-width: var(--container-width);
           margin: 0 auto;
           padding: calc(var(--spacer) * 2);
-
-          .buttons-wrapper {
-            margin-top: calc(var(--spacer) * 2);
-            text-align: right;
-
-            .btn-post {
-              background: var(--color-primary);
-              border: 1px solid var(--color-border);
-              border-radius: var(--spacer);
-              color: white;
-              cursor: pointer;
-              padding: var(--spacer);
-
-              &:disabled {
-                background-color: var(--color-secondary);
-                color: var(--color-text);
-                cursor: default;
-              }
-
-              .fas {
-                margin-right: 6px;
-              }
-            }
-          }
-
           .lightbox-login {
             background-color: var(--color-background);
             border-radius: var(--spacer);
