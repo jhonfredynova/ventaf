@@ -1,5 +1,5 @@
 {
-  "appLastSync": 1646340307480,
+  "appLastSync": 1646344304598,
   "callingCodes": [
     {
       "countryFlag": "https://restcountries.eu/data/afg.svg",
@@ -4614,6 +4614,7 @@
       "changePasswordSuccess": "Your password has been changed correctly",
       "companyTaxEditionTitle": "Tax Edition",
       "linkWasCopied": "The link was copied",
+      "addPhoto": "Add Photo",
       "initialRange": "Initial range",
       "taxEditionTitle": "Tax Edition",
       "documentTypeRC": "RC (Civil registration)",
@@ -5311,6 +5312,7 @@
       "changePasswordSuccess": "Tu contraseña ha sido cambiada correctamente",
       "companyTaxEditionTitle": "Edición de Impuesto",
       "linkWasCopied": "El enlace fue copiado",
+      "addPhoto": "Agregar Foto",
       "initialRange": "Rango inicial",
       "taxEditionTitle": "Edición de Impuesto",
       "documentTypeRC": "RC (Registro civil)",

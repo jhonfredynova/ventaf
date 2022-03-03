@@ -33,11 +33,19 @@ export default function InputMultiLanguage(props) {
             <RichEditor
               style={{ display: (isHtmlText ? 'block' : 'none') }}
               value={value[lang] || ''}
-              onChange={newValue => onChange({ ...value, [lang]: newValue })} />
+              onChange={newValue => {
+                if (isHtmlText) {
+                  onChange({ ...value, [lang]: newValue });
+                }
+              }} />
             <textarea
               style={{ display: (isHtmlText ? 'none' : 'block'), height: '250px' }}
               value={value[lang] || ''}
-              onChange={event => onChange({ ...value, [lang]: event.target.value })} />
+              onChange={event => {
+                if (!isHtmlText) {
+                  onChange({ ...value, [lang]: event.target.value });
+                }
+              }} />
           </div>
         ))}
       </div>
