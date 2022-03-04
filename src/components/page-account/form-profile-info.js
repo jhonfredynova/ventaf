@@ -4,6 +4,7 @@ import { useRouter } from 'next/router';
 import InputPhone from '../input-phone';
 import { me } from '../../store/actions/auth-actions';
 import { updateUser } from '../../store/actions/user-actions';
+import { BREAKPOINTS } from '../../utils/style-utils';
 
 export default function FormProfileInfo(props) {
   const { authData, callingCodes, profile, translations } = props;
@@ -80,17 +81,6 @@ export default function FormProfileInfo(props) {
       </div>
 
       <div className="form-row">
-        <label htmlFor="website">{translations['website']}</label>
-        <input
-          id="website"
-          type="text"
-          value={userInfo.website}
-          onChange={e => setUserInfo({ ...userInfo, website: e.target.value })}>
-        </input>
-        <p className="error-msg">{translations[errors.website]}</p>
-      </div>
-
-      <div className="form-row">
         <label htmlFor="bio">{translations.bio}</label>
         <textarea
           id="bio"
@@ -101,7 +91,7 @@ export default function FormProfileInfo(props) {
         <p className="error-msg">{translations[errors.bio]}</p>
       </div>
 
-      <div className="buttons-wrapper">
+      <div className="form-row-full buttons-wrapper">
         <button type="submit" className="btn-submit" disabled={isUpdatingProfile}>
           {isUpdatingProfile && <i className="fas fa-spinner fa-spin"></i>}
           {translations.update}
@@ -110,10 +100,13 @@ export default function FormProfileInfo(props) {
 
       <style jsx>{`
         .form-profile-info {
+          display: grid;
+          grid-template-columns: 1fr;
+          column-gap: calc(var(--spacer) * 2);
+          row-gap: calc(var(--spacer) * 2);
+          margin-top: var(--spacer);
 
           .form-row {
-            margin-bottom: 10px;
-
             > label {
               display: block;
               margin-bottom: 5px;
@@ -165,6 +158,14 @@ export default function FormProfileInfo(props) {
               }
             }
           }
+
+          @media screen and (min-width: ${BREAKPOINTS.DESKTOP}) {
+            grid-template-columns: 1fr 1fr;
+
+            .form-row-full {
+              grid-column: 1/3;
+            }
+          } 
         }
       `}</style>
       
