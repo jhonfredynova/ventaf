@@ -7,7 +7,6 @@ export default function PostPrice(props) {
   const { id, errors, required, suggestions, translations, value: priceValue, onChange } = props;
   const [isModalOpen, setModalOpen] = useState(false);
   const selectedSuggestion = suggestions.find(item => item.value === priceValue.currency);
-  const priceErrors = errors || {};
 
   const customValue = selectedSuggestion => {
     const formattedValue = selectedSuggestion.label;
@@ -74,8 +73,8 @@ export default function PostPrice(props) {
           </button>
         }
       </div>
-      <p className="error-msg">{translations[priceErrors.currency] && translations['selectCurrency']}</p>
-      <p className="error-msg">{translations[priceErrors.value]}</p>
+      <p className="error-msg">{translations[errors?.currency] && translations['selectCurrency']}</p>
+      <p className="error-msg">{translations[errors?.value]}</p>
       <Lightbox
         isOpen={isModalOpen}
         onToggle={() => setModalOpen(!isModalOpen)}>
@@ -109,9 +108,15 @@ export default function PostPrice(props) {
             display: flex;
             align-items: center;
 
+            :global(.input-price),
+            .btn-clear,
+            .btn-indicative {
+              min-height: 40px;
+            }
+
             :global(.input-price) {
               flex-grow: 1;
-              border: 1px solid ${Object.keys(priceErrors || {}).length ? 'var(--color-alert)' : 'var(--color-border)'};
+              border: 1px solid ${errors?.value ? 'var(--color-alert)' : 'var(--color-border)'};
               padding: var(--spacer);
               width: 100%;
             }
@@ -119,14 +124,14 @@ export default function PostPrice(props) {
             .btn-indicative {
               display: flex;
               background: var(--color-secondary);
-              border: 1px solid var(--color-border);
+              border: 1px solid ${errors?.currency ? 'var(--color-alert)' : 'var(--color-border)'};
+              border-right: ${(errors?.currency && !errors?.value) ? '1px solid var(--color-alert)' : '0'};
               color: var(--color-text);
               cursor: pointer;
               align-items: center;
               justify-content: center;
               padding: var(--spacer);              
               text-transform: uppercase;
-              border-right: none;
               min-width: 60px;
 
               img {

@@ -6,7 +6,6 @@ export default function InputPhone(props) {
   const { id, translations, errors, required, suggestions, value: phoneValue, onChange } = props;
   const [isModalOpen, setModalOpen] = useState(false);
   const selectedSuggestion = suggestions.find(item => item.value === phoneValue.prefix);
-  const phoneErrors = errors || {};
   const customFilterLogic = (suggestion, searchValue) => {
     const { countryName, label, value } = suggestion;
     return `${countryName} ${label} ${value}`.toLowerCase().includes(searchValue.toLowerCase());
@@ -60,8 +59,8 @@ export default function InputPhone(props) {
           </button>
         }
       </div>
-      <p className="error-msg">{phoneErrors.prefix && translations.selectAreaCode}</p>
-      <p className="error-msg">{translations[phoneErrors.number]}</p>
+      <p className="error-msg">{errors?.prefix && translations.selectAreaCode}</p>
+      <p className="error-msg">{translations[errors?.number]}</p>
       <Lightbox
         isOpen={isModalOpen}
         onToggle={() => setModalOpen(!isModalOpen)}>
@@ -107,27 +106,25 @@ export default function InputPhone(props) {
               width: 100%;
             }
 
-            .btn-clear,
-            .btn-prefix {
-              border: 1px solid var(--color-border);
-              cursor: pointer;
-              padding: var(--spacer);
-            }
-
             .btn-prefix {
               background: var(--color-secondary);
-              border-color: ${errors?.prefix ? 'var(--color-alert)' : 'var(--color-border)'};
+              cursor: pointer;
+              padding: var(--spacer);
+              border: 1px solid ${errors?.prefix ? 'var(--color-alert)' : 'var(--color-border)'};
+              border-right: ${(errors?.prefix && !errors?.number) ? '1px solid var(--color-alert)' : '0'};
               color: var(--color-text);
               flex-shrink: 0;
               display: flex;
               align-items: center;
               justify-content: center;
-              border-right: ${(errors?.prefix && !errors?.number) ? '1px solid var(--color-alert)' : '0'};
               min-width: 60px;
             }
 
             .btn-clear {
               background: var(--color-alert);
+              border: none;
+              cursor: pointer;
+              padding: var(--spacer);
               color: white;
             }
           }

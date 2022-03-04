@@ -38,7 +38,7 @@ export default modelData => {
     errors.seller = {
       ...errors.seller,
       phone: {
-        ...errors.phone,
+        ...errors.seller?.phone,
         prefix: 'selectPhonePrefix'
       }
     };
@@ -48,7 +48,7 @@ export default modelData => {
     errors.seller = {
       ...errors.seller,
       phone: {
-        ...errors.phone,
+        ...errors.seller?.phone,
         number: 'enterPhoneNumber'
       }
     };
