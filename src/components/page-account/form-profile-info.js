@@ -93,7 +93,11 @@ export default function FormProfileInfo(props) {
 
       <div className="form-row-full buttons-wrapper">
         <button type="submit" className="btn-submit" disabled={isUpdatingProfile}>
-          {isUpdatingProfile && <i className="fas fa-spinner fa-spin"></i>}
+          {
+            isUpdatingProfile 
+              ? <i className="fas fa-spinner fa-spin"></i>
+              : <i className="fas fa-check" title={translations.saving}></i> 
+          }
           {translations.update}
         </button>
       </div>
@@ -166,6 +170,27 @@ export default function FormProfileInfo(props) {
               grid-column: 1/3;
             }
           } 
+
+          @media screen and (max-width: ${BREAKPOINTS.DESKTOP}) {
+            .buttons-wrapper{
+              position: fixed;
+              left: 0;
+              bottom: 0;
+              z-index: 2;
+              display: flex;
+              width: 100%;
+
+              .btn-submit {
+                flex: 1;
+                margin: 0;
+                border-radius: 0;
+              }
+            }
+          }
+
+          :global(.footer) {
+            margin-bottom: 50px;
+          }
         }
       `}</style>
       
