@@ -3,7 +3,7 @@ import PlacesAutocomplete from 'react-places-autocomplete';
 import InputPlacesAutocomplete from './input-places-autocomplete';
 
 export default function InputLocation(props) {
-  const { id, autofocus, className, translations, placeholder, searchOptions, value, onBlur, onChange } = props;
+  const { id, autofocus, className, error, translations, placeholder, searchOptions, value, onBlur, onChange } = props;
   const [searchValue, setSearch] = useState(value.description || '');
   const [locationId, setLocationId] = useState(value.placeId || '');
 
@@ -47,6 +47,7 @@ export default function InputLocation(props) {
           id={id}
           autofocus={autofocus}
           className={className}
+          error={error}
           placeholder={placeholder}
           searchValue={searchValue}
           getInputProps={getInputProps}

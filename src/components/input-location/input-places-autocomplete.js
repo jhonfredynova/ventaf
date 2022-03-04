@@ -3,7 +3,7 @@ import React, { useEffect, useRef } from 'react';
 export default function InputPlacesAutocomplete(props) {
   const inputRef = useRef();
   const { getInputProps, suggestions, getSuggestionItemProps } = props;
-  const { id, autofocus, className, placeholder, translations, searchValue, onBlur, onClear } = props;
+  const { id, autofocus, className, error, placeholder, translations, searchValue, onBlur, onClear } = props;
 
   useEffect(() => {
     if (autofocus) {
@@ -74,7 +74,7 @@ export default function InputPlacesAutocomplete(props) {
           }
 
           input {
-            border: 1px solid var(--color-border);
+            border: 1px solid ${error ? 'var(--color-alert)' : 'var(--color-border)'};
             padding: var(--spacer);
             width: 100%;
           }

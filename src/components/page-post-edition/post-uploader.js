@@ -79,6 +79,7 @@ export default function PostUploader(props) {
               isLoading={isProcessingPhotos}
               allowDeletion={true}
               className={`${photos[mediaIndex] ? 'drag' : ''} media-${mediaSequence}`}
+              error={error}
               translations={translations}
               mediaIndex={mediaIndex}
               mediaData={photos[mediaIndex]}              
@@ -92,6 +93,7 @@ export default function PostUploader(props) {
           <PostUploaderItem
             key="addNewPhoto"
             isLoading={isProcessingPhotos}
+            error={error}
             allowDeletion={true}
             translations={translations}            
             onUpload={onUploadMedia}>

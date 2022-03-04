@@ -57,7 +57,7 @@ export default function PostPrice(props) {
           id={id}
           autocomplete="off"
           inputType="tel"
-          className="input-price"
+          className='input-price'
           decimalScale={2}
           placeholder={translations['price']}
           value={priceValue.value}
@@ -111,7 +111,7 @@ export default function PostPrice(props) {
 
             :global(.input-price) {
               flex-grow: 1;
-              border: 1px solid var(--color-border);
+              border: 1px solid ${Object.keys(priceErrors || {}).length ? 'var(--color-alert)' : 'var(--color-border)'};
               padding: var(--spacer);
               width: 100%;
             }

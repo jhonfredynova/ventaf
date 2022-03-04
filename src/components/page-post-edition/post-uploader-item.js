@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
 export default function PostUploaderItem(props) {
-  const { isLoading, allowDeletion, className, translations, mediaIndex, mediaData, onUpload, onDelete } = props;
+  const { isLoading, allowDeletion, className, error, translations, mediaIndex, mediaData, onUpload, onDelete } = props;
   const [mediaUrl, setMediaUrl] = useState(null);
 
   useEffect(() => {
@@ -76,7 +76,7 @@ export default function PostUploaderItem(props) {
           .btn-placeholder {
             position: absolute;
             background: var(--color-secondary);
-            border: 1px solid var(--color-border);
+            border: 1px solid ${error ? 'var(--color-alert)' : 'var(--color-border)'};
             color: var(--color-text);
             cursor: pointer;
             left: 0;

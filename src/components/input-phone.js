@@ -96,7 +96,7 @@ export default function InputPhone(props) {
 
             input {
               flex-grow: 1;
-              border: 1px solid var(--color-border);
+              border: 1px solid ${Object.keys(errors || {}).length ? 'var(--color-alert)' : 'var(--color-border)'};
               padding: var(--spacer);
               width: 100%;
             }
