@@ -60,13 +60,13 @@ export default function InputPhone(props) {
           </button>
         }
       </div>
-      <p className="error-msg">{translations[phoneErrors.prefix] && translations['selectAreaCode']}</p>
+      <p className="error-msg">{phoneErrors.prefix && translations.selectAreaCode}</p>
       <p className="error-msg">{translations[phoneErrors.number]}</p>
       <Lightbox
         isOpen={isModalOpen}
         onToggle={() => setModalOpen(!isModalOpen)}>
         <div className="lightbox-phone-number">
-          <h2>{translations['selectAreaCode']}</h2>
+          <h2>{translations.selectAreaCode}</h2>
           <InputSuggestions
             autofocus
             translations={translations}
@@ -94,9 +94,15 @@ export default function InputPhone(props) {
             display: flex;
             align-items: center;
 
+            input,
+            .btn-clear,
+            .btn-prefix {
+              min-height: 40px;
+            }
+
             input {
               flex-grow: 1;
-              border: 1px solid ${Object.keys(errors || {}).length ? 'var(--color-alert)' : 'var(--color-border)'};
+              border: 1px solid ${errors?.number ? 'var(--color-alert)' : 'var(--color-border)'};
               padding: var(--spacer);
               width: 100%;
             }
@@ -110,12 +116,13 @@ export default function InputPhone(props) {
 
             .btn-prefix {
               background: var(--color-secondary);
+              border-color: ${errors?.prefix ? 'var(--color-alert)' : 'var(--color-border)'};
               color: var(--color-text);
               flex-shrink: 0;
               display: flex;
               align-items: center;
               justify-content: center;
-              border-right: 0;
+              border-right: ${(errors?.prefix && !errors?.number) ? '1px solid var(--color-alert)' : '0'};
               min-width: 60px;
             }
 
