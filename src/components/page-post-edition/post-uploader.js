@@ -75,10 +75,10 @@ export default function PostUploader(props) {
           .filter((mediaSequence, mediaIndex) => photos[mediaIndex])
           .map((mediaSequence, mediaIndex) =>
             <PostUploaderItem
-              key={mediaSequence}
+              key={`${photos[mediaIndex].name}-${mediaSequence}`}
               isLoading={isProcessingPhotos}
               allowDeletion={true}
-              className={`${photos[mediaIndex] ? 'drag' : ''} media-${mediaSequence}`}
+              className={`drag media-${mediaSequence}`}
               error={error}
               translations={translations}
               mediaIndex={mediaIndex}
