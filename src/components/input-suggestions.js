@@ -25,7 +25,7 @@ export default function InputSuggestions(props) {
   const onKeyDown = event => {
     if (['Enter', 13].includes(event.key)) {
       event.preventDefault();
-      onChange(selectedSuggestion.value);
+      onChange(selectedSuggestion?.value);
     }
   };
 
@@ -49,7 +49,7 @@ export default function InputSuggestions(props) {
 
   const onClickSuggestion = suggestion => {
     setSearch('');
-    onChange(suggestion.value);
+    onChange(suggestion?.value);
   };
 
   const onInputChange = event => {
