@@ -54,25 +54,6 @@ export default function NewPost() {
     setModel(newModel);
   };
 
-  const onLeavePage = event => {
-    if (changedData.current) {
-      event.preventDefault();
-      event.returnValue = '';
-      return;
-    }
-  };
-
-  const onLeaveRoute = () => {
-    if (!changedData.current) { 
-      return;
-    }
-    if (window.confirm(translations['areYouSureLeavePage?'])) {
-      return;
-    }
-    router.events.emit('routeChangeError');
-    throw 'routeChange aborted.';
-  };
-
   const onSavePost = async event => {
     try {
       if (event) {
@@ -105,6 +86,25 @@ export default function NewPost() {
   };
 
   useEffect(() => {
+    const onLeavePage = event => {
+      if (changedData.current) {
+        event.preventDefault();
+        event.returnValue = '';
+        return;
+      }
+    };
+  
+    const onLeaveRoute = () => {
+      if (!changedData.current) { 
+        return;
+      }
+      if (window.confirm(translations['areYouSureLeavePage?'])) {
+        return;
+      }
+      router.events.emit('routeChangeError');
+      throw 'routeChange aborted.';
+    };
+
     window.addEventListener('beforeunload', onLeavePage);
     router.events.on('routeChangeStart', onLeaveRoute);
 
@@ -112,14 +112,15 @@ export default function NewPost() {
       window.removeEventListener('beforeunload', onLeavePage);
       router.events.off('routeChangeStart', onLeaveRoute);
     };
-  }, [changedData]);
+  }, [changedData, router.events, translations]);
 
   useEffect(() => {
     const userPhone = authData?.profile?.phone;
-    if (userPhone) {
+
+    if (userPhone && !model.seller.phone) {
       setModel({ ...model, seller: { ...model.seller, phone: userPhone } });
     }
-  }, [authData]);
+  }, [authData, model]);
 
   return (
     <main>

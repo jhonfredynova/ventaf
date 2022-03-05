@@ -58,7 +58,7 @@ export default function PostDetails() {
     if (window.screen.width > parseInt(BREAKPOINTS.PHONE)) {
       store.dispatch(getRelatedContent(postData.id));
     }
-  }, [postData]);
+  }, [store, postData]);
 
   return (
     <main>

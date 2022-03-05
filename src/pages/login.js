@@ -32,7 +32,7 @@ export default function Login() {
     if (authData) {
       router.push(`/${authData.profile.username}`);
     }
-  }, [authData]);
+  }, [authData, router]);
 
   return (
     <main>

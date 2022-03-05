@@ -1,11 +1,12 @@
 import React from 'react';
+import Image from 'next/image';
 
 export default function Logo(props) {
   const { translations } = props;
 
   return (
     <div className="logo">
-      <img src="/logo.png" alt={translations['slogan']} width={35} height={35} />{' '}
+      <Image src="/logo.png" alt={translations['slogan']} width={35} height={35} />{' '}
       <span className="text1">Construccion</span>
       <span className="text2">&</span>
       <span className="text3">Tecnologia</span>
@@ -16,13 +17,10 @@ export default function Logo(props) {
           justify-content: center;
           font-size: 2rem;
 
-          img {
-            margin-right: 5px
-          }
-
           .text1 {
             color: var(--color-links);
             margin-bottom: 2px;
+            margin-left: 5px;
           }
 
           .text2 {

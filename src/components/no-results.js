@@ -1,4 +1,5 @@
 import React from 'react';
+import Image from 'next/image';
 
 export default function NoResults(props) {
   const { message, translations } = props;
@@ -8,12 +9,11 @@ export default function NoResults(props) {
     <div className="no-results">
       
       <p>{defaultMessage}</p>
-      <img 
-        src={
-          'https://firebasestorage.googleapis.com/v0/b/construccionytecnologia-f556c.appspot.com/o/'
-          .concat('no-results.svg?alt=media&token=c3387719-ba87-4a58-93aa-618229db49d8')
-        }
-        alt={defaultMessage} />
+      <Image 
+        src="https://storage.googleapis.com/construccionytecnologia-f556c.appspot.com/no-results.svg"
+        alt={defaultMessage}
+        width="800" 
+        height="600" />
 
       <style jsx>{`
         .no-results {

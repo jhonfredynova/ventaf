@@ -11,7 +11,7 @@ export default function InputMultiLanguage(props) {
     if (isHtmlText === null) {
       setIsHtmlText(isHtml(value[currentLang]));
     }
-  }, [value[currentLang]]);
+  }, [isHtmlText, currentLang, value]);
 
   return (
     <div className="input-multi-language">

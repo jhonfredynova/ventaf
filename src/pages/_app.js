@@ -11,16 +11,12 @@ export default function MyApp({ Component, pageProps }) {
   const store = useStore(pageProps.initialReduxState);
   const router = useRouter();
 
-  useEffect(async () => {
+  useEffect(() => {
     ReactGA.initialize(window.gAnalyticsKey, {});
-    
-    if (localStorage.token) {
-      await store.dispatch(setToken(localStorage.token));
-    }
-
-    store.dispatch(me());
-  }, []);
-
+    store.dispatch(setToken(localStorage.token)).finally(() => {
+      store.dispatch(me());
+    });
+  }, [store]);
 
   useEffect(() => {
     ReactGA.pageview(`${window.location.pathname}${window.location.search}`);

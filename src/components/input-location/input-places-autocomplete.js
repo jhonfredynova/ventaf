@@ -11,7 +11,7 @@ export default function InputPlacesAutocomplete(props) {
         inputRef.current.focus();
       }, 50); 
     }
-  }, []);
+  }, [autofocus]);
 
   return (
     <div className="input-places-autocomplete">

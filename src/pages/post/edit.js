@@ -38,30 +38,23 @@ const EditPost = () => {
   const { authData } = useSelector(state => state.auth);
   const postData = useSelector(state => state.post.currentPost);
   const router = useRouter();
-
   const [isPosting, setIsPosting] = useState(false);
+  const [isPhotosLoaded, setIsPhotosLoaded] = useState(false);
   const [changePhotos, setChangePhotos] = useState(false);
   const [errors, setErrors] = useState(false);
   const [model, setModel] = useState(postData);
   const { callingCodes, currencies, translations } = useSelector(state => state.config);
-
   const pageTitle = translations['adEditionTitle'];
   const pageDescription = translations['adEditionDescription'];
 
   useEffect(() => {
-    const userPhone = authData?.profile?.phone;
-
-    if (userPhone) {
-      setModel({ ...model, seller: { ...model.seller, phone: userPhone } });
+    if (!isPhotosLoaded && postData) {
+      getFilesFromUrls(postData.photos).then(filesData => {
+        setModel({ ...model, photos: filesData });
+        setIsPhotosLoaded(true);
+      });
     }
-  }, [authData]);
-
-  useEffect(async () => {
-    if (postData) {
-      const filesData = await getFilesFromUrls(postData.photos);
-      setModel({ ...model, photos: filesData });
-    }
-  }, [postData]);
+  }, [isPhotosLoaded, model, postData]);
 
   const onSavePost = async event => {
     try {

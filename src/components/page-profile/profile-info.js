@@ -5,6 +5,7 @@ import { useRouter } from 'next/router';
 import LoginMethods from '../page-profile/login-methods';
 import { BREAKPOINTS } from '../../utils/style-utils';
 import { uploadProfilePhoto } from '../../store/actions/auth-actions';
+import Image from 'next/image';
 
 export default function ProfileInfo(props) {
   const uploadInputPhoto = useRef(null);
@@ -19,8 +20,8 @@ export default function ProfileInfo(props) {
   const identities = (authData?.providerData) || {};
 
   useEffect(() => {
-    setProfilePhotoUrl(`${profilePhotoUrl}?${Date.now()}`);
-  }, [authData]);
+    setProfilePhotoUrl(`${userProfile.photoURL}?${Date.now()}`);
+  }, [userProfile.photoURL]);
 
   const onUploadPhoto = async event => {
     try {
@@ -70,14 +71,14 @@ export default function ProfileInfo(props) {
             }
             {
               !isUploadingPhoto &&
-              <img src={profilePhotoUrl} alt={userProfile.username} />
+              <Image src={profilePhotoUrl} alt={userProfile.username} layout="fixed" width={150} height={150} />
             }
             {uploadError && <p className="error-msg">{uploadError}</p>}
           </button>
         }
         {
           !isProfileOwner &&
-          <img src={profilePhotoUrl} alt={userProfile.username} />
+          <Image src={profilePhotoUrl} alt={userProfile.username} layout="fixed" width={150} height={150} />
         }
       </div>
 
@@ -140,11 +141,9 @@ export default function ProfileInfo(props) {
               height: 150px;
             }
 
-            img {
+            :global(img) {
               border-radius: 50%;
               margin: 0 auto;
-              width: 150px;
-              height: 150px;
             }
           }
 

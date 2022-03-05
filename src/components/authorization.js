@@ -8,6 +8,7 @@ export default function AuthorizationWrapper(ComposedComponent, requiredClaims =
     const [renderedComponent, setRenderedComponent] = useState(false);
     const { authData, authLoaded } = useSelector(state => state.auth);
     const config = useSelector(state => state.config);
+    const { translations } = config;
     const router = useRouter();
 
     useEffect(() => {
@@ -16,18 +17,18 @@ export default function AuthorizationWrapper(ComposedComponent, requiredClaims =
       }
 
       if (!authData) {
-        router.push(`/login?message=${config.translations['authNotLogin']}`);
+        router.push(`/login?message=${translations.authNotLogin}`);
         return;
       } 
       if (authData && requiredClaims.length > 0 && !authData.claims.filter(item => requiredClaims.includes(item)).length) {
-        router.push(`/login?message=${config.translations['authNotPriviliges']}`);
+        router.push(`/login?message=${translations.authNotPriviliges}`);
         return;
       }
 
       if (!renderedComponent) {
         setRenderedComponent(true);
       }
-    }, [authLoaded]);
+    }, [authLoaded, authData, renderedComponent, translations, router]);
 
     return (
       renderedComponent &&

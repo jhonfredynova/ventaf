@@ -24,31 +24,33 @@ export default function Popover(props) {
     };
   };
   const targetPosition = getPopoverPosition(target);
-  const onDocumentClick = event => {
-    if (isOpen && popover && !target.contains(event.target) && !popover.current.contains(event.target)) {
-      onToggle();
-    }
-  };
-  const onResizeWindow = () => {
-    setScreenWidth(window.innerWidth);
-  };
 
   useEffect(() => {
+    const onDocumentClick = event => {
+      if (isOpen && popover && !target.contains(event.target) && !popover.current.contains(event.target)) {
+        onToggle();
+      }
+    };
+
     document.addEventListener('click', onDocumentClick);
 
     return () => {
       document.removeEventListener('click', onDocumentClick);
     };
-  }, [onDocumentClick]);
+  }, [isOpen, onToggle, target]);
   
   useEffect(() => {
+    const onResizeWindow = () => {
+      setScreenWidth(window.innerWidth);
+    };
+
     window.addEventListener('resize', onResizeWindow);
     window.dispatchEvent(new CustomEvent('resize'));
 
     return () => {
       window.removeEventListener('resize', onResizeWindow);
     };
-  }, [onResizeWindow]);
+  }, []);
 
   return (
     <div

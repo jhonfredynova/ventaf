@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import ReactGA from 'react-ga';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
+import Image from 'next/image';
 import { geocodeByPlaceId } from 'react-places-autocomplete';
 import Logo from './components/logo';
 import SearchBar from './components/search-bar';
@@ -97,7 +98,7 @@ export default function Header(props) {
           </Link> 
           <Link href={(authLoaded && authData) ? `/${authData?.profile?.username}` : '/login'}>
             <a className="btn-profile" title={translations.profile}>
-              {authLoaded && <img src={photoUrl.concat(`?${Date.now()}`)} alt={translations.profile} />}
+              {authLoaded && <Image src={photoUrl.concat(`?${Date.now()}`)} alt={translations.profile} width={40} height={40} />}
               {!authLoaded && <i className="fas fa-spinner fa-spin fa-2x" title={translations.loading} />}
             </a>
           </Link>
@@ -161,14 +162,14 @@ export default function Header(props) {
 
               .btn-profile {
                 color: var(--color-text); 
-                margin-left: 6px;
+                margin-left: 8px;
                 text-decoration: none;
 
                 i {
                   pointer-events: none;
                 }
 
-                img {
+                :global(img) {
                   border-radius: 50%;
                   height: 38px;
                   width: 38px;

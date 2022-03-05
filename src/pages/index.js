@@ -50,11 +50,12 @@ export default function Home() {
     setIsLoadingMorePosts(false);
   };
 
-  useEffect(async () => {
+  useEffect(() => {
     setIsLoadingPosts(true);
-    await store.dispatch(getPosts(query));
-    setIsLoadingPosts(false);
-  }, [query]);
+    store.dispatch(getPosts(query)).then(() => {
+      setIsLoadingPosts(false);
+    });
+  }, [query, store]);
 
   return (
     <main>

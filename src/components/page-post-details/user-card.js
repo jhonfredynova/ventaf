@@ -1,5 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 
 export default function UserCard(props) {
   const { profile } = props;
@@ -14,8 +15,8 @@ export default function UserCard(props) {
   return (
     <Link href={`/${profile.username}`}>
       <a className="user-card">
-        <img src={photoURL} width={35} height={35} alt={username} />
-        <span className="text-truncate">{username}</span>
+        <Image src={photoURL} width={35} height={35} alt={username} />
+        <span className="username">{username}</span>
         <span className="arrow-right">
           <i className="fas fa-arrow-right"></i>
         </span>
@@ -32,8 +33,15 @@ export default function UserCard(props) {
             align-items: center;
             text-decoration: none;
 
-            img {
-              border-radius: 50%;
+            :global(img) {
+              border-radius: 50%;              
+            }
+
+            .username {              
+              white-space: nowrap;
+              text-overflow: ellipsis;
+              overflow: hidden;
+              margin-left: var(--spacer);
               margin-right: var(--spacer);
             }
 

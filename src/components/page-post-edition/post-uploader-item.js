@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import NextImage from 'next/image';
+import Image from 'next/image';
 
 export default function PostUploaderItem(props) {
   const { isLoading, allowDeletion, className, error, translations, mediaIndex, mediaData, onUpload, onDelete } = props;
@@ -55,7 +55,7 @@ export default function PostUploaderItem(props) {
               <i className="fas fa-times"></i>
             </button>
           }
-          <NextImage 
+          <Image 
             src={mediaUrl} 
             alt={`Media #${mediaIndex}`}
             layout="fill" />
