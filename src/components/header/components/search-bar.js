@@ -75,10 +75,6 @@ export default function SearchBar(props) {
             border: 1px solid var(--color-border);
             padding: var(--spacer);
             width: 100%;
-
-            &::placeholder {
-              color: var(--color-text);
-            }
           }
 
           .btn-clean,

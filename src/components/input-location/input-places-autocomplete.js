@@ -79,10 +79,6 @@ export default function InputPlacesAutocomplete(props) {
             color: var(--color-text);
             padding: var(--spacer);
             width: 100%;
-
-            &::placeholder {
-              color: var(--color-text);
-            }
           }
 
           .btn-clear {

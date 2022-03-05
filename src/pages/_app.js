@@ -85,6 +85,13 @@ export default function MyApp({ Component, pageProps }) {
               color: var(--color-links);
             }
 
+            input,
+            textarea {
+              &::placeholder {
+                color: var(--color-text);
+              }
+            }
+
             .sr-only {
               display: none;
             }

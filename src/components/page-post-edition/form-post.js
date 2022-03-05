@@ -121,10 +121,6 @@ export default function FormPost(props) {
             height: 100px;
             width: 100%;
 
-            &::placeholder {
-              color: var(--color-text);
-            }
-
             + .error-msg {
               margin-top: 0;
             }

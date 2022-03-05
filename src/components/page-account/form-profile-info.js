@@ -132,10 +132,6 @@ export default function FormProfileInfo(props) {
               color: var(--color-text);
               padding: var(--spacer);
               width: 100%;
-
-              &::placeholder {
-                color: var(--color-text);
-              }
             }
 
             .input-group {

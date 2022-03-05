@@ -125,10 +125,6 @@ export default function InputSuggestions(props) {
             background-color: var(--color-background);
             color: var(--color-text);
             padding: var(--spacer);
-
-            &::placeholder {
-              color: var(--color-text);
-            }
           }
 
           .btn-clear,
