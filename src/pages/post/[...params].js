@@ -15,7 +15,7 @@ import { getConfiguration } from '../../store/actions/config-actions';
 
 export const getServerSideProps = async ({ locale, query }) => {
   const store = initializeStore();
-  const postId = query?.postParams?.[1];
+  const postId = query?.params?.[1];
 
   await Promise.all([
     store.dispatch(getConfiguration(locale)),
