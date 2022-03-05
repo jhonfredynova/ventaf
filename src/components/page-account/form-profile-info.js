@@ -118,13 +118,24 @@ export default function FormProfileInfo(props) {
 
             .error-msg {
               color: var(--color-alert);
+              margin-top: 5px;
+              
+              &:empty {
+                margin-top: 0;
+              }
             }
 
             input,
             textarea {
               border: 1px solid var(--color-border);
+              background-color: var(--color-background);
+              color: var(--color-text);
               padding: var(--spacer);
               width: 100%;
+
+              &::placeholder {
+                color: var(--color-text);
+              }
             }
 
             .input-group {

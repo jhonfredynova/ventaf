@@ -54,7 +54,7 @@ export default function ContactButtons(props) {
             }
 
             &.btn-whatsapp {
-              background-color: rgb(61, 150, 70);
+              background-color: #36863e;
               color: white;
             }
 

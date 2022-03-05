@@ -15,19 +15,18 @@ export default function Logo(props) {
           align-items: center;
           justify-content: center;
           font-size: 2rem;
-          text-shadow: #CCC 1px 0 2px;
 
           img {
             margin-right: 5px
           }
 
           .text1 {
-            color: var(--color-primary);
+            color: var(--color-links);
             margin-bottom: 2px;
           }
 
           .text2 {
-            color: #000;
+            color: var(--color-text);
             font-weight: bold;
             margin: 0 2px;
           }

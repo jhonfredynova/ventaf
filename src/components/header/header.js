@@ -106,8 +106,11 @@ export default function Header(props) {
       </nav>
       <style jsx>{`
         header {
-          background: rgb(250, 250, 251);
-          box-shadow: rgba(0, 0, 0, 0.05) 0px 1px 2px 0px, rgba(0, 0, 0, 0.05) 0px 1px 4px 0px, rgba(0, 0, 0, 0.05) 0px 2px 8px 0px;
+          background: var(--color-background);
+          box-shadow: 
+            var(--color-secondary) 0px 1px 2px 0px, 
+            var(--color-secondary) 0px 1px 4px 0px, 
+            var(--color-secondary) 0px 2px 8px 0px;
           padding: var(--spacer);
           
           .navbar {
@@ -144,9 +147,9 @@ export default function Header(props) {
                 align-items: center;
                 background: none;
                 border: none;
-                border: 3px solid var(--color-primary);
+                border: 3px solid var(--color-links);
                 border-radius: 10px;
-                color: var(--color-primary);
+                color: var(--color-links);
                 cursor: pointer;
                 padding: var(--spacer);
                 text-decoration: none;

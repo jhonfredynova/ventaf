@@ -100,6 +100,11 @@ export default function FormPost(props) {
       <style jsx>{`
         .error-msg {
           color: var(--color-alert);
+          margin-top: 5px;
+          
+          &:empty {
+            margin-top: 0;
+          }
         }
         .form-post {
           display: grid;
@@ -110,9 +115,19 @@ export default function FormPost(props) {
 
           textarea {
             border: 1px solid ${errors.description ? 'var(--color-alert)' : 'var(--color-border)'};
+            background-color: var(--color-background);
+            color: var(--color-text);
             padding: var(--spacer);
             height: 100px;
             width: 100%;
+
+            &::placeholder {
+              color: var(--color-text);
+            }
+
+            + .error-msg {
+              margin-top: 0;
+            }
 
             @media screen and (min-width: ${BREAKPOINTS.DESKTOP}) {
               height: 160px;

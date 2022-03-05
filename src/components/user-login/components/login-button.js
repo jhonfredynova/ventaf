@@ -37,7 +37,7 @@ export default function LoginButton(props) {
           }
 
           &.google {
-            background-color: #e0523b;
+            background-color: #c94935;
             color: white;
           }
 

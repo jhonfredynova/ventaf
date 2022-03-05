@@ -87,6 +87,11 @@ export default function InputPhone(props) {
 
           .error-msg {
             color: var(--color-alert);
+            margin-top: 5px;
+
+            &:empty {
+              margin-top: 0;
+            }
           }
 
           .input-group {
@@ -102,8 +107,14 @@ export default function InputPhone(props) {
             input {
               flex-grow: 1;
               border: 1px solid ${errors?.number ? 'var(--color-alert)' : 'var(--color-border)'};
+              background-color: var(--color-background);
+              color: var(--color-text);
               padding: var(--spacer);
               width: 100%;
+
+              &::placeholder {
+                color: var(--color-text);
+              }
             }
 
             .btn-prefix {
@@ -122,7 +133,7 @@ export default function InputPhone(props) {
 
             .btn-clear {
               background: var(--color-alert);
-              border: none;
+              border: 1px solid var(--color-alert);
               cursor: pointer;
               padding: var(--spacer);
               color: white;

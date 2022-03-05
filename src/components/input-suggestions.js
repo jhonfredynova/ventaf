@@ -122,7 +122,13 @@ export default function InputSuggestions(props) {
           input {
             flex-grow: 1;
             border: 1px solid var(--color-border);
+            background-color: var(--color-background);
+            color: var(--color-text);
             padding: var(--spacer);
+
+            &::placeholder {
+              color: var(--color-text);
+            }
           }
 
           .btn-clear,

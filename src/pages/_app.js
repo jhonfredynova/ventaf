@@ -46,10 +46,23 @@ export default function MyApp({ Component, pageProps }) {
           --color-primary: #00709a;
           --color-secondary: #e4e6eb;
           --color-alert: #bc2c39;
+          --color-links: #00709a;
           --color-text: #333;
 
           --container-width: 1200px;
           --spacer: 10px;
+        }
+
+        @media (prefers-color-scheme: dark) {
+          :root {
+            --color-background: #333;
+            --color-border: #ccc;
+            --color-primary: #007aaa;
+            --color-secondary: #555;
+            --color-alert: #ff6a8c;
+            --color-links: #00a9eb;
+            --color-text: #fff;
+          }
         }
 
         /* General styles */
@@ -66,6 +79,10 @@ export default function MyApp({ Component, pageProps }) {
               box-sizing: border-box;
               margin: 0;
               padding: 0;
+            }
+
+            a {
+              color: var(--color-links);
             }
 
             .sr-only {

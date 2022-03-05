@@ -56,6 +56,7 @@ export default function Footer(props) {
               padding: 4px;
 
               :global(a) {
+                color: var(--color-links);
                 text-decoration: none;
               }
             }

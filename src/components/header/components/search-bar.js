@@ -69,10 +69,16 @@ export default function SearchBar(props) {
           flex-grow: 1;
 
           .input-search {
+            background-color: var(--color-background);
+            color: var(--color-text);
             flex-grow: 1;
             border: 1px solid var(--color-border);
             padding: var(--spacer);
             width: 100%;
+
+            &::placeholder {
+              color: var(--color-text);
+            }
           }
 
           .btn-clean,

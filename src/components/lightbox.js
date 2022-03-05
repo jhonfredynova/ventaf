@@ -28,7 +28,7 @@ export default function Lightbox(props) {
             className="btn-close" 
             data-dismiss="modal" 
             onClick={onToggle}>
-            &times;
+            <i className="fas fa-times fa-2x"></i>
           </button>
           <div className="content-wrapper">
             {props.children}
@@ -73,7 +73,6 @@ export default function Lightbox(props) {
             background: none;
             border: none;
             color: white;
-            font-size: 5rem;
             position: fixed;
             top: 10px;
             right: 10px;
