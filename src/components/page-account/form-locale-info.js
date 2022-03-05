@@ -32,7 +32,7 @@ export default function FormLocaleInfo(props) {
       setIsSaving(false);
       onSave();
     } catch (error) {
-      const { errors, code } = error?.response?.data;
+      const { errors, code } = error?.response?.data || {};
       setErrors({ ...errors, general: code });
       setIsSaving(false);
     }
