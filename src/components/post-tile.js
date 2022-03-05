@@ -16,7 +16,7 @@ export default function PostTile(props) {
         <header>
           <h2 className="sr-only">{trimTextWithEllipsis(data.description, 160)}</h2>
           <div className="thumbnail">
-            <Image src={featurePhoto} alt={data.description} layout="fill" />
+            <Image src={featurePhoto} alt={data.description} layout="fill" priority />
           </div>
         </header>
         <div className="info">
