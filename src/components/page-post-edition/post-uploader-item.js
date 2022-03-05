@@ -57,7 +57,8 @@ export default function PostUploaderItem(props) {
           }
           <NextImage 
             src={mediaUrl} 
-            alt={`Media #${mediaIndex}`} />
+            alt={`Media #${mediaIndex}`}
+            layout="fill" />
         </>
       }
       <style jsx>{`
@@ -78,11 +79,11 @@ export default function PostUploaderItem(props) {
             position: absolute;
             background: var(--color-secondary);
             border: 1px solid ${error ? 'var(--color-alert)' : 'var(--color-border)'};
+            border-radius: 8px;
             color: var(--color-text);
             cursor: pointer;
             left: 0;
             top: 0;
-            border-radius: 8px;
             padding: 0;
             display: flex;
             flex-direction: column;
@@ -115,9 +116,10 @@ export default function PostUploaderItem(props) {
             width: 23px;
           }
 
-          img {
+          :global(img) {
             position: absolute;
             background: black;
+            border: 1px solid var(--color-border)!important;
             border-radius: 8px;
             width: 100%;
             height: 100%;
