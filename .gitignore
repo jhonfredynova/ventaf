@@ -19,7 +19,6 @@ service-account.json
 
 # misc
 .DS_Store
-.vscode
 *.pem
 
 # debug
