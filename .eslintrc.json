@@ -5,8 +5,8 @@
     "node": true
   },
   "extends": [
-    "airbnb",
     "next/core-web-vitals",
+    "airbnb",
     "plugin:jest/recommended",
     "plugin:jsx-a11y/recommended",
     "plugin:react/recommended",
