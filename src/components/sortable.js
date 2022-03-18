@@ -36,7 +36,7 @@ export default class Sortable extends React.Component {
     const { className, tag, children } = this.props;  
 
     return (
-      React.createElement(tag, { className, ref: this.onSortRef }, children)
+      React.createElement(tag, { className, ref: this.onSortRef.bind(this) }, children)
     );
   }
 

@@ -86,7 +86,7 @@ export default function InputSuggestions(props) {
           <li
             key={suggestion.label}
             className={suggestion.label === value ? 'active' : ''}>
-            <button type='button' onMouseDown={() => onClickSuggestion(suggestion)}>
+            <button type='button' className='btn-link' onMouseDown={() => onClickSuggestion(suggestion)}>
               {customOption ? customOption(suggestion) : suggestion.label}
             </button>
           </li>
@@ -158,6 +158,9 @@ export default function InputSuggestions(props) {
             li {
               cursor: pointer;
               padding: var(--spacer);
+              text-align: left;
+              padding: 0;
+              margin: 0;
 
               &:hover {
                 background: var(--color-secondary);
@@ -165,6 +168,15 @@ export default function InputSuggestions(props) {
 
               &.active {
                 background: var(--color-secondary)
+              }
+
+              .btn-link {
+                background: none;
+                border: none;
+                cursor: pointer;
+                margin: 0;
+                padding: var(--spacer);
+                width: 100%
               }
             }
           }
