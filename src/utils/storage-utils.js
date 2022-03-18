@@ -96,7 +96,7 @@ export const uploadToStorage = async data => {
   const bucket = gcs.bucket(data.bucketName);
 
   const cleanFileName = uploadedFileName => {
-    const fileExtention = uploadedFileName.split('.').pop();
+    const fileExtention = uploadedFileName.split('.').pop().toLowerCase();
     const fileName = uploadedFileName
       .toLowerCase()
       .replace(`.${fileExtention}`, '')
