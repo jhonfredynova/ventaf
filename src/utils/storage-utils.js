@@ -96,31 +96,32 @@ export const uploadToStorage = async data => {
   const bucket = gcs.bucket(data.bucketName);
 
   const cleanFileName = uploadedFileName => {
-    const fileExtention = uploadedFileName.split('.').pop().toLowerCase();
+    const fileExtention = uploadedFileName
+      .toLowerCase()
+      .split('.')
+      .pop();
     const fileName = uploadedFileName
       .toLowerCase()
       .replace(`.${fileExtention}`, '')
       .replace(/ /g,'-')
       .replace(/--/g, '-')
-      .replace(/[^a-z0-9-]/gi, '')
-      .toLowerCase();
+      .replace(/[^a-z0-9-]/gi, '');
 
     return `${fileName}.${fileExtention}`;
   };
 
   const uploadFile = async (filePath, storageOptions) => {
     const uploadedFileName = cleanFileName(path.basename(filePath));
-    const uploadResponse = await bucket.upload(filePath, {
-      destination: (storageOptions.bucketPath ? `${storageOptions.bucketPath}/${uploadedFileName}` : uploadedFileName)
-    });
+    const fileBucketDestination = (storageOptions.bucketPath ? `${storageOptions.bucketPath}/${uploadedFileName}` : uploadedFileName);
+    const uploadResponse = await bucket.upload(filePath, { destination: fileBucketDestination });
     const uploadedFile = uploadResponse[0];
     await uploadedFile.makePublic();
+    const uploadedFilePublicUrl = uploadedFile.publicUrl();
 
-    return uploadedFile.publicUrl();
+    return uploadedFilePublicUrl;
   };
 
   const uploadPromises = data.filePaths.map(filePath => uploadFile(filePath, data));
-
   const uploadedFiles = await Promise.all(uploadPromises);
 
   return uploadedFiles;
