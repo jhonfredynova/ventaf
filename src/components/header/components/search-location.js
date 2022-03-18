@@ -14,17 +14,18 @@ export default function SearchLocation(props) {
       {
         locationStep === 'location-selected' &&
         <div className="location-selected">
-          <button className="btn-select-city" onClick={() => setLocationStep(LOCATION_STEPS.EDITION)}>
-            <i className="fas fa-location-arrow"></i> 
+          <button type='button' className="btn-select-city" onClick={() => setLocationStep(LOCATION_STEPS.EDITION)}>
+            <i className="fas fa-location-arrow" /> 
             <span className="city">{locationSelected.description || translations.allCities}</span>
           </button>
           {
             locationSelected.description && 
             <button 
+              type='button'
               className="btn-clear-city" 
               title={translations.clean} 
               onClick={() => onChange()}>
-              <i className="fas fa-times"></i>
+              <i className="fas fa-times" />
             </button>
           }
         </div>
@@ -44,11 +45,10 @@ export default function SearchLocation(props) {
             onChange={location => {
               onChange(location.placeId);
               setLocationStep(LOCATION_STEPS.SELECTED);
-            }}>
-          </InputLocation>
-          <button className="btn-ok" onClick={() => setLocationStep(LOCATION_STEPS.SELECTED)}>
+            }} />
+          <button type='button' className="btn-ok" onClick={() => setLocationStep(LOCATION_STEPS.SELECTED)}>
             <span className="sr-only">{translations.cancel}</span>
-            <i className="fas fa-check"></i>
+            <i className="fas fa-check" />
           </button>
         </div>
       }

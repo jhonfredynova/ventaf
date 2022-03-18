@@ -4,12 +4,11 @@ export default function PostEditionBar(props) {
   const { isLoading, translations, data, onEdit, onDelete } = props;
 
   return (
-    <>
-      <div className="post-edition-bar">
+    <div className="post-edition-bar">
         <button
           type="button"
           disabled={isLoading}
-          title={translations['edit']}
+          title={translations.edit}
           onClick={() => onEdit(data)}>
           <i className="fas fa-pen" />
         </button>
@@ -18,7 +17,7 @@ export default function PostEditionBar(props) {
           <button
             type="button"
             disabled={isLoading}
-            title={translations['delete']}
+            title={translations.delete}
             onClick={() => onDelete(data)}>
             <i className="fas fa-trash" />
           </button>
@@ -41,6 +40,5 @@ export default function PostEditionBar(props) {
           }
         `}</style>
       </div>
-    </>
   );
 }

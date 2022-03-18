@@ -22,16 +22,14 @@ export default function Terms() {
   return (
     <main> 
       <SEO
-        title={translations['termsTitle']}
-        description={translations['termsDescription']}>
-      </SEO>
+        title={translations.termsTitle}
+        description={translations.termsDescription} />
       <NavigationBar
-        title={translations['termsTitle']}
-        description={translations['termsDescription']}
-        showBackBtn={true}
-        translations={translations}>
-      </NavigationBar>
-      <article dangerouslySetInnerHTML={{ __html: translations['termsInfo'] }} />
+        title={translations.termsTitle}
+        description={translations.termsDescription}
+        showBackBtn
+        translations={translations} />
+      <article dangerouslySetInnerHTML={{ __html: translations.termsInfo }} />
       <style jsx>{`
         main {
           max-width: var(--container-width);

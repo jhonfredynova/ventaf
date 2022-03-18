@@ -23,7 +23,7 @@ export default function ContactButtons(props) {
         rel="noreferrer"
         target="_blank"
         onClick={() => onContactSeller('Contact ad seller via call', 2)}>
-        <i className="fas fa-phone fa-2x"></i> {translations['call']}
+        <i className="fas fa-phone fa-2x" /> {translations.call}
       </a>
       <a 
         className="link btn btn-whatsapp"
@@ -31,7 +31,7 @@ export default function ContactButtons(props) {
         rel="noreferrer"
         target="_blank"
         onClick={() => onContactSeller('Contact ad seller via whatsapp', 2)}>
-        <i className="fab fa-whatsapp fa-2x"></i> Whatsapp
+        <i className="fab fa-whatsapp fa-2x" /> Whatsapp
       </a>
       <style jsx>{`
         .contact-buttons {

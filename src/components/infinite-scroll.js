@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import Preloader from './preloader';
 
 export default function InfiniteScroll(props) {
-  const { isLoading, hasMoreData, onLoadMore } = props;
+  const { isLoading, hasMoreData, children, onLoadMore } = props;
 
   useEffect(() => {
     const onTrackScrolling = () => {
@@ -23,7 +23,7 @@ export default function InfiniteScroll(props) {
 
   return (
     <>
-      {props.children}
+      {children}
       {isLoading && <div className="loading-more"><Preloader /></div>}
       <style jsx>{`
         .loading-more {

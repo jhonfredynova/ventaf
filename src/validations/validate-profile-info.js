@@ -1,7 +1,7 @@
 import { isUrl } from '../utils/validation-utils';
 
 export default modelData => {
-  let errors = {};
+  const errors = {};
 
   if (!modelData.username?.trim()) {
     errors.username = 'fieldRequired';

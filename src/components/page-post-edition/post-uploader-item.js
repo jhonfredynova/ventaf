@@ -36,7 +36,7 @@ export default function PostUploaderItem(props) {
           {
             !isLoading && 
             <>
-              <div className='icon-add'><i className="fas fa-plus fa-2x"></i></div>
+              <div className='icon-add'><i className="fas fa-plus fa-2x" /></div>
               <div>{translations.addPhoto}</div>
             </>
           }
@@ -49,10 +49,10 @@ export default function PostUploaderItem(props) {
             allowDeletion &&
             <button 
               type="button"
-              title={translations['delete']}
+              title={translations.delete}
               className="btn-delete"
               onClick={() => onDelete(mediaIndex)}>
-              <i className="fas fa-times"></i>
+              <i className="fas fa-times" />
             </button>
           }
           <Image 

@@ -17,25 +17,27 @@ export default function LoginSocialNetworks(props) {
   const { isLoggingIn, translations, onLogginIn, onSuccess } = props;
 
   useEffect(() => {
-    let firebaseApp = firebaseClient.apps[0];
+    let firebaseAppInstance = firebaseClient.apps[0];
     
     if (!firebaseApp) {
-      firebaseApp = firebaseClient.initializeApp({
+      firebaseAppInstance = firebaseClient.initializeApp({
         apiKey: window.fKey,
         authDomain: window.fDomain
       });
     }
 
-    setFirebaseApp(firebaseApp);
-  }, []);
+    setFirebaseApp(firebaseAppInstance);
+  }, [firebaseApp]);
 
   const signInWithPopupSocialNetwork = async provider => {
     firebaseApp.auth().languageCode = router.locale;
     let providerAuth = null;
     
     if (provider === 'facebook') {
+      // eslint-disable-next-line no-underscore-dangle
       providerAuth = new firebaseApp.firebase_.auth.FacebookAuthProvider();
     } else if (provider === 'google') {
+      // eslint-disable-next-line no-underscore-dangle
       providerAuth = new firebaseApp.firebase_.auth.GoogleAuthProvider();
     }
   
@@ -44,11 +46,11 @@ export default function LoginSocialNetworks(props) {
   
     try {
       await firebaseApp.auth().signInWithPopup(providerAuth);  
-    } catch (error) {
-      if (error.code === 'auth/account-exists-with-different-credential') {
-        firebaseApp.auth().currentUser.linkWithCredential(error.credential);
+    } catch (errorDetails) {
+      if (errorDetails.code === 'auth/account-exists-with-different-credential') {
+        firebaseApp.auth().currentUser.linkWithCredential(errorDetails.credential);
       } else {
-        throw error;
+        throw errorDetails;
       }
     }
   
@@ -77,8 +79,8 @@ export default function LoginSocialNetworks(props) {
       onSuccess(store.getState().auth.authData);
       onLogginIn(false);
       setIsProcessingFacebook(false);
-    } catch (error) {
-      setError(translations[error.code] || error.message);
+    } catch (errorDetails) {
+      setError(translations[errorDetails.code] || errorDetails.message);
       onLogginIn(false);
       setIsProcessingFacebook(false);
     }
@@ -104,8 +106,8 @@ export default function LoginSocialNetworks(props) {
       onSuccess(store.getState().auth.authData);
       onLogginIn(false);
       setIsProcessingGoogle(false);
-    } catch (error) {
-      setError(translations[error.code] || error.message);
+    } catch (errorDetails) {
+      setError(translations[errorDetails.code] || errorDetails.message);
       onLogginIn(false);
       setIsProcessingGoogle(false);
     }
@@ -122,7 +124,7 @@ export default function LoginSocialNetworks(props) {
             provider="facebook"
             onClick={loginWithFacebook}>
             {isProcessingFacebook && <i className="fa fa-spinner fa-spin" />}
-            {translations['loginWithFacebook']}
+            {translations.loginWithFacebook}
           </LoginButton>
         </div>
         <div className="btn-wrapper">
@@ -132,7 +134,7 @@ export default function LoginSocialNetworks(props) {
             provider="google"
             onClick={loginWithGoogle}>
             {isProcessingGoogle && <i className="fa fa-spinner fa-spin" />}
-            {translations['loginWithGoogle']}
+            {translations.loginWithGoogle}
           </LoginButton>
         </div>
       </section>

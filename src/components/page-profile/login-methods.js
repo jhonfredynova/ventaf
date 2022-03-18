@@ -5,11 +5,11 @@ export default function LoginMethods(props) {
 
   return (
     <section className="login-methods">      
-      {identities.map((provider, providerIndex) => (
-        <label key={providerIndex} title={provider.providerId}>
-          {provider.providerId === 'email' && <i className="fas fa-envelope"></i>}
-          {provider.providerId === 'facebook.com' && <i className="fab fa-facebook"></i>}
-          {provider.providerId === 'google.com' && <i className="fab fa-google-plus"></i>}
+      {identities.map(provider => (
+        <label htmlFor="provider" key={provider.providerId} title={provider.providerId}>
+          {provider.providerId === 'email' && <i id="provider" className="fas fa-envelope" />}
+          {provider.providerId === 'facebook.com' && <i id="provider" className="fab fa-facebook" />}
+          {provider.providerId === 'google.com' && <i id="provider" className="fab fa-google-plus" />}
         </label>
       ))}
       <style jsx>{`

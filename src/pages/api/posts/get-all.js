@@ -3,6 +3,7 @@ import { toSearchTerms } from '../../../utils/text-utils';
 
 export default async function getAllPosts(req, res) {
   try {
+    // eslint-disable-next-line global-require
     const firebaseAdmin = require('../../../firebase-admin').default;
     const db = firebaseAdmin.firestore();
     const searchTerms = toSearchTerms(req.query.search);

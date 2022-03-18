@@ -18,7 +18,7 @@ export const getServerSideProps = async ({ locale }) => {
   };
 };
 
-const UpdateInfo = () => {
+function UpdateInfo() {
   const { authData } = useSelector(state => state.auth);
   const { callingCodes, translations } = useSelector(state => state.config);
   const profile = (authData && authData.profile) || {};
@@ -30,24 +30,21 @@ const UpdateInfo = () => {
   return (
     <main>
       <SEO
-        title={translations['updateInfo']}
-        description={translations['profileDescription']}>
-      </SEO>
+        title={translations.updateInfo}
+        description={translations.profileDescription} />
 
       <NavigationBar
-        title={translations['updateInfo']}
-        description={translations['profileDescription']}
-        showBackBtn={true}
-        translations={translations}>
-      </NavigationBar>
+        title={translations.updateInfo}
+        description={translations.profileDescription}
+        showBackBtn
+        translations={translations} />
 
       <section className="user-info">
         <FormProfileInfo
           authData={authData}
           callingCodes={callingCodes}
           profile={profile}
-          translations={translations}>
-        </FormProfileInfo>
+          translations={translations} />
       </section>
       <style jsx>{`
         main {
@@ -67,6 +64,6 @@ const UpdateInfo = () => {
     </main>
   );
 
-};
+}
 
 export default Authorization(UpdateInfo, ['registered']);

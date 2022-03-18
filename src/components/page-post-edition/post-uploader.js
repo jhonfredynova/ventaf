@@ -34,11 +34,11 @@ export default function PostUploader(props) {
 
     // If there are file errros 
     if (selectedFiles.length !== validFiles.length) {
-      const warningMsg = translations['wrongUploadedFiles'].replace(/{extentions}/g, allowedExtentions.join(', '));
-      const wrongFiles = selectedFiles.filter(item => !validFiles.find(file => file.name === item.name));
+      const warningMsgFormatted = translations.wrongUploadedFiles.replace(/{extentions}/g, allowedExtentions.join(', '));
+      const wrongFilesFormatted = selectedFiles.filter(item => !validFiles.find(file => file.name === item.name));
       setShowModalWarning(true);
-      setWarningMsg(warningMsg);
-      setWrongFiles(wrongFiles);
+      setWarningMsg(warningMsgFormatted);
+      setWrongFiles(wrongFilesFormatted);
     }
 
     // optimizing files size
@@ -62,8 +62,7 @@ export default function PostUploader(props) {
         className="input-file"
         type="file"
         multiple
-        onChange={onUpload}>
-      </input>
+        onChange={onUpload} />
       <Sortable
         tag="section"
         className="photos"
@@ -77,15 +76,14 @@ export default function PostUploader(props) {
             <PostUploaderItem
               key={`${photos[mediaIndex].name}-${mediaSequence}`}
               isLoading={isProcessingPhotos}
-              allowDeletion={true}
+              allowDeletion
               className={`drag media-${mediaSequence}`}
               error={error}
               translations={translations}
               mediaIndex={mediaIndex}
               mediaData={photos[mediaIndex]}              
               onUpload={onUploadMedia}
-              onDelete={onDeleteMedia}>
-            </PostUploaderItem>
+              onDelete={onDeleteMedia} />
           )
         }
         {
@@ -94,10 +92,9 @@ export default function PostUploader(props) {
             key="addNewPhoto"
             isLoading={isProcessingPhotos}
             error={error}
-            allowDeletion={true}
+            allowDeletion
             translations={translations}            
-            onUpload={onUploadMedia}>
-          </PostUploaderItem>
+            onUpload={onUploadMedia} />
         }
       </Sortable>
       <span className="error-msg">{error}</span>
@@ -108,8 +105,7 @@ export default function PostUploader(props) {
           warningMsg={warningMsg}
           wrongFiles={wrongFiles}
           translations={translations}
-          onClose={() => setShowModalWarning(false)}>
-        </PostInvalidFiles>
+          onClose={() => setShowModalWarning(false)} />
       </Lightbox>
       <style jsx>{`
         .post-uploader {

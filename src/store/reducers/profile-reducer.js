@@ -5,15 +5,15 @@ const initialState = {
   temp: null
 };
 
+// eslint-disable-next-line default-param-last
 export default function reducer(state = initialState, action) {
   switch (action.type) {
-    default:
-      return state;
 
     case TYPES.CLEAN:
       return initialState;
 
     case TYPES.CLEAN_PROFILE: {
+      // eslint-disable-next-line no-param-reassign
       delete state.records[action.payload];
       return {
         ...state,
@@ -77,6 +77,9 @@ export default function reducer(state = initialState, action) {
         }
       };
     }
+
+    default:
+      return state;
 
   }
 }

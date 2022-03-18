@@ -15,6 +15,7 @@ export default async function uploadPhoto(req, res) {
     await runMiddleware(req, res, authorization('registered'));
     await runMiddleware(req, res, files({ maxFileSize: 5, maxFiles: 1 }));
 
+    // eslint-disable-next-line global-require
     const firebaseAdmin = require( '../../../firebase-admin').default;
     const db = firebaseAdmin.firestore();
     const { id: userId } = req.body;

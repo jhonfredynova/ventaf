@@ -5,6 +5,7 @@ import { uploadToStorage } from '../../../utils/storage-utils';
 
 export default async function loginOAuth(req, res) {
   try {
+    // eslint-disable-next-line global-require
     const firebaseAdmin = require('../../../firebase-admin').default;
     const userOAuth = req.body;
     const { uid } = userOAuth;
@@ -15,7 +16,9 @@ export default async function loginOAuth(req, res) {
 
     if (!userExist) {
       // Init libraries and variables
+      // eslint-disable-next-line global-require
       const fs = require('fs');
+      // eslint-disable-next-line global-require
       const os = require('os');
       let responsePhotoUrl = null;
 
@@ -34,10 +37,10 @@ export default async function loginOAuth(req, res) {
           filePaths: [filePath]
         };
         const uploadedFiles = await uploadToStorage(dataToUpload);
+        // eslint-disable-next-line prefer-destructuring
         responsePhotoUrl = uploadedFiles[0];
       } catch (error) {
         // If any error occurs set the anonymous user photo to the user
-        console.error('Error getting ptofile photo url from oauth', error);
         responsePhotoUrl = 'https://storage.googleapis.com/cyt-profile-uploads/anonymous.jpeg';
       }
 
@@ -61,7 +64,6 @@ export default async function loginOAuth(req, res) {
     res.json({ token: jwtToken });
     
   } catch (error) {
-    console.error('Error registering user with oauth', error);
     res.status(500).json(error);
   }
 }

@@ -17,7 +17,7 @@ export const cleanProfile = profileId => dispatch => {
 };
 
 export const getProfileAds = (profileId, filters) => async (dispatch, getState) => {
-  let profile = getState().profile.records[profileId];
+  const profile = getState().profile.records[profileId];
   let profileAds = (profile && profile.ads) || [];
 
   if (profileAds.length === 0) {
@@ -56,7 +56,7 @@ export const getProfileByUsername = username => async (dispatch, getState) => {
   let profile = Object
     .keys(profiles)
     .map(profileId => profiles[profileId])
-    .find(profile => profile.username === username);
+    .find(profileData => profileData.username === username);
 
   if (!profile) {
     profile = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/users/get-profile-by-username?username=${username}`);

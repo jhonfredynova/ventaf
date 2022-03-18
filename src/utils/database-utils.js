@@ -16,35 +16,35 @@ const getDbParsedQuery = (query) => {
       }
       if (key === 'sort') {
         response.sort = Object.keys(searchCriteria)
-          .map((key) => [key, searchCriteria[key]]);
+          .map((searchKey) => [searchKey, searchCriteria[searchKey]]);
       }
       if (key === 'where') {
         response.where = [];
 
         Object
           .keys(searchCriteria)
-          .forEach((key) => {
+          .forEach((searchKey) => {
             Object
-              .keys(searchCriteria[key])
+              .keys(searchCriteria[searchKey])
               .forEach((criteria) => {
-                searchCriteriaValue = searchCriteria[key][criteria];
+                searchCriteriaValue = searchCriteria[searchKey][criteria];
 
                 switch (criteria) {
                 case 'like':
                   if (searchCriteriaValue) {
-                    response.where.push([key, '>=', searchCriteriaValue]);
+                    response.where.push([searchKey, '>=', searchCriteriaValue]);
                     // response.where.push([key, '<=', searchCriteriaValue]);
                   }
                   break;
 
                 case 'range': {
-                  response.where.push([key, '>=', searchCriteriaValue.start]);
-                  response.where.push([key, '<=', searchCriteriaValue.end]);
+                  response.where.push([searchKey, '>=', searchCriteriaValue.start]);
+                  response.where.push([searchKey, '<=', searchCriteriaValue.end]);
                   break;
                 }
 
                 default:
-                  response.where.push([key, criteria, searchCriteriaValue]);
+                  response.where.push([searchKey, criteria, searchCriteriaValue]);
                   break;
                 }
               });
@@ -79,10 +79,14 @@ export const getDbQuery = async (db, collection, query) => {
   let response = [];
 
   if (parsedQuery.where && parsedQuery.where.length) {
-    parsedQuery.where.forEach((item) => (dbQuery = dbQuery.where(item[0], item[1], item[2])));
+    parsedQuery.where.forEach((item) => {
+      dbQuery = dbQuery.where(item[0], item[1], item[2]);
+    });
   }
   if (parsedQuery.sort && parsedQuery.sort.length) {
-    parsedQuery.sort.forEach((item) => (dbQuery = dbQuery.orderBy(item[0], item[1] || 'asc')));
+    parsedQuery.sort.forEach((item) => {
+      dbQuery = dbQuery.orderBy(item[0], item[1] || 'asc');
+    });
   }
   if (parsedQuery.limit) {
     dbQuery = dbQuery.limit(parsedQuery.limit);
@@ -93,13 +97,9 @@ export const getDbQuery = async (db, collection, query) => {
 
   if (parsedQuery.select) {
     response = response
-      .map((item) => {
-        return Object
+      .map((item) => Object
           .keys(item)
-          .reduce((accum, key) => {
-            return parsedQuery.select.includes(key) ? Object.assign(accum, { [key]: item[key] }) : accum;
-          }, {});
-      });
+          .reduce((accum, key) => parsedQuery.select.includes(key) ? Object.assign(accum, { [key]: item[key] }) : accum, {}));
   }
 
   return response;

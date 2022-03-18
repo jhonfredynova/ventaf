@@ -9,6 +9,7 @@ export default function AlertModal(props) {
       <p>{message}</p>
       <div className="buttons-wrapper">
         <button 
+          type='button'
           className="btn-ok"
           onClick={() => onClose?.()}>
           {translations.ok}

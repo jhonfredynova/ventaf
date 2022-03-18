@@ -1,5 +1,5 @@
 export default modelData => {
-  let errors = {};
+  const errors = {};
 
   if (!modelData.location?.description?.trim()) {
     errors.location = {
@@ -27,7 +27,7 @@ export default modelData => {
       ...errors.price,
       value: 'enterPrice'
     };
-  } else if (isNaN(modelData.price?.value)) {
+  } else if (Number.isNaN(modelData.price?.value)) {
     errors.price = {
       ...errors.price,
       value: 'fieldNumberInvalid'

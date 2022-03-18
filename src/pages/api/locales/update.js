@@ -2,17 +2,18 @@ import { getDbDocument } from '../../../utils/database-utils';
 
 export default async function updateLocale(req, res) {
   try {
+    // eslint-disable-next-line global-require
     const firebaseAdmin = require('../../../firebase-admin').default;
     const { localeId } = req.query;
     const db = firebaseAdmin.firestore();
     const modelDb = await getDbDocument(db, 'locales', localeId);
 
     if (!modelDb) {
-      res.status(400).json({ message: req.translations['recordNotFound'] });
+      res.status(400).json({ message: req.translations.recordNotFound });
       return;
     }
 
-    let modelData = {
+    const modelData = {
       ...req.body,
       id: localeId,
       updatedAt: Date.now()
@@ -22,7 +23,8 @@ export default async function updateLocale(req, res) {
     const errors = {};
 
     if (Object.keys(errors).length > 0) {
-      return res.status(400).json({ errors });
+      res.status(400).json({ errors });
+      return;
     }
 
     // saving data

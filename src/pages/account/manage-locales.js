@@ -29,7 +29,7 @@ export const getServerSideProps = async ({ locale }) => {
   };
 };
 
-const ManageLocales = () => {
+function ManageLocales() {
   const store = useStore();
   const router = useRouter();
   const [searchTerm, setSearchTerm] = useState('');
@@ -47,9 +47,9 @@ const ManageLocales = () => {
     .slice(0, pageSize);
   const hasMoreLocales = filteredLocales.length < locales.length;
 
-  const onDeleteLocale = localeToDelete => {
+  const onDeleteLocale = localeData => {
     setIsDeletingLocale(true);
-    store.dispatch(deleteLocale(localeToDelete.id))
+    store.dispatch(deleteLocale(localeData.id))
       .finally(() => setIsDeletingLocale(false));
   };
 
@@ -63,15 +63,13 @@ const ManageLocales = () => {
     <main>
       <SEO
         title={translations.localesTitle}
-        description={translations.localesDescription}>
-      </SEO>
+        description={translations.localesDescription} />
 
       <NavigationBar
         title={translations.localesTitle}
         description={translations.localesDescription}
-        showBackBtn={true}
-        translations={translations}>
-      </NavigationBar>
+        showBackBtn
+        translations={translations} />
 
       <LocaleActionsBar
         isSyncingConfig={isSyncingConfig}
@@ -82,8 +80,7 @@ const ManageLocales = () => {
         onAddNewLocale={() =>{
           setLocaleToEdit({});
           showLocaleModal(true);
-        }}>
-      </LocaleActionsBar>
+        }} />
 
       {
         filteredLocales.length === 0 &&
@@ -131,8 +128,7 @@ const ManageLocales = () => {
           onSave={() => {
             setLocaleToEdit(null);
             showLocaleModal(false);
-          }}>
-        </FormLocaleInfo>
+          }} />
       </Lightbox>
       <Lightbox 
         isOpen={isDeleteLocaleModalOpen} 
@@ -148,8 +144,7 @@ const ManageLocales = () => {
           onAccept={() => {
             showDeleteLocaleModal(false);
             onDeleteLocale(localeToDelete);
-          }}>
-        </ConfirmationModal>
+          }} />
       </Lightbox>
       <style jsx>{`
         main {
@@ -193,6 +188,6 @@ const ManageLocales = () => {
     </main>
   );
 
-};
+}
 
 export default Authorization(ManageLocales, ['admin']);

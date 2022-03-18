@@ -23,11 +23,11 @@ export default function HomeContents(props) {
 
 	const getDefaultNoResultMsg = pathname => {
 		switch (pathname) {
-			default:
-				return translations.noResults;
-
 			case '/[username]':
 				return translations.youHaveNotPostAnyAd;
+
+			default:
+				return translations.noResults;
 		}
 	};
 
@@ -68,18 +68,16 @@ export default function HomeContents(props) {
 									isLoading={isLoadingMore}
 									translations={translations}
 									data={post}
-									onEdit={post => router.push(`/post/edit?postId=${post.id}`)}
-									onDelete={post => {
-										setPostToDelete(post);
+									onEdit={postData => router.push(`/post/edit?postId=${postData.id}`)}
+									onDelete={postData => {
+										setPostToDelete(postData);
 										setShowModalDeleteAd(true);
-									}}>
-								</PostEditionBar>
+									}} />
 							}
 							<PostTile
 								isLoading={isLoadingMore}
 								translations={translations}
-								data={post}>
-							</PostTile>
+								data={post} />
 						</div>
 					)}
 				</section>
@@ -93,8 +91,7 @@ export default function HomeContents(props) {
 					message={translations.deleteAdWarning}
 					translations={translations}
 					onAccept={onDelete}
-					onCancel={() => setShowModalDeleteAd(!showModalDeleteAd)}>
-				</ConfirmationModal>
+					onCancel={() => setShowModalDeleteAd(!showModalDeleteAd)} />
       </Lightbox>
 			<Lightbox
         isOpen={showModalDeleteError}
@@ -103,8 +100,7 @@ export default function HomeContents(props) {
 					title={translations.error}
 					message={messageDeleteError}
 					translations={translations}
-					onClose={() => setShowModalDeleteError(!showModalDeleteError)}>
-				</AlertModal>
+					onClose={() => setShowModalDeleteError(!showModalDeleteError)} />
       </Lightbox>
 			<style jsx>{`
 				.posts-section {

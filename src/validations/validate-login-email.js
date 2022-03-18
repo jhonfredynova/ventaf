@@ -1,7 +1,7 @@
 import { isEmail } from '../utils/validation-utils';
 
 export default modelData => {
-  let errors = {};
+  const errors = {};
 
   if (!modelData.email?.trim()) {
     errors.email = 'fieldRequired';

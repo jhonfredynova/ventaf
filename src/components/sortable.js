@@ -7,6 +7,7 @@ export default class Sortable extends React.Component {
     const { disabled, handle, ghostClass } = this.props;
     const isTouchBrowser = ('ontouchstart' in window);
     
+    // eslint-disable-next-line no-new
     new SortableJS(this.sortableEl, {
       delay: isTouchBrowser ? 100 : 0,
       delayOnTouchStart: isTouchBrowser,
@@ -15,6 +16,10 @@ export default class Sortable extends React.Component {
       handle,
       onSort: this.onSort.bind(this)
     });
+  }
+
+  onSortRef(elem) {
+    this.sortableEl = elem 
   }
 
   onSort(event) {
@@ -31,7 +36,7 @@ export default class Sortable extends React.Component {
     const { className, tag, children } = this.props;  
 
     return (
-      React.createElement(tag, { className, ref: elem => this.sortableEl = elem }, children)
+      React.createElement(tag, { className, ref: this.onSortRef }, children)
     );
   }
 

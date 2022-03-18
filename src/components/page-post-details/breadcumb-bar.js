@@ -25,23 +25,24 @@ export default function BreadcumbBar(props) {
   return (
     <section className="breadcumb-bar">
       <button 
+        type='button'
         className="btn-back" 
-        title={translations['backToList']}
+        title={translations.backToList}
         onClick={() => router.back()}>
-        <i className="fas fa-arrow-left"></i> 
+        <i className="fas fa-arrow-left" /> 
       </button>
       <ul className="share-bar">
         <li>
-          {translations['share']}: 
+          {translations.share}: 
         </li>
         <li>
           <a 
             href={`https://facebook.com/sharer.php?u=${sharingUrl}`} 
             rel="noreferrer" 
             target="_blank"
-            title={translations['shareViaFacebook']}
+            title={translations.shareViaFacebook}
             onClick={() => onShareAd('Shared ad via facebook', 1)}>
-            <i className="fab fa-facebook-f fa-2x"></i>
+            <i className="fab fa-facebook-f fa-2x" />
           </a>
         </li>
         <li>
@@ -49,9 +50,9 @@ export default function BreadcumbBar(props) {
             href={`https://twitter.com/share?text=${sharingUrl}`} 
             rel="noreferrer" 
             target="_blank"
-            title={translations['shareViaTwitter']}
+            title={translations.shareViaTwitter}
             onClick={() => onShareAd('Shared ad via twitter', 1)}>
-            <i className="fab fa-twitter fa-2x"></i>
+            <i className="fab fa-twitter fa-2x" />
           </a>
         </li>
         <li>
@@ -59,23 +60,23 @@ export default function BreadcumbBar(props) {
             href={`mailto:?subject=${pageTitle}&body=${sharingUrl}`} 
             rel="noreferrer" 
             target="_blank"
-            title={translations['shareViaEmail']}
+            title={translations.shareViaEmail}
             onClick={() => onShareAd('Shared ad via email', 1)}>
-          <i className="fas fa-envelope fa-2x"></i>
+          <i className="fas fa-envelope fa-2x" />
           </a>
         </li>
         <li>
           <button
             className="btn-clipboard btn"
             type="button"
-            title={translations['shareViaUrl']}
+            title={translations.shareViaUrl}
             onClick={() => {
               onClickBtnClipboard();
               onShareAd('Copy ad url to clipboard', 2);
             }}>
-            <i className="fas fa-link fa-2x"></i>
+            <i className="fas fa-link fa-2x" />
             <span ref={tooltipCopyClipboard} className="copy-clipboard-success">
-              {translations['linkWasCopied']}
+              {translations.linkWasCopied}
             </span>
           </button>
         </li>

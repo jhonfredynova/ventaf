@@ -2,7 +2,7 @@ import jsonwebtoken from 'jsonwebtoken';
 
 export default requiredClaims => async (req, res, next) => {
   try {
-    let token = (req.headers['authorization'] || req.query.authorization);
+    let token = (req.headers.authorization || req.query.authorization);
 
     // checking token
     if (!token || !token.startsWith('Bearer ')) {
@@ -11,6 +11,7 @@ export default requiredClaims => async (req, res, next) => {
     }
 
     // checking user
+    // eslint-disable-next-line prefer-destructuring
     token = token.split('Bearer ')[1];    
     req.user = await jsonwebtoken.verify(token, process.env.FIREBASE_KEY);
 

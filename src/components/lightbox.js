@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 
 export default function Lightbox(props) {
-  const { isOpen, onToggle } = props;
+  const { isOpen, children, onToggle } = props;
 
   useEffect(() => {
     const onKeyup = event => {
@@ -28,10 +28,10 @@ export default function Lightbox(props) {
             className="btn-close" 
             data-dismiss="modal" 
             onClick={onToggle}>
-            <i className="fas fa-times fa-2x"></i>
+            <i className="fas fa-times fa-2x" />
           </button>
           <div className="content-wrapper">
-            {props.children}
+            {children}
           </div>
         </>
       }

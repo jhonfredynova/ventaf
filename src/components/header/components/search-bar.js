@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 
 export default function SearchBar(props) {
-  const { id, placeholder, translations, onChange, onSubmit } = props;
-  const [searchTerm, setSearchTerm] = useState(props.searchTerm || '');
+  const { id, placeholder, searchTerm, translations, onChange, onSubmit } = props;
+  const [newSearchTerm, setNewSearchTerm] = useState(searchTerm || '');
 
   const onClear = () => {
-    setSearchTerm('');
+    setNewSearchTerm('');
 
     if (onChange) {
       onChange('');
@@ -17,16 +17,16 @@ export default function SearchBar(props) {
   };
 
   const onSubmitSearch = () => {
-    if (props.onSubmit && searchTerm !== props.searchTerm) {
-      props.onSubmit(searchTerm);
+    if (onSubmit && newSearchTerm !== searchTerm) {
+      onSubmit(newSearchTerm);
     }
   };
 
   const onInputChange = event => {
-    setSearchTerm(event.target.value);
+    setNewSearchTerm(event.target.value);
 
     if (onChange) {
-      onChange(searchTerm);
+      onChange(newSearchTerm);
     }
   };
   
@@ -43,11 +43,11 @@ export default function SearchBar(props) {
         type="text"
         className="input-search"
         placeholder={placeholder || translations.enterSearchTerm}
-        value={searchTerm}
+        value={newSearchTerm}
         onChange={onInputChange}
         onKeyDown={onInputKeyDown} />
       {
-        searchTerm &&
+        newSearchTerm &&
         <button
           type="button"
           title={translations.clean}
@@ -61,7 +61,7 @@ export default function SearchBar(props) {
         className="btn-search"
         title={translations.search}
         onClick={onSubmitSearch}>
-        <i className="fas fa-search"></i>
+        <i className="fas fa-search" />
       </button>
       <style jsx>{`
         .search-bar{

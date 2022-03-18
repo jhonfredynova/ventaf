@@ -36,7 +36,7 @@ export default uploadOptions => async (req, res, next) => {
 
     // On receive a new file
     busboy.on('file', async (fieldname, file, filename) => {
-      if (!allowedFileExtentions.find(ext => filename.toLowerCase().endsWith('.' + ext))) {
+      if (!allowedFileExtentions.find(ext => filename.toLowerCase().endsWith(`.${  ext}`))) {
         isErrorFileExtention = true;
         file.resume();
         return;
@@ -71,7 +71,7 @@ export default uploadOptions => async (req, res, next) => {
 
       req.body = fields;
       req.files = files;
-      next();
+      return next();
     });
 
     // Process files in request

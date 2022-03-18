@@ -1,5 +1,6 @@
 import jsonwebtoken from 'jsonwebtoken';
 
+// eslint-disable-next-line import/prefer-default-export
 export const createJsonWebToken = (userData, secretKey) => {
   const tokenPayload = {
     uid: userData.uid,

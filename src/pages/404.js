@@ -20,23 +20,21 @@ export const getStaticProps = async ({ locale }) => {
 export default function Custom404() {
   const { translations } = useSelector(state => state.config);
   const redirectLink = '/';
-  const redirectText = translations['goHomePage'];
+  const redirectText = translations.goHomePage;
 
   return (
     <main>
       <NavigationBar
-        title={translations['notFoundTitle']}
-        description={translations['notFoundDescription']}
-        translations={translations}>
-      </NavigationBar>
+        title={translations.notFoundTitle}
+        description={translations.notFoundDescription}
+        translations={translations} />
       <section className="content-wrapper">
         <Image 
           src="https://storage.googleapis.com/construccionytecnologia-f556c.appspot.com/404.svg"
-          alt={translations['notFoundDescription']}
+          alt={translations.notFoundDescription}
           width="1000" 
-          height="480">
-        </Image>
-        <p>{translations['notFoundDescription']}</p>
+          height="480" />
+        <p>{translations.notFoundDescription}</p>
         <p><Link href={redirectLink}>{redirectText}</Link></p>
       </section>
       <style jsx>{`

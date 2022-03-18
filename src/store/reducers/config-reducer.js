@@ -8,10 +8,9 @@ const initialState = {
   translations: {}
 };
 
+// eslint-disable-next-line default-param-last
 export default function reducer(state = initialState, action) {
   switch (action.type) {
-    default:
-      return state;
 
     case TYPES.CLEAN:
       return initialState;
@@ -22,6 +21,9 @@ export default function reducer(state = initialState, action) {
         ...state,
         ...action.payload
       };
+
+    default:
+      return state;
 
   }
 }

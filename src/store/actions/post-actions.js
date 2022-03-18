@@ -25,7 +25,7 @@ export const getMorePosts = query => async dispatch => {
 };
 
 export const getPostById = postId => async (dispatch, getState) => {
-  const currentPost = getState().post.currentPost;
+  const {currentPost} = getState().post;
   const posts = getState().post.records;
   const profiles = getState().profile.records;
   const profilePosts = Object.keys(profiles).flatMap(profileId => profiles[profileId].ads || []);

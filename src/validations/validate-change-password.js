@@ -1,5 +1,5 @@
 export default modelData => {
-  let errors = {};
+  const errors = {};
 
   if (!modelData.password?.trim()) {
     errors.password = 'field-required';

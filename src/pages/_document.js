@@ -26,13 +26,11 @@ export default class HTML extends Document {
               window.initTwo && window.initTwo();
             }
             `
-          }}>
-          </script>
+          }} />
           <script 
             async 
             defer 
-            src={`https://maps.googleapis.com/maps/api/js?key=${googleMapsKey}&libraries=places&callback=gPlacesCb`}>
-          </script>
+            src={`https://maps.googleapis.com/maps/api/js?key=${googleMapsKey}&libraries=places&callback=gPlacesCb`} />
         </body>
       </Html>
     );

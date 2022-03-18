@@ -1,6 +1,7 @@
 import 'react-quill/dist/quill.snow.css'; 
 import React from 'react';
 import dynamic from 'next/dynamic';
+
 const ReactQuill = dynamic(() => import('react-quill'), { ssr: false });
 
 export default function RichEditor(props) {
@@ -10,7 +11,6 @@ export default function RichEditor(props) {
     <ReactQuill 
       style={style}
       value={value}
-      onChange={newValue => onChange(newValue)}>
-    </ReactQuill>
+      onChange={newValue => onChange(newValue)} />
   );
 }

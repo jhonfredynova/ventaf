@@ -26,7 +26,7 @@ export const formatTemplate = (template, data) => {
   let response = template;
 
   for (const key in data) {
-    response = response.replace(new RegExp(`{${key}}`, 'g'), data[key]);
+    response = response.replace(`{${key}}`, 'g', data[key]);
   }
 
   return response;
@@ -64,16 +64,16 @@ export const toUrl = value => {
     .toLowerCase();
 
   // replacing accents
-  encodedUrl = encodedUrl.replace(new RegExp(/[àáâãäå]/g),'a');
-  encodedUrl = encodedUrl.replace(new RegExp(/æ/g),'ae');
-  encodedUrl = encodedUrl.replace(new RegExp(/ç/g),'c');
-  encodedUrl = encodedUrl.replace(new RegExp(/[èéêë]/g),'e');
-  encodedUrl = encodedUrl.replace(new RegExp(/[ìíîï]/g),'i');
-  encodedUrl = encodedUrl.replace(new RegExp(/ñ/g),'n');                
-  encodedUrl = encodedUrl.replace(new RegExp(/[òóôõö]/g),'o');
-  encodedUrl = encodedUrl.replace(new RegExp(/œ/g),'oe');
-  encodedUrl = encodedUrl.replace(new RegExp(/[ùúûü]/g),'u');
-  encodedUrl = encodedUrl.replace(new RegExp(/[ýÿ]/g),'y');
+  encodedUrl = encodedUrl.replace(/[àáâãäå]/g,'a');
+  encodedUrl = encodedUrl.replace(/æ/g,'ae');
+  encodedUrl = encodedUrl.replace(/ç/g,'c');
+  encodedUrl = encodedUrl.replace(/[èéêë]/g,'e');
+  encodedUrl = encodedUrl.replace(/[ìíîï]/g,'i');
+  encodedUrl = encodedUrl.replace(/ñ/g,'n');                
+  encodedUrl = encodedUrl.replace(/[òóôõö]/g,'o');
+  encodedUrl = encodedUrl.replace(/œ/g,'oe');
+  encodedUrl = encodedUrl.replace(/[ùúûü]/g,'u');
+  encodedUrl = encodedUrl.replace(/[ýÿ]/g,'y');
 
   // replacing weird characteres with blank spaces and spaces with hyppens
   encodedUrl = encodedUrl.replace(/[^\w\s]+/g, '');

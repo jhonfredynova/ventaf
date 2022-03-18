@@ -17,7 +17,9 @@ export default async function updatePost(req, res) {
     await runMiddleware(req, res, files({ maxFileSize: 1, maxFiles: 6 }));
     await runMiddleware(req, res, authorization('registered'));
     
+    // eslint-disable-next-line global-require
     const firebaseAdmin = require('../../../firebase-admin').default;
+    // eslint-disable-next-line global-require
     const { uploadToStorage } = require('../../../utils/storage-utils');
     const { postId } = req.query;
     const db = firebaseAdmin.firestore();
@@ -35,11 +37,9 @@ export default async function updatePost(req, res) {
 
     const modelData = Object
       .keys(req.body.data)
-      .reduce((accum, key) => {
-        return !['createdAt', 'likes', 'status', 'user', 'views'].includes(key)
+      .reduce((accum, key) => !['createdAt', 'likes', 'status', 'user', 'views'].includes(key)
           ? Object.assign(accum, { [key]: req.body.data[key] })
-          : accum;
-      }, {});
+          : accum, {});
     const postData = {
       ...modelData,
       id: postId,
@@ -83,8 +83,8 @@ export default async function updatePost(req, res) {
     };
 
     res.json(postUpdated);
+    
   } catch (error) {
-    console.error('Error updating post', error);
     res.status(500).json(error);
   }
 }

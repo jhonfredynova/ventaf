@@ -5,7 +5,7 @@ const request = store => next => action => {
   delete axios.defaults.headers.common.authorization;
 
   if (auth.token) {
-    axios.defaults.headers.common['authorization'] = `Bearer ${auth.token}`;
+    axios.defaults.headers.common.authorization = `Bearer ${auth.token}`;
   }
 
   return next(action);

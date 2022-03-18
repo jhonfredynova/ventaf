@@ -7,6 +7,7 @@ export default async function removePost(req, res) {
   try {
     await runMiddleware(req, res, authorization('registered'));
 
+    // eslint-disable-next-line global-require
     const firebaseAdmin = require('../../../firebase-admin').default;
     const { postId } = req.query;
     const db = firebaseAdmin.firestore();

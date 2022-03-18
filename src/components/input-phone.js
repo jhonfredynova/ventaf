@@ -8,10 +8,12 @@ export default function InputPhone(props) {
   } = props;
   const [isModalOpen, setModalOpen] = useState(false);
   const selectedSuggestion = suggestions.find((item) => item.value === phoneValue.prefix);
+  
   const customFilterLogic = (suggestion, searchValue) => {
     const { countryName, label, value } = suggestion;
     return `${countryName} ${label} ${value}`.toLowerCase().includes(searchValue.toLowerCase());
   };
+
   const customOption = (suggestion) => (
     <div className="custom-option">
       <div>

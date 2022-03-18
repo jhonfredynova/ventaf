@@ -32,8 +32,8 @@ export default function FormProfileInfo(props) {
       setIsUpdatingProfile(false);
       router.push(`/${userInfo.username}`);
     } catch (error) {
-      const { errors, code } = error?.response?.data || {};
-      setErrors({ ...errors, general: code });
+      const { errors: serverErrors, code } = error?.response?.data || {};
+      setErrors({ ...serverErrors, general: code });
       setIsUpdatingProfile(false);
     }
   };
@@ -51,8 +51,7 @@ export default function FormProfileInfo(props) {
             id="username"
             type="text"
             value={userInfo.username}
-            onChange={e => setUserInfo({ ...userInfo, username: e.target.value.toLowerCase().replace(/[^a-z0-9@.]/gi, '') })}>
-          </input>
+            onChange={e => setUserInfo({ ...userInfo, username: e.target.value.toLowerCase().replace(/[^a-z0-9@.]/gi, '') })} />
         </div>
         <p className="error-msg">{translations[errors.username]}</p>
       </div>
@@ -65,8 +64,7 @@ export default function FormProfileInfo(props) {
           errors={errors.phone}
           suggestions={callingCodes}
           value={userInfo.phone}
-          onChange={phone => setUserInfo({ ...userInfo, phone })}>
-        </InputPhone>
+          onChange={phone => setUserInfo({ ...userInfo, phone })} />
       </div>
 
       <div className="form-row">
@@ -86,8 +84,7 @@ export default function FormProfileInfo(props) {
           id="bio"
           type="text"
           value={userInfo.bio}
-          onChange={e => setUserInfo({ ...userInfo, bio: e.target.value })}>
-        </textarea>
+          onChange={e => setUserInfo({ ...userInfo, bio: e.target.value })} />
         <p className="error-msg">{translations[errors.bio]}</p>
       </div>
 
@@ -95,8 +92,8 @@ export default function FormProfileInfo(props) {
         <button type="submit" className="btn-submit" disabled={isUpdatingProfile}>
           {
             isUpdatingProfile 
-              ? <i className="fas fa-spinner fa-spin"></i>
-              : <i className="fas fa-check" title={translations.saving}></i> 
+              ? <i className="fas fa-spinner fa-spin" />
+              : <i className="fas fa-check" title={translations.saving} /> 
           }
           {translations.update}
         </button>

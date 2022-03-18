@@ -18,8 +18,8 @@ export default function InputLocation(props) {
     }
   };
 
-  const onChangePlace = value => {
-    setSearch(value);
+  const onChangePlace = newValue => {
+    setSearch(newValue);
     setLocationId('');
   };
 
@@ -29,9 +29,9 @@ export default function InputLocation(props) {
     onChange(null);
   };
 
-  const onSelect = (locationName, locationId, locationInfo) => {
+  const onSelect = (locationName, newLocationId, locationInfo) => {
     setSearch(locationName);
-    setLocationId(locationId);
+    setLocationId(newLocationId);
     onChange(locationInfo);
   };
 
@@ -55,8 +55,7 @@ export default function InputLocation(props) {
           suggestions={suggestions}
           translations={translations}
           onBlur={onBlurPlace}
-          onClear={onClear}>
-        </InputPlacesAutocomplete>
+          onClear={onClear} />
       )}
     </PlacesAutocomplete>
   );

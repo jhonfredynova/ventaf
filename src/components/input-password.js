@@ -10,8 +10,8 @@ export default function InputPassword(props) {
         title={inputType === 'password' ? 'Show password' : 'hide password'}
         type="button"
         onClick={() => setInputType(inputType === 'password' ? 'text' : 'password')}>
-        {inputType === 'text' && <i className="far fa-eye"></i>}
-        {inputType === 'password' && <i className="far fa-eye-slash"></i>}
+        {inputType === 'text' && <i className="far fa-eye" />}
+        {inputType === 'password' && <i className="far fa-eye-slash" />}
       </button>
       <style jsx>{`
         .input-group {

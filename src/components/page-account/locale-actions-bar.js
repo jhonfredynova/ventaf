@@ -11,12 +11,12 @@ export default function LocaleActionsBar(props) {
       <div className="input-group">
         <input 
           type="text" 
-          placeholder={translations['search']}
+          placeholder={translations.search}
           value={searchTerm} 
           onChange={event => onChangeSearchTerm(event.target.value)} />
         {
           searchTerm && 
-          <button className="btn-clear" type="button" title={translations['clean']} onClick={() => onChangeSearchTerm('')}>
+          <button className="btn-clear" type="button" title={translations.clean} onClick={() => onChangeSearchTerm('')}>
             <i className="fas fa-times" />
           </button>
         }
@@ -26,12 +26,12 @@ export default function LocaleActionsBar(props) {
           type="button"
           disabled={isSyncingConfig}
           onClick={onSyncConfig}>
-          {translations['sync']}
+          {translations.sync}
         </button>
         <button 
           type="button"
           onClick={onAddNewLocale}>
-          {translations['add']}
+          {translations.add}
         </button>
       </div>
       <style jsx>{`

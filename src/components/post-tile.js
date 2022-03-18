@@ -12,7 +12,7 @@ export default function PostTile(props) {
 
   return (
     <Link href={`/post/${titleSlug}/${data.id}`}>
-      <a className="post-tile" disabled={isLoading}>
+      <a href="passHref" className="post-tile" disabled={isLoading}>
         <header>
           <h2 className="sr-only">{trimTextWithEllipsis(data.description, 160)}</h2>
           <div className="thumbnail">
@@ -22,12 +22,12 @@ export default function PostTile(props) {
         <div className="info">
           <h3 className={price.value === 0 && 'free-price'}>
             {price.value === 0 
-              ? <><i className="fas fa-gift"></i> {translations['free']}</>
+              ? <><i className="fas fa-gift" /> {translations.free}</>
               : <b>${formatMoney(price.value)}{` ${price.currency.toUpperCase()}`}</b>
             }
           </h3>
           <p className="location">
-            <i className="fas fa-location-arrow" title={translations['location']}></i>
+            <i className="fas fa-location-arrow" title={translations.location} />
             {data.location.description}
           </p>
           <p className="description">{data.description}</p>

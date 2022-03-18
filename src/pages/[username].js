@@ -39,7 +39,7 @@ export default function ProfileView() {
     .map(profileId => profiles[profileId])
     .find(profile => profile.username === username);
   const pageTitle = (profileInfo && `${profileInfo.displayName} (@${profileInfo.username})`);
-  const pageDescription = translations['slogan'];
+  const pageDescription = translations.slogan;
   const ads = (profileInfo && profileInfo.ads || []);
 
   if (!profileInfo) {
@@ -51,22 +51,19 @@ export default function ProfileView() {
       <SEO
         title={pageTitle}
         description={pageDescription}
-        imageUrl={profileInfo.photoURL}>
-      </SEO>
+        imageUrl={profileInfo.photoURL} />
       <h1 className="sr-only">{pageTitle}</h1>
       <article className="sr-only">{pageDescription}</article>
       <ProfileInfo
         translations={translations}
-        userProfile={profileInfo}>
-      </ProfileInfo>
+        userProfile={profileInfo} />
       <h2>{translations.ads}</h2>
       <ProfileContents
         isLoading={false}
         authData={authData}
         posts={ads}
         translations={translations}
-        userProfile={profileInfo}>
-      </ProfileContents>
+        userProfile={profileInfo} />
       <style jsx>{`
         main {
           max-width: var(--container-width);

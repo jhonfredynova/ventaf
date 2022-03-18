@@ -33,7 +33,7 @@ export const getServerSideProps = async ({ locale, query }) => {
   };
 };
 
-const EditPost = () => {
+function EditPost() {
   const store = useStore();
   const { authData } = useSelector(state => state.auth);
   const postData = useSelector(state => state.post.currentPost);
@@ -44,8 +44,8 @@ const EditPost = () => {
   const [errors, setErrors] = useState(false);
   const [model, setModel] = useState(postData);
   const { callingCodes, currencies, translations } = useSelector(state => state.config);
-  const pageTitle = translations['adEditionTitle'];
-  const pageDescription = translations['adEditionDescription'];
+  const pageTitle = translations.adEditionTitle;
+  const pageDescription = translations.adEditionDescription;
 
   useEffect(() => {
     if (!isPhotosLoaded && postData) {
@@ -75,7 +75,7 @@ const EditPost = () => {
       };
 
       // updating post info
-      let formData = new FormData();
+      const formData = new FormData();
       formData.append('data', JSON.stringify(postInfo));
 
       if (changePhotos) {
@@ -89,9 +89,9 @@ const EditPost = () => {
       setIsPosting(false);
       router.push(`/${authData.profile.username}`);
     } catch (error) { 
-      const { errors, code, message } = error?.response?.data || {};
+      const { errors: serverErrors, code, message } = error?.response?.data || {};
       setIsPosting(false);
-      setErrors({ ...errors, general: (translations[code] || message) });
+      setErrors({ ...serverErrors, general: (translations[code] || message) });
     }
   };
 
@@ -99,14 +99,12 @@ const EditPost = () => {
     <main>
       <SEO
         title={pageTitle}
-        description={pageDescription}>
-      </SEO>
+        description={pageDescription} />
       <NavigationBar
         title={pageTitle}
         description={pageDescription}
         translations={translations}
-        showBackBtn>
-      </NavigationBar>
+        showBackBtn />
       <FormPost
         isPosting={isPosting}
         btnLabel={translations.update}
@@ -117,8 +115,7 @@ const EditPost = () => {
         translations={translations}
         onChangePhotos={setChangePhotos}
         onChangeModel={setModel}
-        onSavePost={onSavePost}>
-      </FormPost> 
+        onSavePost={onSavePost} /> 
       <style jsx>{`
         main {
           max-width: var(--container-width);
@@ -129,6 +126,6 @@ const EditPost = () => {
     </main>
   );
 
-};
+}
 
 export default Authorization(EditPost, ['registered']);

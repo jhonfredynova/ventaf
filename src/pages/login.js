@@ -24,8 +24,8 @@ export default function Login() {
   const router = useRouter();
   const { query } = router;
   const loginMessage = query.message;
-  const onLoginSuccess = authData => {
-    router.push(query.redirectTo ? query.redirectTo : `/${authData.profile.username}`);
+  const onLoginSuccess = authDetails => {
+    router.push(query.redirectTo ? query.redirectTo : `/${authDetails.profile.username}`);
   };
 
   useEffect(() => {
@@ -37,21 +37,18 @@ export default function Login() {
   return (
     <main>
       <SEO
-        title={translations['loginTitle']}
-        description={translations['loginDescription']}>
-      </SEO>
+        title={translations.loginTitle}
+        description={translations.loginDescription} />
       <NavigationBar
-        title={translations['loginTitle']}
-        description={translations['loginDescription']}
-        showBackBtn={true}
-        translations={translations}>
-      </NavigationBar>
+        title={translations.loginTitle}
+        description={translations.loginDescription}
+        showBackBtn
+        translations={translations} />
       <section className="login-section">
         {loginMessage && <div className="login-message" role="alert">{loginMessage}</div>}
         <UserLogin
           translations={translations}
-          onLoginSuccess={onLoginSuccess}>
-        </UserLogin>
+          onLoginSuccess={onLoginSuccess} />
       </section>
       <style jsx>{`
         main {

@@ -6,6 +6,7 @@ export default async function me(req, res) {
   try {
     await runMiddleware(req, res, authorization('registered'));
 
+    // eslint-disable-next-line global-require
     const firebaseAdmin = require('../../../firebase-admin').default;
     const userData = req.user;
     const db = firebaseAdmin.firestore();

@@ -32,8 +32,8 @@ export default function FormLocaleInfo(props) {
       setIsSaving(false);
       onSave();
     } catch (error) {
-      const { errors, code } = error?.response?.data || {};
-      setErrors({ ...errors, general: code });
+      const { errors: serverErrors, code } = error?.response?.data || {};
+      setErrors({ ...serverErrors, general: code });
       setIsSaving(false);
     }
   };
@@ -42,20 +42,21 @@ export default function FormLocaleInfo(props) {
     <form className="form-locale" onSubmit={onSaveLocale}>
       <p>{translations[errors.general]}</p>
       <div className="form-row">
-        <label>{translations['name']} *</label>
+        <label htmlFor="locale-name">{translations.name} *</label>
         <input
+          id="locale-name"
           type="text"
           value={model.name}
           onChange={e => setModel({ ...model, name: e.target.value })} />
         <p className="error-msg">{errors.name}</p>
       </div>
       <div className="form-row">
-        <label>{translations['value']} *</label>
+        <label htmlFor='locale-value'>{translations.value} *</label>
         <InputMultilanguage
+          id="locale-value"
           languages={['en', 'es']}
           value={model.value}
-          onChange={value => setModel({ ...model, value })}>
-        </InputMultilanguage>
+          onChange={value => setModel({ ...model, value })} />
         <p className="error-msg">
           {errors?.value?.en}
           {errors?.value?.es}
@@ -63,17 +64,18 @@ export default function FormLocaleInfo(props) {
       </div>
       <div className="buttons-wrapper">
         <button 
+          type='button'
           className="btn-cancel" 
           disabled={isSaving}
           onClick={onCancel}>
-          {translations['cancel']}
+          {translations.cancel}
         </button>
         <button 
           className="btn-save" 
           disabled={isSaving}
           type="submit">
-          {isSaving && <i className="fas fa-spinner fa-spin" title={translations.saving}></i>}
-          {translations['save']}
+          {isSaving && <i className="fas fa-spinner fa-spin" title={translations.saving} />}
+          {translations.save}
         </button>
       </div>   
       <style jsx>{`

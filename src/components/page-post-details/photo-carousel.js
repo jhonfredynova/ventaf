@@ -11,17 +11,16 @@ export default function PhotoCarousel(props) {
         autoFocus={autofocus} 
         autoPlay={false}
         className="carousel"
-        showArrows={true}
+        showArrows
         showThumbs={false}
-        useKeyboardArrows={true}>
+        useKeyboardArrows>
         {
           photos.map((photoUrl, photoId) => 
             <PhotoSlide
-              key={photoId}
+              key={photoUrl}
               bgColor={bgColor}
               photoId={photoId}
-              photoUrl={photoUrl}>
-            </PhotoSlide>  
+              photoUrl={photoUrl} />  
           )  
         }
       </Carousel> 

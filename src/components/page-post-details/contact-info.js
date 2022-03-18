@@ -7,13 +7,12 @@ export default function ContactInfo(props) {
 
   return (
     <div className="contact-info">
-      <h2>{translations['sellerInfo']}</h2>
+      <h2>{translations.sellerInfo}</h2>
       <ContactButtons 
         postData={postData} 
         pageTitle={pageTitle}
         sharingUrl={sharingUrl}
-        translations={translations}>
-      </ContactButtons>
+        translations={translations} />
       <style jsx>{`
         .contact-info {
           margin-top: var(--spacer);          

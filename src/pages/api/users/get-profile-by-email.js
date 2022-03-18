@@ -4,6 +4,7 @@ import { isEmail } from '../../../utils/validation-utils';
 
 export default async function getUserProfileByEmail(req, res) {
   try {
+    // eslint-disable-next-line global-require
     const firebaseAdmin = require('../../../firebase-admin').default;
     const db = firebaseAdmin.firestore();
     const modelData = { email: req.query.email };

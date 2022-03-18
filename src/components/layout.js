@@ -4,6 +4,7 @@ import Header from './header/header';
 import Footer from './footer';
 
 export default function Layout(props) {
+  const { children } = props;
   const { authData, authLoaded } = useSelector(state => state.auth);
   const { translations } = useSelector(state => state.config);
 
@@ -12,9 +13,8 @@ export default function Layout(props) {
       <Header
         authData={authData}
         authLoaded={authLoaded}
-        translations={translations}>
-      </Header>
-      {props.children}
+        translations={translations} />
+      {children}
       <Footer translations={translations} />
     </> 
   );

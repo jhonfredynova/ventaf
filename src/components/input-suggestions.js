@@ -10,9 +10,9 @@ export default function InputSuggestions(props) {
   const [showSuggestions, setShowSuggestions] = useState(false);
   const [searchValue, setSearch] = useState('');
 
-  const filterLogic = (suggestion, searchValue) => {
-    const { label, value } = suggestion;
-    return `${label} ${value}`.toLowerCase().includes(searchValue.toLowerCase());
+  const filterLogic = (suggestion, newSearchValue) => {
+    const { label, value: suggestionValue } = suggestion;
+    return `${label} ${suggestionValue}`.toLowerCase().includes(newSearchValue.toLowerCase());
   };
 
   const filteredSuggestions = suggestions.filter(suggestion => {
@@ -82,12 +82,13 @@ export default function InputSuggestions(props) {
           ...(style && style.suggestions),
           top: `${inputRef.current ? inputRef.current.offsetHeight : 0}px`
         }}>
-        {(searchValue ? filteredSuggestions : suggestions).map((suggestion, index) => 
+        {(searchValue ? filteredSuggestions : suggestions).map(suggestion => 
           <li
-            key={index}
-            className={suggestion.label === value ? 'active' : ''}
-            onMouseDown={() => onClickSuggestion(suggestion)}>
-            {customOption ? customOption(suggestion) : suggestion.label}
+            key={suggestion.label}
+            className={suggestion.label === value ? 'active' : ''}>
+            <button type='button' onMouseDown={() => onClickSuggestion(suggestion)}>
+              {customOption ? customOption(suggestion) : suggestion.label}
+            </button>
           </li>
         )}
       </ul>
@@ -99,17 +100,17 @@ export default function InputSuggestions(props) {
             <button 
               className="btn-check" 
               type="button"
-              title={translations['ok']}
+              title={translations.ok}
               onClick={() => onClickSuggestion(selectedSuggestion)}>
-              <i className="fas fa-check"></i>
+              <i className="fas fa-check" />
             </button>
           }
           <button 
             className="btn-clear" 
             type="button"
-            title={translations['clean']}
+            title={translations.clean}
             onClick={onClear}>
-            <i className="fas fa-times"></i>
+            <i className="fas fa-times" />
           </button>
         </>
       }

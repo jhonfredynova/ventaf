@@ -1,5 +1,6 @@
+// eslint-disable-next-line import/prefer-default-export
 export const getHomePageTitle = ({ query, translations }) => {
-  let pageTitle = translations['slogan'];
+  let pageTitle = translations.slogan;
 
   if (query.search || query.tags) {
     pageTitle = [query.search || '']

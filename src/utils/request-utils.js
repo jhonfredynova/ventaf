@@ -1,5 +1,5 @@
 export const getDownload = (data, filename, contentType) => {
-  let a = document.createElement('a');
+  const a = document.createElement('a');
 
   document.body.appendChild(a);
   a.style = 'display: none';
@@ -12,10 +12,11 @@ export const getDownload = (data, filename, contentType) => {
 
 export const setUrlSearch = filters => {
   let queryString = [];
-  let queryKeys = Object
+  const queryKeys = Object
     .keys(filters || {})
     .filter(key => !['', null, undefined].includes(filters[key]));
 
+  // eslint-disable-next-line no-restricted-syntax
   for (const key of queryKeys) {
     queryString = queryString.concat(`${key}=${filters[key]}`);
   }

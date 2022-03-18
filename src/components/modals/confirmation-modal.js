@@ -9,16 +9,18 @@ export default function ConfirmationModal(props) {
       <p>{message}</p>
       <div className="buttons-wrapper">
         <button 
+          type='button'
           className="btn-cancel" 
           disabled={isLoading}
           onClick={onCancel}>
           {translations.cancel}
         </button>
         <button 
+          type='button'
           className="btn-accept"
           disabled={isLoading}
           onClick={onAccept}>
-          {isLoading && <i className="fas fa-spinner fa-spin"></i>}
+          {isLoading && <i className="fas fa-spinner fa-spin" />}
           {translations.ok}
         </button>
       </div>

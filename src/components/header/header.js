@@ -70,13 +70,12 @@ export default function Header(props) {
 
         <div className="logo-wrapper">
           <Link href="/">
-            <a className="link"><Logo translations={translations} /></a>
+            <a href="passHref" className="link"><Logo translations={translations} /></a>
           </Link>
           <SearchLocation
             locationSelected={locationSelected}
             translations={translations}
-            onChange={onChangeLocation}>
-          </SearchLocation>
+            onChange={onChangeLocation} />
         </div>
 
         <div className="search-wrapper">
@@ -86,18 +85,17 @@ export default function Header(props) {
             placeholder={translations.homeSearchInputPlaceholder}
             searchTerm={query.search}
             translations={translations}
-            onSubmit={onSearch}>
-          </SearchBar>
+            onSubmit={onSearch} />
         </div>
 
         <div className="menu-wrapper">         
           <Link href="/post">
-            <a className="btn-post" onClick={onClickPost}>
+            <a href="passHref" className="btn-post" onClick={onClickPost}>
               <i className="fas fa-plus" /> {translations.sell}
             </a>
           </Link> 
           <Link href={(authLoaded && authData) ? `/${authData?.profile?.username}` : '/login'}>
-            <a className="btn-profile" title={translations.profile}>
+            <a href="passHref" className="btn-profile" title={translations.profile}>
               {authLoaded && <Image src={photoUrl.concat(`?${Date.now()}`)} alt={translations.profile} width={40} height={40} />}
               {!authLoaded && <i className="fas fa-spinner fa-spin fa-2x" title={translations.loading} />}
             </a>

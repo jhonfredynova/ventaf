@@ -46,8 +46,8 @@ export default function NewPost() {
   const { authData } = useSelector(state => state.auth);  
   const { callingCodes, currencies, translations } = useSelector(state => state.config);
   
-  const pageTitle = translations['sellNowTitle'];
-  const pageDescription = translations['sellNowDescription'];
+  const pageTitle = translations.sellNowTitle;
+  const pageDescription = translations.sellNowDescription;
 
   const onChangeModel = newModel => {
     changedData.current = true;
@@ -79,9 +79,9 @@ export default function NewPost() {
       changedData.current = false;
       router.push('/');
     } catch (error) { 
-      const { errors, code, message } = error?.response?.data || {};
+      const { errors: serverErrors, code, message } = error?.response?.data || {};
       setIsPosting(false);
-      setErrors({ ...errors, general: (translations[code] || message) });
+      setErrors({ ...serverErrors, general: (translations[code] || message) });
     }
   };
 
@@ -89,8 +89,8 @@ export default function NewPost() {
     const onLeavePage = event => {
       if (changedData.current) {
         event.preventDefault();
-        event.returnValue = '';
-        return;
+        // eslint-disable-next-line no-param-reassign
+        event.returnValue = ''; 
       }
     };
   
@@ -98,10 +98,12 @@ export default function NewPost() {
       if (!changedData.current) { 
         return;
       }
+      // eslint-disable-next-line no-alert
       if (window.confirm(translations['areYouSureLeavePage?'])) {
         return;
       }
       router.events.emit('routeChangeError');
+      // eslint-disable-next-line no-throw-literal
       throw 'routeChange aborted.';
     };
 
@@ -126,14 +128,12 @@ export default function NewPost() {
     <main>
       <SEO
         title={pageTitle}
-        description={pageDescription}>
-      </SEO>
+        description={pageDescription} />
       <NavigationBar
         title={pageTitle}
         description={pageDescription}
         translations={translations}
-        showBackBtn>
-      </NavigationBar>
+        showBackBtn />
       <FormPost
         isPosting={isPosting}
         btnLabel={translations.post}
@@ -143,8 +143,7 @@ export default function NewPost() {
         model={model}
         translations={translations}
         onChangeModel={onChangeModel}
-        onSavePost={onSavePost}>
-      </FormPost>  
+        onSavePost={onSavePost} />  
       <style jsx>{`
         main {
           max-width: var(--container-width);

@@ -16,7 +16,7 @@ export default function InputPlacesAutocomplete(props) {
   return (
     <div className="input-places-autocomplete">
       <div className="icon-place">
-        <i className="fas fa-location-arrow"></i>
+        <i className="fas fa-location-arrow" />
       </div>
       <input
         {...getInputProps({
@@ -32,9 +32,9 @@ export default function InputPlacesAutocomplete(props) {
         <button 
           className="btn-clear" 
           type="button"
-          title={translations['clean']}
+          title={translations.clean}
           onClick={onClear}>
-          <i className="fas fa-times"></i>
+          <i className="fas fa-times" />
         </button>
       }
       {
@@ -43,8 +43,7 @@ export default function InputPlacesAutocomplete(props) {
           className="list-suggestions"
           style={{ zIndex: 2, top: '40px' }}>
           {suggestions
-            .map(suggestion => {
-              return (
+            .map(suggestion => (
                 <li
                   key={suggestion.placeId}
                   {...getSuggestionItemProps(suggestion, { 
@@ -52,8 +51,7 @@ export default function InputPlacesAutocomplete(props) {
                   })}>
                   {suggestion.description}
                 </li>
-              );
-            })
+              ))
           }
         </ul>
       }

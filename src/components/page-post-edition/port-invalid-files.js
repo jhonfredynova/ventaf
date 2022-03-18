@@ -7,15 +7,11 @@ export default function PostInvalidFiles(props) {
     <section className="post-invalid-files">
       <h2><i className="fas fa-exclamation-triangle" /> {translations.warning}</h2>
       <p>{warningMsg}</p>
-      {
-        <ul>
-          {wrongFiles.map((file, index) => {
-            return (
-              <li key={index}>- {file.name}</li>
-            );
-          })}
+      <ul>
+          {wrongFiles.map(file => (
+              <li key={file.name}>- {file.name}</li>
+            ))}
         </ul>
-      }
       <button 
         type="button" 
         className="btn-close" 

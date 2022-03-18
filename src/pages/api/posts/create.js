@@ -14,7 +14,9 @@ export default async function createPost(req, res) {
   try {
     await runMiddleware(req, res, files({ maxFileSize: 1, maxFiles: 6 }));
 
+    // eslint-disable-next-line global-require
     const firebaseAdmin = require('../../../firebase-admin').default;
+    // eslint-disable-next-line global-require
     const { uploadToStorage } = require('../../../utils/storage-utils');
     const db = firebaseAdmin.firestore();
     const postData = req.body.data;
@@ -75,7 +77,6 @@ export default async function createPost(req, res) {
 
     res.json(postCreated);
   } catch (error) {
-    console.error('Error creating new post', error);
     res.status(500).json(error);
   }
 }

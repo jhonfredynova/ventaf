@@ -5,10 +5,10 @@ export default function Preloader() {
   return (
     <section className="preloader">
       <div className="lds-ellipsis">
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
+        <div />
+        <div />
+        <div />
+        <div />
       </div>
       <style jsx>{`
         .lds-ellipsis {

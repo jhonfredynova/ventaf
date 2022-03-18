@@ -27,14 +27,14 @@ export const formatDate = (datetime, format) => {
   const miliseconds = date.getMilliseconds();
   const dateTime = format
     .toLowerCase()
-    .replace(new RegExp('dd', 'g'), day.toString().padStart(2, '0'))
-    .replace(new RegExp('mm', 'g'), (month + 1).toString().padStart(2, '0'))
-    .replace(new RegExp('month', 'g'), (MONTHS[month] || '').substring(0, 3))
-    .replace(new RegExp('yyyy', 'g'), year)
-    .replace(new RegExp('hrs', 'g'), (hours % 12 || hours))
-    .replace(new RegExp('min', 'g'), minutes.toString().padStart(2, '0'))
-    .replace(new RegExp('sec', 'g'), seconds.toString().padStart(2, '0'))
-    .replace(new RegExp('ms', 'g'), miliseconds)
+    .replace(/dd/g, day.toString().padStart(2, '0'))
+    .replace(/mm/g, (month + 1).toString().padStart(2, '0'))
+    .replace(/month/g, (MONTHS[month] || '').substring(0, 3))
+    .replace(/yyyy/g, year)
+    .replace(/hrs/g, (hours % 12 || hours))
+    .replace(/min/g, minutes.toString().padStart(2, '0'))
+    .replace(/sec/g, seconds.toString().padStart(2, '0'))
+    .replace(/ms/g, miliseconds)
     .concat(` ${hours >= 12 ? 'pm' : 'am'}`);
 
   return dateTime;
@@ -45,7 +45,9 @@ export const formatLocales = (languages, locales) => {
 
   response = languages.reduce((accum, lang) => {
     locales.forEach(locale => {
+      // eslint-disable-next-line no-param-reassign
       accum[lang] = accum[lang] || {};
+      // eslint-disable-next-line no-param-reassign
       accum[lang][locale.name] = locale.value[lang];
     });
 
@@ -58,31 +60,31 @@ export const formatLocales = (languages, locales) => {
 export const formatMoney = (value, decimals) => {
   const thousandsSeparator = ',';
   const isNegativeValue = value < 0;
-  let numericValue = parseInt(value, 10).toString();
-  let decimalValue = parseFloat(value)
+  const numericValue = parseInt(value, 10).toString();
+  const decimalValue = parseFloat(value)
     .toFixed(decimals || 0)
     .toString()
     .split('.')[1];
-  let isThousandValue = numericValue.length > 3 ? numericValue.length % 3 : 0;
-  let response = (isNegativeValue ? '-' : '')
+  const isThousandValue = numericValue.length > 3 ? numericValue.length % 3 : 0;
+  const response = (isNegativeValue ? '-' : '')
     .concat(isThousandValue ? numericValue.substr(0, isThousandValue) + thousandsSeparator : '')
-    .concat(numericValue.substr(isThousandValue).replace(/(\d{3})(?=\d)/g, '$1' + thousandsSeparator))
+    .concat(numericValue.substr(isThousandValue).replace(/(\d{3})(?=\d)/g, `$1${  thousandsSeparator}`))
     .concat(`${decimalValue ? `.${decimalValue}` : ''}`);
 
   return response;
 };
 
 export const formatTime = (datetime, format) => {
-  const milliseconds = parseInt((datetime % 1000) / 100);
-  const seconds = parseInt((datetime / 1000) % 60);
-  const minutes = parseInt((datetime / (1000 * 60)) % 60);
-  const hours = parseInt((datetime / (1000 * 60 * 60)) % 24);
+  const milliseconds = parseInt((datetime % 1000) / 100, 10);
+  const seconds = parseInt((datetime / 1000) % 60, 10);
+  const minutes = parseInt((datetime / (1000 * 60)) % 60, 10);
+  const hours = parseInt((datetime / (1000 * 60 * 60)) % 24, 10);
   const response = format
     .toLowerCase()
-    .replace(new RegExp('hrs', 'g'), hours.toString().padStart(2, '0'))
-    .replace(new RegExp('min', 'g'), minutes.toString().padStart(2, '0'))
-    .replace(new RegExp('sec', 'g'), seconds.toString().padStart(2, '0'))
-    .replace(new RegExp('ms', 'g'), milliseconds);
+    .replace(/hrs/g, hours.toString().padStart(2, '0'))
+    .replace(/min/g, minutes.toString().padStart(2, '0'))
+    .replace(/sec/g, seconds.toString().padStart(2, '0'))
+    .replace(/ms/g, milliseconds);
 
   return response;
 };
@@ -161,7 +163,7 @@ export const getIntlData = async (configIntl, axios, db) => {
     .filter((item, index, array) => array.findIndex(obj => obj.value === item.value) === index)
     .sort((a, b) => a.countryName.localeCompare(b.countryName));
   */
-  let response = {};
+  const response = {};
   
   // international data
   response.countries = config.countries;

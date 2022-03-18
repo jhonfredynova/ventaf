@@ -11,6 +11,7 @@ export default function NavigationBar(props) {
         showBackBtn && 
         <div className="left-box">
           <button
+            type='button'
             className="btn-back"
             title={translations.goBack}
             onClick={() => router.back()}>

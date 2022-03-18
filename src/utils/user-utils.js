@@ -1,5 +1,4 @@
-export const getPublicProfileData = userData => {
-  return {
+export const getPublicProfileData = userData => ({
     id: userData.id,
     isEmailPublic: userData.isEmailPublic,
     displayName: userData.displayName,
@@ -8,19 +7,16 @@ export const getPublicProfileData = userData => {
     website: userData.website,
     photoURL: userData.photoURL,
     username: userData.username
-  };
-};
+  });
 
-export const getUserProfileData = userData => {
-  return { 
+export const getUserProfileData = userData => ({ 
     createdAt: Date.now(),
     displayName: userData.displayName || userData.email.split('@')[0],
     ...(userData.photoURL && { photoURL: userData.photoURL }),
     username: userData.email,
     email: userData.email,
     marketer: userData.marketer || 'organic'
-  };
-};
+  });
 
 export const validateExistUserEmail = async (authLibrary, email) => {
   let emailExist = null;

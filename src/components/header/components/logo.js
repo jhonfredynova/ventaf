@@ -6,7 +6,7 @@ export default function Logo(props) {
 
   return (
     <div className="logo">
-      <Image src="/logo.png" alt={translations['slogan']} width={35} height={35} />{' '}
+      <Image src="/logo.png" alt={translations.slogan} width={35} height={35} />{' '}
       <span className="text1">Construccion</span>
       <span className="text2">&</span>
       <span className="text3">Tecnologia</span>

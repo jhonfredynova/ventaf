@@ -34,7 +34,7 @@ export default function Home() {
   const posts = useSelector(state => state.post.records);
   const { translations } = useSelector(state => state.config);
   const pageTitle = getHomePageTitle({ query, translations });
-  const pageDescription = translations['slogan'];
+  const pageDescription = translations.slogan;
 
   const onLoadMorePosts = async () => {
     setIsLoadingMorePosts(true);
@@ -61,8 +61,7 @@ export default function Home() {
     <main>
       <SEO
         title={pageTitle}
-        description={pageDescription}>
-      </SEO>
+        description={pageDescription} />
       <h1 className="sr-only">{pageTitle}</h1>
       <article className="sr-only">{pageDescription}</article>
       <PostList
@@ -72,8 +71,7 @@ export default function Home() {
         authData={authData}
         translations={translations}
         posts={posts}
-        onLoadMore={onLoadMorePosts}>
-      </PostList>
+        onLoadMore={onLoadMorePosts} />
       <style jsx>{`
         main {
           min-height: 300px;

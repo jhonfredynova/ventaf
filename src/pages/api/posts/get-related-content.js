@@ -2,6 +2,7 @@ import { getDbQuery, getDbDocument } from '../../../utils/database-utils';
 
 export default async function getRelatedPostContent(req, res) {
   try {
+    // eslint-disable-next-line global-require
     const firebaseAdmin = require('../../../firebase-admin').default;
     const db = firebaseAdmin.firestore();
     const { postId } = req.query;

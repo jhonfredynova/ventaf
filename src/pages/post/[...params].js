@@ -55,7 +55,7 @@ export default function PostDetails() {
     store.dispatch(updatePostViews(postData.id));
     setSharingUrl(window.location.href);
 
-    if (window.screen.width > parseInt(BREAKPOINTS.PHONE)) {
+    if (window.screen.width > parseInt(BREAKPOINTS.PHONE, 10)) {
       store.dispatch(getRelatedContent(postData.id));
     }
   }, [store, postData]);
@@ -65,21 +65,18 @@ export default function PostDetails() {
       <SEO
         title={pageTitle}
         description={postData.description}
-        imageUrl={postData.photos[0]}>
-      </SEO>
+        imageUrl={postData.photos[0]} />
       <BreadcumbBar
         translations={translations}
         pageTitle={pageTitle}
-        sharingUrl={sharingUrl}>
-      </BreadcumbBar>
+        sharingUrl={sharingUrl} />
       <h1>{pageTitle}</h1>
       <section className="ad-details">
         <div className="main-details">
          <PhotoCarousel 
             autofocus
             bgColor="black"
-            photos={postData.photos}>  
-          </PhotoCarousel>
+            photos={postData.photos} />
           <article>
             {postData.description}
           </article>
@@ -89,29 +86,25 @@ export default function PostDetails() {
             postData={postData}
             currencies={currencies}
             translations={translations}
-            userProfile={userProfile}>
-          </MainInfo>
+            userProfile={userProfile} />
           <ContactInfo
             postData={postData}
             callingCodes={callingCodes}
             pageTitle={pageTitle}
             sharingUrl={sharingUrl}
-            translations={translations}>
-          </ContactInfo>
+            translations={translations} />
         </div>
       </section>
       {
         relatedContent.length > 0 &&
         <section className="related-content">
-          <h2>{translations['relatedContent']}</h2>
+          <h2>{translations.relatedContent}</h2>
           <PostList
             isLoadingMore={false}
             hasMoreData={false}
             authData={authData}
             translations={translations}
-            posts={relatedContent}
-            onLoadMore={() => console.warn('loadMore')}>
-          </PostList>
+            posts={relatedContent} />
         </section>
       }
       <style jsx>{`

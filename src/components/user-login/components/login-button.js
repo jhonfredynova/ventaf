@@ -1,18 +1,19 @@
 import React from 'react';
 
 export default function LoginButton(props) {
-  const { className, provider, ...buttonProps } = props;
+  const { className, provider, children, ...buttonProps } = props;
 
   return (
     <button 
+      type='button'
       className={`login-button ${className} ${provider}`} 
       {...buttonProps}>
       <span className="provider">
-        {provider === 'email' && <i className="fas fa-envelope"></i>}
-        {provider === 'facebook' && <i className="fab fa-facebook-f"></i>}
-        {provider === 'google' && <i className="fab fa-google"></i>}
+        {provider === 'email' && <i className="fas fa-envelope" />}
+        {provider === 'facebook' && <i className="fab fa-facebook-f" />}
+        {provider === 'google' && <i className="fab fa-google" />}
       </span>
-      {props.children}
+      {children}
       <style jsx>{`
         .login-button {
           border: 1px solid var(--color-border);

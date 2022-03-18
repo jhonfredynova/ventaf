@@ -22,16 +22,14 @@ export default function Faq() {
   return (
     <main>
       <SEO
-        title={translations['faqTitle']}
-        description={translations['faqDescription']}>
-      </SEO>
+        title={translations.faqTitle}
+        description={translations.faqDescription} />
       <NavigationBar
-        title={translations['faqTitle']}
-        description={translations['faqDescription']}
-        showBackBtn={true}
-        translations={translations}>
-      </NavigationBar>
-      <article dangerouslySetInnerHTML={{ __html: (translations['faqInfo']) }} />
+        title={translations.faqTitle}
+        description={translations.faqDescription}
+        showBackBtn
+        translations={translations} />
+      <article dangerouslySetInnerHTML={{ __html: (translations.faqInfo) }} />
       <style jsx>{`
         main {
           max-width: var(--container-width);

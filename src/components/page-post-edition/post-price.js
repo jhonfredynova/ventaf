@@ -8,8 +8,8 @@ export default function PostPrice(props) {
   const [isModalOpen, setModalOpen] = useState(false);
   const selectedSuggestion = suggestions.find(item => item.value === priceValue.currency);
 
-  const customValue = selectedSuggestion => {
-    const formattedValue = selectedSuggestion.label;
+  const customValue = newSelectedSuggestion => {
+    const formattedValue = newSelectedSuggestion.label;
     return formattedValue;
   };
 
@@ -39,7 +39,7 @@ export default function PostPrice(props) {
         <button 
           type="button"
           className="btn-indicative" 
-          title={translations['currency']}
+          title={translations.currency}
           onClick={() => setModalOpen(!isModalOpen)}>   
           {
             selectedSuggestion &&
@@ -49,7 +49,7 @@ export default function PostPrice(props) {
           }
           {
             !selectedSuggestion &&
-            <i className="font-icon fas fa-dollar-sign"></i>
+            <i className="font-icon fas fa-dollar-sign" />
           } 
         </button>
         <InputNumeric
@@ -58,34 +58,33 @@ export default function PostPrice(props) {
           inputType="tel"
           className='input-price'
           decimalScale={2}
-          placeholder={translations['price']}
+          placeholder={translations.price}
           value={priceValue.value}
-          onChange={onChangeValue}>
-        </InputNumeric>
+          onChange={onChangeValue} />
         {
           !['', undefined, null].includes(priceValue.value) && 
           <button 
             className="btn-clear" 
             type="button"
-            title={translations['clean']}
+            title={translations.clean}
             onClick={onClearValue}>
-            <i className="fas fa-times"></i>
+            <i className="fas fa-times" />
           </button>
         }
       </div>
-      <p className="error-msg">{translations[errors?.currency] && translations['selectCurrency']}</p>
+      <p className="error-msg">{translations[errors?.currency] && translations.selectCurrency}</p>
       <p className="error-msg">{translations[errors?.value]}</p>
       <Lightbox
         isOpen={isModalOpen}
         onToggle={() => setModalOpen(!isModalOpen)}>
         <section className="lightbox-post-price">
-          <h2>{translations['selectCurrency']}</h2>
+          <h2>{translations.selectCurrency}</h2>
           <InputSuggestions
             autofocus
             isInputLg
             customOption={customOption} 
             customValue={customValue}
-            placeholder={translations['currency']}
+            placeholder={translations.currency}
             required={required}
             suggestions={suggestions}
             translations={translations}
@@ -93,8 +92,7 @@ export default function PostPrice(props) {
             onChange={currency => {
               onChange({ ...priceValue, currency });
               setModalOpen(false);
-            }}>
-          </InputSuggestions>
+            }} />
         </section>
       </Lightbox>
       <style jsx>{`

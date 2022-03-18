@@ -2,10 +2,10 @@ import React, { useState, useRef, useEffect } from 'react';
 import { useSelector, useStore } from 'react-redux';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import LoginMethods from '../page-profile/login-methods';
+import Image from 'next/image';
+import LoginMethods from "./login-methods";
 import { BREAKPOINTS } from '../../utils/style-utils';
 import { uploadProfilePhoto } from '../../store/actions/auth-actions';
-import Image from 'next/image';
 
 export default function ProfileInfo(props) {
   const uploadInputPhoto = useRef(null);
@@ -27,7 +27,7 @@ export default function ProfileInfo(props) {
     try {
       setIsUploadingPhoto(true);
       setUploadError('');
-      let formData = new FormData();
+      const formData = new FormData();
       formData.append('id', authData.uid);
       formData.append('photo', event.target.files[0]);
       await store.dispatch(uploadProfilePhoto(formData));
@@ -48,6 +48,7 @@ export default function ProfileInfo(props) {
 
       <div className="navigation">
         <button
+          type='button'
           className="btn-back"
           title={translations.goBack}
           onClick={() => router.back()}>
@@ -57,11 +58,11 @@ export default function ProfileInfo(props) {
           ref={uploadInputPhoto}
           type="file"
           hidden
-          onChange={onUploadPhoto}>
-        </input>
+          onChange={onUploadPhoto} />
         {
           isProfileOwner &&
           <button
+            type='button'
             className="btn-profile-menu"
             title={userProfile.username}
             onClick={() => uploadInputPhoto.current.click()}>
@@ -89,10 +90,9 @@ export default function ProfileInfo(props) {
           <div className="profile-options">
             <LoginMethods
               identities={identities}
-              translations={translations}>
-            </LoginMethods>
+              translations={translations} />
             <Link href="/account/update-info">
-              <a className='btn-edit-profile'>{translations.editProfile}</a>
+              <a href="passHref" className='btn-edit-profile'>{translations.editProfile}</a>
             </Link>
           </div>
         }

@@ -7,7 +7,9 @@ export default async function syncConfig(req, res) {
   try {
     await runMiddleware(req, res, authorization('admin')); 
 
+    // eslint-disable-next-line global-require
     const axios = require('axios');
+    // eslint-disable-next-line global-require
     const firebaseAdmin = require('../../../firebase-admin').default;
     const db = firebaseAdmin.firestore();
 

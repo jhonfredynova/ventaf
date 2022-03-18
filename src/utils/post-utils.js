@@ -12,7 +12,7 @@ const createPostTag = async (db, tagName) => {
   const tagExist = postTags[0];
 
   if (!tagExist) {
-    let responseNewTag = await db.collection('posts-tags').add(tagData);
+    const responseNewTag = await db.collection('posts-tags').add(tagData);
     tagData = { ...tagData, id: responseNewTag.id };
   } else {
     tagData = tagExist;

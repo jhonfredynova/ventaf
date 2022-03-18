@@ -11,13 +11,13 @@ export default function Footer(props) {
     <footer className="footer">
       <ul>
         <li>
-          <Link href="/faq"><a>{translations.faq}</a></Link>
+          <Link href="/faq" passHref><a href="passHref">{translations.faq}</a></Link>
         </li>
         <li>
-          <Link href="/privacy"><a>{translations.privacy}</a></Link>
+          <Link href="/privacy" passHref><a href="passHref">{translations.privacy}</a></Link>
         </li>
         <li>
-          <Link href="/terms"><a>{translations.terms}</a></Link>
+          <Link href="/terms" passHref><a href="passHref">{translations.terms}</a></Link>
         </li>
         <li>
           <a href="mailto:construccionytecnologiasas@gmail.com" target="_blank" rel="noopener noreferrer">
@@ -29,13 +29,13 @@ export default function Footer(props) {
       <p className="branding">Construccion y Tecnologia SAS</p>
 
       <div className="languages-bar">
-        <Link href={{ pathname, query }} locale="es">
-          <a className={`link-language ${locale === 'es' ? 'active' : ''}`}>
+        <Link href={{ pathname, query }} locale="es" passHref>
+          <a href="passHref" className={`link-language ${locale === 'es' ? 'active' : ''}`}>
             {translations.spanish}
           </a>
         </Link>
-        <Link href={{ pathname, query }} locale="en">
-          <a className={`link-language ${locale === 'en' ? 'active' : ''}`}>
+        <Link href={{ pathname, query }} locale="en" passHref>
+          <a href="passHref" className={`link-language ${locale === 'en' ? 'active' : ''}`}>
             {translations.english}
           </a>
         </Link>

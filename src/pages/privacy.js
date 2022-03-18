@@ -22,16 +22,14 @@ export default function Privacy() {
   return (
     <main>
       <SEO
-        title={translations['privacyTitle']}
-        description={translations['privacyDescription']}>
-      </SEO>
+        title={translations.privacyTitle}
+        description={translations.privacyDescription} />
       <NavigationBar
-        title={translations['privacyTitle']}
-        description={translations['privacyDescription']}
-        showBackBtn={true}
-        translations={translations}>
-      </NavigationBar>
-      <article dangerouslySetInnerHTML={{ __html: translations['privacyInfo'] }} />
+        title={translations.privacyTitle}
+        description={translations.privacyDescription}
+        showBackBtn
+        translations={translations} />
+      <article dangerouslySetInnerHTML={{ __html: translations.privacyInfo }} />
       <style jsx>{`
         main {
           max-width: var(--container-width);

@@ -25,9 +25,7 @@ const reducers = combineReducers({
 });
 const middlewares = composeWithDevTools(applyMiddleware(requestMiddleware, thunkMiddleware));
 
-const initStore = preloadedState => {
-  return createStore(reducers, preloadedState, middlewares);
-};
+const initStore = preloadedState => createStore(reducers, preloadedState, middlewares);
 
 export const initializeStore = preloadedState => {
   let newStore = store ?? initStore(preloadedState);
@@ -36,7 +34,8 @@ export const initializeStore = preloadedState => {
   // Merge that state with the current state in the store, and create a new store
   if (preloadedState && store) {
     // delete auth because it is controlled on the client side
-    delete preloadedState['auth'];
+    // eslint-disable-next-line no-param-reassign
+    delete preloadedState.auth;
     newStore = initStore({ ...store.getState(), ...preloadedState });
     store = null;
   }
@@ -56,6 +55,6 @@ export const initializeStore = preloadedState => {
 };
 
 export const useStore = initialState => {
-  const store = useMemo(() => initializeStore(initialState), [initialState]);
-  return store;
+  const storeData = useMemo(() => initializeStore(initialState), [initialState]);
+  return storeData;
 };

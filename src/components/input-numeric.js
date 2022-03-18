@@ -3,10 +3,13 @@ import NumberFormat from 'react-number-format';
 
 export default function InputNumeric(props) {
   const { id, className, decimalScale, disabled, format, inputType, placeholder, prefix, suffix, value, onChange } = props;
+  
   const getInputRef = inputRef => {
     if (inputRef) {
       const { autocomplete } = props;
+      // eslint-disable-next-line no-param-reassign
       inputRef.autocomplete = autocomplete;
+      // eslint-disable-next-line no-param-reassign
       inputRef.disabled = disabled;
     }
   };
@@ -25,10 +28,9 @@ export default function InputNumeric(props) {
       displayType="input"
       prefix={prefix}
       suffix={suffix}
-      thousandSeparator={','}
+      thousandSeparator=","
       decimalSeparator="."
-      onValueChange={value => onChange(value.floatValue)}>
-    </NumberFormat>
+      onValueChange={newValue => onChange(newValue.floatValue)} />
   );
 
 }

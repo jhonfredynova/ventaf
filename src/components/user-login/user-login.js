@@ -11,8 +11,7 @@ export default function UserLogin(props) {
         isLoggingIn={isLoggingIn}
         translations={translations}
         onLogginIn={setIsLogginIn}
-        onSuccess={onLoginSuccess}>
-      </LoginSocialNetworks>
+        onSuccess={onLoginSuccess} />
     </div>
   );
   

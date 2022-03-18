@@ -10,8 +10,8 @@ export default function PriceInfo(props) {
       {
         price.value === 0 &&
         <div className="value free">
-          <span className="icon"><i className="fas fa-gift"></i></span>
-          {translations['free']}
+          <span className="icon"><i className="fas fa-gift" /></span>
+          {translations.free}
         </div>
       }
       {

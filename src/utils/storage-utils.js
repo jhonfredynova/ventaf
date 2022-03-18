@@ -1,5 +1,6 @@
 export const getFileReference = async data => {
-  const { Storage } = await require('@google-cloud/storage');
+  // eslint-disable-next-line global-require
+  const { Storage } = require('@google-cloud/storage');
   const gcs = new Storage();
   const bucket = gcs.bucket(data.bucketName);
   const getPathStorageFromUrl = fileUrl => {
@@ -22,7 +23,8 @@ export const getFileReference = async data => {
 };
 
 export const deleteFromStorage = async data => {
-  const { Storage } = await require('@google-cloud/storage');
+  // eslint-disable-next-line global-require
+  const { Storage } = require('@google-cloud/storage');
   const { bucketName } = data;
   const gcs = new Storage();
   const bucket = gcs.bucket(bucketName);
@@ -32,8 +34,7 @@ export const deleteFromStorage = async data => {
 
   // deleting files
   if (filesToDelete.length > 0) { 
-    const deletePromises = filesToDelete.map(fileUrl => {
-      return new Promise((resolve, reject) => {
+    const deletePromises = filesToDelete.map(fileUrl => new Promise((resolve, reject) => {
         getFileReference({ bucketName, fileUrl })
           .then(fileReference => {
             fileReference.delete();    
@@ -46,20 +47,19 @@ export const deleteFromStorage = async data => {
           .finally(() => {
             resolve();
           });
-      });
-    });
+      }));
     await Promise.all(deletePromises); 
   }
 
   // deleting folders 
   if (foldersToDelete.length > 0) {
-    const deletePromises = foldersToDelete.map(folderPath => {
-      return new Promise((resolve, reject) => {
+    let newFolderPath = null;
+    const deletePromises = foldersToDelete.map(folderPath => new Promise((resolve, reject) => {
         // removing first slash because issues with storage
-        folderPath = (folderPath.startsWith('/') ? folderPath.substring(1) : folderPath);
-        bucket.deleteFiles({ prefix: folderPath })
+        newFolderPath = (folderPath.startsWith('/') ? folderPath.substring(1) : folderPath);
+        bucket.deleteFiles({ prefix: newFolderPath })
           .then(() => {
-            deletedPaths = deletedPaths.concat(folderPath);
+            deletedPaths = deletedPaths.concat(newFolderPath);
           })
           .catch(error => {
             console.error('Error, deleting file', error);
@@ -68,8 +68,7 @@ export const deleteFromStorage = async data => {
           .finally(() => {
             resolve();
           });
-      });
-    });
+      }));
     await Promise.all(deletePromises);
   }
 
@@ -77,7 +76,9 @@ export const deleteFromStorage = async data => {
 };
 
 export const renameFile = (filePath, fileName) => {
+  // eslint-disable-next-line global-require
   const fs = require('fs');
+  // eslint-disable-next-line global-require
   const path = require('path');
   const fileDir = path.dirname(filePath);
   const newFilePath = path.join(fileDir, fileName);
@@ -87,7 +88,9 @@ export const renameFile = (filePath, fileName) => {
 };
 
 export const uploadToStorage = async data => {
+  // eslint-disable-next-line global-require
   const path = require('path');
+  // eslint-disable-next-line global-require
   const { Storage } = await require('@google-cloud/storage');
   const gcs = new Storage();
   const bucket = gcs.bucket(data.bucketName);
@@ -116,9 +119,7 @@ export const uploadToStorage = async data => {
     return uploadedFile.publicUrl();
   };
 
-  const uploadPromises = data.filePaths.map(filePath => {
-    return uploadFile(filePath, data);
-  });
+  const uploadPromises = data.filePaths.map(filePath => uploadFile(filePath, data));
 
   const uploadedFiles = await Promise.all(uploadPromises);
 
