@@ -3,67 +3,85 @@ import Lightbox from './lightbox';
 import InputSuggestions from './input-suggestions';
 
 export default function InputPhone(props) {
-  const { id, translations, errors, required, suggestions, value: phoneValue, onChange } = props;
+  const {
+    id, translations, errors, required, suggestions, value: phoneValue, onChange,
+  } = props;
   const [isModalOpen, setModalOpen] = useState(false);
-  const selectedSuggestion = suggestions.find(item => item.value === phoneValue.prefix);
+  const selectedSuggestion = suggestions.find((item) => item.value === phoneValue.prefix);
   const customFilterLogic = (suggestion, searchValue) => {
     const { countryName, label, value } = suggestion;
     return `${countryName} ${label} ${value}`.toLowerCase().includes(searchValue.toLowerCase());
   };
-  const customOption = suggestion => (
+  const customOption = (suggestion) => (
     <div className="custom-option">
-      <div>{suggestion.countryName} ({suggestion.value})</div>
-      <style jsx>{`
+      <div>
+        {suggestion.countryName}
+        {' '}
+        (
+        {suggestion.value}
+        )
+      </div>
+      <style jsx>
+        {`
         .custom-option {
           display: flex;
           align-items: center;
         }
-      `}</style>
+      `}
+
+      </style>
     </div>
   );
 
   return (
     <div className="input-phone">
       <div className="input-group">
-        <button 
+        <button
           type="button"
-          className="btn-prefix" 
-          title={translations['areaCode']}
-          onClick={() => setModalOpen(!isModalOpen)}>   
+          className="btn-prefix"
+          title={translations.areaCode}
+          onClick={() => setModalOpen(!isModalOpen)}
+        >
           {
-            selectedSuggestion &&
-            <span style={{ display: 'inline-block', marginLeft: '3px', minWidth:'32px' }}>
+            selectedSuggestion
+            && (
+            <span style={{ display: 'inline-block', marginLeft: '3px', minWidth: '32px' }}>
               {selectedSuggestion.value}
             </span>
+            )
           }
           {
-            !selectedSuggestion &&
-            <i className="font-icon fas fa-mobile-alt"></i>
-          }            
+            !selectedSuggestion
+            && <i className="font-icon fas fa-mobile-alt" />
+          }
         </button>
         <input
           id={id}
           type="tel"
-          placeholder={translations['phoneNumber']}
+          placeholder={translations.phoneNumber}
           value={phoneValue.number}
-          onChange={event => onChange({ ...phoneValue, number: event.target.value.replace(/[^0-9]/gi, '') })}>
-        </input>
+          onChange={(event) => onChange({ ...phoneValue, number: event.target.value.replace(/[^0-9]/gi, '') })}
+        />
         {
-          phoneValue.number && 
-          <button 
-            className="btn-clear" 
+          phoneValue.number
+          && (
+          <button
+            className="btn-clear"
             type="button"
-            title={translations['clean']}
-            onClick={() => onChange({ ...phoneValue, number: '' })}>
-            <i className="fas fa-times"></i>
+            title={translations.clean}
+            onClick={() => onChange({ ...phoneValue, number: '' })}
+          >
+            <i className="fas fa-times" />
           </button>
+          )
         }
       </div>
       <p className="error-msg">{errors?.prefix && translations.selectAreaCode}</p>
       <p className="error-msg">{translations[errors?.number]}</p>
       <Lightbox
         isOpen={isModalOpen}
-        onToggle={() => setModalOpen(!isModalOpen)}>
+        onToggle={() => setModalOpen(!isModalOpen)}
+      >
         <div className="lightbox-phone-number">
           <h2>{translations.selectAreaCode}</h2>
           <InputSuggestions
@@ -71,18 +89,19 @@ export default function InputPhone(props) {
             translations={translations}
             customFilterLogic={customFilterLogic}
             customOption={customOption}
-            placeholder={translations['areaCode']}
+            placeholder={translations.areaCode}
             required={required}
             suggestions={suggestions}
             value={phoneValue.prefix}
-            onChange={prefix => {
+            onChange={(prefix) => {
               onChange({ ...phoneValue, prefix });
               setModalOpen(false);
-            }}>
-          </InputSuggestions>
+            }}
+          />
         </div>
       </Lightbox>
-      <style jsx>{`
+      <style jsx>
+        {`
         .input-phone {
 
           .error-msg {
@@ -150,8 +169,9 @@ export default function InputPhone(props) {
           }
 
         }
-      `}</style>
+      `}
+
+      </style>
     </div>
   );
-
 }
