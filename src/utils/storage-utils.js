@@ -115,7 +115,6 @@ export const uploadToStorage = async data => {
     const fileBucketDestination = (storageOptions.bucketPath ? `${storageOptions.bucketPath}/${uploadedFileName}` : uploadedFileName);
     const uploadResponse = await bucket.upload(filePath, { destination: fileBucketDestination });
     const uploadedFile = uploadResponse[0];
-    await uploadedFile.makePublic();
     const uploadedFilePublicUrl = uploadedFile.publicUrl();
 
     return uploadedFilePublicUrl;
