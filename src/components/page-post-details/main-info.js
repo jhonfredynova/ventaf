@@ -29,6 +29,7 @@ export default function MainInfo(props) {
 				<i className="far fa-eye" title={translations.views} />
 				{postData.views} {translations.visits}
 			</p>
+			<article>{postData.description}</article>
 			<UserCard profile={userProfile} />
 			<style jsx>{`
 				.main-info {
@@ -41,9 +42,8 @@ export default function MainInfo(props) {
 					}
 
 					article {
-						max-height: 150px;
-						overflow: auto;
-						white-space: pre-wrap;
+						font-size: 2rem;
+						margin-top: var(--spacer);
 					}
 				}
 			`}</style>

@@ -136,14 +136,6 @@ export default function HomeContents(props) {
 					grid-template-columns: 1fr;
 					gap: calc(var(--spacer) * 2);
 
-					@media screen and (min-width: ${BREAKPOINTS.TABLET}) {
-						grid-template-columns: repeat(2, 1fr);
-					}
-
-					@media screen and (min-width: ${BREAKPOINTS.DESKTOP}) {
-						grid-template-columns: repeat(3, 1fr);
-					}
-
 					.post-wrapper {
 						position: relative;
 
@@ -153,6 +145,18 @@ export default function HomeContents(props) {
 							right: 0;
 							z-index: 1;
 						}
+					}
+
+					@media screen and (min-width: ${BREAKPOINTS.TABLET}) {
+						grid-template-columns: repeat(2, 1fr);
+					}
+
+					@media screen and (min-width: ${BREAKPOINTS.DESKTOP}) {
+						grid-template-columns: repeat(3, 1fr);
+					}
+
+					@media screen and (min-width: ${BREAKPOINTS.DESKTOP_LG}) {
+						grid-template-columns: repeat(4, 1fr);
 					}
 				}
 			`}</style>

@@ -8,7 +8,7 @@ export default async function getRelatedPostContent(req, res) {
 		const { postId } = req.query;
 		const postInfo = await getDbDocument(db, 'posts', postId);
 		const postQuery = {
-			limit: 9,
+			limit: 8,
 			where: {
 				description: { '!=': postInfo.description },
 				searchTerms: {

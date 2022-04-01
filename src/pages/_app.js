@@ -47,7 +47,7 @@ export default function MyApp({ Component, pageProps }) {
 					--color-links: #00709a;
 					--color-text: #333;
 
-					--container-width: 1200px;
+					--container-width: 1800px;
 					--spacer: 10px;
 				}
 

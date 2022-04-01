@@ -1,21 +1,21 @@
-import "react-responsive-carousel/lib/styles/carousel.min.css";
-import React, { useEffect, useState } from "react";
-import { useSelector, useStore } from "react-redux";
-import PhotoCarousel from "../../components/page-post-details/photo-carousel";
-import MainInfo from "../../components/page-post-details/main-info";
-import ContactInfo from "../../components/page-post-details/contact-info";
-import BreadcumbBar from "../../components/page-post-details/breadcumb-bar";
-import SEO from "../../components/seo";
-import PostList from "../../components/post-list";
+import 'react-responsive-carousel/lib/styles/carousel.min.css';
+import React, { useEffect, useState } from 'react';
+import { useSelector, useStore } from 'react-redux';
+import PhotoCarousel from '../../components/page-post-details/photo-carousel';
+import MainInfo from '../../components/page-post-details/main-info';
+import ContactInfo from '../../components/page-post-details/contact-info';
+import BreadcumbBar from '../../components/page-post-details/breadcumb-bar';
+import SEO from '../../components/seo';
+import PostList from '../../components/post-list';
 import {
 	getRelatedContent,
 	getPostById,
 	updatePostViews
-} from "../../store/actions/post-actions";
-import { getProfileById } from "../../store/actions/profile-actions";
-import { BREAKPOINTS } from "../../utils/style-utils";
-import { initializeStore } from "../../store/store";
-import { getConfiguration } from "../../store/actions/config-actions";
+} from '../../store/actions/post-actions';
+import { getProfileById } from '../../store/actions/profile-actions';
+import { BREAKPOINTS } from '../../utils/style-utils';
+import { initializeStore } from '../../store/store';
+import { getConfiguration } from '../../store/actions/config-actions';
 
 export const getServerSideProps = async ({ locale, query }) => {
 	const store = initializeStore();
@@ -41,7 +41,7 @@ export const getServerSideProps = async ({ locale, query }) => {
 
 export default function PostDetails() {
 	const store = useStore();
-	const [sharingUrl, setSharingUrl] = useState("");
+	const [sharingUrl, setSharingUrl] = useState('');
 	const authData = useSelector(state => state.auth.authData);
 	const { callingCodes, currencies, translations } = useSelector(
 		state => state.config
@@ -50,10 +50,10 @@ export default function PostDetails() {
 	const profiles = useSelector(state => state.profile.records);
 	const postData = useSelector(state => state.post.currentPost);
 	const userProfile = postData && profiles[postData.user];
-	const pageTitle = (postData?.description || "")
+	const pageTitle = (postData?.description || '')
 		.trim()
 		.substring(0, 80)
-		.concat(", ")
+		.concat(', ')
 		.concat(postData?.location?.description);
 
 	useEffect(() => {
@@ -80,13 +80,12 @@ export default function PostDetails() {
 			/>
 			<h1>{pageTitle}</h1>
 			<section className="ad-details">
-				<div className="main-details">
+				<div className="photo-details">
 					<PhotoCarousel
 						autofocus
 						bgColor="black"
 						photos={postData.photos}
 					/>
-					<article>{postData.description}</article>
 				</div>
 				<div className="info">
 					<MainInfo
@@ -133,13 +132,8 @@ export default function PostDetails() {
 					}
 
 					.ad-details {
-						.main-details {
+						.photo-details {
 							margin-bottom: calc(var(--spacer) * 2);
-
-							article {
-								font-size: 1.8rem;
-								margin-top: var(--spacer);
-							}
 						}
 
 						.info {
@@ -149,15 +143,12 @@ export default function PostDetails() {
 						@media screen and (min-width: ${BREAKPOINTS.DESKTOP}) {
 							display: flex;
 
-							.main-details {
-								flex-grow: 1;
-								article {
-									font-size: 2rem;
-								}
+							.photo-details {
+								flex: 2;
 							}
 
 							.info {
-								flex-shrink: 0;
+								flex: 1;
 								width: 300px;
 								margin-left: var(--spacer);
 							}
