@@ -12,120 +12,125 @@ import { getConfiguration } from '../../store/actions/config-actions';
 import { getFilesFromUrls } from '../../utils/upload-utils';
 
 export const getServerSideProps = async ({ locale, query }) => {
-  const store = initializeStore();
-  const { postId } = query;
+	const store = initializeStore();
+	const { postId } = query;
 
-  await Promise.all([
-    store.dispatch(getConfiguration(locale)),
-    store.dispatch(getPostById(postId))
-  ]);
+	await Promise.all([
+		store.dispatch(getConfiguration(locale)),
+		store.dispatch(getPostById(postId))
+	]);
 
-  if (!store.getState().post.currentPost) {
-    return {
-      notFound: true
-    };
-  }
-  
-  return {
-    props: {
-      initialReduxState: store.getState() 
-    }
-  };
+	if (!store.getState().post.currentPost) {
+		return {
+			notFound: true
+		};
+	}
+
+	return {
+		props: {
+			initialReduxState: store.getState()
+		}
+	};
 };
 
 function EditPost() {
-  const store = useStore();
-  const { authData } = useSelector(state => state.auth);
-  const postData = useSelector(state => state.post.currentPost);
-  const router = useRouter();
-  const [isPosting, setIsPosting] = useState(false);
-  const [isPhotosLoaded, setIsPhotosLoaded] = useState(false);
-  const [changePhotos, setChangePhotos] = useState(false);
-  const [errors, setErrors] = useState(false);
-  const [model, setModel] = useState(postData);
-  const { callingCodes, currencies, translations } = useSelector(state => state.config);
-  const pageTitle = translations.adEditionTitle;
-  const pageDescription = translations.adEditionDescription;
+	const store = useStore();
+	const { authData } = useSelector(state => state.auth);
+	const postData = useSelector(state => state.post.currentPost);
+	const router = useRouter();
+	const [isPosting, setIsPosting] = useState(false);
+	const [isPhotosLoaded, setIsPhotosLoaded] = useState(false);
+	const [changePhotos, setChangePhotos] = useState(false);
+	const [errors, setErrors] = useState(false);
+	const [model, setModel] = useState(postData);
+	const { callingCodes, currencies, translations } = useSelector(
+		state => state.config
+	);
+	const pageTitle = translations.adEditionTitle;
+	const pageDescription = translations.adEditionDescription;
 
-  useEffect(() => {
-    if (!isPhotosLoaded && postData) {
-      getFilesFromUrls(postData.photos).then(filesData => {
-        setModel({ ...model, photos: filesData });
-        setIsPhotosLoaded(true);
-      });
-    }
-  }, [isPhotosLoaded, model, postData]);
+	useEffect(() => {
+		if (!isPhotosLoaded && postData) {
+			getFilesFromUrls(postData.photos).then(filesData => {
+				setModel({ ...model, photos: filesData });
+				setIsPhotosLoaded(true);
+			});
+		}
+	}, [isPhotosLoaded, model, postData]);
 
-  const onSavePost = async event => {
-    try {
-      if (event) {
-        event.preventDefault();
-      }
+	const onSavePost = async event => {
+		try {
+			if (event) {
+				event.preventDefault();
+			}
 
-      // parsing post data
-      setIsPosting(true);
-      const { photos, ...modelData } = model;
-      const postInfo = {
-        ...modelData,
-        seller: {
-          ...model.seller,
-          email: (authData && authData.email)
-        },
-        user: (authData && authData.uid)
-      };
+			// parsing post data
+			setIsPosting(true);
+			const { photos, ...modelData } = model;
+			const postInfo = {
+				...modelData,
+				seller: {
+					...model.seller,
+					email: authData && authData.email
+				},
+				user: authData && authData.uid
+			};
 
-      // updating post info
-      const formData = new FormData();
-      formData.append('data', JSON.stringify(postInfo));
+			// updating post info
+			const formData = new FormData();
+			formData.append('data', JSON.stringify(postInfo));
 
-      if (changePhotos) {
-        photos.forEach(file => formData.append('photos', file));
-      }
+			if (changePhotos) {
+				photos.forEach(file => formData.append('photos', file));
+			}
 
-      await store.dispatch(updatePost(postInfo.id, formData));
-      
-      // redirecting to the user ads
-      await store.dispatch(cleanProfile(authData.uid));
-      setIsPosting(false);
-      router.push(`/${authData.profile.username}`);
-    } catch (error) { 
-      const { errors: serverErrors, code, message } = error?.response?.data || {};
-      setIsPosting(false);
-      setErrors({ ...serverErrors, general: (translations[code] || message) });
-    }
-  };
+			await store.dispatch(updatePost(postInfo.id, formData));
 
-  return (
-    <main>
-      <SEO
-        title={pageTitle}
-        description={pageDescription} />
-      <NavigationBar
-        title={pageTitle}
-        description={pageDescription}
-        translations={translations}
-        showBackBtn />
-      <FormPost
-        isPosting={isPosting}
-        btnLabel={translations.update}
-        callingCodes={callingCodes}
-        currencies={currencies}
-        errors={errors}
-        model={model}
-        translations={translations}
-        onChangePhotos={setChangePhotos}
-        onChangeModel={setModel}
-        onSavePost={onSavePost} /> 
-      <style jsx>{`
-        main {
-          max-width: var(--container-width);
-          margin: 0 auto;
-          padding: calc(var(--spacer) * 2);
-        }    
-      `}</style>
-    </main>
-  );
+			// redirecting to the user ads
+			await store.dispatch(cleanProfile(authData.uid));
+			setIsPosting(false);
+			router.push(`/${authData.profile.username}`);
+		} catch (error) {
+			const { errors: serverErrors, code, message } =
+				error?.response?.data || {};
+			setIsPosting(false);
+			setErrors({
+				...serverErrors,
+				general: translations[code] || message
+			});
+		}
+	};
 
+	return (
+		<main>
+			<SEO title={pageTitle} description={pageDescription} />
+			<NavigationBar
+				title={pageTitle}
+				description={pageDescription}
+				translations={translations}
+				showBackBtn
+			/>
+			<FormPost
+				isPosting={isPosting}
+				btnLabel={translations.update}
+				callingCodes={callingCodes}
+				currencies={currencies}
+				errors={errors}
+				model={model}
+				translations={translations}
+				onChangePhotos={setChangePhotos}
+				onChangeModel={setModel}
+				onSavePost={onSavePost}
+			/>
+			<style jsx>{`
+				main {
+					max-width: var(--container-width);
+					margin: 0 auto;
+					padding: calc(var(--spacer) * 2);
+				}
+			`}</style>
+		</main>
+	);
 }
 
 export default Authorization(EditPost, ['registered']);

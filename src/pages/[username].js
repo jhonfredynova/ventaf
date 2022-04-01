@@ -1,80 +1,88 @@
-import React from 'react';
-import { useRouter } from 'next/router';
-import { useSelector } from 'react-redux';
-import ProfileInfo from '../components/page-profile/profile-info';
-import ProfileContents from '../components/page-profile/profile-contents';
-import SEO from '../components/seo';
-import { initializeStore } from '../store/store';
-import { getConfiguration } from '../store/actions/config-actions';
-import { getProfileByUsername, getProfileAds } from '../store/actions/profile-actions';
+import React from "react";
+import { useRouter } from "next/router";
+import { useSelector } from "react-redux";
+import ProfileInfo from "../components/page-profile/profile-info";
+import ProfileContents from "../components/page-profile/profile-contents";
+import SEO from "../components/seo";
+import { initializeStore } from "../store/store";
+import { getConfiguration } from "../store/actions/config-actions";
+import {
+	getProfileByUsername,
+	getProfileAds
+} from "../store/actions/profile-actions";
 
 export const getServerSideProps = async ({ locale, query }) => {
-  try {
-    const store = initializeStore();
-    const profile = await store.dispatch(getProfileByUsername(query.username));
+	try {
+		const store = initializeStore();
+		const profile = await store.dispatch(
+			getProfileByUsername(query.username)
+		);
 
-    await Promise.all([
-      store.dispatch(getConfiguration(locale)),
-      store.dispatch(getProfileAds(profile.id, {}))
-    ]);
+		await Promise.all([
+			store.dispatch(getConfiguration(locale)),
+			store.dispatch(getProfileAds(profile.id, {}))
+		]);
 
-    return { 
-      props: {
-        initialReduxState: store.getState() 
-      }
-    };
-  } catch (error) {
-    return { notFound: true };
-  }
+		return {
+			props: {
+				initialReduxState: store.getState()
+			}
+		};
+	} catch (error) {
+		return { notFound: true };
+	}
 };
 
 export default function ProfileView() {
-  const router = useRouter();
-  const { username } = router.query;
-  const authData = useSelector(state => state.auth.authData);
-  const { translations } = useSelector(state => state.config);
-  const profiles = useSelector(state => state.profile.records);
-  const profileInfo = Object
-    .keys(profiles)
-    .map(profileId => profiles[profileId])
-    .find(profile => profile.username === username);
-  const pageTitle = (profileInfo && `${profileInfo.displayName} (@${profileInfo.username})`);
-  const pageDescription = translations.slogan;
-  const ads = (profileInfo && profileInfo.ads || []);
+	const router = useRouter();
+	const { username } = router.query;
+	const authData = useSelector(state => state.auth.authData);
+	const { translations } = useSelector(state => state.config);
+	const profiles = useSelector(state => state.profile.records);
+	const profileInfo = Object.keys(profiles)
+		.map(profileId => profiles[profileId])
+		.find(profile => profile.username === username);
+	const pageTitle =
+		profileInfo && `${profileInfo.displayName} (@${profileInfo.username})`;
+	const pageDescription = translations.slogan;
+	const ads = (profileInfo && profileInfo.ads) || [];
 
-  if (!profileInfo) {
-    return null;
-  }
+	if (!profileInfo) {
+		return null;
+	}
 
-  return (
-    <main>
-      <SEO
-        title={pageTitle}
-        description={pageDescription}
-        imageUrl={profileInfo.photoURL} />
-      <h1 className="sr-only">{pageTitle}</h1>
-      <article className="sr-only">{pageDescription}</article>
-      <ProfileInfo
-        translations={translations}
-        userProfile={profileInfo} />
-      <h2>{translations.ads}</h2>
-      <ProfileContents
-        isLoading={false}
-        authData={authData}
-        posts={ads}
-        translations={translations}
-        userProfile={profileInfo} />
-      <style jsx>{`
-        main {
-          max-width: var(--container-width);
-          margin: 0 auto;
-          padding: 15px;
+	return (
+		<main>
+			<SEO
+				title={pageTitle}
+				description={pageDescription}
+				imageUrl={profileInfo.photoURL}
+			/>
+			<h1 className="sr-only">{pageTitle}</h1>
+			<article className="sr-only">{pageDescription}</article>
+			<ProfileInfo
+				translations={translations}
+				userProfile={profileInfo}
+			/>
+			<h2>{translations.ads}</h2>
+			<ProfileContents
+				isLoading={false}
+				authData={authData}
+				posts={ads}
+				translations={translations}
+				userProfile={profileInfo}
+			/>
+			<style jsx>{`
+				main {
+					max-width: var(--container-width);
+					margin: 0 auto;
+					padding: 15px;
 
-          h2 {
-            margin-bottom: 15px;
-          }
-        }
-      `}</style>
-    </main>
-  );
+					h2 {
+						margin-bottom: 15px;
+					}
+				}
+			`}</style>
+		</main>
+	);
 }

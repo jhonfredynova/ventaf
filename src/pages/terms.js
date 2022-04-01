@@ -6,56 +6,59 @@ import { initializeStore } from '../store/store';
 import { getConfiguration } from '../store/actions/config-actions';
 
 export const getStaticProps = async ({ locale }) => {
-  const store = initializeStore();
-  await store.dispatch(getConfiguration(locale));
-  
-  return {
-    props: {
-      initialReduxState: store.getState() 
-    }
-  };
+	const store = initializeStore();
+	await store.dispatch(getConfiguration(locale));
+
+	return {
+		props: {
+			initialReduxState: store.getState()
+		}
+	};
 };
 
 export default function Terms() {
-  const { translations } = useSelector(state => state.config);
+	const { translations } = useSelector(state => state.config);
 
-  return (
-    <main> 
-      <SEO
-        title={translations.termsTitle}
-        description={translations.termsDescription} />
-      <NavigationBar
-        title={translations.termsTitle}
-        description={translations.termsDescription}
-        showBackBtn
-        translations={translations} />
-      <article dangerouslySetInnerHTML={{ __html: translations.termsInfo }} />
-      <style jsx>{`
-        main {
-          max-width: var(--container-width);
-          margin: 0 auto;
-          padding: calc(var(--spacer) * 2);
+	return (
+		<main>
+			<SEO
+				title={translations.termsTitle}
+				description={translations.termsDescription}
+			/>
+			<NavigationBar
+				title={translations.termsTitle}
+				description={translations.termsDescription}
+				showBackBtn
+				translations={translations}
+			/>
+			<article
+				dangerouslySetInnerHTML={{ __html: translations.termsInfo }}
+			/>
+			<style jsx>{`
+				main {
+					max-width: var(--container-width);
+					margin: 0 auto;
+					padding: calc(var(--spacer) * 2);
 
-          article {
-            :global(h3) {
-              margin-bottom: 15px;
-            }
+					article {
+						:global(h3) {
+							margin-bottom: 15px;
+						}
 
-            :global(p) {
-              margin-bottom: 10px;
-            }
+						:global(p) {
+							margin-bottom: 10px;
+						}
 
-            :global(ol) {
-              margin-left: 30px;
+						:global(ol) {
+							margin-left: 30px;
 
-              :global(li) {
-                margin-bottom: 5px;
-              }
-            }
-          }
-        }  
-      `}</style>
-    </main>
-  );
-
+							:global(li) {
+								margin-bottom: 5px;
+							}
+						}
+					}
+				}
+			`}</style>
+		</main>
+	);
 }

@@ -2,23 +2,30 @@ import axios from 'axios';
 import { setUrlSearch } from '../../utils/request-utils';
 
 export const TYPES = {
-  CLEAN: 'CLEAN_USER',
-  GET_ALL: 'GET_ALL_USERS',
-  GET_BY_ID: 'GET_USER',
-  UPDATE: 'UPDATE_USER'
+	CLEAN: 'CLEAN_USER',
+	GET_ALL: 'GET_ALL_USERS',
+	GET_BY_ID: 'GET_USER',
+	UPDATE: 'UPDATE_USER'
 };
 
 export const getUsers = query => async dispatch => {
-  const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/users/${setUrlSearch(query)}`);
-  dispatch({ type: TYPES.GET_ALL, payload: response.data });
+	const response = await axios.get(
+		`${process.env.NEXT_PUBLIC_API_URL}/users/${setUrlSearch(query)}`
+	);
+	dispatch({ type: TYPES.GET_ALL, payload: response.data });
 };
 
 export const getUserById = id => async dispatch => {
-  const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/users/${id}`);
-  dispatch({ type: TYPES.GET_BY_ID, payload: response.data });
+	const response = await axios.get(
+		`${process.env.NEXT_PUBLIC_API_URL}/users/${id}`
+	);
+	dispatch({ type: TYPES.GET_BY_ID, payload: response.data });
 };
 
 export const updateUser = data => async dispatch => {
-  const response = await axios.patch(`${process.env.NEXT_PUBLIC_API_URL}/users/update?userId=${data.id}`, data);
-  dispatch({ type: TYPES.UPDATE, payload: response.data });
+	const response = await axios.patch(
+		`${process.env.NEXT_PUBLIC_API_URL}/users/update?userId=${data.id}`,
+		data
+	);
+	dispatch({ type: TYPES.UPDATE, payload: response.data });
 };

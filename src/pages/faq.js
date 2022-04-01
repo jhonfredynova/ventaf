@@ -6,48 +6,51 @@ import { initializeStore } from '../store/store';
 import { getConfiguration } from '../store/actions/config-actions';
 
 export const getStaticProps = async ({ locale }) => {
-  const store = initializeStore();
-  await store.dispatch(getConfiguration(locale));
-  
-  return {
-    props: {
-      initialReduxState: store.getState() 
-    }
-  };
+	const store = initializeStore();
+	await store.dispatch(getConfiguration(locale));
+
+	return {
+		props: {
+			initialReduxState: store.getState()
+		}
+	};
 };
 
 export default function Faq() {
-  const { translations } = useSelector(state => state.config);
+	const { translations } = useSelector(state => state.config);
 
-  return (
-    <main>
-      <SEO
-        title={translations.faqTitle}
-        description={translations.faqDescription} />
-      <NavigationBar
-        title={translations.faqTitle}
-        description={translations.faqDescription}
-        showBackBtn
-        translations={translations} />
-      <article dangerouslySetInnerHTML={{ __html: (translations.faqInfo) }} />
-      <style jsx>{`
-        main {
-          max-width: var(--container-width);
-          margin: 0 auto;
-          padding: calc(var(--spacer) * 2);
+	return (
+		<main>
+			<SEO
+				title={translations.faqTitle}
+				description={translations.faqDescription}
+			/>
+			<NavigationBar
+				title={translations.faqTitle}
+				description={translations.faqDescription}
+				showBackBtn
+				translations={translations}
+			/>
+			<article
+				dangerouslySetInnerHTML={{ __html: translations.faqInfo }}
+			/>
+			<style jsx>{`
+				main {
+					max-width: var(--container-width);
+					margin: 0 auto;
+					padding: calc(var(--spacer) * 2);
 
-          article {
-            :global(h3) {
-              margin-bottom: 15px;
-            }
+					article {
+						:global(h3) {
+							margin-bottom: 15px;
+						}
 
-            :global(p) {
-              margin-bottom: 10px;
-            }
-          }
-        }  
-      `}</style>
-    </main>
-  );
-
+						:global(p) {
+							margin-bottom: 10px;
+						}
+					}
+				}
+			`}</style>
+		</main>
+	);
 }

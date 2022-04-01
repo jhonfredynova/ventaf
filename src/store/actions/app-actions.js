@@ -4,12 +4,12 @@ import { TYPES as PROFILE_TYPES } from './profile-actions';
 import { TYPES as USER_TYPES } from './user-actions';
 
 export const TYPES = {
-  CLEAN: 'CLEANstore'
+	CLEAN: 'CLEANstore'
 };
 
 export const cleanStore = () => dispatch => {
-  dispatch({ type: CONFIG_TYPES.CLEAN });
-  dispatch({ type: POST_TYPES.CLEAN });
-  dispatch({ type: PROFILE_TYPES.CLEAN });
-  dispatch({ type: USER_TYPES.CLEAN });
+	dispatch({ type: CONFIG_TYPES.CLEAN });
+	dispatch({ type: POST_TYPES.CLEAN });
+	dispatch({ type: PROFILE_TYPES.CLEAN });
+	dispatch({ type: USER_TYPES.CLEAN });
 };

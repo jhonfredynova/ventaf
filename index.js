@@ -1,6 +1,6 @@
-const { https } = require("firebase-functions");
-const next = require("next");
-const nextConfig = require("./next.config");
+const { https } = require('firebase-functions');
+const next = require('next');
+const nextConfig = require('./next.config');
 
 const nextServer = next({ nextConfig });
 const nextRequest = nextServer.getRequestHandler();

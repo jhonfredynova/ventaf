@@ -15,46 +15,51 @@ import userReducer from './reducers/user-reducer';
 
 let store = null;
 const reducers = combineReducers({
-  app: appReducer,
-  auth: authReducer,
-  config: configReducer,
-  locale: localeReducer,
-  post: postReducer,
-  profile: profileReducer,
-  user: userReducer
+	app: appReducer,
+	auth: authReducer,
+	config: configReducer,
+	locale: localeReducer,
+	post: postReducer,
+	profile: profileReducer,
+	user: userReducer
 });
-const middlewares = composeWithDevTools(applyMiddleware(requestMiddleware, thunkMiddleware));
+const middlewares = composeWithDevTools(
+	applyMiddleware(requestMiddleware, thunkMiddleware)
+);
 
-const initStore = preloadedState => createStore(reducers, preloadedState, middlewares);
+const initStore = preloadedState =>
+	createStore(reducers, preloadedState, middlewares);
 
 export const initializeStore = preloadedState => {
-  let newStore = store ?? initStore(preloadedState);
+	let newStore = store ?? initStore(preloadedState);
 
-  // After navigating to a page with an initial Redux state
-  // Merge that state with the current state in the store, and create a new store
-  if (preloadedState && store) {
-    // delete auth because it is controlled on the client side
-    // eslint-disable-next-line no-param-reassign
-    delete preloadedState.auth;
-    newStore = initStore({ ...store.getState(), ...preloadedState });
-    store = null;
-  }
+	// After navigating to a page with an initial Redux state
+	// Merge that state with the current state in the store, and create a new store
+	if (preloadedState && store) {
+		// delete auth because it is controlled on the client side
+		// eslint-disable-next-line no-param-reassign
+		delete preloadedState.auth;
+		newStore = initStore({ ...store.getState(), ...preloadedState });
+		store = null;
+	}
 
-  // For SSG and SSR always create a new store
-  if (typeof window === 'undefined') {
-    return newStore;
-  }
+	// For SSG and SSR always create a new store
+	if (typeof window === 'undefined') {
+		return newStore;
+	}
 
-  // Create the store once in the client
-  if (!store) {
-    store = newStore;
-    return store;
-  } 
+	// Create the store once in the client
+	if (!store) {
+		store = newStore;
+		return store;
+	}
 
-  return newStore;
+	return newStore;
 };
 
 export const useStore = initialState => {
-  const storeData = useMemo(() => initializeStore(initialState), [initialState]);
-  return storeData;
+	const storeData = useMemo(() => initializeStore(initialState), [
+		initialState
+	]);
+	return storeData;
 };

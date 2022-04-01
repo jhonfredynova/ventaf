@@ -1,16 +1,14 @@
-import { TYPES } from '../actions/app-actions'; 
+import { TYPES } from '../actions/app-actions';
 
 const initialState = null;
 
 // eslint-disable-next-line default-param-last
 export default function reducer(state = initialState, action) {
-  switch (action.type) {
+	switch (action.type) {
+		case TYPES.CLEAN:
+			return initialState;
 
-    case TYPES.CLEAN:
-      return initialState;
-
-    default:
-      return state;
-      
-  }
+		default:
+			return state;
+	}
 }

@@ -3,69 +3,77 @@ import { deleteFromStorage } from './storage-utils';
 import { formatTag, toSearchTerms } from './text-utils';
 
 const createPostTag = async (db, tagName) => {
-  let tagData = {
-    createdAt: Date.now(),
-    name: formatTag(tagName),
-    views: 0
-  };
-  const postTags = await getDbQuery(db, 'posts-tags', { where: { name: { '==': tagData.name } } });
-  const tagExist = postTags[0];
+	let tagData = {
+		createdAt: Date.now(),
+		name: formatTag(tagName),
+		views: 0
+	};
+	const postTags = await getDbQuery(db, 'posts-tags', {
+		where: { name: { '==': tagData.name } }
+	});
+	const tagExist = postTags[0];
 
-  if (!tagExist) {
-    const responseNewTag = await db.collection('posts-tags').add(tagData);
-    tagData = { ...tagData, id: responseNewTag.id };
-  } else {
-    tagData = tagExist;
-  }
+	if (!tagExist) {
+		const responseNewTag = await db.collection('posts-tags').add(tagData);
+		tagData = { ...tagData, id: responseNewTag.id };
+	} else {
+		tagData = tagExist;
+	}
 
-  return tagData;
+	return tagData;
 };
 
 export const getSearchTerms = postData => {
-  const { description, location, seller } = postData;
-  let searchTerms = [];
+	const { description, location, seller } = postData;
+	let searchTerms = [];
 
-  // building search terms based on relevant information
-  searchTerms = searchTerms.concat(toSearchTerms(description));
-  searchTerms = searchTerms.concat(toSearchTerms(location && location.description));
-  searchTerms = searchTerms.concat(toSearchTerms(seller && seller.email));
+	// building search terms based on relevant information
+	searchTerms = searchTerms.concat(toSearchTerms(description));
+	searchTerms = searchTerms.concat(
+		toSearchTerms(location && location.description)
+	);
+	searchTerms = searchTerms.concat(toSearchTerms(seller && seller.email));
 
-  // clean duplicated search terms
-  searchTerms = searchTerms.filter((searchTerm, index, array) => array.indexOf(searchTerm) === index);
-  searchTerms = searchTerms.filter(searchTerm => searchTerm.length > 2);
+	// clean duplicated search terms
+	searchTerms = searchTerms.filter(
+		(searchTerm, index, array) => array.indexOf(searchTerm) === index
+	);
+	searchTerms = searchTerms.filter(searchTerm => searchTerm.length > 2);
 
-  return searchTerms;
+	return searchTerms;
 };
 
 export const deletePostImages = async photosToDelete => {
-  if (photosToDelete.length === 0) {
-    return;
-  }
+	if (photosToDelete.length === 0) {
+		return;
+	}
 
-  const dataToDelete = {
-    bucketName: process.env.FIREBASE_STG_POST_UPLOADS,
-    fileUrls: photosToDelete
-  };
+	const dataToDelete = {
+		bucketName: process.env.FIREBASE_STG_POST_UPLOADS,
+		fileUrls: photosToDelete
+	};
 
-  await deleteFromStorage(dataToDelete);
+	await deleteFromStorage(dataToDelete);
 };
 
 export const updateTagViews = async (db, tagName) => {
-  const tagNameFormatted = formatTag(tagName);
-  const postTags = await getDbQuery(db, 'posts-tags', { where: { name: { '==': tagNameFormatted } } });
-  let tagData = postTags[0];
+	const tagNameFormatted = formatTag(tagName);
+	const postTags = await getDbQuery(db, 'posts-tags', {
+		where: { name: { '==': tagNameFormatted } }
+	});
+	let tagData = postTags[0];
 
-  if (!tagData) {
-    tagData = createPostTag(db, tagNameFormatted);
-  }
+	if (!tagData) {
+		tagData = createPostTag(db, tagNameFormatted);
+	}
 
-  await db
-    .collection('posts-tags')
-    .doc(tagData.id)
-    .update({
-      views: ((tagData.views || 0) + 1),
-      updatedAt: Date.now()
-    });
+	await db
+		.collection('posts-tags')
+		.doc(tagData.id)
+		.update({
+			views: (tagData.views || 0) + 1,
+			updatedAt: Date.now()
+		});
 
-  return tagData;
+	return tagData;
 };

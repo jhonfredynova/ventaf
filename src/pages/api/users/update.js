@@ -4,58 +4,58 @@ import authorization from '../../../middlewares/authorization';
 import validateProfileInfo from '../../../validations/validate-profile-info';
 
 export default async function updateUser(req, res) {
-  try {
-    await runMiddleware(req, res, authorization('registered'));
-    
-    // eslint-disable-next-line global-require
-    const firebaseAdmin = require('../../../firebase-admin').default;
-    const db = firebaseAdmin.firestore();
-    const { userId } = req.query;
-    const modelDb = await getDbDocument(db, 'users', userId);
+	try {
+		await runMiddleware(req, res, authorization('registered'));
 
-    if (!modelDb) {
-      res.status(400).json({ code: 'record-not-found' });
-      return;
-    }
+		// eslint-disable-next-line global-require
+		const firebaseAdmin = require('../../../firebase-admin').default;
+		const db = firebaseAdmin.firestore();
+		const { userId } = req.query;
+		const modelDb = await getDbDocument(db, 'users', userId);
 
-    // validate model
-    const modelData = {
-      username: req.body.username,
-      phone: req.body.phone,
-      displayName: req.body.displayName,
-      bio: req.body.bio,
-      website: req.body.website,
-      updatedAt: Date.now()
-    };
-    const errors = validateProfileInfo(modelData);
+		if (!modelDb) {
+			res.status(400).json({ code: 'record-not-found' });
+			return;
+		}
 
-    if (modelData.username) {
-      const queryUsername = await getDbQuery(db, 'users', {
-        where: {
-          email: { '!=': modelDb.email },
-          username: { '==': modelData.username }
-        }
-      });
+		// validate model
+		const modelData = {
+			username: req.body.username,
+			phone: req.body.phone,
+			displayName: req.body.displayName,
+			bio: req.body.bio,
+			website: req.body.website,
+			updatedAt: Date.now()
+		};
+		const errors = validateProfileInfo(modelData);
 
-      if (queryUsername.length > 0) {
-        errors.username = 'usernameAlreadyExist';
-      }
-    }
+		if (modelData.username) {
+			const queryUsername = await getDbQuery(db, 'users', {
+				where: {
+					email: { '!=': modelDb.email },
+					username: { '==': modelData.username }
+				}
+			});
 
-    if (Object.keys(errors).length > 0) {
-      res.status(400).json({ code: 'modelErrors', errors });
-      return;
-    }
+			if (queryUsername.length > 0) {
+				errors.username = 'usernameAlreadyExist';
+			}
+		}
 
-    // update user
-    await db
-      .collection('users')
-      .doc(userId)
-      .update(modelData);
+		if (Object.keys(errors).length > 0) {
+			res.status(400).json({ code: 'modelErrors', errors });
+			return;
+		}
 
-    const response = Object.assign(modelDb, modelData);
-    res.json(response);
-  } catch (error) {
-    res.status(500).json(error);
-  }
+		// update user
+		await db
+			.collection('users')
+			.doc(userId)
+			.update(modelData);
+
+		const response = Object.assign(modelDb, modelData);
+		res.json(response);
+	} catch (error) {
+		res.status(500).json(error);
+	}
 }

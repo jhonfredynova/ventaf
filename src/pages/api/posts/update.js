@@ -6,85 +6,86 @@ import { getSearchTerms, deletePostImages } from '../../../utils/post-utils';
 import validatePost from '../../../validations/validate-post';
 
 export const config = {
-  api: {
-    bodyParser: false,
-    sizeLimit: '1mb',
-  },
+	api: {
+		bodyParser: false,
+		sizeLimit: '1mb'
+	}
 };
 
 export default async function updatePost(req, res) {
-  try {
-    await runMiddleware(req, res, files({ maxFileSize: 1, maxFiles: 6 }));
-    await runMiddleware(req, res, authorization('registered'));
-    
-    // eslint-disable-next-line global-require
-    const firebaseAdmin = require('../../../firebase-admin').default;
-    // eslint-disable-next-line global-require
-    const { uploadToStorage } = require('../../../utils/storage-utils');
-    const { postId } = req.query;
-    const db = firebaseAdmin.firestore();
-    const postDb = await getDbDocument(db, 'posts', postId);
+	try {
+		await runMiddleware(req, res, files({ maxFileSize: 1, maxFiles: 6 }));
+		await runMiddleware(req, res, authorization('registered'));
 
-    if (!postDb) {
-      res.status(400).json({ code: 'recordNotFound' });
-      return;
-    }
+		// eslint-disable-next-line global-require
+		const firebaseAdmin = require('../../../firebase-admin').default;
+		// eslint-disable-next-line global-require
+		const { uploadToStorage } = require('../../../utils/storage-utils');
+		const { postId } = req.query;
+		const db = firebaseAdmin.firestore();
+		const postDb = await getDbDocument(db, 'posts', postId);
 
-    if (postDb.user !== req.user.uid) {
-      res.status(400).json({ code: 'adNotOwn' });
-      return;
-    }
+		if (!postDb) {
+			res.status(400).json({ code: 'recordNotFound' });
+			return;
+		}
 
-    const modelData = Object
-      .keys(req.body.data)
-      .reduce((accum, key) => !['createdAt', 'likes', 'status', 'user', 'views'].includes(key)
-          ? Object.assign(accum, { [key]: req.body.data[key] })
-          : accum, {});
-    const postData = {
-      ...modelData,
-      id: postId,
-      searchTerms: getSearchTerms(modelData),
-      updatedAt: Date.now()
-    };
+		if (postDb.user !== req.user.uid) {
+			res.status(400).json({ code: 'adNotOwn' });
+			return;
+		}
 
-    // validate data
-    const errors = validatePost(modelData);
+		const modelData = Object.keys(req.body.data).reduce(
+			(accum, key) =>
+				!['createdAt', 'likes', 'status', 'user', 'views'].includes(key)
+					? Object.assign(accum, { [key]: req.body.data[key] })
+					: accum,
+			{}
+		);
+		const postData = {
+			...modelData,
+			id: postId,
+			searchTerms: getSearchTerms(modelData),
+			updatedAt: Date.now()
+		};
 
-    if (Object.keys(errors).length > 0) {
-      res.status(400).json({ code: 'modelErrors', errors });
-      return;
-    }
+		// validate data
+		const errors = validatePost(modelData);
 
-    // updating post in transaction
-    await db.runTransaction(async transaction => {
-      const uploadedPhotos = req.files.photos || [];
-      if (uploadedPhotos.length > 0) {
-        // deleting post photos
-        await deletePostImages(postDb.photos);
+		if (Object.keys(errors).length > 0) {
+			res.status(400).json({ code: 'modelErrors', errors });
+			return;
+		}
 
-        // uploading photos
-        const storageData = {
-          bucketName: process.env.FIREBASE_STG_POST_UPLOADS,
-          bucketPath: postId,
-          filePaths: uploadedPhotos
-        };
-        postData.photos = await uploadToStorage(storageData);
-      }
+		// updating post in transaction
+		await db.runTransaction(async transaction => {
+			const uploadedPhotos = req.files.photos || [];
+			if (uploadedPhotos.length > 0) {
+				// deleting post photos
+				await deletePostImages(postDb.photos);
 
-      // saving post data
-      const postRef = await db.collection('posts').doc(postId);
-      transaction.update(postRef, postData);
-    });
+				// uploading photos
+				const storageData = {
+					bucketName: process.env.FIREBASE_STG_POST_UPLOADS,
+					bucketPath: postId,
+					filePaths: uploadedPhotos
+				};
+				postData.photos = await uploadToStorage(storageData);
+			}
 
-    // response
-    const postUpdated = {
-      ...postDb, 
-      ...postData
-    };
+			// saving post data
+			const postRef = await db.collection('posts').doc(postId);
+			transaction.update(postRef, postData);
+		});
 
-    res.json(postUpdated);
-    
-  } catch (error) {
-    res.status(500).json(error);
-  }
+		// response
+		const postUpdated = {
+			...postDb,
+			...postData
+		};
+
+		res.json(postUpdated);
+	} catch (error) {
+		res.status(500).json(error);
+	}
 }
