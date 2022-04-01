@@ -5,43 +5,45 @@ Firebase web application with server side rendering + Google cloud function conf
 # Configuration
 
 In order to run the application you need to add the following configuration files with your app data:
-- env.development.local
-  - NEXT_PUBLIC_API_URL=https://localhost:3001/api
-  - NODE_TLS_REJECT_UNAUTHORIZED=0
-- env.production.local
-  - NEXT_PUBLIC_API_URL=http://yourdomain.com/api
-- .env.local
-  - FIREBASE_AUTH_DOMAIN=XXX
-  - FIREBASE_KEY=XXX
-  - FIREBASE_PROJECT_ID=XXX
-  - FIREBASE_STG_POST_UPLOADS=XXX
-  - FIREBASE_STG_PROFILE_UPLOADS=XXX
-  - GOOGLE_APPLICATION_CREDENTIALS=./XXX.json
-  - REST_COUNTRIES_URL=https://restcountries.eu/rest/v2
-  - SENDGRID_KEY=XXX
-  - SENDGRID_TEMPLATE_GENERAL=XXX
-  - NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN=XXX
-  - NEXT_PUBLIC_FIREBASE_KEY=XXX
-  - NEXT_PUBLIC_GOOGLE_ANALITYCS_KEY=XXX
-  - NEXT_PUBLIC_GOOGLE_MAPS_KEY=XXX
-- service-account.json 
+
+-   env.development.local
+    -   NEXT_PUBLIC_API_URL=https://localhost:3001/api
+    -   NODE_TLS_REJECT_UNAUTHORIZED=0
+-   env.production.local
+    -   NEXT_PUBLIC_API_URL=http://yourdomain.com/api
+-   .env.local
+    -   FIREBASE_AUTH_DOMAIN=XXX
+    -   FIREBASE_KEY=XXX
+    -   FIREBASE_PROJECT_ID=XXX
+    -   FIREBASE_STG_POST_UPLOADS=XXX
+    -   FIREBASE_STG_PROFILE_UPLOADS=XXX
+    -   GOOGLE_APPLICATION_CREDENTIALS=./XXX.json
+    -   REST_COUNTRIES_URL=https://restcountries.eu/rest/v2
+    -   SENDGRID_KEY=XXX
+    -   SENDGRID_TEMPLATE_GENERAL=XXX
+    -   NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN=XXX
+    -   NEXT_PUBLIC_FIREBASE_KEY=XXX
+    -   NEXT_PUBLIC_GOOGLE_ANALITYCS_KEY=XXX
+    -   NEXT_PUBLIC_GOOGLE_MAPS_KEY=XXX
+-   service-account.json
 
 # Features
 
-- Code linter
-- Code splitting
-- Server side rendering
+-   Code linter
+-   Code splitting
+-   Server side rendering
 
 # Technologies
 
-- Javascript (React, Node, Nextjs)
-- CSS (css-in-js)
-- HTML
+-   Javascript (React, Node, Nextjs)
+-   CSS (css-in-js)
+-   HTML
 
 # Tools
 
-- Eslint
-- Webpack
+-   Eslint
+-   Prettier
+-   Nextjs
 
 # Scripts
 
