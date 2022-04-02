@@ -13,31 +13,30 @@ export const getServerSideProps = async ({ locale, query }) => {
 
 	await Promise.all([
 		store.dispatch(getConfiguration(locale)),
-		store.dispatch(getPosts(query))
+		store.dispatch(getPosts(query)),
 	]);
 
 	return {
 		props: {
-			initialReduxState: store.getState()
-		}
+			initialReduxState: store.getState(),
+		},
 	};
 };
 
 export default function Home() {
 	const store = useStore();
 	const [isLoadingPosts, setIsLoadingPosts] = useState(false);
-	const [isLoadingMorePosts, setIsLoadingMorePosts] = useState(false);
 	const [hasMorePosts, setHasMorePosts] = useState(true);
 	const router = useRouter();
 	const { query } = router;
-	const authData = useSelector(state => state.auth.authData);
-	const posts = useSelector(state => state.post.records);
-	const { translations } = useSelector(state => state.config);
+	const authData = useSelector((state) => state.auth.authData);
+	const posts = useSelector((state) => state.post.records);
+	const { translations } = useSelector((state) => state.config);
 	const pageTitle = getHomePageTitle({ query, translations });
 	const pageDescription = translations.slogan;
 
 	const onLoadMorePosts = async () => {
-		setIsLoadingMorePosts(true);
+		setIsLoadingPosts(true);
 		const newQuery = { ...query };
 		const lastPost = posts.length > 0 ? posts[posts.length - 1] : null;
 
@@ -47,7 +46,7 @@ export default function Home() {
 
 		const newPosts = await store.dispatch(getMorePosts(newQuery));
 		setHasMorePosts(newPosts.length > 0);
-		setIsLoadingMorePosts(false);
+		setIsLoadingPosts(false);
 	};
 
 	useEffect(() => {
@@ -64,7 +63,6 @@ export default function Home() {
 			<article className="sr-only">{pageDescription}</article>
 			<PostList
 				isLoading={isLoadingPosts}
-				isLoadingMore={isLoadingMorePosts}
 				hasMoreData={hasMorePosts}
 				authData={authData}
 				translations={translations}

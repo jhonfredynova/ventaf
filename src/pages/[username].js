@@ -1,15 +1,15 @@
-import React from "react";
-import { useRouter } from "next/router";
-import { useSelector } from "react-redux";
-import ProfileInfo from "../components/page-profile/profile-info";
-import ProfileContents from "../components/page-profile/profile-contents";
-import SEO from "../components/seo";
-import { initializeStore } from "../store/store";
-import { getConfiguration } from "../store/actions/config-actions";
+import React from 'react';
+import { useRouter } from 'next/router';
+import { useSelector } from 'react-redux';
+import ProfileInfo from '../components/page-profile/profile-info';
+import ProfileContents from '../components/page-profile/profile-contents';
+import SEO from '../components/seo';
+import { initializeStore } from '../store/store';
+import { getConfiguration } from '../store/actions/config-actions';
 import {
 	getProfileByUsername,
-	getProfileAds
-} from "../store/actions/profile-actions";
+	getProfileAds,
+} from '../store/actions/profile-actions';
 
 export const getServerSideProps = async ({ locale, query }) => {
 	try {
@@ -20,13 +20,13 @@ export const getServerSideProps = async ({ locale, query }) => {
 
 		await Promise.all([
 			store.dispatch(getConfiguration(locale)),
-			store.dispatch(getProfileAds(profile.id, {}))
+			store.dispatch(getProfileAds(profile.id, {})),
 		]);
 
 		return {
 			props: {
-				initialReduxState: store.getState()
-			}
+				initialReduxState: store.getState(),
+			},
 		};
 	} catch (error) {
 		return { notFound: true };
@@ -36,12 +36,12 @@ export const getServerSideProps = async ({ locale, query }) => {
 export default function ProfileView() {
 	const router = useRouter();
 	const { username } = router.query;
-	const authData = useSelector(state => state.auth.authData);
-	const { translations } = useSelector(state => state.config);
-	const profiles = useSelector(state => state.profile.records);
+	const authData = useSelector((state) => state.auth.authData);
+	const { translations } = useSelector((state) => state.config);
+	const profiles = useSelector((state) => state.profile.records);
 	const profileInfo = Object.keys(profiles)
-		.map(profileId => profiles[profileId])
-		.find(profile => profile.username === username);
+		.map((profileId) => profiles[profileId])
+		.find((profile) => profile.username === username);
 	const pageTitle =
 		profileInfo && `${profileInfo.displayName} (@${profileInfo.username})`;
 	const pageDescription = translations.slogan;
@@ -66,7 +66,6 @@ export default function ProfileView() {
 			/>
 			<h2>{translations.ads}</h2>
 			<ProfileContents
-				isLoading={false}
 				authData={authData}
 				posts={ads}
 				translations={translations}

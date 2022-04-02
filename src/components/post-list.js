@@ -17,7 +17,6 @@ import AlertModal from './modals/alert-modal';
 export default function HomeContents(props) {
 	const {
 		isLoading,
-		isLoadingMore,
 		hasMoreData,
 		authData,
 		translations,
@@ -40,12 +39,6 @@ export default function HomeContents(props) {
 
 			default:
 				return translations.noResults;
-		}
-	};
-
-	const onLoadMoreContents = () => {
-		if (posts.length > 0) {
-			onLoadMore();
 		}
 	};
 
@@ -78,16 +71,16 @@ export default function HomeContents(props) {
 				/>
 			)}
 			<InfiniteScroll
-				isLoading={isLoadingMore}
+				isLoading={isLoading}
 				hasMoreData={hasMoreData}
-				onLoadMore={onLoadMoreContents}
+				onLoadMore={onLoadMore}
 			>
 				<section className="posts-section">
 					{posts.map((post) => (
 						<div key={post.id} className="post-wrapper">
 							{showEditBtns && authData?.uid === post.user && (
 								<PostEditionBar
-									isLoading={isLoadingMore}
+									isLoading={isLoading}
 									translations={translations}
 									data={post}
 									onEdit={(postData) =>
@@ -102,7 +95,7 @@ export default function HomeContents(props) {
 								/>
 							)}
 							<PostTile
-								isLoading={isLoadingMore}
+								isLoading={isLoading}
 								translations={translations}
 								data={post}
 							/>

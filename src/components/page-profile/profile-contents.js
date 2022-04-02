@@ -4,14 +4,16 @@ import { getMoreProfileAds } from '../../store/actions/profile-actions';
 import PostList from '../post-list';
 
 export default function ProfileContents(props) {
+	const { authData, translations, posts, userProfile } = props;
 	const store = useStore();
 	const [isLoadingMore, setIsLoadingMore] = useState(false);
-	const [isThereMoreContents, setIsThereMoreContents] = useState(true);
-	const { authData, translations, posts, userProfile } = props;
+	const [isThereMoreContents, setIsThereMoreContents] = useState(
+		posts.length > 0
+	);
 
 	const onLoadMore = async () => {
-		const lastPostDate = posts[posts.length - 1].createdAt;
 		setIsLoadingMore(true);
+		const lastPostDate = posts[posts.length - 1].createdAt;
 		const newContents = await store.dispatch(
 			getMoreProfileAds(userProfile.id, { olderThan: lastPostDate })
 		);
