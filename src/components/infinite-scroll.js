@@ -10,10 +10,10 @@ export default function InfiniteScroll(props) {
 				return;
 			}
 
-			if (
-				window.innerHeight + window.scrollY >=
-				document.body.offsetHeight - 100
-			) {
+			const { scrollHeight, scrollTop, clientHeight } =
+				document.documentElement;
+
+			if (scrollTop + clientHeight > scrollHeight - 5) {
 				onLoadMore();
 			}
 		};
