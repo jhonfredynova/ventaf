@@ -6,8 +6,8 @@ import files from '../../../middlewares/files';
 export const config = {
 	api: {
 		bodyParser: false,
-		sizeLimit: '1mb'
-	}
+		sizeLimit: '1mb',
+	},
 };
 
 export default async function uploadPhoto(req, res) {
@@ -16,7 +16,8 @@ export default async function uploadPhoto(req, res) {
 		await runMiddleware(req, res, files({ maxFileSize: 5, maxFiles: 1 }));
 
 		// eslint-disable-next-line global-require
-		const firebaseAdmin = require('../../../firebase-admin').default;
+		const { getFirebaseAdmin } = require('../../../utils/api-utils');
+		const firebaseAdmin = getFirebaseAdmin();
 		const db = firebaseAdmin.firestore();
 		const { id: userId } = req.body;
 		const photo = req.files?.photo?.[0];
@@ -29,15 +30,12 @@ export default async function uploadPhoto(req, res) {
 		const filePath = renameFile(photo, `${req.user.uid}.jpg`);
 		const dataToUpload = {
 			bucketName: process.env.FIREBASE_STG_PROFILE_UPLOADS,
-			filePaths: [filePath]
+			filePaths: [filePath],
 		};
 		const uploadedFiles = await uploadToStorage(dataToUpload);
 		const photoURL = uploadedFiles[0];
 
-		await db
-			.collection('users')
-			.doc(userId)
-			.update({ photoURL });
+		await db.collection('users').doc(userId).update({ photoURL });
 
 		res.json({ photoURL });
 	} catch (error) {

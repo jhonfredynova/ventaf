@@ -6,7 +6,8 @@ export default async function updateUserClaim(req, res) {
 		await runMiddleware(req, res, authorization('admin'));
 
 		// eslint-disable-next-line global-require
-		const firebaseAdmin = require('../../../../firebase-admin').default;
+		const { getFirebaseAdmin } = require('../../../../utils/api-utils');
+		const firebaseAdmin = getFirebaseAdmin();
 		const { userId } = req.params;
 		const { claim } = req.body;
 		const user = await firebaseAdmin.auth().getUser(userId);

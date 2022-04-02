@@ -3,7 +3,8 @@ import { getDbDocument } from '../../../utils/database-utils';
 export default async function updateLocale(req, res) {
 	try {
 		// eslint-disable-next-line global-require
-		const firebaseAdmin = require('../../../firebase-admin').default;
+		const { getFirebaseAdmin } = require('../../../utils/api-utils');
+		const firebaseAdmin = getFirebaseAdmin();
 		const { localeId } = req.query;
 		const db = firebaseAdmin.firestore();
 		const modelDb = await getDbDocument(db, 'locales', localeId);
@@ -16,7 +17,7 @@ export default async function updateLocale(req, res) {
 		const modelData = {
 			...req.body,
 			id: localeId,
-			updatedAt: Date.now()
+			updatedAt: Date.now(),
 		};
 
 		// validating data
@@ -28,10 +29,7 @@ export default async function updateLocale(req, res) {
 		}
 
 		// saving data
-		await db
-			.collection('locales')
-			.doc(localeId)
-			.update(modelData);
+		await db.collection('locales').doc(localeId).update(modelData);
 
 		// response
 		const response = Object.assign(modelDb, modelData);

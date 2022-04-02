@@ -4,7 +4,8 @@ import { getPublicProfileData } from '../../../utils/user-utils';
 export default async function getUserProfileById(req, res) {
 	try {
 		// eslint-disable-next-line global-require
-		const firebaseAdmin = require('../../../firebase-admin').default;
+		const { getFirebaseAdmin } = require('../../../utils/api-utils');
+		const firebaseAdmin = getFirebaseAdmin();
 		const db = firebaseAdmin.firestore();
 		const modelDb = await getDbDocument(db, 'users', req.query.userId);
 

@@ -6,7 +6,8 @@ import { uploadToStorage } from '../../../utils/storage-utils';
 export default async function loginOAuth(req, res) {
 	try {
 		// eslint-disable-next-line global-require
-		const firebaseAdmin = require('../../../firebase-admin').default;
+		const { getFirebaseAdmin } = require('../../../utils/api-utils');
+		const firebaseAdmin = getFirebaseAdmin();
 		const userOAuth = req.body;
 		const { uid } = userOAuth;
 
@@ -27,14 +28,14 @@ export default async function loginOAuth(req, res) {
 				const photoDataFromUrl = await fetch(userOAuth.photoURL);
 				const buffer = await photoDataFromUrl.buffer();
 				const filePath = `${os.tmpdir()}/${uid}.jpg`;
-				await new Promise(resolve => {
+				await new Promise((resolve) => {
 					fs.writeFile(filePath, buffer, () => {
 						resolve();
 					});
 				});
 				const dataToUpload = {
 					bucketName: process.env.FIREBASE_STG_PROFILE_UPLOADS,
-					filePaths: [filePath]
+					filePaths: [filePath],
 				};
 				const uploadedFiles = await uploadToStorage(dataToUpload);
 				// eslint-disable-next-line prefer-destructuring
@@ -48,13 +49,10 @@ export default async function loginOAuth(req, res) {
 			// Create user profile in database
 			const profileDataOAuth = {
 				...userOAuth,
-				photoURL: responsePhotoUrl
+				photoURL: responsePhotoUrl,
 			};
 			const userProfile = getUserProfileData(profileDataOAuth);
-			await db
-				.collection('users')
-				.doc(uid)
-				.set(userProfile);
+			await db.collection('users').doc(uid).set(userProfile);
 			await firebaseAdmin
 				.auth()
 				.setCustomUserClaims(uid, { registered: true });

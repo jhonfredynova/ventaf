@@ -8,8 +8,8 @@ import validatePost from '../../../validations/validate-post';
 export const config = {
 	api: {
 		bodyParser: false,
-		sizeLimit: '1mb'
-	}
+		sizeLimit: '1mb',
+	},
 };
 
 export default async function updatePost(req, res) {
@@ -18,7 +18,8 @@ export default async function updatePost(req, res) {
 		await runMiddleware(req, res, authorization('registered'));
 
 		// eslint-disable-next-line global-require
-		const firebaseAdmin = require('../../../firebase-admin').default;
+		const { getFirebaseAdmin } = require('../../../utils/api-utils');
+		const firebaseAdmin = getFirebaseAdmin();
 		// eslint-disable-next-line global-require
 		const { uploadToStorage } = require('../../../utils/storage-utils');
 		const { postId } = req.query;
@@ -46,7 +47,7 @@ export default async function updatePost(req, res) {
 			...modelData,
 			id: postId,
 			searchTerms: getSearchTerms(modelData),
-			updatedAt: Date.now()
+			updatedAt: Date.now(),
 		};
 
 		// validate data
@@ -58,7 +59,7 @@ export default async function updatePost(req, res) {
 		}
 
 		// updating post in transaction
-		await db.runTransaction(async transaction => {
+		await db.runTransaction(async (transaction) => {
 			const uploadedPhotos = req.files.photos || [];
 			if (uploadedPhotos.length > 0) {
 				// deleting post photos
@@ -68,7 +69,7 @@ export default async function updatePost(req, res) {
 				const storageData = {
 					bucketName: process.env.FIREBASE_STG_POST_UPLOADS,
 					bucketPath: postId,
-					filePaths: uploadedPhotos
+					filePaths: uploadedPhotos,
 				};
 				postData.photos = await uploadToStorage(storageData);
 			}
@@ -81,7 +82,7 @@ export default async function updatePost(req, res) {
 		// response
 		const postUpdated = {
 			...postDb,
-			...postData
+			...postData,
 		};
 
 		res.json(postUpdated);

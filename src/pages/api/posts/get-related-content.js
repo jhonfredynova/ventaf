@@ -3,7 +3,8 @@ import { getDbQuery, getDbDocument } from '../../../utils/database-utils';
 export default async function getRelatedPostContent(req, res) {
 	try {
 		// eslint-disable-next-line global-require
-		const firebaseAdmin = require('../../../firebase-admin').default;
+		const { getFirebaseAdmin } = require('../../../utils/api-utils');
+		const firebaseAdmin = getFirebaseAdmin();
 		const db = firebaseAdmin.firestore();
 		const { postId } = req.query;
 		const postInfo = await getDbDocument(db, 'posts', postId);
@@ -12,9 +13,9 @@ export default async function getRelatedPostContent(req, res) {
 			where: {
 				description: { '!=': postInfo.description },
 				searchTerms: {
-					'array-contains-any': postInfo.searchTerms.slice(0, 10)
-				}
-			}
+					'array-contains-any': postInfo.searchTerms.slice(0, 10),
+				},
+			},
 		};
 		const relatedContent = await getDbQuery(db, 'posts', postQuery);
 

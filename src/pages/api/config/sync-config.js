@@ -10,13 +10,14 @@ export default async function syncConfig(req, res) {
 		// eslint-disable-next-line global-require
 		const axios = require('axios');
 		// eslint-disable-next-line global-require
-		const firebaseAdmin = require('../../../firebase-admin').default;
+		const { getFirebaseAdmin } = require('../../../utils/api-utils');
+		const firebaseAdmin = getFirebaseAdmin();
 		const db = firebaseAdmin.firestore();
 
 		// validating data
 		const configIntl = {
 			appLanguages: ['en', 'es'],
-			url: process.env.REST_COUNTRIES_URL
+			url: process.env.REST_COUNTRIES_URL,
 		};
 		const intlData = await getIntlData(configIntl, axios, db);
 		const configData = {
@@ -25,7 +26,7 @@ export default async function syncConfig(req, res) {
 			countries: intlData.countries,
 			currencies: intlData.currencies,
 			languages: intlData.languages,
-			translations: intlData.translations
+			translations: intlData.translations,
 		};
 
 		// updating data

@@ -5,7 +5,8 @@ import { isEmail } from '../../../utils/validation-utils';
 export default async function getUserProfileByEmail(req, res) {
 	try {
 		// eslint-disable-next-line global-require
-		const firebaseAdmin = require('../../../firebase-admin').default;
+		const { getFirebaseAdmin } = require('../../../utils/api-utils');
+		const firebaseAdmin = getFirebaseAdmin();
 		const db = firebaseAdmin.firestore();
 		const modelData = { email: req.query.email };
 		const errors = {};
@@ -22,7 +23,7 @@ export default async function getUserProfileByEmail(req, res) {
 		}
 
 		const userProfile = await getDbQuery(db, 'users', {
-			where: { email: { '==': modelData.email } }
+			where: { email: { '==': modelData.email } },
 		});
 		const responseData = userProfile[0]
 			? getPublicProfileData(userProfile[0])
@@ -33,7 +34,7 @@ export default async function getUserProfileByEmail(req, res) {
 				.auth()
 				.getUser(responseData.id);
 			responseData.providers = userAccount.providerData.map(
-				provider => provider.providerId
+				(provider) => provider.providerId
 			);
 		}
 

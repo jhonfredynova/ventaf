@@ -7,17 +7,18 @@ export default async function getAllUsers(req, res) {
 		await runMiddleware(req, res, authorization('admin'));
 
 		// eslint-disable-next-line global-require
-		const firebaseAdmin = require('../../../firebase-admin').default;
+		const { getFirebaseAdmin } = require('../../../utils/api-utils');
+		const firebaseAdmin = getFirebaseAdmin();
 		const db = firebaseAdmin.firestore();
 		const userQuery = {
 			sort: { createdAt: 'desc' },
 			limit: Number(req.query.limit) || 10,
 			where: {
 				...(req.query.marketer && {
-					marketer: { '==': req.query.marketer }
+					marketer: { '==': req.query.marketer },
 				}),
-				...(req.query.plan && { plan: { '==': req.query.plan } })
-			}
+				...(req.query.plan && { plan: { '==': req.query.plan } }),
+			},
 		};
 		const response = await getDbQuery(db, 'users', userQuery);
 

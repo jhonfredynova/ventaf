@@ -8,7 +8,8 @@ export default async function updateUser(req, res) {
 		await runMiddleware(req, res, authorization('registered'));
 
 		// eslint-disable-next-line global-require
-		const firebaseAdmin = require('../../../firebase-admin').default;
+		const { getFirebaseAdmin } = require('../../../utils/api-utils');
+		const firebaseAdmin = getFirebaseAdmin();
 		const db = firebaseAdmin.firestore();
 		const { userId } = req.query;
 		const modelDb = await getDbDocument(db, 'users', userId);
@@ -25,7 +26,7 @@ export default async function updateUser(req, res) {
 			displayName: req.body.displayName,
 			bio: req.body.bio,
 			website: req.body.website,
-			updatedAt: Date.now()
+			updatedAt: Date.now(),
 		};
 		const errors = validateProfileInfo(modelData);
 
@@ -33,8 +34,8 @@ export default async function updateUser(req, res) {
 			const queryUsername = await getDbQuery(db, 'users', {
 				where: {
 					email: { '!=': modelDb.email },
-					username: { '==': modelData.username }
-				}
+					username: { '==': modelData.username },
+				},
 			});
 
 			if (queryUsername.length > 0) {
@@ -48,10 +49,7 @@ export default async function updateUser(req, res) {
 		}
 
 		// update user
-		await db
-			.collection('users')
-			.doc(userId)
-			.update(modelData);
+		await db.collection('users').doc(userId).update(modelData);
 
 		const response = Object.assign(modelDb, modelData);
 		res.json(response);

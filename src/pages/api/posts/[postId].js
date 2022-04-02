@@ -1,11 +1,12 @@
-import { getDbDocument } from "../../../utils/database-utils";
+import { getDbDocument } from '../../../utils/database-utils';
 
 export default async function getPostById(req, res) {
 	try {
 		// eslint-disable-next-line global-require
-		const firebaseAdmin = require("../../../firebase-admin").default;
+		const { getFirebaseAdmin } = require('../../../utils/api-utils');
+		const firebaseAdmin = getFirebaseAdmin();
 		const db = firebaseAdmin.firestore();
-		const modelDb = await getDbDocument(db, "posts", req.query.postId);
+		const modelDb = await getDbDocument(db, 'posts', req.query.postId);
 
 		res.json(modelDb);
 	} catch (error) {

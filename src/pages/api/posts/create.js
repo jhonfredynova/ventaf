@@ -6,8 +6,8 @@ import validatePost from '../../../validations/validate-post';
 export const config = {
 	api: {
 		bodyParser: false,
-		sizeLimit: '1mb'
-	}
+		sizeLimit: '1mb',
+	},
 };
 
 export default async function createPost(req, res) {
@@ -15,7 +15,8 @@ export default async function createPost(req, res) {
 		await runMiddleware(req, res, files({ maxFileSize: 1, maxFiles: 6 }));
 
 		// eslint-disable-next-line global-require
-		const firebaseAdmin = require('../../../firebase-admin').default;
+		const { getFirebaseAdmin } = require('../../../utils/api-utils');
+		const firebaseAdmin = getFirebaseAdmin();
 		// eslint-disable-next-line global-require
 		const { uploadToStorage } = require('../../../utils/storage-utils');
 		const db = firebaseAdmin.firestore();
@@ -32,9 +33,9 @@ export default async function createPost(req, res) {
 			views: 0,
 			seller: {
 				...postData.seller,
-				email: postData?.email || anonymousEmail
+				email: postData?.email || anonymousEmail,
 			},
-			user: postData.user || anonymousId
+			user: postData.user || anonymousId,
 		};
 
 		// validate data
@@ -49,7 +50,7 @@ export default async function createPost(req, res) {
 		let newPostId = null;
 		let photoUrls = [];
 
-		await db.runTransaction(async transaction => {
+		await db.runTransaction(async (transaction) => {
 			// saving post
 			const newPostRef = db.collection('posts').doc();
 			await transaction.create(newPostRef, modelData);
@@ -60,7 +61,7 @@ export default async function createPost(req, res) {
 			const storageData = {
 				bucketName: process.env.FIREBASE_STG_POST_UPLOADS,
 				bucketPath: newPostId,
-				filePaths: uploadedPhotos
+				filePaths: uploadedPhotos,
 			};
 			photoUrls = await uploadToStorage(storageData);
 			const postRef = await db.collection('posts').doc(newPostId);
@@ -72,7 +73,7 @@ export default async function createPost(req, res) {
 		const postCreated = {
 			...modelData,
 			id: newPostId,
-			photos: photoUrls
+			photos: photoUrls,
 		};
 
 		res.json(postCreated);

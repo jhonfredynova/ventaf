@@ -7,7 +7,8 @@ export default async function me(req, res) {
 		await runMiddleware(req, res, authorization('registered'));
 
 		// eslint-disable-next-line global-require
-		const firebaseAdmin = require('../../../firebase-admin').default;
+		const { getFirebaseAdmin } = require('../../../utils/api-utils');
+		const firebaseAdmin = getFirebaseAdmin();
 		const userData = req.user;
 		const db = firebaseAdmin.firestore();
 		const profile = await getDbDocument(db, 'users', userData.uid);

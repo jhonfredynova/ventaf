@@ -8,7 +8,8 @@ export default async function removePost(req, res) {
 		await runMiddleware(req, res, authorization('registered'));
 
 		// eslint-disable-next-line global-require
-		const firebaseAdmin = require('../../../firebase-admin').default;
+		const { getFirebaseAdmin } = require('../../../utils/api-utils');
+		const firebaseAdmin = getFirebaseAdmin();
 		const { postId } = req.query;
 		const db = firebaseAdmin.firestore();
 		const modelDb = await getDbDocument(db, 'posts', postId);
@@ -24,15 +25,12 @@ export default async function removePost(req, res) {
 		}
 
 		// deleting post data
-		await db
-			.collection('posts')
-			.doc(postId)
-			.delete();
+		await db.collection('posts').doc(postId).delete();
 
 		// deleting post folder with all photos
 		const dataToDelete = {
 			bucketName: process.env.FIREBASE_STG_POST_UPLOADS,
-			folderPaths: [`/${postId}`]
+			folderPaths: [`/${postId}`],
 		};
 		await deleteFromStorage(dataToDelete);
 

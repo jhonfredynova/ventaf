@@ -9,7 +9,7 @@ import PostEditionBar from './post-edition-bar';
 import { BREAKPOINTS } from '../utils/style-utils';
 import {
 	getProfileAds,
-	deleteProfileAd
+	deleteProfileAd,
 } from '../store/actions/profile-actions';
 import ConfirmationModal from './modals/confirmation-modal';
 import AlertModal from './modals/alert-modal';
@@ -23,7 +23,7 @@ export default function HomeContents(props) {
 		translations,
 		posts,
 		showEditBtns,
-		onLoadMore
+		onLoadMore,
 	} = props;
 	const router = useRouter();
 	const store = useStore();
@@ -33,13 +33,19 @@ export default function HomeContents(props) {
 	const [showModalDeleteAd, setShowModalDeleteAd] = useState(false);
 	const [showModalDeleteError, setShowModalDeleteError] = useState(false);
 
-	const getDefaultNoResultMsg = pathname => {
+	const getDefaultNoResultMsg = (pathname) => {
 		switch (pathname) {
 			case '/[username]':
 				return translations.youHaveNotPostAnyAd;
 
 			default:
 				return translations.noResults;
+		}
+	};
+
+	const onLoadMoreContents = () => {
+		if (posts.length > 0) {
+			onLoadMore();
 		}
 	};
 
@@ -74,22 +80,22 @@ export default function HomeContents(props) {
 			<InfiniteScroll
 				isLoading={isLoadingMore}
 				hasMoreData={hasMoreData}
-				onLoadMore={onLoadMore}
+				onLoadMore={onLoadMoreContents}
 			>
 				<section className="posts-section">
-					{posts.map(post => (
+					{posts.map((post) => (
 						<div key={post.id} className="post-wrapper">
 							{showEditBtns && authData?.uid === post.user && (
 								<PostEditionBar
 									isLoading={isLoadingMore}
 									translations={translations}
 									data={post}
-									onEdit={postData =>
+									onEdit={(postData) =>
 										router.push(
 											`/post/edit?postId=${postData.id}`
 										)
 									}
-									onDelete={postData => {
+									onDelete={(postData) => {
 										setPostToDelete(postData);
 										setShowModalDeleteAd(true);
 									}}

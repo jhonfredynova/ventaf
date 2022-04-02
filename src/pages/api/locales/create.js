@@ -1,11 +1,12 @@
 export default async function createLocale(req, res) {
 	try {
 		// eslint-disable-next-line global-require
-		const firebaseAdmin = require('../../../firebase-admin').default;
+		const { getFirebaseAdmin } = require('../../../utils/api-utils');
+		const firebaseAdmin = getFirebaseAdmin();
 		const db = firebaseAdmin.firestore();
 		const modelData = {
 			...req.body,
-			createdAt: Date.now()
+			createdAt: Date.now(),
 		};
 
 		// validating data
