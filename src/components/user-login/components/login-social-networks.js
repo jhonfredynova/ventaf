@@ -1,70 +1,56 @@
-import 'firebase/auth';
-import firebaseClient from 'firebase/app';
-import React, { useState, useEffect } from 'react';
+import { initializeApp } from 'firebase/app';
+import {
+	getAuth,
+	signInWithPopup,
+	FacebookAuthProvider,
+	GoogleAuthProvider,
+	linkWithCredential,
+} from 'firebase/auth';
+import React, { useState } from 'react';
 import ReactGA from 'react-ga';
 import { useStore } from 'react-redux';
 import { useRouter } from 'next/router';
 import LoginButton from './login-button';
-import {
-	setToken,
-	me,
-	loginGoogle,
-	loginFacebook
-} from '../../../store/actions/auth-actions';
+import { setToken, me, loginGoogle, loginFacebook } from '../../../store/actions/auth-actions';
 
 export default function LoginSocialNetworks(props) {
 	const store = useStore();
 	const router = useRouter();
-	const [firebaseApp, setFirebaseApp] = useState(null);
 	const [isProcessingFacebook, setIsProcessingFacebook] = useState(false);
 	const [isProcessingGoogle, setIsProcessingGoogle] = useState(false);
 	const [error, setError] = useState('');
 	const { isLoggingIn, translations, onLogginIn, onSuccess } = props;
 
-	useEffect(() => {
-		let firebaseAppInstance = firebaseClient.apps[0];
-
-		if (!firebaseApp) {
-			firebaseAppInstance = firebaseClient.initializeApp({
-				apiKey: window.fKey,
-				authDomain: window.fDomain
-			});
-		}
-
-		setFirebaseApp(firebaseAppInstance);
-	}, [firebaseApp]);
-
-	const signInWithPopupSocialNetwork = async provider => {
-		firebaseApp.auth().languageCode = router.locale;
+	const signInWithPopupSocialNetwork = async (provider) => {
+		const app = initializeApp({
+			apiKey: window.fKey,
+			authDomain: window.fDomain,
+		});
+		const firebaseAuth = getAuth(app);
+		firebaseAuth.languageCode = router.locale;
 		let providerAuth = null;
 
 		if (provider === 'facebook') {
-			// eslint-disable-next-line no-underscore-dangle
-			providerAuth = new firebaseApp.firebase_.auth.FacebookAuthProvider();
+			providerAuth = new FacebookAuthProvider();
 		} else if (provider === 'google') {
-			// eslint-disable-next-line no-underscore-dangle
-			providerAuth = new firebaseApp.firebase_.auth.GoogleAuthProvider();
+			providerAuth = new GoogleAuthProvider();
 		}
 
 		providerAuth.addScope('email');
 		providerAuth.setCustomParameters({ display: 'popup' });
 
 		try {
-			await firebaseApp.auth().signInWithPopup(providerAuth);
+			await signInWithPopup(firebaseAuth, providerAuth);
 		} catch (errorDetails) {
-			if (
-				errorDetails.code ===
-				'auth/account-exists-with-different-credential'
-			) {
-				firebaseApp
-					.auth()
-					.currentUser.linkWithCredential(errorDetails.credential);
+			if (errorDetails.code === 'auth/account-exists-with-different-credential') {
+				const facebookCredential = FacebookAuthProvider.credentialFromError(errorDetails);
+				linkWithCredential(firebaseAuth.currentUser, facebookCredential);
 			} else {
 				throw errorDetails;
 			}
 		}
 
-		const user = firebaseApp.auth().currentUser;
+		const user = firebaseAuth.currentUser;
 
 		return user;
 	};
@@ -76,16 +62,14 @@ export default function LoginSocialNetworks(props) {
 			setError('');
 
 			const userOAuth = await signInWithPopupSocialNetwork('facebook');
-			const loginResponse = await store.dispatch(
-				loginFacebook(userOAuth)
-			);
+			const loginResponse = await store.dispatch(loginFacebook(userOAuth));
 			await store.dispatch(setToken(loginResponse.token));
 			await store.dispatch(me());
 
 			ReactGA.event({
 				category: 'Users',
 				action: 'Logged in with facebook',
-				value: 2
+				value: 2,
 			});
 
 			onSuccess(store.getState().auth.authData);
@@ -112,7 +96,7 @@ export default function LoginSocialNetworks(props) {
 			ReactGA.event({
 				category: 'Users',
 				action: 'Logged in with google',
-				value: 2
+				value: 2,
 			});
 
 			onSuccess(store.getState().auth.authData);
@@ -136,9 +120,7 @@ export default function LoginSocialNetworks(props) {
 						provider="facebook"
 						onClick={loginWithFacebook}
 					>
-						{isProcessingFacebook && (
-							<i className="fa fa-spinner fa-spin" />
-						)}
+						{isProcessingFacebook && <i className="fa fa-spinner fa-spin" />}
 						{translations.loginWithFacebook}
 					</LoginButton>
 				</div>
@@ -149,9 +131,7 @@ export default function LoginSocialNetworks(props) {
 						provider="google"
 						onClick={loginWithGoogle}
 					>
-						{isProcessingGoogle && (
-							<i className="fa fa-spinner fa-spin" />
-						)}
+						{isProcessingGoogle && <i className="fa fa-spinner fa-spin" />}
 						{translations.loginWithGoogle}
 					</LoginButton>
 				</div>
