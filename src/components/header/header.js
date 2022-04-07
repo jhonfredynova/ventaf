@@ -7,6 +7,7 @@ import { geocodeByPlaceId } from 'react-places-autocomplete';
 import Logo from './components/logo';
 import SearchBar from './components/search-bar';
 import SearchLocation from './components/search-location';
+import LangSelection from './components/lang-selection';
 import { BREAKPOINTS } from '../../utils/style-utils';
 
 export default function Header(props) {
@@ -14,8 +15,7 @@ export default function Header(props) {
 	const { authData, authLoaded, translations } = props;
 	const router = useRouter();
 	const { query } = router;
-	const photoUrl =
-		(authLoaded && authData?.profile?.photoURL) || '/anonymous.png';
+	const photoUrl = (authLoaded && authData?.profile?.photoURL) || '/anonymous.png';
 
 	useEffect(() => {
 		if (!query.location) {
@@ -23,10 +23,10 @@ export default function Header(props) {
 			return;
 		}
 
-		geocodeByPlaceId(query.location).then(location => {
+		geocodeByPlaceId(query.location).then((location) => {
 			const locationInfo = {
 				description: location[0].formatted_address,
-				placeId: location[0].place_id
+				placeId: location[0].place_id,
 			};
 			setLocationSelected(locationInfo);
 		});
@@ -36,11 +36,11 @@ export default function Header(props) {
 		ReactGA.event({
 			category: 'Users',
 			action: 'Clicked new post from header',
-			value: 3
+			value: 3,
 		});
 	};
 
-	const onSearch = searchTerm => {
+	const onSearch = (searchTerm) => {
 		const newQuery = { ...query };
 
 		if (searchTerm.trim()) {
@@ -52,7 +52,7 @@ export default function Header(props) {
 		router.push({ pathname: '/', query: newQuery });
 	};
 
-	const onChangeLocation = newLocation => {
+	const onChangeLocation = (newLocation) => {
 		const newQuery = { ...query };
 
 		if (newLocation) {
@@ -94,27 +94,16 @@ export default function Header(props) {
 				</div>
 
 				<div className="menu-wrapper">
+					<LangSelection translations={translations} />
+
 					<Link href="/post">
-						<a
-							href="passHref"
-							className="btn-post"
-							onClick={onClickPost}
-						>
+						<a href="passHref" className="btn-post" onClick={onClickPost}>
 							<i className="fas fa-plus" /> {translations.sell}
 						</a>
 					</Link>
-					<Link
-						href={
-							authLoaded && authData
-								? `/${authData?.profile?.username}`
-								: '/login'
-						}
-					>
-						<a
-							href="passHref"
-							className="btn-profile"
-							title={translations.profile}
-						>
+
+					<Link href={authLoaded && authData ? `/${authData?.profile?.username}` : '/login'}>
+						<a href="passHref" className="btn-profile" title={translations.profile}>
 							{authLoaded && (
 								<Image
 									src={photoUrl.concat(`?${Date.now()}`)}
@@ -124,10 +113,7 @@ export default function Header(props) {
 								/>
 							)}
 							{!authLoaded && (
-								<i
-									className="fas fa-spinner fa-spin fa-2x"
-									title={translations.loading}
-								/>
+								<i className="fas fa-spinner fa-spin fa-2x" title={translations.loading} />
 							)}
 						</a>
 					</Link>
@@ -136,8 +122,7 @@ export default function Header(props) {
 			<style jsx>{`
 				header {
 					background: var(--color-background);
-					box-shadow: var(--color-secondary) 0px 1px 2px 0px,
-						var(--color-secondary) 0px 1px 4px 0px,
+					box-shadow: var(--color-secondary) 0px 1px 2px 0px, var(--color-secondary) 0px 1px 4px 0px,
 						var(--color-secondary) 0px 2px 8px 0px;
 					padding: var(--spacer);
 
@@ -176,10 +161,11 @@ export default function Header(props) {
 								background: none;
 								border: none;
 								border: 3px solid var(--color-links);
-								border-radius: 10px;
+								border-radius: var(--spacer);
 								color: var(--color-links);
 								cursor: pointer;
 								padding: var(--spacer);
+								margin-left: var(--spacer);
 								text-decoration: none;
 
 								.fa-plus {

@@ -38,29 +38,6 @@ export default function Footer(props) {
 
 			<p className="branding">Construccion y Tecnologia SAS</p>
 
-			<div className="languages-bar">
-				<Link href={{ pathname, query }} locale="es" passHref>
-					<a
-						href="passHref"
-						className={`link-language ${
-							locale === 'es' ? 'active' : ''
-						}`}
-					>
-						{translations.spanish}
-					</a>
-				</Link>
-				<Link href={{ pathname, query }} locale="en" passHref>
-					<a
-						href="passHref"
-						className={`link-language ${
-							locale === 'en' ? 'active' : ''
-						}`}
-					>
-						{translations.english}
-					</a>
-				</Link>
-			</div>
-
 			<style jsx>{`
 				.footer {
 					border-top: 1px solid var(--color-border);
@@ -84,38 +61,6 @@ export default function Footer(props) {
 
 					.branding {
 						font-weight: bold;
-					}
-
-					.languages-bar {
-						display: flex;
-						align-items: center;
-						justify-content: center;
-						margin-top: var(--spacer);
-
-						.link-language {
-							display: flex;
-							align-items: center;
-							border: 1px solid var(--color-border);
-							border-radius: var(--spacer);
-							background-color: var(--color-secondary);
-							color: var(--color-text);
-							padding: var(--spacer);
-							text-decoration: none;
-
-							:first-child {
-								margin-right: 5px;
-							}
-
-							&.active {
-								background-color: var(--color-primary);
-								color: white;
-								cursor: default;
-							}
-
-							img {
-								margin-right: 5px;
-							}
-						}
 					}
 				}
 			`}</style>
