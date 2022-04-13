@@ -19,9 +19,7 @@ export default function MyApp({ Component, pageProps }) {
 	}, [store]);
 
 	useEffect(() => {
-		ReactGA.pageview(
-			`${window.location.pathname}${window.location.search}`
-		);
+		ReactGA.pageview(`${window.location.pathname}${window.location.search}`);
 	}, [router.pathname, router.query]);
 
 	return (
@@ -47,7 +45,7 @@ export default function MyApp({ Component, pageProps }) {
 					--color-links: #00709a;
 					--color-text: #333;
 
-					--container-width: 1800px;
+					--container-width: 1200px;
 					--spacer: 10px;
 				}
 
