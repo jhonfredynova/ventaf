@@ -8,35 +8,22 @@ export default function PostTile(props) {
 	const { isLoading, translations, data } = props;
 	const { price } = data;
 	const featurePhoto = data.photos[0];
-	const titleSlug = toUrl(
-		data.description
-			.substring(0, 80)
-			.concat(', ')
-			.concat(data.location.description)
-	);
+	const titleSlug = toUrl(data.description.substring(0, 80).concat(', ').concat(data.location.description));
 
 	return (
 		<Link href={`/post/${titleSlug}/${data.id}`}>
 			<a href="passHref" className="post-tile" disabled={isLoading}>
 				<header>
-					<h2 className="sr-only">
-						{trimTextWithEllipsis(data.description, 160)}
-					</h2>
+					<h2 className="sr-only">{trimTextWithEllipsis(data.description, 160)}</h2>
 					<div className="thumbnail">
-						<Image
-							src={featurePhoto}
-							alt={data.description}
-							layout="fill"
-							priority
-						/>
+						<Image src={featurePhoto} alt={data.description} layout="fill" priority />
 					</div>
 				</header>
 				<div className="info">
 					<h3 className={price.value === 0 && 'free-price'}>
 						{price.value === 0 ? (
 							<>
-								<i className="fas fa-gift" />{' '}
-								{translations.free}
+								<i className="fas fa-gift" /> {translations.free}
 							</>
 						) : (
 							<b>
@@ -46,10 +33,7 @@ export default function PostTile(props) {
 						)}
 					</h3>
 					<p className="location">
-						<i
-							className="fas fa-location-arrow"
-							title={translations.location}
-						/>
+						<i className="fas fa-location-arrow" title={translations.location} />
 						{data.location.description}
 					</p>
 					<p className="description">{data.description}</p>
@@ -92,12 +76,9 @@ export default function PostTile(props) {
 									left: 0px;
 									right: 0px;
 									bottom: 0px;
-									transition: -webkit-transform 0.6s
-										cubic-bezier(0.11, 0, 0.31, 1);
-									transition: transform 0.6s
-										cubic-bezier(0.11, 0, 0.31, 1);
-									transition: transform 0.6s
-											cubic-bezier(0.11, 0, 0.31, 1),
+									transition: -webkit-transform 0.6s cubic-bezier(0.11, 0, 0.31, 1);
+									transition: transform 0.6s cubic-bezier(0.11, 0, 0.31, 1);
+									transition: transform 0.6s cubic-bezier(0.11, 0, 0.31, 1),
 										-webkit-transform 0.6s cubic-bezier(0.11, 0, 0.31, 1);
 								}
 							}
@@ -110,10 +91,16 @@ export default function PostTile(props) {
 
 							h3 {
 								font-size: 1.8rem;
+								margin: 3px 0;
 
 								&.free-price {
 									color: var(--color-alert);
 								}
+							}
+
+							.location,
+							.description {
+								margin: 3px 0;
 							}
 
 							.location > i {

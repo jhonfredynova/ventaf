@@ -64,6 +64,7 @@ export default function MyApp({ Component, pageProps }) {
 				/* General styles */
 				html {
 					font-size: 62.5%;
+					line-height: 1.3;
 
 					body {
 						background-color: var(--color-background);
@@ -74,23 +75,6 @@ export default function MyApp({ Component, pageProps }) {
 						&,
 						* {
 							box-sizing: border-box;
-							margin: 0;
-							padding: 0;
-						}
-
-						a {
-							color: var(--color-links);
-						}
-
-						input,
-						textarea {
-							&::placeholder {
-								color: var(--color-text);
-							}
-						}
-
-						.sr-only {
-							display: none;
 						}
 					}
 				}
