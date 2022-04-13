@@ -52,7 +52,7 @@ export default function langSelection(props) {
 						display: none;
 						position: absolute;
 						background-color: var(--color-background);
-						border: 1px solid var(--color-text);
+						border: 1px solid var(--color-primary);
 						top: 100%;
 						left: 0;
 						list-style: none;

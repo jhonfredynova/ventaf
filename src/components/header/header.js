@@ -1,36 +1,18 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import ReactGA from 'react-ga';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
 import Image from 'next/image';
-import { geocodeByPlaceId } from 'react-places-autocomplete';
 import Logo from './components/logo';
 import SearchBar from './components/search-bar';
-import SearchLocation from './components/search-location';
 import LangSelection from './components/lang-selection';
 import { BREAKPOINTS } from '../../utils/style-utils';
 
 export default function Header(props) {
-	const [locationSelected, setLocationSelected] = useState({});
 	const { authData, authLoaded, translations } = props;
 	const router = useRouter();
 	const { query } = router;
 	const photoUrl = (authLoaded && authData?.profile?.photoURL) || '/anonymous.png';
-
-	useEffect(() => {
-		if (!query.location) {
-			setLocationSelected({});
-			return;
-		}
-
-		geocodeByPlaceId(query.location).then((location) => {
-			const locationInfo = {
-				description: location[0].formatted_address,
-				placeId: location[0].place_id,
-			};
-			setLocationSelected(locationInfo);
-		});
-	}, [query.location]);
 
 	const onClickPost = () => {
 		ReactGA.event({
@@ -52,18 +34,6 @@ export default function Header(props) {
 		router.push({ pathname: '/', query: newQuery });
 	};
 
-	const onChangeLocation = (newLocation) => {
-		const newQuery = { ...query };
-
-		if (newLocation) {
-			newQuery.location = newLocation;
-		} else {
-			delete newQuery.location;
-		}
-
-		router.push({ pathname: '/', query: newQuery });
-	};
-
 	return (
 		<header>
 			<nav className="navbar">
@@ -73,11 +43,6 @@ export default function Header(props) {
 							<Logo translations={translations} />
 						</a>
 					</Link>
-					<SearchLocation
-						locationSelected={locationSelected}
-						translations={translations}
-						onChange={onChangeLocation}
-					/>
 				</div>
 
 				<div className="search-wrapper">
@@ -130,6 +95,7 @@ export default function Header(props) {
 						display: grid;
 						grid-template-columns: 1fr auto;
 						gap: var(--spacer);
+						align-items: center;
 						margin: 0 auto;
 						max-width: var(--container-width);
 
