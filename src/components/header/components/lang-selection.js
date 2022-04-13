@@ -58,6 +58,7 @@ export default function langSelection(props) {
 						list-style: none;
 						text-align: left;
 						margin-top: 2px;
+						padding: 0;
 						z-index: 2;
 
 						li > .link {
