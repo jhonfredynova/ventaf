@@ -9,7 +9,7 @@ export default async function getAllPosts(req, res) {
 		const db = firebaseAdmin.firestore();
 		const searchTerms = toSearchTerms(req.query.search);
 		const localeQuery = {
-			limit: Number(req.query.limit) || 12,
+			limit: Number(req.query.limit) || 16,
 			sort: { createdAt: 'desc' },
 			where: {
 				...(req.query.newerThan && {

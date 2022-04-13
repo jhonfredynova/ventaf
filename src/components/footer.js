@@ -36,8 +36,6 @@ export default function Footer(props) {
 				</li>
 			</ul>
 
-			<p className="branding">Ventaf</p>
-
 			<style jsx>{`
 				.footer {
 					border-top: 1px solid var(--color-border);
@@ -57,10 +55,6 @@ export default function Footer(props) {
 								text-decoration: none;
 							}
 						}
-					}
-
-					.branding {
-						font-weight: bold;
 					}
 				}
 			`}</style>

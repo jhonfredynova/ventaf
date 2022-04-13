@@ -6,6 +6,7 @@ import NavigationBar from '../components/navigation-bar';
 import UserLogin from '../components/user-login/user-login';
 import { initializeStore } from '../store/store';
 import { getConfiguration } from '../store/actions/config-actions';
+import Footer from '../components/footer';
 
 export const getStaticProps = async ({ locale }) => {
 	const store = initializeStore();
@@ -13,23 +14,19 @@ export const getStaticProps = async ({ locale }) => {
 
 	return {
 		props: {
-			initialReduxState: store.getState()
-		}
+			initialReduxState: store.getState(),
+		},
 	};
 };
 
 export default function Login() {
-	const authData = useSelector(state => state.auth.authData);
-	const { translations } = useSelector(state => state.config);
+	const authData = useSelector((state) => state.auth.authData);
+	const { translations } = useSelector((state) => state.config);
 	const router = useRouter();
 	const { query } = router;
 	const loginMessage = query.message;
-	const onLoginSuccess = authDetails => {
-		router.push(
-			query.redirectTo
-				? query.redirectTo
-				: `/${authDetails.profile.username}`
-		);
+	const onLoginSuccess = (authDetails) => {
+		router.push(query.redirectTo ? query.redirectTo : `/${authDetails.profile.username}`);
 	};
 
 	useEffect(() => {
@@ -40,10 +37,7 @@ export default function Login() {
 
 	return (
 		<main>
-			<SEO
-				title={translations.loginTitle}
-				description={translations.loginDescription}
-			/>
+			<SEO title={translations.loginTitle} description={translations.loginDescription} />
 			<NavigationBar
 				title={translations.loginTitle}
 				description={translations.loginDescription}
@@ -56,11 +50,9 @@ export default function Login() {
 						{loginMessage}
 					</div>
 				)}
-				<UserLogin
-					translations={translations}
-					onLoginSuccess={onLoginSuccess}
-				/>
+				<UserLogin translations={translations} onLoginSuccess={onLoginSuccess} />
 			</section>
+			<Footer translations={translations} />
 			<style jsx>{`
 				main {
 					--container-width: 600px;
