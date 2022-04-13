@@ -7,17 +7,11 @@ export default function SEO(props) {
 	const { title, description, imageUrl } = props;
 	const router = useRouter();
 	const { asPath } = router;
-	const siteName = 'Construccion y Tecnologia SAS';
-	const keywords = [
-		'construccion',
-		'tecnologia',
-		'technology',
-		'realstate',
-		'jhonfredynova'
-	]
+	const siteName = 'Ventaf';
+	const keywords = ['ventaf', 'ventas', 'compras', 'productos', 'servicios', 'jhonfredynova']
 		.concat(toSearchTerms(title))
 		.concat(toSearchTerms(description))
-		.filter(keyword => keyword.length > 3);
+		.filter((keyword) => keyword.length > 3);
 
 	return (
 		<Head>
@@ -43,31 +37,13 @@ export default function SEO(props) {
 				name="viewport"
 				content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no"
 			/>
-			<link rel="canonical" href={`https://cytsas.com${asPath}`} />
-			<link
-				rel="apple-touch-icon"
-				sizes="120x120"
-				href="/apple-touch-icon.png"
-			/>
-			<link
-				rel="icon"
-				type="image/png"
-				sizes="32x32"
-				href="/favicon-32x32.png"
-			/>
-			<link
-				rel="icon"
-				type="image/png"
-				sizes="16x16"
-				href="/favicon-16x16.png"
-			/>
+			<link rel="canonical" href={`${process.env.NEXT_PUBLIC_SERVER_URL}/${asPath}`} />
+			<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+			<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+			<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
 			<link rel="manifest" href="/site.webmanifest" />
-			<link
-				rel="mask-icon"
-				href="/safari-pinned-tab.svg"
-				color="#5bbad5"
-			/>
-			<meta name="msapplication-TileColor" content="#00aba9" />
+			<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5" />
+			<meta name="msapplication-TileColor" content="#ffc40d" />
 			<meta name="theme-color" content="#ffffff" />
 		</Head>
 	);

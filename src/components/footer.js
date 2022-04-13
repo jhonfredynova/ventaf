@@ -36,7 +36,7 @@ export default function Footer(props) {
 				</li>
 			</ul>
 
-			<p className="branding">Construccion y Tecnologia SAS</p>
+			<p className="branding">Ventaf</p>
 
 			<style jsx>{`
 				.footer {

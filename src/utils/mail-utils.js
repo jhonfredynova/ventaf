@@ -4,20 +4,16 @@ export const sendNotification = async (config, emailLibrary, emailData) => {
 		emailLibrary.setApiKey(config.key);
 
 		await emailLibrary.send({
-			from: 'noreply@cytsas.com',
+			from: 'noreply@ventaf.com',
 			to: emailData.to,
 			templateId: config.template,
 			dynamic_template_data: {
-				slogan: 'Construccion y Tecnologia SAS - https://cytsas.com',
+				slogan: `Ventaf - ${process.env.NEXT_PUBLIC_SERVER_URL}`,
 				subject: emailData.subject,
-				message: emailData.message
-			}
+				message: emailData.message,
+			},
 		});
 	} catch (error) {
-		console.error(
-			'Error sending subscription notification',
-			emailData,
-			error
-		);
+		console.error('Error sending subscription notification', emailData, error);
 	}
 };

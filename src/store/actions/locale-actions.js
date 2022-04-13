@@ -7,17 +7,15 @@ export const TYPES = {
 	GET_BY_ID: 'GET_POST_BY_ID',
 	CREATE: 'CREATE_POST',
 	UPDATE: 'UPDATE_POST',
-	DELETE: 'DELETE_POST'
+	DELETE: 'DELETE_POST',
 };
 
-export const getLocales = filters => async (dispatch, getState) => {
+export const getLocales = (filters) => async (dispatch, getState) => {
 	let locales = getState().locale.records;
 
 	if (locales.length === 0) {
 		locales = await axios.get(
-			`${process.env.NEXT_PUBLIC_API_URL}/locales/get-all${setUrlSearch(
-				filters
-			)}`
+			`${process.env.NEXT_PUBLIC_SERVER_URL}/api/locales/get-all${setUrlSearch(filters)}`
 		);
 		locales = locales.data;
 	}
@@ -25,15 +23,11 @@ export const getLocales = filters => async (dispatch, getState) => {
 	dispatch({ type: TYPES.GET_ALL, payload: locales });
 };
 
-export const getLocaleById = localeId => async (dispatch, getState) => {
-	let localeData = getState().locale.records.find(
-		locale => locale.id === localeId
-	);
+export const getLocaleById = (localeId) => async (dispatch, getState) => {
+	let localeData = getState().locale.records.find((locale) => locale.id === localeId);
 
 	if (!localeData) {
-		localeData = await axios.get(
-			`${process.env.NEXT_PUBLIC_API_URL}/locales/${localeData}`
-		);
+		localeData = await axios.get(`${process.env.NEXT_PUBLIC_SERVER_URL}/api/locales/${localeData}`);
 		localeData = localeData.data;
 	}
 
@@ -41,26 +35,23 @@ export const getLocaleById = localeId => async (dispatch, getState) => {
 	return localeData;
 };
 
-export const createLocale = localeData => async dispatch => {
-	const response = await axios.post(
-		`${process.env.NEXT_PUBLIC_API_URL}/locales/create`,
-		localeData
-	);
+export const createLocale = (localeData) => async (dispatch) => {
+	const response = await axios.post(`${process.env.NEXT_PUBLIC_SERVER_URL}/api/locales/create`, localeData);
 	dispatch({ type: TYPES.CREATE, payload: response.data });
 	return response.data;
 };
 
-export const updateLocale = localeData => async dispatch => {
+export const updateLocale = (localeData) => async (dispatch) => {
 	const response = await axios.patch(
-		`${process.env.NEXT_PUBLIC_API_URL}/locales/update?localeId=${localeData.id}`,
+		`${process.env.NEXT_PUBLIC_SERVER_URL}/api/locales/update?localeId=${localeData.id}`,
 		localeData
 	);
 	dispatch({ type: TYPES.UPDATE, payload: response.data });
 };
 
-export const deleteLocale = localeId => async dispatch => {
+export const deleteLocale = (localeId) => async (dispatch) => {
 	const response = await axios.delete(
-		`${process.env.NEXT_PUBLIC_API_URL}/locales/remove?localeId=${localeId}`
+		`${process.env.NEXT_PUBLIC_SERVER_URL}/api/locales/remove?localeId=${localeId}`
 	);
 	dispatch({ type: TYPES.DELETE, payload: response.data });
 };

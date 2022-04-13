@@ -19,10 +19,10 @@ export default function FormProfileInfo(props) {
 		username: profile.username || '',
 		website: profile.website || '',
 		bio: profile.bio || '',
-		phone: profile.phone || { prefix: '', number: '' }
+		phone: profile.phone || { prefix: '', number: '' },
 	});
 
-	const onUpdateInfo = async event => {
+	const onUpdateInfo = async (event) => {
 		try {
 			event.preventDefault();
 			setIsUpdatingProfile(true);
@@ -43,17 +43,15 @@ export default function FormProfileInfo(props) {
 			<div className="form-row">
 				<label htmlFor="username">{translations.username} *</label>
 				<div className="input-group">
-					<div className="url-placeholder">https://cytsas.com/</div>
+					<div className="url-placeholder">{process.env.NEXT_PUBLIC_SERVER_URL}/</div>
 					<input
 						id="username"
 						type="text"
 						value={userInfo.username}
-						onChange={e =>
+						onChange={(e) =>
 							setUserInfo({
 								...userInfo,
-								username: e.target.value
-									.toLowerCase()
-									.replace(/[^a-z0-9@.]/gi, '')
+								username: e.target.value.toLowerCase().replace(/[^a-z0-9@.]/gi, ''),
 							})
 						}
 					/>
@@ -69,7 +67,7 @@ export default function FormProfileInfo(props) {
 					errors={errors.phone}
 					suggestions={callingCodes}
 					value={userInfo.phone}
-					onChange={phone => setUserInfo({ ...userInfo, phone })}
+					onChange={(phone) => setUserInfo({ ...userInfo, phone })}
 				/>
 			</div>
 
@@ -79,10 +77,10 @@ export default function FormProfileInfo(props) {
 					id="displayName"
 					type="text"
 					value={userInfo.displayName}
-					onChange={e =>
+					onChange={(e) =>
 						setUserInfo({
 							...userInfo,
-							displayName: e.target.value
+							displayName: e.target.value,
 						})
 					}
 				/>
@@ -95,26 +93,17 @@ export default function FormProfileInfo(props) {
 					id="bio"
 					type="text"
 					value={userInfo.bio}
-					onChange={e =>
-						setUserInfo({ ...userInfo, bio: e.target.value })
-					}
+					onChange={(e) => setUserInfo({ ...userInfo, bio: e.target.value })}
 				/>
 				<p className="error-msg">{translations[errors.bio]}</p>
 			</div>
 
 			<div className="form-row-full buttons-wrapper">
-				<button
-					type="submit"
-					className="btn-submit"
-					disabled={isUpdatingProfile}
-				>
+				<button type="submit" className="btn-submit" disabled={isUpdatingProfile}>
 					{isUpdatingProfile ? (
 						<i className="fas fa-spinner fa-spin" />
 					) : (
-						<i
-							className="fas fa-check"
-							title={translations.saving}
-						/>
+						<i className="fas fa-check" title={translations.saving} />
 					)}
 					{translations.update}
 				</button>
