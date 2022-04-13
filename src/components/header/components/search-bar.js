@@ -1,14 +1,7 @@
 import React, { useState } from 'react';
 
 export default function SearchBar(props) {
-	const {
-		id,
-		placeholder,
-		searchTerm,
-		translations,
-		onChange,
-		onSubmit
-	} = props;
+	const { id, placeholder, searchTerm, translations, onChange, onSubmit } = props;
 	const [newSearchTerm, setNewSearchTerm] = useState(searchTerm || '');
 
 	const onClear = () => {
@@ -29,7 +22,7 @@ export default function SearchBar(props) {
 		}
 	};
 
-	const onInputChange = event => {
+	const onInputChange = (event) => {
 		setNewSearchTerm(event.target.value);
 
 		if (onChange) {
@@ -37,7 +30,7 @@ export default function SearchBar(props) {
 		}
 	};
 
-	const onInputKeyDown = event => {
+	const onInputKeyDown = (event) => {
 		if (event.key === 'Enter') {
 			onSubmitSearch();
 		}
@@ -55,21 +48,11 @@ export default function SearchBar(props) {
 				onKeyDown={onInputKeyDown}
 			/>
 			{newSearchTerm && (
-				<button
-					type="button"
-					title={translations.clean}
-					className="btn-clean"
-					onClick={onClear}
-				>
+				<button type="button" title={translations.clean} className="btn-clean" onClick={onClear}>
 					<i className="fas fa-times" />
 				</button>
 			)}
-			<button
-				type="button"
-				className="btn-search"
-				title={translations.search}
-				onClick={onSubmitSearch}
-			>
+			<button type="button" className="btn-search" title={translations.search} onClick={onSubmitSearch}>
 				<i className="fas fa-search" />
 			</button>
 			<style jsx>{`
@@ -84,6 +67,10 @@ export default function SearchBar(props) {
 						border: 1px solid var(--color-border);
 						padding: var(--spacer);
 						width: 100%;
+
+						&::placeholder {
+							color: #999;
+						}
 					}
 
 					.btn-clean,

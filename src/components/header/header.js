@@ -115,6 +115,9 @@ export default function Header(props) {
 						.search-wrapper {
 							display: flex;
 							align-items: center;
+							justify-self: center;
+							width: 100%;
+							max-width: 600px;
 						}
 
 						.menu-wrapper {
