@@ -1,11 +1,8 @@
 import React from 'react';
 import Link from 'next/link';
-import { useRouter } from 'next/router';
 
 export default function Footer(props) {
 	const { translations } = props;
-	const router = useRouter();
-	const { locale, pathname, query } = router;
 
 	return (
 		<footer className="footer">

@@ -2,13 +2,13 @@ import React from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 
-export default function langSelection(props) {
+export default function LangSelection(props) {
 	const { translations } = props;
 	const router = useRouter();
 	const { query, locale, pathname } = router;
 
 	return (
-		<button className="lang-selection">
+		<button type="button" className="lang-selection">
 			<i className="fas fa-solid fa-globe" />
 			{locale.toString()}
 			<ul className="suggestions">
