@@ -2,6 +2,12 @@
 
 Firebase web application with server side rendering + Google cloud function configuration
 
+# Editor
+
+Recommended editor Visual Studio Code with the following extentions:
+- ESLint
+- Prettier
+
 # Configuration
 
 In order to run the application you need to add the following configuration files with your app data:
@@ -62,3 +68,11 @@ Runs the app in development mode. Open [https://localhost:3001](https://localhos
 ### `npm run build`
 
 Generate a bundle with the production version
+
+### `npm run lint`
+
+Lint the project code to analyze bugs and bad practices
+
+### `npm run test`
+
+Runs code fiels to funtional tests
