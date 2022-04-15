@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import ReactGA from 'react-ga';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
@@ -10,6 +10,8 @@ import { BREAKPOINTS } from '../../utils/style-utils';
 
 export default function Header(props) {
 	const { authData, authLoaded, translations } = props;
+	const [isMobileDevice, setIsMobileDevice] = useState(false);
+	const [showMobileSearch, setShowMobileSearch] = useState(false);
 	const router = useRouter();
 	const { query } = router;
 	const photoUrl = (authLoaded && authData?.profile?.photoURL) || '/anonymous.png';
@@ -34,9 +36,26 @@ export default function Header(props) {
 		router.push({ pathname: '/', query: newQuery });
 	};
 
+	const onSearchMobile = (searchTerm) => {
+		onSearch(searchTerm);
+		setShowMobileSearch(false);
+	};
+
+	const onResizeWindow = () => {
+		setIsMobileDevice(window.innerWidth < parseInt(BREAKPOINTS.TABLET, 10));
+	};
+
+	useEffect(() => {
+		window.addEventListener('resize', onResizeWindow);
+
+		return () => {
+			window.removeEventListener('resize', onResizeWindow);
+		};
+	}, []);
+
 	return (
 		<header>
-			<nav className="navbar">
+			<nav className={`navbar ${isMobileDevice && showMobileSearch ? 'hide' : ''}`}>
 				<div className="logo-wrapper">
 					<Link href="/">
 						<a href="passHref" className="link">
@@ -46,19 +65,34 @@ export default function Header(props) {
 				</div>
 
 				<div className="search-wrapper">
-					<label className="sr-only" htmlFor="searchTerms">
-						{translations.search}:
-					</label>
-					<SearchBar
-						id="searchTerms"
-						placeholder={translations.homeSearchInputPlaceholder}
-						searchTerm={query.search}
-						translations={translations}
-						onSubmit={onSearch}
-					/>
+					{!isMobileDevice && (
+						<>
+							<label className="sr-only" htmlFor="searchTerms">
+								{translations.search}:
+							</label>
+							<SearchBar
+								id="searchTerms"
+								placeholder={translations.homeSearchInputPlaceholder}
+								searchTerm={query.search}
+								translations={translations}
+								onSubmit={onSearch}
+							/>
+						</>
+					)}
 				</div>
 
 				<div className="menu-wrapper">
+					{isMobileDevice && (
+						<button
+							type="button"
+							className="btn-search-mobile"
+							title={translations.search}
+							onClick={() => setShowMobileSearch(true)}
+						>
+							<i className="fas fa-search" />
+						</button>
+					)}
+
 					<LangSelection translations={translations} />
 
 					<Link href="/post">
@@ -84,6 +118,18 @@ export default function Header(props) {
 					</Link>
 				</div>
 			</nav>
+
+			{isMobileDevice && showMobileSearch && (
+				<SearchBar
+					autofocus
+					placeholder={translations.homeSearchInputPlaceholder}
+					searchTerm={query.search}
+					translations={translations}
+					onSubmit={onSearchMobile}
+					onClose={() => setShowMobileSearch(false)}
+				/>
+			)}
+
 			<style jsx>{`
 				header {
 					background: var(--color-background);
@@ -91,16 +137,19 @@ export default function Header(props) {
 						var(--color-secondary) 0px 2px 8px 0px;
 					padding: var(--spacer);
 
+					.hide {
+						display: none !important;
+					}
+
 					.navbar {
 						display: grid;
-						grid-template-columns: 1fr auto;
+						grid-template-columns: auto 1fr auto;
 						gap: var(--spacer);
 						align-items: center;
 						margin: 0 auto;
 						max-width: var(--container-width);
 
 						.logo-wrapper {
-							grid-column: 1/3;
 							display: flex;
 							flex-flow: column;
 							align-items: center;
@@ -124,6 +173,7 @@ export default function Header(props) {
 							display: flex;
 							align-items: center;
 
+							.btn-search-mobile,
 							.btn-post {
 								display: flex;
 								align-items: center;
@@ -134,8 +184,16 @@ export default function Header(props) {
 								color: var(--color-links);
 								cursor: pointer;
 								padding: var(--spacer);
-								margin-left: var(--spacer);
+							}
+
+							.btn-search-mobile {
+								margin-right: 10px;
+								height: 44px;
+							}
+
+							.btn-post {
 								text-decoration: none;
+								margin-left: var(--spacer);
 
 								.fa-plus {
 									margin-right: 5px;
@@ -156,14 +214,6 @@ export default function Header(props) {
 									height: 38px;
 									width: 38px;
 								}
-							}
-						}
-
-						@media screen and (min-width: ${BREAKPOINTS.TABLET}) {
-							grid-template-columns: auto 1fr auto;
-
-							.logo-wrapper {
-								grid-column: 1/2;
 							}
 						}
 					}
