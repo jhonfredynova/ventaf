@@ -4,26 +4,16 @@ import InputSuggestions from '../input-suggestions';
 import InputNumeric from '../input-numeric';
 
 export default function PostPrice(props) {
-	const {
-		id,
-		errors,
-		required,
-		suggestions,
-		translations,
-		value: priceValue,
-		onChange
-	} = props;
+	const { id, errors, required, suggestions, translations, value: priceValue, onChange } = props;
 	const [isModalOpen, setModalOpen] = useState(false);
-	const selectedSuggestion = suggestions.find(
-		item => item.value === priceValue.currency
-	);
+	const selectedSuggestion = suggestions.find((item) => item.value === priceValue.currency);
 
-	const customValue = newSelectedSuggestion => {
+	const customValue = (newSelectedSuggestion) => {
 		const formattedValue = newSelectedSuggestion.label;
 		return formattedValue;
 	};
 
-	const customOption = suggestion => (
+	const customOption = (suggestion) => (
 		<div className="custom-option">
 			<div>{suggestion.label}</div>
 			<style jsx>{`
@@ -35,7 +25,7 @@ export default function PostPrice(props) {
 		</div>
 	);
 
-	const onChangeValue = value => {
+	const onChangeValue = (value) => {
 		onChange({ ...priceValue, value });
 	};
 
@@ -56,15 +46,13 @@ export default function PostPrice(props) {
 						<span
 							style={{
 								display: 'inline-block',
-								minWidth: '32px'
+								minWidth: '32px',
 							}}
 						>
 							{selectedSuggestion.value}
 						</span>
 					)}
-					{!selectedSuggestion && (
-						<i className="font-icon fas fa-dollar-sign" />
-					)}
+					{!selectedSuggestion && <i className="font-icon fas fa-dollar-sign" />}
 				</button>
 				<InputNumeric
 					id={id}
@@ -87,14 +75,9 @@ export default function PostPrice(props) {
 					</button>
 				)}
 			</div>
-			<p className="error-msg">
-				{translations[errors?.currency] && translations.selectCurrency}
-			</p>
+			<p className="error-msg">{translations[errors?.currency] && translations.selectCurrency}</p>
 			<p className="error-msg">{translations[errors?.value]}</p>
-			<Lightbox
-				isOpen={isModalOpen}
-				onToggle={() => setModalOpen(!isModalOpen)}
-			>
+			<Lightbox isOpen={isModalOpen} onToggle={() => setModalOpen(!isModalOpen)}>
 				<section className="lightbox-post-price">
 					<h2>{translations.selectCurrency}</h2>
 					<InputSuggestions
@@ -107,7 +90,7 @@ export default function PostPrice(props) {
 						suggestions={suggestions}
 						translations={translations}
 						value={priceValue.currency}
-						onChange={currency => {
+						onChange={(currency) => {
 							onChange({ ...priceValue, currency });
 							setModalOpen(false);
 						}}
@@ -118,6 +101,7 @@ export default function PostPrice(props) {
 				.post-price {
 					.error-msg {
 						color: var(--color-alert);
+						margin: 0;
 						margin-top: 5px;
 
 						&:empty {
@@ -137,10 +121,7 @@ export default function PostPrice(props) {
 
 						:global(.input-price) {
 							flex-grow: 1;
-							border: 1px solid
-								${errors?.value
-									? 'var(--color-alert)'
-									: 'var(--color-border)'};
+							border: 1px solid ${errors?.value ? 'var(--color-alert)' : 'var(--color-border)'};
 							background-color: var(--color-background);
 							color: var(--color-text);
 							padding: var(--spacer);
@@ -151,9 +132,7 @@ export default function PostPrice(props) {
 							display: flex;
 							background: var(--color-secondary);
 							border: 1px solid
-								${errors?.currency
-									? 'var(--color-alert)'
-									: 'var(--color-border)'};
+								${errors?.currency ? 'var(--color-alert)' : 'var(--color-border)'};
 							border-right: ${errors?.currency && !errors?.value
 								? '1px solid var(--color-alert)'
 								: '0'};

@@ -3,28 +3,16 @@ import Lightbox from './lightbox';
 import InputSuggestions from './input-suggestions';
 
 export default function InputPhone(props) {
-	const {
-		id,
-		translations,
-		errors,
-		required,
-		suggestions,
-		value: phoneValue,
-		onChange
-	} = props;
+	const { id, translations, errors, required, suggestions, value: phoneValue, onChange } = props;
 	const [isModalOpen, setModalOpen] = useState(false);
-	const selectedSuggestion = suggestions.find(
-		item => item.value === phoneValue.prefix
-	);
+	const selectedSuggestion = suggestions.find((item) => item.value === phoneValue.prefix);
 
 	const customFilterLogic = (suggestion, searchValue) => {
 		const { countryName, label, value } = suggestion;
-		return `${countryName} ${label} ${value}`
-			.toLowerCase()
-			.includes(searchValue.toLowerCase());
+		return `${countryName} ${label} ${value}`.toLowerCase().includes(searchValue.toLowerCase());
 	};
 
-	const customOption = suggestion => (
+	const customOption = (suggestion) => (
 		<div className="custom-option">
 			<div>
 				{suggestion.countryName} ({suggestion.value})
@@ -54,25 +42,23 @@ export default function InputPhone(props) {
 							style={{
 								display: 'inline-block',
 								marginLeft: '3px',
-								minWidth: '32px'
+								minWidth: '32px',
 							}}
 						>
 							{selectedSuggestion.value}
 						</span>
 					)}
-					{!selectedSuggestion && (
-						<i className="font-icon fas fa-mobile-alt" />
-					)}
+					{!selectedSuggestion && <i className="font-icon fas fa-mobile-alt" />}
 				</button>
 				<input
 					id={id}
 					type="tel"
 					placeholder={translations.phoneNumber}
 					value={phoneValue.number}
-					onChange={event =>
+					onChange={(event) =>
 						onChange({
 							...phoneValue,
-							number: event.target.value.replace(/[^0-9]/gi, '')
+							number: event.target.value.replace(/[^0-9]/gi, ''),
 						})
 					}
 				/>
@@ -87,14 +73,9 @@ export default function InputPhone(props) {
 					</button>
 				)}
 			</div>
-			<p className="error-msg">
-				{errors?.prefix && translations.selectAreaCode}
-			</p>
+			<p className="error-msg">{errors?.prefix && translations.selectAreaCode}</p>
 			<p className="error-msg">{translations[errors?.number]}</p>
-			<Lightbox
-				isOpen={isModalOpen}
-				onToggle={() => setModalOpen(!isModalOpen)}
-			>
+			<Lightbox isOpen={isModalOpen} onToggle={() => setModalOpen(!isModalOpen)}>
 				<div className="lightbox-phone-number">
 					<h2>{translations.selectAreaCode}</h2>
 					<InputSuggestions
@@ -106,7 +87,7 @@ export default function InputPhone(props) {
 						required={required}
 						suggestions={suggestions}
 						value={phoneValue.prefix}
-						onChange={prefix => {
+						onChange={(prefix) => {
 							onChange({ ...phoneValue, prefix });
 							setModalOpen(false);
 						}}
@@ -118,6 +99,7 @@ export default function InputPhone(props) {
 					.input-phone {
 						.error-msg {
 							color: var(--color-alert);
+							margin: 0;
 							margin-top: 5px;
 
 							&:empty {
@@ -138,9 +120,7 @@ export default function InputPhone(props) {
 							input {
 								flex-grow: 1;
 								border: 1px solid
-									${errors?.number
-										? 'var(--color-alert)'
-										: 'var(--color-border)'};
+									${errors?.number ? 'var(--color-alert)' : 'var(--color-border)'};
 								background-color: var(--color-background);
 								color: var(--color-text);
 								padding: var(--spacer);
@@ -152,11 +132,8 @@ export default function InputPhone(props) {
 								cursor: pointer;
 								padding: var(--spacer);
 								border: 1px solid
-									${errors?.prefix
-										? 'var(--color-alert)'
-										: 'var(--color-border)'};
-								border-right: ${errors?.prefix &&
-								!errors?.number
+									${errors?.prefix ? 'var(--color-alert)' : 'var(--color-border)'};
+								border-right: ${errors?.prefix && !errors?.number
 									? '1px solid var(--color-alert)'
 									: '0'};
 								color: var(--color-text);

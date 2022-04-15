@@ -16,7 +16,7 @@ export default function FormPost(props) {
 		translations,
 		onChangePhotos,
 		onChangeModel,
-		onSavePost
+		onSavePost,
 	} = props;
 
 	return (
@@ -34,16 +34,14 @@ export default function FormPost(props) {
 						searchOptions={{ types: ['(cities)'] }}
 						translations={translations}
 						value={model.location}
-						onChange={location =>
+						onChange={(location) =>
 							onChangeModel({
 								...model,
-								location: location || {}
+								location: location || {},
 							})
 						}
 					/>
-					<p className="error-msg">
-						{translations[errors.location?.placeId]}
-					</p>
+					<p className="error-msg">{translations[errors.location?.placeId]}</p>
 				</div>
 				<div className="form-row">
 					<label className="sr-only" htmlFor="price">
@@ -56,7 +54,7 @@ export default function FormPost(props) {
 						suggestions={currencies}
 						translations={translations}
 						value={model.price}
-						onChange={price => onChangeModel({ ...model, price })}
+						onChange={(price) => onChangeModel({ ...model, price })}
 					/>
 				</div>
 				<div className="form-row">
@@ -70,10 +68,10 @@ export default function FormPost(props) {
 						suggestions={callingCodes}
 						translations={translations}
 						value={model.seller.phone}
-						onChange={phone =>
+						onChange={(phone) =>
 							onChangeModel({
 								...model,
-								seller: { ...model.seller, phone }
+								seller: { ...model.seller, phone },
 							})
 						}
 					/>
@@ -89,16 +87,14 @@ export default function FormPost(props) {
 						aria-required="true"
 						placeholder={translations['whatAreYouSelling?']}
 						maxLength=""
-						onChange={event =>
+						onChange={(event) =>
 							onChangeModel({
 								...model,
-								description: event.target.value
+								description: event.target.value,
 							})
 						}
 					/>
-					<p className="error-msg">
-						{translations[errors.description]}
-					</p>
+					<p className="error-msg">{translations[errors.description]}</p>
 				</div>
 				<div className="form-row">
 					<label className="sr-only" htmlFor="photos">
@@ -108,34 +104,23 @@ export default function FormPost(props) {
 						error={translations[errors.photos]}
 						photos={model.photos}
 						translations={translations}
-						onChange={photos => {
+						onChange={(photos) => {
 							onChangeModel({ ...model, photos });
 							onChangePhotos?.(true);
 						}}
 					/>
 				</div>
 				<div className="buttons-wrapper">
-					<button
-						type="button"
-						className="btn-post"
-						disabled={isPosting}
-						onClick={onSavePost}
-					>
+					<button type="button" className="btn-post" disabled={isPosting} onClick={onSavePost}>
 						{isPosting && (
 							<>
-								<i
-									className="fas fa-spinner fa-spin"
-									title={translations.saving}
-								/>
+								<i className="fas fa-spinner fa-spin" title={translations.saving} />
 								{translations.saving}
 							</>
 						)}
 						{!isPosting && (
 							<>
-								<i
-									className="fas fa-solid fa-check"
-									title={btnLabel}
-								/>
+								<i className="fas fa-solid fa-check" title={btnLabel} />
 								{btnLabel}
 							</>
 						)}
@@ -145,6 +130,7 @@ export default function FormPost(props) {
 			<style jsx>{`
 				.error-msg {
 					color: var(--color-alert);
+					margin: 0;
 					margin-top: 5px;
 
 					&:empty {
@@ -159,10 +145,7 @@ export default function FormPost(props) {
 					margin-top: var(--spacer);
 
 					textarea {
-						border: 1px solid
-							${errors.description
-								? 'var(--color-alert)'
-								: 'var(--color-border)'};
+						border: 1px solid ${errors.description ? 'var(--color-alert)' : 'var(--color-border)'};
 						background-color: var(--color-background);
 						color: var(--color-text);
 						padding: var(--spacer);

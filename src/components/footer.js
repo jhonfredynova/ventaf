@@ -22,15 +22,6 @@ export default function Footer(props) {
 						<a href="passHref">{translations.terms}</a>
 					</Link>
 				</li>
-				<li>
-					<a
-						href="mailto:construccionytecnologiasas@gmail.com"
-						target="_blank"
-						rel="noopener noreferrer"
-					>
-						{translations.contact}
-					</a>
-				</li>
 			</ul>
 
 			<style jsx>{`
@@ -44,8 +35,10 @@ export default function Footer(props) {
 						display: flex;
 						align-items: center;
 						justify-content: center;
+						margin: 0;
+						padding: 0;
 						> li {
-							padding: 4px;
+							padding: 0 4px;
 
 							:global(a) {
 								color: var(--color-links);

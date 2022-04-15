@@ -14,30 +14,26 @@ export default function InputSuggestions(props) {
 		suggestions,
 		value,
 		onBlur,
-		onChange
+		onChange,
 	} = props;
-	const selectedSuggestion = suggestions.find(
-		suggestion => suggestion.value === value
-	);
+	const selectedSuggestion = suggestions.find((suggestion) => suggestion.value === value);
 	const inputRef = useRef(null);
 	const [showSuggestions, setShowSuggestions] = useState(false);
 	const [searchValue, setSearch] = useState('');
 
 	const filterLogic = (suggestion, newSearchValue) => {
 		const { label, value: suggestionValue } = suggestion;
-		return `${label} ${suggestionValue}`
-			.toLowerCase()
-			.includes(newSearchValue.toLowerCase());
+		return `${label} ${suggestionValue}`.toLowerCase().includes(newSearchValue.toLowerCase());
 	};
 
-	const filteredSuggestions = suggestions.filter(suggestion => {
+	const filteredSuggestions = suggestions.filter((suggestion) => {
 		if (customFilterLogic) {
 			return customFilterLogic(suggestion, searchValue);
 		}
 		return filterLogic(suggestion, searchValue);
 	});
 
-	const onKeyDown = event => {
+	const onKeyDown = (event) => {
 		if (['Enter', 13].includes(event.key)) {
 			event.preventDefault();
 			onChange(selectedSuggestion?.value);
@@ -62,12 +58,12 @@ export default function InputSuggestions(props) {
 		}
 	};
 
-	const onClickSuggestion = suggestion => {
+	const onClickSuggestion = (suggestion) => {
 		setSearch('');
 		onChange(suggestion?.value);
 	};
 
-	const onInputChange = event => {
+	const onInputChange = (event) => {
 		setSearch(event.target.value);
 	};
 
@@ -85,9 +81,7 @@ export default function InputSuggestions(props) {
 				ref={inputRef}
 				aria-required={required}
 				className={className}
-				placeholder={
-					selectedSuggestion ? selectedSuggestion.label : placeholder
-				}
+				placeholder={selectedSuggestion ? selectedSuggestion.label : placeholder}
 				value={searchValue}
 				onChange={onInputChange}
 				onFocus={() => setShowSuggestions(true)}
@@ -98,33 +92,20 @@ export default function InputSuggestions(props) {
 				className={!showSuggestions && 'd-none'}
 				style={{
 					...(style && style.suggestions),
-					top: `${
-						inputRef.current ? inputRef.current.offsetHeight : 0
-					}px`
+					top: `${inputRef.current ? inputRef.current.offsetHeight : 0}px`,
 				}}
 			>
-				{(searchValue ? filteredSuggestions : suggestions).map(
-					suggestion => (
-						<li
-							key={suggestion.label}
-							className={
-								suggestion.label === value ? 'active' : ''
-							}
+				{(searchValue ? filteredSuggestions : suggestions).map((suggestion) => (
+					<li key={suggestion.label} className={suggestion.label === value ? 'active' : ''}>
+						<button
+							type="button"
+							className="btn-link"
+							onMouseDown={() => onClickSuggestion(suggestion)}
 						>
-							<button
-								type="button"
-								className="btn-link"
-								onMouseDown={() =>
-									onClickSuggestion(suggestion)
-								}
-							>
-								{customOption
-									? customOption(suggestion)
-									: suggestion.label}
-							</button>
-						</li>
-					)
-				)}
+							{customOption ? customOption(suggestion) : suggestion.label}
+						</button>
+					</li>
+				))}
 			</ul>
 			{(searchValue || selectedSuggestion) && (
 				<>
@@ -133,19 +114,12 @@ export default function InputSuggestions(props) {
 							className="btn-check"
 							type="button"
 							title={translations.ok}
-							onClick={() =>
-								onClickSuggestion(selectedSuggestion)
-							}
+							onClick={() => onClickSuggestion(selectedSuggestion)}
 						>
 							<i className="fas fa-check" />
 						</button>
 					)}
-					<button
-						className="btn-clear"
-						type="button"
-						title={translations.clean}
-						onClick={onClear}
-					>
+					<button className="btn-clear" type="button" title={translations.clean} onClick={onClear}>
 						<i className="fas fa-times" />
 					</button>
 				</>
@@ -190,6 +164,9 @@ export default function InputSuggestions(props) {
 						width: 100%;
 						overflow: auto;
 						position: absolute;
+						margin: 0;
+						padding: 0;
+						list-style: none;
 
 						li {
 							cursor: pointer;
@@ -212,6 +189,7 @@ export default function InputSuggestions(props) {
 								cursor: pointer;
 								margin: 0;
 								padding: var(--spacer);
+								text-align: left;
 								width: 100%;
 							}
 						}

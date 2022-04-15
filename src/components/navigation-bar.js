@@ -47,6 +47,16 @@ export default function NavigationBar(props) {
 						flex-grow: 1;
 						max-width: 100%;
 						text-align: center;
+
+						h1 {
+							margin: 0;
+							margin-bottom: var(--spacer);
+						}
+
+						p {
+							margin: 0;
+							margin-bottom: var(--spacer);
+						}
 					}
 				}
 			`}</style>
