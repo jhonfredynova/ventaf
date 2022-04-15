@@ -2,6 +2,7 @@ import { uploadToStorage, renameFile } from '../../../utils/storage-utils';
 import { runMiddleware } from '../../../utils/api-utils';
 import authorization from '../../../middlewares/authorization';
 import files from '../../../middlewares/files';
+import cors from '../../../middlewares/cors';
 
 export const config = {
 	api: {
@@ -12,6 +13,7 @@ export const config = {
 
 export default async function uploadPhoto(req, res) {
 	try {
+		await runMiddleware(req, res, cors);
 		await runMiddleware(req, res, authorization('registered'));
 		await runMiddleware(req, res, files({ maxFileSize: 5, maxFiles: 1 }));
 

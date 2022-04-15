@@ -1,8 +1,10 @@
 import { runMiddleware } from '../../../../utils/api-utils';
 import authorization from '../../../../middlewares/authorization';
+import cors from '../../../../middlewares/cors';
 
 export default async function createUserClaim(req, res) {
 	try {
+		await runMiddleware(req, res, cors);
 		await runMiddleware(req, res, authorization('admin'));
 
 		// eslint-disable-next-line global-require

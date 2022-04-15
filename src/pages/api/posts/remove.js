@@ -2,9 +2,11 @@ import { runMiddleware } from '../../../utils/api-utils';
 import authorization from '../../../middlewares/authorization';
 import { deleteFromStorage } from '../../../utils/storage-utils';
 import { getDbDocument } from '../../../utils/database-utils';
+import cors from '../../../middlewares/cors';
 
 export default async function removePost(req, res) {
 	try {
+		await runMiddleware(req, res, cors);
 		await runMiddleware(req, res, authorization('registered'));
 
 		// eslint-disable-next-line global-require

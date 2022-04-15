@@ -1,8 +1,12 @@
 import { getDbQuery } from '../../../utils/database-utils';
 import { toSearchTerms } from '../../../utils/text-utils';
+import { runMiddleware } from '../../../utils/api-utils';
+import cors from '../../../middlewares/cors';
 
 export default async function getAllPosts(req, res) {
 	try {
+		await runMiddleware(req, res, cors);
+
 		// eslint-disable-next-line global-require
 		const { getFirebaseAdmin } = require('../../../utils/api-utils');
 		const firebaseAdmin = getFirebaseAdmin();

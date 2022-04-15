@@ -2,9 +2,11 @@ import fs from 'fs';
 import { getIntlData } from '../../../utils/intl-utils';
 import { runMiddleware } from '../../../utils/api-utils';
 import authorization from '../../../middlewares/authorization';
+import cors from '../../../middlewares/cors';
 
 export default async function syncConfig(req, res) {
 	try {
+		await runMiddleware(req, res, cors);
 		await runMiddleware(req, res, authorization('admin'));
 
 		// eslint-disable-next-line global-require

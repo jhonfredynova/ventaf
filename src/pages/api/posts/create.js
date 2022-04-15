@@ -2,6 +2,7 @@ import { getSearchTerms } from '../../../utils/post-utils';
 import { runMiddleware } from '../../../utils/api-utils';
 import files from '../../../middlewares/files';
 import validatePost from '../../../validations/validate-post';
+import cors from '../../../middlewares/cors';
 
 export const config = {
 	api: {
@@ -12,6 +13,7 @@ export const config = {
 
 export default async function createPost(req, res) {
 	try {
+		await runMiddleware(req, res, cors);
 		await runMiddleware(req, res, files({ maxFileSize: 1, maxFiles: 6 }));
 
 		// eslint-disable-next-line global-require

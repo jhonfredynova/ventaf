@@ -1,10 +1,12 @@
 import { getDbDocument, getDbQuery } from '../../../utils/database-utils';
 import { runMiddleware } from '../../../utils/api-utils';
 import authorization from '../../../middlewares/authorization';
+import cors from '../../../middlewares/cors';
 import validateProfileInfo from '../../../validations/validate-profile-info';
 
 export default async function updateUser(req, res) {
 	try {
+		await runMiddleware(req, res, cors);
 		await runMiddleware(req, res, authorization('registered'));
 
 		// eslint-disable-next-line global-require

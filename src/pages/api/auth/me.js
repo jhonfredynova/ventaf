@@ -1,9 +1,11 @@
 import { getDbDocument } from '../../../utils/database-utils';
 import { runMiddleware } from '../../../utils/api-utils';
 import authorization from '../../../middlewares/authorization';
+import cors from '../../../middlewares/cors';
 
 export default async function me(req, res) {
 	try {
+		await runMiddleware(req, res, cors);
 		await runMiddleware(req, res, authorization('registered'));
 
 		// eslint-disable-next-line global-require

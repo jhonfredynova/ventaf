@@ -2,9 +2,13 @@ import { createJsonWebToken } from '../../../utils/auth-utils';
 import { getDbDocument } from '../../../utils/database-utils';
 import { getUserProfileData } from '../../../utils/user-utils';
 import { uploadToStorage } from '../../../utils/storage-utils';
+import { runMiddleware } from '../../../utils/api-utils';
+import cors from '../../../middlewares/cors';
 
 export default async function loginOAuth(req, res) {
 	try {
+		await runMiddleware(req, res, cors);
+
 		// eslint-disable-next-line global-require
 		const { getFirebaseAdmin } = require('../../../utils/api-utils');
 		const firebaseAdmin = getFirebaseAdmin();
@@ -42,8 +46,7 @@ export default async function loginOAuth(req, res) {
 				responsePhotoUrl = uploadedFiles[0];
 			} catch (error) {
 				// If any error occurs set the anonymous user photo to the user
-				responsePhotoUrl =
-					'https://storage.googleapis.com/cyt-profile-uploads/anonymous.jpeg';
+				responsePhotoUrl = 'https://storage.googleapis.com/cyt-profile-uploads/anonymous.jpeg';
 			}
 
 			// Create user profile in database
@@ -53,9 +56,7 @@ export default async function loginOAuth(req, res) {
 			};
 			const userProfile = getUserProfileData(profileDataOAuth);
 			await db.collection('users').doc(uid).set(userProfile);
-			await firebaseAdmin
-				.auth()
-				.setCustomUserClaims(uid, { registered: true });
+			await firebaseAdmin.auth().setCustomUserClaims(uid, { registered: true });
 		}
 
 		// Create json web token

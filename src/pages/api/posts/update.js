@@ -1,6 +1,7 @@
 import { getDbDocument } from '../../../utils/database-utils';
 import { runMiddleware } from '../../../utils/api-utils';
 import authorization from '../../../middlewares/authorization';
+import cors from '../../../middlewares/cors';
 import files from '../../../middlewares/files';
 import { getSearchTerms, deletePostImages } from '../../../utils/post-utils';
 import validatePost from '../../../validations/validate-post';
@@ -14,6 +15,7 @@ export const config = {
 
 export default async function updatePost(req, res) {
 	try {
+		await runMiddleware(req, res, cors);
 		await runMiddleware(req, res, files({ maxFileSize: 1, maxFiles: 6 }));
 		await runMiddleware(req, res, authorization('registered'));
 

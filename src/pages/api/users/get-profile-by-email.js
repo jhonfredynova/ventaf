@@ -1,9 +1,13 @@
 import { getDbQuery } from '../../../utils/database-utils';
 import { getPublicProfileData } from '../../../utils/user-utils';
 import { isEmail } from '../../../utils/validation-utils';
+import { runMiddleware } from '../../../utils/api-utils';
+import cors from '../../../middlewares/cors';
 
 export default async function getUserProfileByEmail(req, res) {
 	try {
+		await runMiddleware(req, res, cors);
+
 		// eslint-disable-next-line global-require
 		const { getFirebaseAdmin } = require('../../../utils/api-utils');
 		const firebaseAdmin = getFirebaseAdmin();
@@ -25,17 +29,11 @@ export default async function getUserProfileByEmail(req, res) {
 		const userProfile = await getDbQuery(db, 'users', {
 			where: { email: { '==': modelData.email } },
 		});
-		const responseData = userProfile[0]
-			? getPublicProfileData(userProfile[0])
-			: null;
+		const responseData = userProfile[0] ? getPublicProfileData(userProfile[0]) : null;
 
 		if (responseData?.id) {
-			const userAccount = await firebaseAdmin
-				.auth()
-				.getUser(responseData.id);
-			responseData.providers = userAccount.providerData.map(
-				(provider) => provider.providerId
-			);
+			const userAccount = await firebaseAdmin.auth().getUser(responseData.id);
+			responseData.providers = userAccount.providerData.map((provider) => provider.providerId);
 		}
 
 		res.json(responseData);
