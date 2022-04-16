@@ -2,13 +2,14 @@ import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { formatMoney } from '../utils/intl-utils';
-import { trimTextWithEllipsis, toUrl } from '../utils/text-utils';
+import { trimTextWithEllipsis } from '../utils/text-utils';
+import { getPostTitleSlug } from '../utils/seo-utils';
 
 export default function PostTile(props) {
 	const { isLoading, translations, data } = props;
 	const { price } = data;
 	const featurePhoto = data.photos[0];
-	const titleSlug = toUrl(data.description.substring(0, 80).concat(', ').concat(data.location.description));
+	const titleSlug = getPostTitleSlug(data);
 
 	return (
 		<Link href={`/post/${titleSlug}/${data.id}`}>
