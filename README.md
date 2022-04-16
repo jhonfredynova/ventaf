@@ -2,11 +2,15 @@
 
 Firebase web application with server side rendering + Google cloud function configuration
 
-# Editor
+# Environment
 
-Recommended editor Visual Studio Code with the following extentions:
-- ESLint
-- Prettier
+Install the following tools
+
+-   Git
+-   Nodejs (v14.19.1)
+-   Visua Studio Code with the following extentions:
+    -   ESLint
+    -   Prettier
 
 # Configuration
 
@@ -31,24 +35,6 @@ In order to run the application you need to add the following configuration file
     -   SENDGRID_TEMPLATE_GENERAL=XXX
 -   service-account.json
 
-# Features
-
--   Code linter
--   Code splitting
--   Server side rendering
-
-# Technologies
-
--   Javascript (React, Node, Nextjs)
--   CSS (css-in-js)
--   HTML
-
-# Tools
-
--   Eslint
--   Prettier
--   Nextjs
-
 # Scripts
 
 In the project directory, you can run:
@@ -63,16 +49,20 @@ Runs the app in production mode.
 
 ### `npm run dev`
 
-Runs the app in development mode. Open [https://localhost:3001](https://localhost:3001)
+Runs the app in development mode. Open [https://localhost:3001](https://localhost:3001).
 
 ### `npm run build`
 
-Generate a bundle with the production version
+Generate a bundle with the production version.
+
+### `npm post build`
+
+Generate the sitemap and robots.txt for static and server pages.
 
 ### `npm run lint`
 
-Lint the project code to analyze bugs and bad practices
+Lint the project code to analyze bugs and bad practices.
 
 ### `npm run test`
 
-Runs code fiels to funtional tests
+Runs code fiels to funtional tests.
