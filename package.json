@@ -1,6 +1,9 @@
 {
 	"name": "ventaf.com",
 	"version": "1.0.0",
+	"engines": {
+		"node": "14"
+	},
 	"scripts": {
 		"dev": "(local-ssl-proxy --source 3001 --target 3000) & cross-env NODE_OPTIONS='--inspect' next dev",
 		"start": "next start",
