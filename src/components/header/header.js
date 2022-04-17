@@ -74,6 +74,7 @@ export default function Header(props) {
 					</label>
 					<SearchBar
 						id="searchTerms"
+						hideSearchBtn={isMobileDevice}
 						placeholder={translations.homeSearchInputPlaceholder}
 						searchTerm={query.search}
 						translations={translations}

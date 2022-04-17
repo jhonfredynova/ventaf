@@ -1,7 +1,17 @@
 import React, { useState, useEffect, useRef } from 'react';
 
 export default function SearchBar(props) {
-	const { id, autofocus, placeholder, searchTerm, translations, onFocus, onClose, onSubmit } = props;
+	const {
+		id,
+		autofocus,
+		placeholder,
+		searchTerm,
+		translations,
+		hideSearchBtn,
+		onFocus,
+		onClose,
+		onSubmit,
+	} = props;
 	const inputRef = useRef(null);
 	const [keyword, setKeyword] = useState('');
 
@@ -24,12 +34,6 @@ export default function SearchBar(props) {
 	};
 
 	const onInputFocus = () => {
-		if (onFocus) {
-			onFocus();
-		}
-	};
-
-	const onButtonSearchFocus = () => {
 		if (onFocus) {
 			onFocus();
 		}
@@ -79,14 +83,11 @@ export default function SearchBar(props) {
 				</button>
 			)}
 
-			<button
-				type={onFocus ? 'button' : 'submit'}
-				className="btn-search"
-				title={translations.search}
-				onFocus={onButtonSearchFocus}
-			>
-				<i className="fas fa-search" />
-			</button>
+			{!hideSearchBtn && (
+				<button type="submit" className="btn-search" title={translations.search}>
+					<i className="fas fa-search" />
+				</button>
+			)}
 
 			<style jsx>{`
 				.search-bar {
