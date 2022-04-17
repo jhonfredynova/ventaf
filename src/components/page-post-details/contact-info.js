@@ -25,6 +25,7 @@ export default function ContactInfo(props) {
 
 				@media screen and (max-width: ${BREAKPOINTS.DESKTOP}) {
 					.contact-info {
+						margin-bottom: 50px;
 						:global(.contact-buttons) {
 							position: fixed;
 							left: 0;
@@ -38,10 +39,6 @@ export default function ContactInfo(props) {
 								border-radius: 0;
 							}
 						}
-					}
-
-					:global(.footer) {
-						margin-bottom: 50px;
 					}
 				}
 			`}</style>

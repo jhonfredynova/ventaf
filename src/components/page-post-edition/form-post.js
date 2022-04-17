@@ -201,6 +201,7 @@ export default function FormPost(props) {
 
 				@media screen and (max-width: ${BREAKPOINTS.DESKTOP}) {
 					.form-post {
+						margin-bottom: 30px;
 						.buttons-wrapper {
 							position: fixed;
 							left: 0;
@@ -215,10 +216,6 @@ export default function FormPost(props) {
 								border-radius: 0;
 							}
 						}
-					}
-
-					:global(.footer) {
-						margin-bottom: 50px;
 					}
 				}
 			`}</style>

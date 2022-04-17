@@ -186,6 +186,7 @@ export default function FormProfileInfo(props) {
 					}
 
 					@media screen and (max-width: ${BREAKPOINTS.DESKTOP}) {
+						margin-bottom: 20px;
 						.buttons-wrapper {
 							position: fixed;
 							left: 0;
@@ -200,10 +201,6 @@ export default function FormProfileInfo(props) {
 								border-radius: 0;
 							}
 						}
-					}
-
-					:global(.footer) {
-						margin-bottom: 50px;
 					}
 				}
 			`}</style>
