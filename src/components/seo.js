@@ -37,7 +37,7 @@ export default function SEO(props) {
 				name="viewport"
 				content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no"
 			/>
-			<link rel="canonical" href={`${process.env.NEXT_PUBLIC_SERVER_URL}/${asPath}`} />
+			<link rel="canonical" href={`${process.env.NEXT_PUBLIC_SERVER_URL}${asPath}`} />
 			<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
 			<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
 			<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
