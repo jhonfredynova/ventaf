@@ -2,16 +2,6 @@
 
 Firebase web application with server side rendering + Google cloud function configuration
 
-# Environment
-
-Install the following tools
-
--   Git
--   Nodejs (v14.19.1)
--   Visua Studio Code with the following extentions:
-    -   ESLint
-    -   Prettier
-
 # Configuration
 
 In order to run the application you need to add the following configuration files with your app data:
@@ -20,7 +10,7 @@ In order to run the application you need to add the following configuration file
     -   NEXT_PUBLIC_SERVER_URL=https://localhost:3001
     -   NODE_TLS_REJECT_UNAUTHORIZED=0
 -   env.production.local
-    -   NEXT_PUBLIC_API_URL=http://yourdomain.com
+    -   NEXT_PUBLIC_SERVER_URL=http://yourdomain.com
 -   .env.local
     -   FIREBASE_AUTH_DOMAIN=XXX
     -   FIREBASE_KEY=XXX
