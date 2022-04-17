@@ -35,6 +35,12 @@ export default function Header(props) {
 		router.push({ pathname: '/', query: newQuery });
 	};
 
+	const onFocusSearchDesktop = () => {
+		if (isMobileDevice) {
+			setShowMobileSearch(true);
+		}
+	};
+
 	const onSearchMobile = (searchTerm) => {
 		onSearch(searchTerm);
 		setShowMobileSearch(false);
@@ -64,37 +70,29 @@ export default function Header(props) {
 				</div>
 
 				<div className="search-wrapper">
-					{!isMobileDevice && (
-						<>
-							<label className="sr-only" htmlFor="searchTerms">
-								{translations.search}:
-							</label>
-							<SearchBar
-								id="searchTerms"
-								placeholder={translations.homeSearchInputPlaceholder}
-								searchTerm={query.search}
-								translations={translations}
-								onSubmit={onSearch}
-							/>
-						</>
-					)}
+					<label className="sr-only" htmlFor="searchTerms">
+						{translations.search}:
+					</label>
+					<SearchBar
+						id="searchTerms"
+						placeholder={translations.homeSearchInputPlaceholder}
+						searchTerm={query.search}
+						translations={translations}
+						onFocus={onFocusSearchDesktop}
+						onSubmit={onSearch}
+					/>
 				</div>
 
 				<div className="menu-wrapper">
-					{isMobileDevice && (
-						<button
-							type="button"
-							className="btn-search-mobile"
-							title={translations.search}
-							onClick={() => setShowMobileSearch(true)}
-						>
-							<i className="fas fa-search" />
-						</button>
-					)}
-
 					<Link href="/post">
-						<a href="passHref" className="btn-post" onClick={onClickPost}>
-							<i className="fas fa-plus" /> {translations.sell}
+						<a
+							href="passHref"
+							className="btn-post"
+							title={translations.sell}
+							onClick={onClickPost}
+						>
+							<i className="fas fa-solid fa-pen" />{' '}
+							<span className="text">{translations.sell}</span>
 						</a>
 					</Link>
 
@@ -170,30 +168,27 @@ export default function Header(props) {
 							display: flex;
 							align-items: center;
 
-							.btn-search-mobile,
 							.btn-post {
 								display: flex;
 								align-items: center;
 								background: none;
 								border: none;
-								border: 3px solid var(--color-links);
-								border-radius: var(--spacer);
-								color: var(--color-links);
 								cursor: pointer;
+								color: var(--color-text);
 								padding: var(--spacer);
-							}
-
-							.btn-search-mobile {
-								margin-right: 10px;
-								height: 44px;
-							}
-
-							.btn-post {
+								padding-left: 0;
 								text-decoration: none;
-								margin-left: var(--spacer);
 
-								.fa-plus {
+								.fas {
 									margin-right: 5px;
+								}
+
+								.text {
+									display: none;
+
+									@media screen and (min-width: ${BREAKPOINTS.TABLET}) {
+										display: inline-block;
+									}
 								}
 							}
 

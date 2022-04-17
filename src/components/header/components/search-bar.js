@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 
 export default function SearchBar(props) {
-	const { id, autofocus, placeholder, searchTerm, translations, onClose, onSubmit } = props;
+	const { id, autofocus, placeholder, searchTerm, translations, onFocus, onClose, onSubmit } = props;
 	const inputRef = useRef(null);
 	const [keyword, setKeyword] = useState('');
 
@@ -15,6 +15,12 @@ export default function SearchBar(props) {
 
 	const onInputChange = (event) => {
 		setKeyword(event.target.value);
+	};
+
+	const onInputBlur = () => {
+		if (onClose) {
+			onClose();
+		}
 	};
 
 	const onSubmitSearch = (event) => {
@@ -50,6 +56,8 @@ export default function SearchBar(props) {
 				className="input-search"
 				placeholder={placeholder || translations.enterSearchTerm}
 				value={keyword}
+				onBlur={onInputBlur}
+				onFocus={onFocus}
 				onChange={onInputChange}
 			/>
 
