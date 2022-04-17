@@ -5,7 +5,6 @@ import Link from 'next/link';
 import Image from 'next/image';
 import Logo from './components/logo';
 import SearchBar from './components/search-bar';
-import LangSelection from './components/lang-selection';
 import { BREAKPOINTS } from '../../utils/style-utils';
 
 export default function Header(props) {
@@ -92,8 +91,6 @@ export default function Header(props) {
 							<i className="fas fa-search" />
 						</button>
 					)}
-
-					<LangSelection translations={translations} />
 
 					<Link href="/post">
 						<a href="passHref" className="btn-post" onClick={onClickPost}>
@@ -204,6 +201,7 @@ export default function Header(props) {
 								color: var(--color-text);
 								margin-left: 8px;
 								text-decoration: none;
+								flex-shrink: 0;
 
 								i {
 									pointer-events: none;
