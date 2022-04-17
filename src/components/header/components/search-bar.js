@@ -23,6 +23,18 @@ export default function SearchBar(props) {
 		}
 	};
 
+	const onInputFocus = () => {
+		if (onFocus) {
+			onFocus();
+		}
+	};
+
+	const onButtonSearchFocus = () => {
+		if (onFocus) {
+			onFocus();
+		}
+	};
+
 	const onSubmitSearch = (event) => {
 		event.preventDefault();
 
@@ -57,7 +69,7 @@ export default function SearchBar(props) {
 				placeholder={placeholder || translations.enterSearchTerm}
 				value={keyword}
 				onBlur={onInputBlur}
-				onFocus={onFocus}
+				onFocus={onInputFocus}
 				onChange={onInputChange}
 			/>
 
@@ -67,7 +79,12 @@ export default function SearchBar(props) {
 				</button>
 			)}
 
-			<button type="submit" className="btn-search" title={translations.search}>
+			<button
+				type={onFocus ? 'button' : 'submit'}
+				className="btn-search"
+				title={translations.search}
+				onFocus={onButtonSearchFocus}
+			>
 				<i className="fas fa-search" />
 			</button>
 

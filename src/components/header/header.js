@@ -36,9 +36,7 @@ export default function Header(props) {
 	};
 
 	const onFocusSearchDesktop = () => {
-		if (isMobileDevice) {
-			setShowMobileSearch(true);
-		}
+		setShowMobileSearch(true);
 	};
 
 	const onSearchMobile = (searchTerm) => {
@@ -52,6 +50,7 @@ export default function Header(props) {
 
 	useEffect(() => {
 		window.addEventListener('resize', onResizeWindow);
+		window.dispatchEvent(new Event('resize'));
 
 		return () => {
 			window.removeEventListener('resize', onResizeWindow);
@@ -78,7 +77,7 @@ export default function Header(props) {
 						placeholder={translations.homeSearchInputPlaceholder}
 						searchTerm={query.search}
 						translations={translations}
-						onFocus={onFocusSearchDesktop}
+						onFocus={isMobileDevice && onFocusSearchDesktop}
 						onSubmit={onSearch}
 					/>
 				</div>
