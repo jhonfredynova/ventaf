@@ -142,7 +142,6 @@ export default function Header(props) {
 					.navbar {
 						display: grid;
 						grid-template-columns: auto 1fr auto;
-						gap: var(--spacer);
 						align-items: center;
 						margin: 0 auto;
 						max-width: var(--container-width);
@@ -151,7 +150,7 @@ export default function Header(props) {
 							display: flex;
 							flex-flow: column;
 							align-items: center;
-							margin-right: var(--spacer);
+							padding-right: var(--spacer);
 							width: 100%;
 
 							:global(.link) {
@@ -179,7 +178,6 @@ export default function Header(props) {
 								cursor: pointer;
 								color: var(--color-text);
 								padding: var(--spacer);
-								padding-left: 0;
 								text-decoration: none;
 
 								.fas {
@@ -197,7 +195,6 @@ export default function Header(props) {
 
 							.btn-profile {
 								color: var(--color-text);
-								margin-left: 8px;
 								text-decoration: none;
 								flex-shrink: 0;
 
