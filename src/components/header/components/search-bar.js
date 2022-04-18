@@ -40,7 +40,7 @@ export default function SearchBar(props) {
 	};
 
 	const onSubmitSearch = (event) => {
-		event.preventDefault();
+		event?.preventDefault();
 
 		if (onSubmit && keyword !== searchTerm) {
 			onSubmit(keyword);
@@ -78,13 +78,18 @@ export default function SearchBar(props) {
 			/>
 
 			{keyword && (
-				<button type="button" title={translations.clean} className="btn-clean" onClick={onClear}>
+				<button type="button" title={translations.clean} className="btn-clean" onMouseDown={onClear}>
 					<i className="fas fa-times" />
 				</button>
 			)}
 
 			{!hideSearchBtn && (
-				<button type="submit" className="btn-search" title={translations.search}>
+				<button
+					type="submit"
+					className="btn-search"
+					title={translations.search}
+					onMouseDown={onSubmitSearch}
+				>
 					<i className="fas fa-search" />
 				</button>
 			)}
