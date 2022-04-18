@@ -2,6 +2,7 @@ import React, { useRef } from 'react';
 import ReactGA from 'react-ga';
 import { useRouter } from 'next/router';
 import { copyToClipboard } from '../../utils/text-utils';
+import { BREAKPOINTS } from '../../utils/style-utils';
 
 export default function BreadcumbBar(props) {
 	const { translations, pageTitle, sharingUrl } = props;
@@ -12,17 +13,14 @@ export default function BreadcumbBar(props) {
 		ReactGA.event({
 			category: 'Social',
 			action,
-			value
+			value,
 		});
 	};
 
 	const onClickBtnClipboard = () => {
 		tooltipCopyClipboard.current.classList.add('show');
 		copyToClipboard(sharingUrl);
-		setTimeout(
-			() => tooltipCopyClipboard.current.classList.remove('show'),
-			1500
-		);
+		setTimeout(() => tooltipCopyClipboard.current.classList.remove('show'), 1500);
 	};
 
 	return (
@@ -33,7 +31,7 @@ export default function BreadcumbBar(props) {
 				title={translations.backToList}
 				onClick={() => router.back()}
 			>
-				<i className="fas fa-arrow-left" />
+				<i className="fas fa-arrow-left" /> <span className="text">{translations.backToList}</span>
 			</button>
 			<ul className="share-bar">
 				<li>{translations.share}:</li>
@@ -81,10 +79,7 @@ export default function BreadcumbBar(props) {
 						}}
 					>
 						<i className="fas fa-link fa-2x" />
-						<span
-							ref={tooltipCopyClipboard}
-							className="copy-clipboard-success"
-						>
+						<span ref={tooltipCopyClipboard} className="copy-clipboard-success">
 							{translations.linkWasCopied}
 						</span>
 					</button>
@@ -102,6 +97,15 @@ export default function BreadcumbBar(props) {
 						color: var(--color-text);
 						cursor: pointer;
 						padding: var(--spacer);
+
+						.text {
+							display: none;
+							margin-left: 5px;
+
+							@media screen and (min-width: ${BREAKPOINTS.TABLET}) {
+								display: inline-block;
+							}
+						}
 					}
 
 					ul.share-bar {
