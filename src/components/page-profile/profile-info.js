@@ -80,13 +80,15 @@ export default function ProfileInfo(props) {
 					</button>
 				)}
 				{!isProfileOwner && (
-					<Image
-						src={profilePhotoUrl}
-						alt={userProfile.username}
-						layout="fixed"
-						width={150}
-						height={150}
-					/>
+					<div className="profile-img-wrapper">
+						<Image
+							src={profilePhotoUrl}
+							alt={userProfile.username}
+							layout="fixed"
+							width={150}
+							height={150}
+						/>
+					</div>
 				)}
 			</div>
 
@@ -138,7 +140,8 @@ export default function ProfileInfo(props) {
 							padding: var(--spacer);
 						}
 
-						.btn-profile-menu {
+						.btn-profile-menu,
+						.profile-img-wrapper {
 							margin: 0 auto;
 						}
 
@@ -152,7 +155,6 @@ export default function ProfileInfo(props) {
 
 						:global(img) {
 							border-radius: 50%;
-							margin: 0 auto;
 						}
 					}
 
@@ -160,10 +162,12 @@ export default function ProfileInfo(props) {
 						text-align: center;
 
 						h2 {
+							margin: 0;
 							margin-bottom: var(--spacer);
 						}
 
 						p {
+							margin: 0;
 							margin-bottom: 4px;
 						}
 
