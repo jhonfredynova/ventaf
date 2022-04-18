@@ -12,11 +12,9 @@ export default function ProfileInfo(props) {
 	const { translations, userProfile } = props;
 	const store = useStore();
 	const [isUploadingPhoto, setIsUploadingPhoto] = useState(false);
-	const [profilePhotoUrl, setProfilePhotoUrl] = useState(
-		userProfile.photoURL || '/anonymous.png'
-	);
+	const [profilePhotoUrl, setProfilePhotoUrl] = useState(userProfile.photoURL || '/anonymous.png');
 	const [uploadError, setUploadError] = useState('');
-	const { authData } = useSelector(state => state.auth);
+	const { authData } = useSelector((state) => state.auth);
 	const router = useRouter();
 	const isProfileOwner = authData?.uid === userProfile.id;
 	const identities = authData?.providerData || {};
@@ -25,7 +23,7 @@ export default function ProfileInfo(props) {
 		setProfilePhotoUrl(`${userProfile.photoURL}?${Date.now()}`);
 	}, [userProfile.photoURL]);
 
-	const onUploadPhoto = async event => {
+	const onUploadPhoto = async (event) => {
 		try {
 			setIsUploadingPhoto(true);
 			setUploadError('');
@@ -56,12 +54,7 @@ export default function ProfileInfo(props) {
 				>
 					<i className="fas fa-arrow-left" />
 				</button>
-				<input
-					ref={uploadInputPhoto}
-					type="file"
-					hidden
-					onChange={onUploadPhoto}
-				/>
+				<input ref={uploadInputPhoto} type="file" hidden onChange={onUploadPhoto} />
 				{isProfileOwner && (
 					<button
 						type="button"
@@ -71,10 +64,7 @@ export default function ProfileInfo(props) {
 					>
 						{isUploadingPhoto && (
 							<div className="loader">
-								<i
-									className="fas fa-spinner fa-spin fa-4x"
-									title={translations.loading}
-								/>
+								<i className="fas fa-spinner fa-spin fa-4x" title={translations.loading} />
 							</div>
 						)}
 						{!isUploadingPhoto && (
@@ -86,9 +76,7 @@ export default function ProfileInfo(props) {
 								height={150}
 							/>
 						)}
-						{uploadError && (
-							<p className="error-msg">{uploadError}</p>
-						)}
+						{uploadError && <p className="error-msg">{uploadError}</p>}
 					</button>
 				)}
 				{!isProfileOwner && (
@@ -106,11 +94,8 @@ export default function ProfileInfo(props) {
 				<h2>{userProfile.displayName || userProfile.username}</h2>
 				{isProfileOwner && (
 					<div className="profile-options">
-						<LoginMethods
-							identities={identities}
-							translations={translations}
-						/>
-						<Link href="/account/update-info">
+						<LoginMethods identities={identities} translations={translations} />
+						<Link href="/account/update-info" passHref>
 							<a href="passHref" className="btn-edit-profile">
 								{translations.editProfile}
 							</a>
@@ -121,11 +106,7 @@ export default function ProfileInfo(props) {
 				{userProfile.isEmailPublic && <p>{userProfile.email}</p>}
 				{userProfile.website && (
 					<p>
-						<a
-							href={userProfile.website}
-							rel="noreferrer"
-							target="_blank"
-						>
+						<a href={userProfile.website} rel="noreferrer" target="_blank">
 							{userProfile.website}
 						</a>
 					</p>

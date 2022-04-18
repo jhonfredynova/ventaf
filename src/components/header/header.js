@@ -61,7 +61,7 @@ export default function Header(props) {
 		<header>
 			<nav className={`navbar ${isMobileDevice && showMobileSearch ? 'hide' : ''}`}>
 				<div className="logo-wrapper">
-					<Link href="/">
+					<Link href="/" passHref>
 						<a href="passHref" className="link">
 							<Logo translations={translations} />
 						</a>
@@ -84,7 +84,7 @@ export default function Header(props) {
 				</div>
 
 				<div className="menu-wrapper">
-					<Link href="/post">
+					<Link href="/post" passHref>
 						<a
 							href="passHref"
 							className="btn-post"
@@ -96,7 +96,10 @@ export default function Header(props) {
 						</a>
 					</Link>
 
-					<Link href={authLoaded && authData ? `/${authData?.profile?.username}` : '/login'}>
+					<Link
+						href={authLoaded && authData ? `/${authData?.profile?.username}` : '/login'}
+						passHref
+					>
 						<a href="passHref" className="btn-profile" title={translations.profile}>
 							{authLoaded && (
 								<Image

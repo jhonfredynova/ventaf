@@ -12,7 +12,7 @@ export default function PostTile(props) {
 	const titleSlug = getPostTitleSlug(data);
 
 	return (
-		<Link href={`/post/${titleSlug}/${data.id}`}>
+		<Link href={`/post/${titleSlug}/${data.id}`} passHref>
 			<a href="passHref" className="post-tile" disabled={isLoading}>
 				<header>
 					<h2 className="sr-only">{trimTextWithEllipsis(data.description, 160)}</h2>

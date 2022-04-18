@@ -6,15 +6,14 @@ export default function UserCard(props) {
 	const { profile } = props;
 	const profileData = profile || {};
 	const photoURL = profileData.photoURL || '/anonymous.png';
-	const username =
-		profileData.displayName || profileData.username || profileData.email;
+	const username = profileData.displayName || profileData.username || profileData.email;
 
 	if (!profile) {
 		return null;
 	}
 
 	return (
-		<Link href={`/${profile.username}`}>
+		<Link href={`/${profile.username}`} passHref>
 			<a href="passHref" className="user-card">
 				<Image src={photoURL} width={35} height={35} alt={username} />
 				<span className="username">{username}</span>
