@@ -49,7 +49,7 @@ export const getMoreProfileAds = (profileId, filters) => async (dispatch) => {
 
 export const getProfileByEmail = (email) => async (dispatch) => {
 	const response = await axios.post(
-		`${process.env.NEXT_PUBLIC_SERVER_URL}/api/users/get-profile-by-email?email=${email}`
+		`${process.env.NEXT_PUBLIC_SERVER_URL}/api/profiles/get-profile-by-email?email=${email}`
 	);
 	dispatch({ type: TYPES.GET_BY_EMAIL, payload: response.data });
 	return response.data;
@@ -60,7 +60,7 @@ export const getProfileById = (userId) => async (dispatch, getState) => {
 
 	if (!profile) {
 		profile = await axios.post(
-			`${process.env.NEXT_PUBLIC_SERVER_URL}/api/users/get-profile-by-id?userId=${userId}`
+			`${process.env.NEXT_PUBLIC_SERVER_URL}/api/profiles/get-profile-by-id?userId=${userId}`
 		);
 		profile = profile.data;
 	}
@@ -76,7 +76,7 @@ export const getProfileByUsername = (username) => async (dispatch, getState) => 
 
 	if (!profile) {
 		profile = await axios.post(
-			`${process.env.NEXT_PUBLIC_SERVER_URL}/api/users/get-profile-by-username?username=${username}`
+			`${process.env.NEXT_PUBLIC_SERVER_URL}/api/profiles/get-profile-by-username?username=${username}`
 		);
 		profile = profile.data;
 	}
