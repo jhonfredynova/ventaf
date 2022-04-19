@@ -20,8 +20,10 @@ export default function ProfileInfo(props) {
 	const identities = authData?.providerData || {};
 
 	useEffect(() => {
-		setProfilePhotoUrl(`${userProfile.photoURL}?${Date.now()}`);
-	}, [userProfile.photoURL]);
+		if (authData?.uid === userProfile.id) {
+			setProfilePhotoUrl(`${authData.profile.photoURL}?${Date.now()}`);
+		}
+	}, [authData, userProfile]);
 
 	const onUploadPhoto = async (event) => {
 		try {
