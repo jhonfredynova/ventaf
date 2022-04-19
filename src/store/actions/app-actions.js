@@ -1,8 +1,8 @@
-import { TYPES as AUTH_TYPES } from './auth-actions';
-import { TYPES as CONFIG_TYPES } from './config-actions';
-import { TYPES as LOCALE_TYPES } from './locale-actions';
-import { TYPES as POST_TYPES } from './post-actions';
-import { TYPES as PROFILE_TYPES } from './profile-actions';
+import { AUTH_TYPES } from './auth-actions';
+import { CONFIG_TYPES } from './config-actions';
+import { LOCALE_TYPES } from './locale-actions';
+import { POST_TYPES } from './post-actions';
+import { PROFILE_TYPES } from './profile-actions';
 
 export const APP_TYPES = {
 	CLEAN: 'CLEAN_STORE',

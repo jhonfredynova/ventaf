@@ -1,10 +1,13 @@
 module.exports = {
+	eslint: {
+		dirs: ['.'],
+	},
 	i18n: {
 		locales: ['en', 'es'],
-		defaultLocale: 'en'
+		defaultLocale: 'en',
 	},
 	images: {
-		domains: ['storage.googleapis.com']
+		domains: ['storage.googleapis.com'],
 	},
-	swcMinify: true
+	swcMinify: true,
 };
