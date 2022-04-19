@@ -19,11 +19,3 @@ export const getUserById = (id) => async (dispatch) => {
 	const response = await axios.get(`${process.env.NEXT_PUBLIC_SERVER_URL}/api/users/${id}`);
 	dispatch({ type: TYPES.GET_BY_ID, payload: response.data });
 };
-
-export const updateUser = (data) => async (dispatch) => {
-	const response = await axios.patch(
-		`${process.env.NEXT_PUBLIC_SERVER_URL}/api/users/update?userId=${data.id}`,
-		data
-	);
-	dispatch({ type: TYPES.UPDATE, payload: response.data });
-};

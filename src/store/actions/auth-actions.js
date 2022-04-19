@@ -7,7 +7,8 @@ export const TYPES = {
 	LOGOUT: 'LOGOUT',
 	ME: 'ME',
 	SET_TOKEN: 'SET_TOKEN',
-	UPDATE_PHOTO: 'UPDATE_PROFILE_PHOTO',
+	UPDATE: 'UPDATE_USER',
+	UPDATE_PHOTO: 'UPDATE_USER_PHOTO',
 };
 
 export const loginFacebook = (data) => async (dispatch) => {
@@ -40,6 +41,14 @@ export const me = () => async (dispatch) => {
 export const setToken = (token) => async (dispatch) => {
 	localStorage.token = token;
 	dispatch({ type: TYPES.SET_TOKEN, payload: token });
+};
+
+export const updateData = (data) => async (dispatch) => {
+	const response = await axios.patch(
+		`${process.env.NEXT_PUBLIC_SERVER_URL}/api/auth/update?userId=${data.id}`,
+		data
+	);
+	dispatch({ type: TYPES.UPDATE, payload: response.data });
 };
 
 export const uploadProfilePhoto = (data) => async (dispatch) => {

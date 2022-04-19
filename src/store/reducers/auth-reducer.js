@@ -4,7 +4,7 @@ const initialState = {
 	authData: null,
 	authLoaded: false,
 	temp: null,
-	token: null
+	token: null,
 };
 
 // eslint-disable-next-line default-param-last
@@ -17,27 +17,27 @@ export default function reducer(state = initialState, action) {
 		case TYPES.LOGIN_GOOGLE:
 			return {
 				...state,
-				token: action.payload.token
+				token: action.payload.token,
 			};
 
 		case TYPES.LOGOUT:
 			return {
 				...state,
 				authData: null,
-				token: null
+				token: null,
 			};
 
 		case TYPES.ME:
 			return {
 				...state,
 				authData: action.payload,
-				authLoaded: true
+				authLoaded: true,
 			};
 
 		case TYPES.SET_TOKEN:
 			return {
 				...state,
-				token: action.payload
+				token: action.payload,
 			};
 
 		case TYPES.UPDATE_PHOTO:
@@ -45,8 +45,14 @@ export default function reducer(state = initialState, action) {
 				...state,
 				authData: {
 					...state.authData,
-					photoURL: action.payload
-				}
+					photoURL: action.payload,
+				},
+			};
+
+		case TYPES.UPDATE:
+			return {
+				...state,
+				state: action.payload,
 			};
 
 		default:
