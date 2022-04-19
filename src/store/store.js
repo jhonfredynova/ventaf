@@ -8,7 +8,6 @@ import thunkMiddleware from './middlewares/thunk-middleware';
 import appReducer from './reducers/app-reducer';
 import authReducer from './reducers/auth-reducer';
 import configReducer from './reducers/config-reducer';
-import localeReducer from './reducers/locale-reducer';
 import postReducer from './reducers/post-reducer';
 import profileReducer from './reducers/profile-reducer';
 
@@ -17,7 +16,6 @@ const reducers = combineReducers({
 	app: appReducer,
 	auth: authReducer,
 	config: configReducer,
-	locale: localeReducer,
 	post: postReducer,
 	profile: profileReducer,
 });
