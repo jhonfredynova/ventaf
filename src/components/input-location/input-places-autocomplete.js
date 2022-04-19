@@ -3,17 +3,8 @@ import React, { useEffect, useRef } from 'react';
 export default function InputPlacesAutocomplete(props) {
 	const inputRef = useRef();
 	const { getInputProps, suggestions, getSuggestionItemProps } = props;
-	const {
-		id,
-		autofocus,
-		className,
-		error,
-		placeholder,
-		translations,
-		searchValue,
-		onBlur,
-		onClear
-	} = props;
+	const { id, autofocus, className, error, placeholder, translations, searchValue, onBlur, onClear } =
+		props;
 
 	useEffect(() => {
 		if (autofocus) {
@@ -34,29 +25,21 @@ export default function InputPlacesAutocomplete(props) {
 					className,
 					placeholder,
 					onBlur,
-					ref: inputRef
+					ref: inputRef,
 				})}
 			/>
 			{searchValue && (
-				<button
-					className="btn-clear"
-					type="button"
-					title={translations.clean}
-					onClick={onClear}
-				>
+				<button className="btn-clear" type="button" title={translations.clean} onClick={onClear}>
 					<i className="fas fa-times" />
 				</button>
 			)}
 			{suggestions.length > 0 && (
-				<ul
-					className="list-suggestions"
-					style={{ zIndex: 2, top: '40px' }}
-				>
-					{suggestions.map(suggestion => (
+				<ul className="list-suggestions" style={{ zIndex: 2, top: '40px' }}>
+					{suggestions.map((suggestion) => (
 						<li
 							key={suggestion.placeId}
 							{...getSuggestionItemProps(suggestion, {
-								className: suggestion.active ? 'active' : ''
+								className: suggestion.active ? 'active' : '',
 							})}
 						>
 							{suggestion.description}
@@ -81,10 +64,7 @@ export default function InputPlacesAutocomplete(props) {
 					}
 
 					input {
-						border: 1px solid
-							${error
-								? 'var(--color-alert)'
-								: 'var(--color-border)'};
+						border: 1px solid ${error ? 'var(--color-alert)' : 'var(--color-border)'};
 						background-color: var(--color-background);
 						color: var(--color-text);
 						padding: var(--spacer);
@@ -105,6 +85,8 @@ export default function InputPlacesAutocomplete(props) {
 						background: var(--color-background);
 						width: 100%;
 						list-style: none;
+						margin: 0;
+						padding: 0;
 
 						li {
 							cursor: pointer;
