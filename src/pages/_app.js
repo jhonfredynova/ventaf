@@ -3,6 +3,7 @@ import React, { useEffect } from 'react';
 import ReactGA from 'react-ga';
 import { Provider } from 'react-redux';
 import { useRouter } from 'next/router';
+import Script from 'next/script';
 import Layout from '../components/layout';
 import { useStore } from '../store/store';
 import { me, setToken } from '../store/actions/auth-actions';
@@ -10,6 +11,7 @@ import { me, setToken } from '../store/actions/auth-actions';
 export default function MyApp({ Component, pageProps }) {
 	const store = useStore(pageProps.initialReduxState);
 	const router = useRouter();
+	const gPlacesKey = typeof window !== 'undefined' && window.gPlacesKey;
 
 	useEffect(() => {
 		ReactGA.initialize(window.gAnalyticsKey, {});
@@ -27,6 +29,9 @@ export default function MyApp({ Component, pageProps }) {
 			<Layout>
 				<Component {...pageProps} />
 			</Layout>
+			<Script
+				src={`https://maps.googleapis.com/maps/api/js?key=${gPlacesKey}&libraries=places&callback=gPlacesCb`}
+			/>
 			<style global jsx>{`
 				/* Font awesome */
 				$fa-font-path: '/webfonts';
