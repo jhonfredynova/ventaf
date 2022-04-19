@@ -1,9 +1,12 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
+import { useRouter } from 'next/router';
 import SEO from '../components/seo';
 import NavigationBar from '../components/navigation-bar';
 import { initializeStore } from '../store/store';
 import { getConfiguration } from '../store/actions/config-actions';
+import PrivacyEn from '../components/page-privacy/privacy-en';
+import PrivacyEs from '../components/page-privacy/privacy-es';
 
 export const getStaticProps = async ({ locale }) => {
 	const store = initializeStore();
@@ -11,29 +14,28 @@ export const getStaticProps = async ({ locale }) => {
 
 	return {
 		props: {
-			initialReduxState: store.getState()
-		}
+			initialReduxState: store.getState(),
+		},
 	};
 };
 
 export default function Privacy() {
-	const { translations } = useSelector(state => state.config);
+	const { locale } = useRouter();
+	const { translations } = useSelector((state) => state.config);
 
 	return (
 		<main>
-			<SEO
-				title={translations.privacyTitle}
-				description={translations.privacyDescription}
-			/>
+			<SEO title={translations.privacyTitle} description={translations.privacyDescription} />
 			<NavigationBar
 				title={translations.privacyTitle}
 				description={translations.privacyDescription}
 				showBackBtn
 				translations={translations}
 			/>
-			<article
-				dangerouslySetInnerHTML={{ __html: translations.privacyInfo }}
-			/>
+			<article>
+				{locale === 'en' && <PrivacyEn />}
+				{locale === 'es' && <PrivacyEs />}
+			</article>
 			<style jsx>{`
 				main {
 					max-width: var(--container-width);
@@ -43,6 +45,7 @@ export default function Privacy() {
 					article {
 						:global(p) {
 							margin-bottom: 10px;
+							text-align: justify;
 						}
 					}
 				}
