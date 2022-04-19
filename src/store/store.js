@@ -11,7 +11,6 @@ import configReducer from './reducers/config-reducer';
 import localeReducer from './reducers/locale-reducer';
 import postReducer from './reducers/post-reducer';
 import profileReducer from './reducers/profile-reducer';
-import userReducer from './reducers/user-reducer';
 
 let store = null;
 const reducers = combineReducers({
@@ -21,16 +20,13 @@ const reducers = combineReducers({
 	locale: localeReducer,
 	post: postReducer,
 	profile: profileReducer,
-	user: userReducer
 });
-const middlewares = composeWithDevTools(
-	applyMiddleware(requestMiddleware, thunkMiddleware)
-);
 
-const initStore = preloadedState =>
-	createStore(reducers, preloadedState, middlewares);
+const middlewares = composeWithDevTools(applyMiddleware(requestMiddleware, thunkMiddleware));
 
-export const initializeStore = preloadedState => {
+const initStore = (preloadedState) => createStore(reducers, preloadedState, middlewares);
+
+export const initializeStore = (preloadedState) => {
 	let newStore = store ?? initStore(preloadedState);
 
 	// After navigating to a page with an initial Redux state
@@ -57,9 +53,7 @@ export const initializeStore = preloadedState => {
 	return newStore;
 };
 
-export const useStore = initialState => {
-	const storeData = useMemo(() => initializeStore(initialState), [
-		initialState
-	]);
+export const useStore = (initialState) => {
+	const storeData = useMemo(() => initializeStore(initialState), [initialState]);
 	return storeData;
 };
