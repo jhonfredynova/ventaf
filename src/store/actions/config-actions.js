@@ -1,5 +1,11 @@
 import axios from 'axios';
-import config from '../../../config.json';
+import {
+	getCallingCodes,
+	getCurrencies,
+	getTranslations,
+	getCountries,
+	getLanguages,
+} from '../../services/assets-service';
 
 export const CONFIG_TYPES = {
 	CLEAN: 'CLEAN_CONFIG',
@@ -8,8 +14,14 @@ export const CONFIG_TYPES = {
 };
 
 export const getConfiguration = (locale) => async (dispatch) => {
-	const configData = { ...config };
-	configData.translations = configData.translations[locale];
+	const configData = {
+		callingCodes: getCallingCodes(),
+		currencies: getCurrencies(),
+		countries: getCountries(),
+		languages: getLanguages(),
+		translations: getTranslations(locale),
+	};
+
 	dispatch({ type: CONFIG_TYPES.GET_CONFIG, payload: configData });
 };
 
