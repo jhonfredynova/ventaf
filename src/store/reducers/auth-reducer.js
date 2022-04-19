@@ -1,4 +1,4 @@
-import { TYPES } from '../actions/auth-actions';
+import { AUTH_TYPES } from '../actions/auth-actions';
 
 const initialState = {
 	authData: null,
@@ -10,37 +10,37 @@ const initialState = {
 // eslint-disable-next-line default-param-last
 export default function reducer(state = initialState, action) {
 	switch (action.type) {
-		case TYPES.CLEAN:
+		case AUTH_TYPES.CLEAN:
 			return initialState;
 
-		case TYPES.LOGIN_FACEBOOK:
-		case TYPES.LOGIN_GOOGLE:
+		case AUTH_TYPES.LOGIN_FACEBOOK:
+		case AUTH_TYPES.LOGIN_GOOGLE:
 			return {
 				...state,
 				token: action.payload.token,
 			};
 
-		case TYPES.LOGOUT:
+		case AUTH_TYPES.LOGOUT:
 			return {
 				...state,
 				authData: null,
 				token: null,
 			};
 
-		case TYPES.ME:
+		case AUTH_TYPES.ME:
 			return {
 				...state,
 				authData: action.payload,
 				authLoaded: true,
 			};
 
-		case TYPES.SET_TOKEN:
+		case AUTH_TYPES.SET_TOKEN:
 			return {
 				...state,
 				token: action.payload,
 			};
 
-		case TYPES.UPDATE_PHOTO:
+		case AUTH_TYPES.UPDATE_PHOTO:
 			return {
 				...state,
 				authData: {
@@ -49,7 +49,7 @@ export default function reducer(state = initialState, action) {
 				},
 			};
 
-		case TYPES.UPDATE:
+		case AUTH_TYPES.UPDATE:
 			return {
 				...state,
 				state: action.payload,

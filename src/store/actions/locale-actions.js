@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { setUrlSearch } from '../../utils/request-utils';
 
-export const TYPES = {
+export const LOCALE_TYPES = {
 	CLEAN: 'CLEAN_POSTS',
 	GET_ALL: 'GET_ALL_POSTS',
 	GET_BY_ID: 'GET_POST_BY_ID',
@@ -20,7 +20,7 @@ export const getLocales = (filters) => async (dispatch, getState) => {
 		locales = locales.data;
 	}
 
-	dispatch({ type: TYPES.GET_ALL, payload: locales });
+	dispatch({ type: LOCALE_TYPES.GET_ALL, payload: locales });
 };
 
 export const getLocaleById = (localeId) => async (dispatch, getState) => {
@@ -31,13 +31,13 @@ export const getLocaleById = (localeId) => async (dispatch, getState) => {
 		localeData = localeData.data;
 	}
 
-	dispatch({ type: TYPES.GET_BY_ID, payload: localeData });
+	dispatch({ type: LOCALE_TYPES.GET_BY_ID, payload: localeData });
 	return localeData;
 };
 
 export const createLocale = (localeData) => async (dispatch) => {
 	const response = await axios.post(`${process.env.NEXT_PUBLIC_SERVER_URL}/api/locales/create`, localeData);
-	dispatch({ type: TYPES.CREATE, payload: response.data });
+	dispatch({ type: LOCALE_TYPES.CREATE, payload: response.data });
 	return response.data;
 };
 
@@ -46,12 +46,12 @@ export const updateLocale = (localeData) => async (dispatch) => {
 		`${process.env.NEXT_PUBLIC_SERVER_URL}/api/locales/update?localeId=${localeData.id}`,
 		localeData
 	);
-	dispatch({ type: TYPES.UPDATE, payload: response.data });
+	dispatch({ type: LOCALE_TYPES.UPDATE, payload: response.data });
 };
 
 export const deleteLocale = (localeId) => async (dispatch) => {
 	const response = await axios.delete(
 		`${process.env.NEXT_PUBLIC_SERVER_URL}/api/locales/remove?localeId=${localeId}`
 	);
-	dispatch({ type: TYPES.DELETE, payload: response.data });
+	dispatch({ type: LOCALE_TYPES.DELETE, payload: response.data });
 };

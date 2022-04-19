@@ -1,59 +1,59 @@
-import { TYPES } from '../actions/post-actions';
+import { POST_TYPES } from '../actions/post-actions';
 
 const initialState = {
 	currentPost: null,
 	records: [],
 	relatedContent: [],
-	temp: null
+	temp: null,
 };
 
 // eslint-disable-next-line default-param-last
 export default function reducer(state = initialState, action) {
 	switch (action.type) {
-		case TYPES.CLEAN:
+		case POST_TYPES.CLEAN:
 			return initialState;
 
-		case TYPES.GET_ALL:
+		case POST_TYPES.GET_ALL:
 			return {
 				...state,
-				records: action.payload
+				records: action.payload,
 			};
 
-		case TYPES.GET_MORE_POSTS:
+		case POST_TYPES.GET_MORE_POSTS:
 			return {
 				...state,
-				records: state.records.concat(action.payload)
+				records: state.records.concat(action.payload),
 			};
 
-		case TYPES.GET_BY_ID:
+		case POST_TYPES.GET_BY_ID:
 			return {
 				...state,
-				currentPost: action.payload
+				currentPost: action.payload,
 			};
 
-		case TYPES.GET_RELATED_CONTENT:
+		case POST_TYPES.GET_RELATED_CONTENT:
 			return {
 				...state,
-				relatedContent: action.payload
+				relatedContent: action.payload,
 			};
 
-		case TYPES.CREATE:
+		case POST_TYPES.CREATE:
 			return {
 				...state,
-				temp: action.payload
+				temp: action.payload,
 			};
 
-		case TYPES.UPDATE:
-		case TYPES.UPDATE_VIEWS:
+		case POST_TYPES.UPDATE:
+		case POST_TYPES.UPDATE_VIEWS:
 			return {
 				...state,
-				temp: action.payload
+				temp: action.payload,
 			};
 
-		case TYPES.DELETE:
+		case POST_TYPES.DELETE:
 			return {
 				...state,
-				temp: action.payload
+				temp: action.payload,
 			};
 
 		default:

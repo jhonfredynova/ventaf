@@ -1,48 +1,46 @@
-import { TYPES } from '../actions/locale-actions';
+import { LOCALE_TYPES } from '../actions/locale-actions';
 
 const initialState = {
 	records: [],
-	temp: null
+	temp: null,
 };
 
 // eslint-disable-next-line default-param-last
 export default function reducer(state = initialState, action) {
 	switch (action.type) {
-		case TYPES.CLEAN:
+		case LOCALE_TYPES.CLEAN:
 			return initialState;
 
-		case TYPES.GET_ALL:
+		case LOCALE_TYPES.GET_ALL:
 			return {
 				...state,
-				records: action.payload
+				records: action.payload,
 			};
 
-		case TYPES.GET_BY_ID:
+		case LOCALE_TYPES.GET_BY_ID:
 			return {
 				...state,
-				temp: action.payload
+				temp: action.payload,
 			};
 
-		case TYPES.CREATE:
+		case LOCALE_TYPES.CREATE:
 			return {
 				...state,
-				records: state.records.concat(action.payload)
+				records: state.records.concat(action.payload),
 			};
 
-		case TYPES.UPDATE:
+		case LOCALE_TYPES.UPDATE:
 			return {
 				...state,
-				records: state.records.map(locale =>
+				records: state.records.map((locale) =>
 					locale.id === action.payload.id ? action.payload : locale
-				)
+				),
 			};
 
-		case TYPES.DELETE:
+		case LOCALE_TYPES.DELETE:
 			return {
 				...state,
-				records: state.records.filter(
-					locale => locale.id !== action.payload.id
-				)
+				records: state.records.filter((locale) => locale.id !== action.payload.id),
 			};
 
 		default:

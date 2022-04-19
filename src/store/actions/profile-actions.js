@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { setUrlSearch } from '../../utils/request-utils';
 
-export const TYPES = {
+export const PROFILE_TYPES = {
 	CLEAN: 'CLEAN_PROFILES',
 	CLEAN_PROFILE: 'CLEAN_PROFILE',
 	GET_ALL_ADS: 'GET_ALL_PROFILE_ADS',
@@ -13,7 +13,7 @@ export const TYPES = {
 };
 
 export const cleanProfile = (profileId) => (dispatch) => {
-	dispatch({ type: TYPES.CLEAN_PROFILE, payload: profileId });
+	dispatch({ type: PROFILE_TYPES.CLEAN_PROFILE, payload: profileId });
 };
 
 export const getProfileAds = (profileId, filters) => async (dispatch, getState) => {
@@ -30,7 +30,7 @@ export const getProfileAds = (profileId, filters) => async (dispatch, getState) 
 		profileAds = profileAds.data;
 	}
 
-	dispatch({ type: TYPES.GET_ALL_ADS, payload: { profileId, profileAds } });
+	dispatch({ type: PROFILE_TYPES.GET_ALL_ADS, payload: { profileId, profileAds } });
 };
 
 export const getMoreProfileAds = (profileId, filters) => async (dispatch) => {
@@ -41,7 +41,7 @@ export const getMoreProfileAds = (profileId, filters) => async (dispatch) => {
 		})}`
 	);
 	dispatch({
-		type: TYPES.GET_MORE_ADS,
+		type: PROFILE_TYPES.GET_MORE_ADS,
 		payload: { profileId, newAds: posts.data },
 	});
 	return posts.data;
@@ -51,7 +51,7 @@ export const getProfileByEmail = (email) => async (dispatch) => {
 	const response = await axios.post(
 		`${process.env.NEXT_PUBLIC_SERVER_URL}/api/profiles/get-profile-by-email?email=${email}`
 	);
-	dispatch({ type: TYPES.GET_BY_EMAIL, payload: response.data });
+	dispatch({ type: PROFILE_TYPES.GET_BY_EMAIL, payload: response.data });
 	return response.data;
 };
 
@@ -65,7 +65,7 @@ export const getProfileById = (userId) => async (dispatch, getState) => {
 		profile = profile.data;
 	}
 
-	dispatch({ type: TYPES.GET_BY_ID, payload: profile });
+	dispatch({ type: PROFILE_TYPES.GET_BY_ID, payload: profile });
 };
 
 export const getProfileByUsername = (username) => async (dispatch, getState) => {
@@ -81,11 +81,11 @@ export const getProfileByUsername = (username) => async (dispatch, getState) => 
 		profile = profile.data;
 	}
 
-	dispatch({ type: TYPES.GET_BY_USERNAME, payload: profile });
+	dispatch({ type: PROFILE_TYPES.GET_BY_USERNAME, payload: profile });
 	return profile;
 };
 
 export const deleteProfileAd = (profileId, postId) => async (dispatch) => {
 	await axios.delete(`${process.env.NEXT_PUBLIC_SERVER_URL}/api/posts/remove?postId=${postId}`);
-	dispatch({ type: TYPES.DELETE, payload: { profileId, postId } });
+	dispatch({ type: PROFILE_TYPES.DELETE, payload: { profileId, postId } });
 };

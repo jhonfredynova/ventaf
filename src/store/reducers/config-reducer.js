@@ -1,24 +1,24 @@
-import { TYPES } from '../actions/config-actions';
+import { CONFIG_TYPES } from '../actions/config-actions';
 
 const initialState = {
 	callingCodes: [],
 	countries: [],
 	currencies: [],
 	languages: [],
-	translations: {}
+	translations: {},
 };
 
 // eslint-disable-next-line default-param-last
 export default function reducer(state = initialState, action) {
 	switch (action.type) {
-		case TYPES.CLEAN:
+		case CONFIG_TYPES.CLEAN:
 			return initialState;
 
-		case TYPES.GET_CONFIG:
-		case TYPES.SYNC_CONFIG:
+		case CONFIG_TYPES.GET_CONFIG:
+		case CONFIG_TYPES.SYNC_CONFIG:
 			return {
 				...state,
-				...action.payload
+				...action.payload,
 			};
 
 		default:
