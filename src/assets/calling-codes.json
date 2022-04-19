@@ -1,0 +1,1418 @@
+[
+	{
+		"countryFlag": "https://restcountries.eu/data/afg.svg",
+		"countryName": "Afghanistan",
+		"label": "Afghanistan (+93)",
+		"value": "+93"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/ala.svg",
+		"countryName": "Åland Islands",
+		"label": "Åland Islands (+358)",
+		"value": "+358"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/alb.svg",
+		"countryName": "Albania",
+		"label": "Albania (+355)",
+		"value": "+355"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/dza.svg",
+		"countryName": "Algeria",
+		"label": "Algeria (+213)",
+		"value": "+213"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/asm.svg",
+		"countryName": "American Samoa",
+		"label": "American Samoa (+1684)",
+		"value": "+1684"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/and.svg",
+		"countryName": "Andorra",
+		"label": "Andorra (+376)",
+		"value": "+376"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/ago.svg",
+		"countryName": "Angola",
+		"label": "Angola (+244)",
+		"value": "+244"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/aia.svg",
+		"countryName": "Anguilla",
+		"label": "Anguilla (+1264)",
+		"value": "+1264"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/ata.svg",
+		"countryName": "Antarctica",
+		"label": "Antarctica (+672)",
+		"value": "+672"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/atg.svg",
+		"countryName": "Antigua and Barbuda",
+		"label": "Antigua and Barbuda (+1268)",
+		"value": "+1268"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/arg.svg",
+		"countryName": "Argentina",
+		"label": "Argentina (+54)",
+		"value": "+54"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/arm.svg",
+		"countryName": "Armenia",
+		"label": "Armenia (+374)",
+		"value": "+374"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/abw.svg",
+		"countryName": "Aruba",
+		"label": "Aruba (+297)",
+		"value": "+297"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/aus.svg",
+		"countryName": "Australia",
+		"label": "Australia (+61)",
+		"value": "+61"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/aut.svg",
+		"countryName": "Austria",
+		"label": "Austria (+43)",
+		"value": "+43"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/aze.svg",
+		"countryName": "Azerbaijan",
+		"label": "Azerbaijan (+994)",
+		"value": "+994"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/bhs.svg",
+		"countryName": "Bahamas",
+		"label": "Bahamas (+1242)",
+		"value": "+1242"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/bhr.svg",
+		"countryName": "Bahrain",
+		"label": "Bahrain (+973)",
+		"value": "+973"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/bgd.svg",
+		"countryName": "Bangladesh",
+		"label": "Bangladesh (+880)",
+		"value": "+880"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/brb.svg",
+		"countryName": "Barbados",
+		"label": "Barbados (+1246)",
+		"value": "+1246"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/blr.svg",
+		"countryName": "Belarus",
+		"label": "Belarus (+375)",
+		"value": "+375"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/bel.svg",
+		"countryName": "Belgium",
+		"label": "Belgium (+32)",
+		"value": "+32"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/blz.svg",
+		"countryName": "Belize",
+		"label": "Belize (+501)",
+		"value": "+501"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/ben.svg",
+		"countryName": "Benin",
+		"label": "Benin (+229)",
+		"value": "+229"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/bmu.svg",
+		"countryName": "Bermuda",
+		"label": "Bermuda (+1441)",
+		"value": "+1441"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/btn.svg",
+		"countryName": "Bhutan",
+		"label": "Bhutan (+975)",
+		"value": "+975"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/bol.svg",
+		"countryName": "Bolivia (Plurinational State of)",
+		"label": "Bolivia (Plurinational State of) (+591)",
+		"value": "+591"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/bes.svg",
+		"countryName": "Bonaire, Sint Eustatius and Saba",
+		"label": "Bonaire, Sint Eustatius and Saba (+5997)",
+		"value": "+5997"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/bih.svg",
+		"countryName": "Bosnia and Herzegovina",
+		"label": "Bosnia and Herzegovina (+387)",
+		"value": "+387"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/bwa.svg",
+		"countryName": "Botswana",
+		"label": "Botswana (+267)",
+		"value": "+267"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/bra.svg",
+		"countryName": "Brazil",
+		"label": "Brazil (+55)",
+		"value": "+55"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/iot.svg",
+		"countryName": "British Indian Ocean Territory",
+		"label": "British Indian Ocean Territory (+246)",
+		"value": "+246"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/brn.svg",
+		"countryName": "Brunei Darussalam",
+		"label": "Brunei Darussalam (+673)",
+		"value": "+673"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/bgr.svg",
+		"countryName": "Bulgaria",
+		"label": "Bulgaria (+359)",
+		"value": "+359"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/bfa.svg",
+		"countryName": "Burkina Faso",
+		"label": "Burkina Faso (+226)",
+		"value": "+226"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/bdi.svg",
+		"countryName": "Burundi",
+		"label": "Burundi (+257)",
+		"value": "+257"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/cpv.svg",
+		"countryName": "Cabo Verde",
+		"label": "Cabo Verde (+238)",
+		"value": "+238"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/khm.svg",
+		"countryName": "Cambodia",
+		"label": "Cambodia (+855)",
+		"value": "+855"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/cmr.svg",
+		"countryName": "Cameroon",
+		"label": "Cameroon (+237)",
+		"value": "+237"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/can.svg",
+		"countryName": "Canada",
+		"label": "Canada (+1)",
+		"value": "+1"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/cym.svg",
+		"countryName": "Cayman Islands",
+		"label": "Cayman Islands (+1345)",
+		"value": "+1345"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/caf.svg",
+		"countryName": "Central African Republic",
+		"label": "Central African Republic (+236)",
+		"value": "+236"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/tcd.svg",
+		"countryName": "Chad",
+		"label": "Chad (+235)",
+		"value": "+235"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/chl.svg",
+		"countryName": "Chile",
+		"label": "Chile (+56)",
+		"value": "+56"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/chn.svg",
+		"countryName": "China",
+		"label": "China (+86)",
+		"value": "+86"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/col.svg",
+		"countryName": "Colombia",
+		"label": "Colombia (+57)",
+		"value": "+57"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/com.svg",
+		"countryName": "Comoros",
+		"label": "Comoros (+269)",
+		"value": "+269"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/cog.svg",
+		"countryName": "Congo",
+		"label": "Congo (+242)",
+		"value": "+242"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/cod.svg",
+		"countryName": "Congo (Democratic Republic of the)",
+		"label": "Congo (Democratic Republic of the) (+243)",
+		"value": "+243"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/cok.svg",
+		"countryName": "Cook Islands",
+		"label": "Cook Islands (+682)",
+		"value": "+682"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/cri.svg",
+		"countryName": "Costa Rica",
+		"label": "Costa Rica (+506)",
+		"value": "+506"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/civ.svg",
+		"countryName": "Côte d'Ivoire",
+		"label": "Côte d'Ivoire (+225)",
+		"value": "+225"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/hrv.svg",
+		"countryName": "Croatia",
+		"label": "Croatia (+385)",
+		"value": "+385"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/cub.svg",
+		"countryName": "Cuba",
+		"label": "Cuba (+53)",
+		"value": "+53"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/cuw.svg",
+		"countryName": "Curaçao",
+		"label": "Curaçao (+599)",
+		"value": "+599"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/cyp.svg",
+		"countryName": "Cyprus",
+		"label": "Cyprus (+357)",
+		"value": "+357"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/cze.svg",
+		"countryName": "Czech Republic",
+		"label": "Czech Republic (+420)",
+		"value": "+420"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/dnk.svg",
+		"countryName": "Denmark",
+		"label": "Denmark (+45)",
+		"value": "+45"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/dji.svg",
+		"countryName": "Djibouti",
+		"label": "Djibouti (+253)",
+		"value": "+253"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/dma.svg",
+		"countryName": "Dominica",
+		"label": "Dominica (+1767)",
+		"value": "+1767"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/dom.svg",
+		"countryName": "Dominican Republic",
+		"label": "Dominican Republic (+1809)",
+		"value": "+1809"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/dom.svg",
+		"countryName": "Dominican Republic",
+		"label": "Dominican Republic (+1829)",
+		"value": "+1829"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/dom.svg",
+		"countryName": "Dominican Republic",
+		"label": "Dominican Republic (+1849)",
+		"value": "+1849"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/ecu.svg",
+		"countryName": "Ecuador",
+		"label": "Ecuador (+593)",
+		"value": "+593"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/egy.svg",
+		"countryName": "Egypt",
+		"label": "Egypt (+20)",
+		"value": "+20"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/slv.svg",
+		"countryName": "El Salvador",
+		"label": "El Salvador (+503)",
+		"value": "+503"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/gnq.svg",
+		"countryName": "Equatorial Guinea",
+		"label": "Equatorial Guinea (+240)",
+		"value": "+240"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/eri.svg",
+		"countryName": "Eritrea",
+		"label": "Eritrea (+291)",
+		"value": "+291"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/est.svg",
+		"countryName": "Estonia",
+		"label": "Estonia (+372)",
+		"value": "+372"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/eth.svg",
+		"countryName": "Ethiopia",
+		"label": "Ethiopia (+251)",
+		"value": "+251"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/flk.svg",
+		"countryName": "Falkland Islands (Malvinas)",
+		"label": "Falkland Islands (Malvinas) (+500)",
+		"value": "+500"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/fro.svg",
+		"countryName": "Faroe Islands",
+		"label": "Faroe Islands (+298)",
+		"value": "+298"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/fji.svg",
+		"countryName": "Fiji",
+		"label": "Fiji (+679)",
+		"value": "+679"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/fra.svg",
+		"countryName": "France",
+		"label": "France (+33)",
+		"value": "+33"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/guf.svg",
+		"countryName": "French Guiana",
+		"label": "French Guiana (+594)",
+		"value": "+594"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/pyf.svg",
+		"countryName": "French Polynesia",
+		"label": "French Polynesia (+689)",
+		"value": "+689"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/gab.svg",
+		"countryName": "Gabon",
+		"label": "Gabon (+241)",
+		"value": "+241"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/gmb.svg",
+		"countryName": "Gambia",
+		"label": "Gambia (+220)",
+		"value": "+220"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/geo.svg",
+		"countryName": "Georgia",
+		"label": "Georgia (+995)",
+		"value": "+995"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/deu.svg",
+		"countryName": "Germany",
+		"label": "Germany (+49)",
+		"value": "+49"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/gha.svg",
+		"countryName": "Ghana",
+		"label": "Ghana (+233)",
+		"value": "+233"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/gib.svg",
+		"countryName": "Gibraltar",
+		"label": "Gibraltar (+350)",
+		"value": "+350"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/grc.svg",
+		"countryName": "Greece",
+		"label": "Greece (+30)",
+		"value": "+30"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/grl.svg",
+		"countryName": "Greenland",
+		"label": "Greenland (+299)",
+		"value": "+299"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/grd.svg",
+		"countryName": "Grenada",
+		"label": "Grenada (+1473)",
+		"value": "+1473"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/glp.svg",
+		"countryName": "Guadeloupe",
+		"label": "Guadeloupe (+590)",
+		"value": "+590"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/gum.svg",
+		"countryName": "Guam",
+		"label": "Guam (+1671)",
+		"value": "+1671"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/gtm.svg",
+		"countryName": "Guatemala",
+		"label": "Guatemala (+502)",
+		"value": "+502"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/ggy.svg",
+		"countryName": "Guernsey",
+		"label": "Guernsey (+44)",
+		"value": "+44"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/gin.svg",
+		"countryName": "Guinea",
+		"label": "Guinea (+224)",
+		"value": "+224"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/gnb.svg",
+		"countryName": "Guinea-Bissau",
+		"label": "Guinea-Bissau (+245)",
+		"value": "+245"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/guy.svg",
+		"countryName": "Guyana",
+		"label": "Guyana (+592)",
+		"value": "+592"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/hti.svg",
+		"countryName": "Haiti",
+		"label": "Haiti (+509)",
+		"value": "+509"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/vat.svg",
+		"countryName": "Holy See",
+		"label": "Holy See (+379)",
+		"value": "+379"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/hnd.svg",
+		"countryName": "Honduras",
+		"label": "Honduras (+504)",
+		"value": "+504"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/hkg.svg",
+		"countryName": "Hong Kong",
+		"label": "Hong Kong (+852)",
+		"value": "+852"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/hun.svg",
+		"countryName": "Hungary",
+		"label": "Hungary (+36)",
+		"value": "+36"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/isl.svg",
+		"countryName": "Iceland",
+		"label": "Iceland (+354)",
+		"value": "+354"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/ind.svg",
+		"countryName": "India",
+		"label": "India (+91)",
+		"value": "+91"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/idn.svg",
+		"countryName": "Indonesia",
+		"label": "Indonesia (+62)",
+		"value": "+62"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/irn.svg",
+		"countryName": "Iran (Islamic Republic of)",
+		"label": "Iran (Islamic Republic of) (+98)",
+		"value": "+98"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/irq.svg",
+		"countryName": "Iraq",
+		"label": "Iraq (+964)",
+		"value": "+964"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/irl.svg",
+		"countryName": "Ireland",
+		"label": "Ireland (+353)",
+		"value": "+353"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/isr.svg",
+		"countryName": "Israel",
+		"label": "Israel (+972)",
+		"value": "+972"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/ita.svg",
+		"countryName": "Italy",
+		"label": "Italy (+39)",
+		"value": "+39"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/jam.svg",
+		"countryName": "Jamaica",
+		"label": "Jamaica (+1876)",
+		"value": "+1876"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/jpn.svg",
+		"countryName": "Japan",
+		"label": "Japan (+81)",
+		"value": "+81"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/jor.svg",
+		"countryName": "Jordan",
+		"label": "Jordan (+962)",
+		"value": "+962"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/kaz.svg",
+		"countryName": "Kazakhstan",
+		"label": "Kazakhstan (+76)",
+		"value": "+76"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/kaz.svg",
+		"countryName": "Kazakhstan",
+		"label": "Kazakhstan (+77)",
+		"value": "+77"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/ken.svg",
+		"countryName": "Kenya",
+		"label": "Kenya (+254)",
+		"value": "+254"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/kir.svg",
+		"countryName": "Kiribati",
+		"label": "Kiribati (+686)",
+		"value": "+686"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/prk.svg",
+		"countryName": "Korea (Democratic People's Republic of)",
+		"label": "Korea (Democratic People's Republic of) (+850)",
+		"value": "+850"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/kor.svg",
+		"countryName": "Korea (Republic of)",
+		"label": "Korea (Republic of) (+82)",
+		"value": "+82"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/kwt.svg",
+		"countryName": "Kuwait",
+		"label": "Kuwait (+965)",
+		"value": "+965"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/kgz.svg",
+		"countryName": "Kyrgyzstan",
+		"label": "Kyrgyzstan (+996)",
+		"value": "+996"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/lao.svg",
+		"countryName": "Lao People's Democratic Republic",
+		"label": "Lao People's Democratic Republic (+856)",
+		"value": "+856"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/lva.svg",
+		"countryName": "Latvia",
+		"label": "Latvia (+371)",
+		"value": "+371"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/lbn.svg",
+		"countryName": "Lebanon",
+		"label": "Lebanon (+961)",
+		"value": "+961"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/lso.svg",
+		"countryName": "Lesotho",
+		"label": "Lesotho (+266)",
+		"value": "+266"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/lbr.svg",
+		"countryName": "Liberia",
+		"label": "Liberia (+231)",
+		"value": "+231"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/lby.svg",
+		"countryName": "Libya",
+		"label": "Libya (+218)",
+		"value": "+218"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/lie.svg",
+		"countryName": "Liechtenstein",
+		"label": "Liechtenstein (+423)",
+		"value": "+423"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/ltu.svg",
+		"countryName": "Lithuania",
+		"label": "Lithuania (+370)",
+		"value": "+370"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/lux.svg",
+		"countryName": "Luxembourg",
+		"label": "Luxembourg (+352)",
+		"value": "+352"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/mac.svg",
+		"countryName": "Macao",
+		"label": "Macao (+853)",
+		"value": "+853"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/mkd.svg",
+		"countryName": "Macedonia (the former Yugoslav Republic of)",
+		"label": "Macedonia (the former Yugoslav Republic of) (+389)",
+		"value": "+389"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/mdg.svg",
+		"countryName": "Madagascar",
+		"label": "Madagascar (+261)",
+		"value": "+261"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/mwi.svg",
+		"countryName": "Malawi",
+		"label": "Malawi (+265)",
+		"value": "+265"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/mys.svg",
+		"countryName": "Malaysia",
+		"label": "Malaysia (+60)",
+		"value": "+60"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/mdv.svg",
+		"countryName": "Maldives",
+		"label": "Maldives (+960)",
+		"value": "+960"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/mli.svg",
+		"countryName": "Mali",
+		"label": "Mali (+223)",
+		"value": "+223"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/mlt.svg",
+		"countryName": "Malta",
+		"label": "Malta (+356)",
+		"value": "+356"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/mhl.svg",
+		"countryName": "Marshall Islands",
+		"label": "Marshall Islands (+692)",
+		"value": "+692"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/mtq.svg",
+		"countryName": "Martinique",
+		"label": "Martinique (+596)",
+		"value": "+596"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/mrt.svg",
+		"countryName": "Mauritania",
+		"label": "Mauritania (+222)",
+		"value": "+222"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/mus.svg",
+		"countryName": "Mauritius",
+		"label": "Mauritius (+230)",
+		"value": "+230"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/myt.svg",
+		"countryName": "Mayotte",
+		"label": "Mayotte (+262)",
+		"value": "+262"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/mex.svg",
+		"countryName": "Mexico",
+		"label": "Mexico (+52)",
+		"value": "+52"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/fsm.svg",
+		"countryName": "Micronesia (Federated States of)",
+		"label": "Micronesia (Federated States of) (+691)",
+		"value": "+691"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/mda.svg",
+		"countryName": "Moldova (Republic of)",
+		"label": "Moldova (Republic of) (+373)",
+		"value": "+373"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/mco.svg",
+		"countryName": "Monaco",
+		"label": "Monaco (+377)",
+		"value": "+377"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/mng.svg",
+		"countryName": "Mongolia",
+		"label": "Mongolia (+976)",
+		"value": "+976"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/mne.svg",
+		"countryName": "Montenegro",
+		"label": "Montenegro (+382)",
+		"value": "+382"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/msr.svg",
+		"countryName": "Montserrat",
+		"label": "Montserrat (+1664)",
+		"value": "+1664"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/mar.svg",
+		"countryName": "Morocco",
+		"label": "Morocco (+212)",
+		"value": "+212"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/moz.svg",
+		"countryName": "Mozambique",
+		"label": "Mozambique (+258)",
+		"value": "+258"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/mmr.svg",
+		"countryName": "Myanmar",
+		"label": "Myanmar (+95)",
+		"value": "+95"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/nam.svg",
+		"countryName": "Namibia",
+		"label": "Namibia (+264)",
+		"value": "+264"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/nru.svg",
+		"countryName": "Nauru",
+		"label": "Nauru (+674)",
+		"value": "+674"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/npl.svg",
+		"countryName": "Nepal",
+		"label": "Nepal (+977)",
+		"value": "+977"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/nld.svg",
+		"countryName": "Netherlands",
+		"label": "Netherlands (+31)",
+		"value": "+31"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/ncl.svg",
+		"countryName": "New Caledonia",
+		"label": "New Caledonia (+687)",
+		"value": "+687"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/nzl.svg",
+		"countryName": "New Zealand",
+		"label": "New Zealand (+64)",
+		"value": "+64"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/nic.svg",
+		"countryName": "Nicaragua",
+		"label": "Nicaragua (+505)",
+		"value": "+505"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/ner.svg",
+		"countryName": "Niger",
+		"label": "Niger (+227)",
+		"value": "+227"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/nga.svg",
+		"countryName": "Nigeria",
+		"label": "Nigeria (+234)",
+		"value": "+234"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/niu.svg",
+		"countryName": "Niue",
+		"label": "Niue (+683)",
+		"value": "+683"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/mnp.svg",
+		"countryName": "Northern Mariana Islands",
+		"label": "Northern Mariana Islands (+1670)",
+		"value": "+1670"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/nor.svg",
+		"countryName": "Norway",
+		"label": "Norway (+47)",
+		"value": "+47"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/omn.svg",
+		"countryName": "Oman",
+		"label": "Oman (+968)",
+		"value": "+968"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/pak.svg",
+		"countryName": "Pakistan",
+		"label": "Pakistan (+92)",
+		"value": "+92"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/plw.svg",
+		"countryName": "Palau",
+		"label": "Palau (+680)",
+		"value": "+680"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/pse.svg",
+		"countryName": "Palestine, State of",
+		"label": "Palestine, State of (+970)",
+		"value": "+970"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/pan.svg",
+		"countryName": "Panama",
+		"label": "Panama (+507)",
+		"value": "+507"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/png.svg",
+		"countryName": "Papua New Guinea",
+		"label": "Papua New Guinea (+675)",
+		"value": "+675"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/pry.svg",
+		"countryName": "Paraguay",
+		"label": "Paraguay (+595)",
+		"value": "+595"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/per.svg",
+		"countryName": "Peru",
+		"label": "Peru (+51)",
+		"value": "+51"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/phl.svg",
+		"countryName": "Philippines",
+		"label": "Philippines (+63)",
+		"value": "+63"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/pol.svg",
+		"countryName": "Poland",
+		"label": "Poland (+48)",
+		"value": "+48"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/prt.svg",
+		"countryName": "Portugal",
+		"label": "Portugal (+351)",
+		"value": "+351"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/pri.svg",
+		"countryName": "Puerto Rico",
+		"label": "Puerto Rico (+1787)",
+		"value": "+1787"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/pri.svg",
+		"countryName": "Puerto Rico",
+		"label": "Puerto Rico (+1939)",
+		"value": "+1939"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/qat.svg",
+		"countryName": "Qatar",
+		"label": "Qatar (+974)",
+		"value": "+974"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/kos.svg",
+		"countryName": "Republic of Kosovo",
+		"label": "Republic of Kosovo (+383)",
+		"value": "+383"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/rou.svg",
+		"countryName": "Romania",
+		"label": "Romania (+40)",
+		"value": "+40"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/rus.svg",
+		"countryName": "Russian Federation",
+		"label": "Russian Federation (+7)",
+		"value": "+7"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/rwa.svg",
+		"countryName": "Rwanda",
+		"label": "Rwanda (+250)",
+		"value": "+250"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/shn.svg",
+		"countryName": "Saint Helena, Ascension and Tristan da Cunha",
+		"label": "Saint Helena, Ascension and Tristan da Cunha (+290)",
+		"value": "+290"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/kna.svg",
+		"countryName": "Saint Kitts and Nevis",
+		"label": "Saint Kitts and Nevis (+1869)",
+		"value": "+1869"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/lca.svg",
+		"countryName": "Saint Lucia",
+		"label": "Saint Lucia (+1758)",
+		"value": "+1758"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/spm.svg",
+		"countryName": "Saint Pierre and Miquelon",
+		"label": "Saint Pierre and Miquelon (+508)",
+		"value": "+508"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/vct.svg",
+		"countryName": "Saint Vincent and the Grenadines",
+		"label": "Saint Vincent and the Grenadines (+1784)",
+		"value": "+1784"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/wsm.svg",
+		"countryName": "Samoa",
+		"label": "Samoa (+685)",
+		"value": "+685"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/smr.svg",
+		"countryName": "San Marino",
+		"label": "San Marino (+378)",
+		"value": "+378"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/stp.svg",
+		"countryName": "Sao Tome and Principe",
+		"label": "Sao Tome and Principe (+239)",
+		"value": "+239"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/sau.svg",
+		"countryName": "Saudi Arabia",
+		"label": "Saudi Arabia (+966)",
+		"value": "+966"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/sen.svg",
+		"countryName": "Senegal",
+		"label": "Senegal (+221)",
+		"value": "+221"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/srb.svg",
+		"countryName": "Serbia",
+		"label": "Serbia (+381)",
+		"value": "+381"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/syc.svg",
+		"countryName": "Seychelles",
+		"label": "Seychelles (+248)",
+		"value": "+248"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/sle.svg",
+		"countryName": "Sierra Leone",
+		"label": "Sierra Leone (+232)",
+		"value": "+232"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/sgp.svg",
+		"countryName": "Singapore",
+		"label": "Singapore (+65)",
+		"value": "+65"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/sxm.svg",
+		"countryName": "Sint Maarten (Dutch part)",
+		"label": "Sint Maarten (Dutch part) (+1721)",
+		"value": "+1721"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/svk.svg",
+		"countryName": "Slovakia",
+		"label": "Slovakia (+421)",
+		"value": "+421"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/svn.svg",
+		"countryName": "Slovenia",
+		"label": "Slovenia (+386)",
+		"value": "+386"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/slb.svg",
+		"countryName": "Solomon Islands",
+		"label": "Solomon Islands (+677)",
+		"value": "+677"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/som.svg",
+		"countryName": "Somalia",
+		"label": "Somalia (+252)",
+		"value": "+252"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/zaf.svg",
+		"countryName": "South Africa",
+		"label": "South Africa (+27)",
+		"value": "+27"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/ssd.svg",
+		"countryName": "South Sudan",
+		"label": "South Sudan (+211)",
+		"value": "+211"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/esp.svg",
+		"countryName": "Spain",
+		"label": "Spain (+34)",
+		"value": "+34"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/lka.svg",
+		"countryName": "Sri Lanka",
+		"label": "Sri Lanka (+94)",
+		"value": "+94"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/sdn.svg",
+		"countryName": "Sudan",
+		"label": "Sudan (+249)",
+		"value": "+249"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/sur.svg",
+		"countryName": "Suriname",
+		"label": "Suriname (+597)",
+		"value": "+597"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/sjm.svg",
+		"countryName": "Svalbard and Jan Mayen",
+		"label": "Svalbard and Jan Mayen (+4779)",
+		"value": "+4779"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/swz.svg",
+		"countryName": "Swaziland",
+		"label": "Swaziland (+268)",
+		"value": "+268"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/swe.svg",
+		"countryName": "Sweden",
+		"label": "Sweden (+46)",
+		"value": "+46"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/che.svg",
+		"countryName": "Switzerland",
+		"label": "Switzerland (+41)",
+		"value": "+41"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/syr.svg",
+		"countryName": "Syrian Arab Republic",
+		"label": "Syrian Arab Republic (+963)",
+		"value": "+963"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/twn.svg",
+		"countryName": "Taiwan",
+		"label": "Taiwan (+886)",
+		"value": "+886"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/tjk.svg",
+		"countryName": "Tajikistan",
+		"label": "Tajikistan (+992)",
+		"value": "+992"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/tza.svg",
+		"countryName": "Tanzania, United Republic of",
+		"label": "Tanzania, United Republic of (+255)",
+		"value": "+255"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/tha.svg",
+		"countryName": "Thailand",
+		"label": "Thailand (+66)",
+		"value": "+66"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/tls.svg",
+		"countryName": "Timor-Leste",
+		"label": "Timor-Leste (+670)",
+		"value": "+670"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/tgo.svg",
+		"countryName": "Togo",
+		"label": "Togo (+228)",
+		"value": "+228"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/tkl.svg",
+		"countryName": "Tokelau",
+		"label": "Tokelau (+690)",
+		"value": "+690"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/ton.svg",
+		"countryName": "Tonga",
+		"label": "Tonga (+676)",
+		"value": "+676"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/tto.svg",
+		"countryName": "Trinidad and Tobago",
+		"label": "Trinidad and Tobago (+1868)",
+		"value": "+1868"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/tun.svg",
+		"countryName": "Tunisia",
+		"label": "Tunisia (+216)",
+		"value": "+216"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/tur.svg",
+		"countryName": "Turkey",
+		"label": "Turkey (+90)",
+		"value": "+90"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/tkm.svg",
+		"countryName": "Turkmenistan",
+		"label": "Turkmenistan (+993)",
+		"value": "+993"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/tca.svg",
+		"countryName": "Turks and Caicos Islands",
+		"label": "Turks and Caicos Islands (+1649)",
+		"value": "+1649"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/tuv.svg",
+		"countryName": "Tuvalu",
+		"label": "Tuvalu (+688)",
+		"value": "+688"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/uga.svg",
+		"countryName": "Uganda",
+		"label": "Uganda (+256)",
+		"value": "+256"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/ukr.svg",
+		"countryName": "Ukraine",
+		"label": "Ukraine (+380)",
+		"value": "+380"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/are.svg",
+		"countryName": "United Arab Emirates",
+		"label": "United Arab Emirates (+971)",
+		"value": "+971"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/ury.svg",
+		"countryName": "Uruguay",
+		"label": "Uruguay (+598)",
+		"value": "+598"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/uzb.svg",
+		"countryName": "Uzbekistan",
+		"label": "Uzbekistan (+998)",
+		"value": "+998"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/vut.svg",
+		"countryName": "Vanuatu",
+		"label": "Vanuatu (+678)",
+		"value": "+678"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/ven.svg",
+		"countryName": "Venezuela (Bolivarian Republic of)",
+		"label": "Venezuela (Bolivarian Republic of) (+58)",
+		"value": "+58"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/vnm.svg",
+		"countryName": "Viet Nam",
+		"label": "Viet Nam (+84)",
+		"value": "+84"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/vgb.svg",
+		"countryName": "Virgin Islands (British)",
+		"label": "Virgin Islands (British) (+1284)",
+		"value": "+1284"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/vir.svg",
+		"countryName": "Virgin Islands (U.S.)",
+		"label": "Virgin Islands (U.S.) (+1 340)",
+		"value": "+1 340"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/wlf.svg",
+		"countryName": "Wallis and Futuna",
+		"label": "Wallis and Futuna (+681)",
+		"value": "+681"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/yem.svg",
+		"countryName": "Yemen",
+		"label": "Yemen (+967)",
+		"value": "+967"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/zmb.svg",
+		"countryName": "Zambia",
+		"label": "Zambia (+260)",
+		"value": "+260"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/zwe.svg",
+		"countryName": "Zimbabwe",
+		"label": "Zimbabwe (+263)",
+		"value": "+263"
+	}
+]

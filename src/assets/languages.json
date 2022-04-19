@@ -1,0 +1,668 @@
+[
+	{
+		"countryFlag": "https://restcountries.eu/data/afg.svg",
+		"countryName": "Afghanistan",
+		"label": "Pashto",
+		"value": "ps"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/afg.svg",
+		"countryName": "Afghanistan",
+		"label": "Uzbek",
+		"value": "uz"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/afg.svg",
+		"countryName": "Afghanistan",
+		"label": "Turkmen",
+		"value": "tk"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/ala.svg",
+		"countryName": "Åland Islands",
+		"label": "Swedish",
+		"value": "sv"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/alb.svg",
+		"countryName": "Albania",
+		"label": "Albanian",
+		"value": "sq"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/dza.svg",
+		"countryName": "Algeria",
+		"label": "Arabic",
+		"value": "ar"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/asm.svg",
+		"countryName": "American Samoa",
+		"label": "English",
+		"value": "en"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/asm.svg",
+		"countryName": "American Samoa",
+		"label": "Samoan",
+		"value": "sm"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/and.svg",
+		"countryName": "Andorra",
+		"label": "Catalan",
+		"value": "ca"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/ago.svg",
+		"countryName": "Angola",
+		"label": "Portuguese",
+		"value": "pt"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/ata.svg",
+		"countryName": "Antarctica",
+		"label": "Russian",
+		"value": "ru"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/arg.svg",
+		"countryName": "Argentina",
+		"label": "Spanish",
+		"value": "es"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/arg.svg",
+		"countryName": "Argentina",
+		"label": "Guaraní",
+		"value": "gn"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/arm.svg",
+		"countryName": "Armenia",
+		"label": "Armenian",
+		"value": "hy"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/abw.svg",
+		"countryName": "Aruba",
+		"label": "Dutch",
+		"value": "nl"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/abw.svg",
+		"countryName": "Aruba",
+		"label": "(Eastern) Punjabi",
+		"value": "pa"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/aut.svg",
+		"countryName": "Austria",
+		"label": "German",
+		"value": "de"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/aze.svg",
+		"countryName": "Azerbaijan",
+		"label": "Azerbaijani",
+		"value": "az"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/bgd.svg",
+		"countryName": "Bangladesh",
+		"label": "Bengali",
+		"value": "bn"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/blr.svg",
+		"countryName": "Belarus",
+		"label": "Belarusian",
+		"value": "be"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/bel.svg",
+		"countryName": "Belgium",
+		"label": "French",
+		"value": "fr"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/btn.svg",
+		"countryName": "Bhutan",
+		"label": "Dzongkha",
+		"value": "dz"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/bol.svg",
+		"countryName": "Bolivia (Plurinational State of)",
+		"label": "Aymara",
+		"value": "ay"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/bol.svg",
+		"countryName": "Bolivia (Plurinational State of)",
+		"label": "Quechua",
+		"value": "qu"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/bih.svg",
+		"countryName": "Bosnia and Herzegovina",
+		"label": "Bosnian",
+		"value": "bs"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/bih.svg",
+		"countryName": "Bosnia and Herzegovina",
+		"label": "Croatian",
+		"value": "hr"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/bih.svg",
+		"countryName": "Bosnia and Herzegovina",
+		"label": "Serbian",
+		"value": "sr"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/bwa.svg",
+		"countryName": "Botswana",
+		"label": "Tswana",
+		"value": "tn"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/bvt.svg",
+		"countryName": "Bouvet Island",
+		"label": "Norwegian",
+		"value": "no"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/bvt.svg",
+		"countryName": "Bouvet Island",
+		"label": "Norwegian Bokmål",
+		"value": "nb"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/bvt.svg",
+		"countryName": "Bouvet Island",
+		"label": "Norwegian Nynorsk",
+		"value": "nn"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/brn.svg",
+		"countryName": "Brunei Darussalam",
+		"label": "Malay",
+		"value": "ms"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/bgr.svg",
+		"countryName": "Bulgaria",
+		"label": "Bulgarian",
+		"value": "bg"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/bfa.svg",
+		"countryName": "Burkina Faso",
+		"label": "Fula",
+		"value": "ff"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/bdi.svg",
+		"countryName": "Burundi",
+		"label": "Kirundi",
+		"value": "rn"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/khm.svg",
+		"countryName": "Cambodia",
+		"label": "Khmer",
+		"value": "km"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/caf.svg",
+		"countryName": "Central African Republic",
+		"label": "Sango",
+		"value": "sg"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/chn.svg",
+		"countryName": "China",
+		"label": "Chinese",
+		"value": "zh"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/cog.svg",
+		"countryName": "Congo",
+		"label": "Lingala",
+		"value": "ln"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/cod.svg",
+		"countryName": "Congo (Democratic Republic of the)",
+		"label": "Kongo",
+		"value": "kg"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/cod.svg",
+		"countryName": "Congo (Democratic Republic of the)",
+		"label": "Swahili",
+		"value": "sw"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/cod.svg",
+		"countryName": "Congo (Democratic Republic of the)",
+		"label": "Luba-Katanga",
+		"value": "lu"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/cyp.svg",
+		"countryName": "Cyprus",
+		"label": "Greek (modern)",
+		"value": "el"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/cyp.svg",
+		"countryName": "Cyprus",
+		"label": "Turkish",
+		"value": "tr"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/cze.svg",
+		"countryName": "Czech Republic",
+		"label": "Czech",
+		"value": "cs"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/cze.svg",
+		"countryName": "Czech Republic",
+		"label": "Slovak",
+		"value": "sk"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/dnk.svg",
+		"countryName": "Denmark",
+		"label": "Danish",
+		"value": "da"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/eri.svg",
+		"countryName": "Eritrea",
+		"label": "Tigrinya",
+		"value": "ti"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/est.svg",
+		"countryName": "Estonia",
+		"label": "Estonian",
+		"value": "et"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/eth.svg",
+		"countryName": "Ethiopia",
+		"label": "Amharic",
+		"value": "am"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/fro.svg",
+		"countryName": "Faroe Islands",
+		"label": "Faroese",
+		"value": "fo"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/fji.svg",
+		"countryName": "Fiji",
+		"label": "Fijian",
+		"value": "fj"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/fji.svg",
+		"countryName": "Fiji",
+		"label": "Hindi",
+		"value": "hi"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/fji.svg",
+		"countryName": "Fiji",
+		"label": "Urdu",
+		"value": "ur"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/fin.svg",
+		"countryName": "Finland",
+		"label": "Finnish",
+		"value": "fi"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/geo.svg",
+		"countryName": "Georgia",
+		"label": "Georgian",
+		"value": "ka"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/grl.svg",
+		"countryName": "Greenland",
+		"label": "Kalaallisut",
+		"value": "kl"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/gum.svg",
+		"countryName": "Guam",
+		"label": "Chamorro",
+		"value": "ch"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/hti.svg",
+		"countryName": "Haiti",
+		"label": "Haitian",
+		"value": "ht"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/vat.svg",
+		"countryName": "Holy See",
+		"label": "Latin",
+		"value": "la"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/vat.svg",
+		"countryName": "Holy See",
+		"label": "Italian",
+		"value": "it"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/hun.svg",
+		"countryName": "Hungary",
+		"label": "Hungarian",
+		"value": "hu"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/isl.svg",
+		"countryName": "Iceland",
+		"label": "Icelandic",
+		"value": "is"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/idn.svg",
+		"countryName": "Indonesia",
+		"label": "Indonesian",
+		"value": "id"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/irn.svg",
+		"countryName": "Iran (Islamic Republic of)",
+		"label": "Persian (Farsi)",
+		"value": "fa"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/irq.svg",
+		"countryName": "Iraq",
+		"label": "Kurdish",
+		"value": "ku"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/irl.svg",
+		"countryName": "Ireland",
+		"label": "Irish",
+		"value": "ga"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/imn.svg",
+		"countryName": "Isle of Man",
+		"label": "Manx",
+		"value": "gv"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/isr.svg",
+		"countryName": "Israel",
+		"label": "Hebrew (modern)",
+		"value": "he"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/jpn.svg",
+		"countryName": "Japan",
+		"label": "Japanese",
+		"value": "ja"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/kaz.svg",
+		"countryName": "Kazakhstan",
+		"label": "Kazakh",
+		"value": "kk"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/prk.svg",
+		"countryName": "Korea (Democratic People's Republic of)",
+		"label": "Korean",
+		"value": "ko"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/kgz.svg",
+		"countryName": "Kyrgyzstan",
+		"label": "Kyrgyz",
+		"value": "ky"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/lao.svg",
+		"countryName": "Lao People's Democratic Republic",
+		"label": "Lao",
+		"value": "lo"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/lva.svg",
+		"countryName": "Latvia",
+		"label": "Latvian",
+		"value": "lv"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/lso.svg",
+		"countryName": "Lesotho",
+		"label": "Southern Sotho",
+		"value": "st"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/ltu.svg",
+		"countryName": "Lithuania",
+		"label": "Lithuanian",
+		"value": "lt"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/lux.svg",
+		"countryName": "Luxembourg",
+		"label": "Luxembourgish",
+		"value": "lb"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/mkd.svg",
+		"countryName": "Macedonia (the former Yugoslav Republic of)",
+		"label": "Macedonian",
+		"value": "mk"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/mdg.svg",
+		"countryName": "Madagascar",
+		"label": "Malagasy",
+		"value": "mg"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/mwi.svg",
+		"countryName": "Malawi",
+		"label": "Chichewa",
+		"value": "ny"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/mdv.svg",
+		"countryName": "Maldives",
+		"label": "Divehi",
+		"value": "dv"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/mlt.svg",
+		"countryName": "Malta",
+		"label": "Maltese",
+		"value": "mt"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/mhl.svg",
+		"countryName": "Marshall Islands",
+		"label": "Marshallese",
+		"value": "mh"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/mda.svg",
+		"countryName": "Moldova (Republic of)",
+		"label": "Romanian",
+		"value": "ro"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/mng.svg",
+		"countryName": "Mongolia",
+		"label": "Mongolian",
+		"value": "mn"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/mmr.svg",
+		"countryName": "Myanmar",
+		"label": "Burmese",
+		"value": "my"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/nam.svg",
+		"countryName": "Namibia",
+		"label": "Afrikaans",
+		"value": "af"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/nru.svg",
+		"countryName": "Nauru",
+		"label": "Nauruan",
+		"value": "na"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/npl.svg",
+		"countryName": "Nepal",
+		"label": "Nepali",
+		"value": "ne"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/nzl.svg",
+		"countryName": "New Zealand",
+		"label": "Māori",
+		"value": "mi"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/pol.svg",
+		"countryName": "Poland",
+		"label": "Polish",
+		"value": "pl"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/rwa.svg",
+		"countryName": "Rwanda",
+		"label": "Kinyarwanda",
+		"value": "rw"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/sgp.svg",
+		"countryName": "Singapore",
+		"label": "Tamil",
+		"value": "ta"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/svn.svg",
+		"countryName": "Slovenia",
+		"label": "Slovene",
+		"value": "sl"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/som.svg",
+		"countryName": "Somalia",
+		"label": "Somali",
+		"value": "so"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/zaf.svg",
+		"countryName": "South Africa",
+		"label": "Southern Ndebele",
+		"value": "nr"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/zaf.svg",
+		"countryName": "South Africa",
+		"label": "Swati",
+		"value": "ss"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/zaf.svg",
+		"countryName": "South Africa",
+		"label": "Tsonga",
+		"value": "ts"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/zaf.svg",
+		"countryName": "South Africa",
+		"label": "Venda",
+		"value": "ve"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/zaf.svg",
+		"countryName": "South Africa",
+		"label": "Xhosa",
+		"value": "xh"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/zaf.svg",
+		"countryName": "South Africa",
+		"label": "Zulu",
+		"value": "zu"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/lka.svg",
+		"countryName": "Sri Lanka",
+		"label": "Sinhalese",
+		"value": "si"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/tjk.svg",
+		"countryName": "Tajikistan",
+		"label": "Tajik",
+		"value": "tg"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/tha.svg",
+		"countryName": "Thailand",
+		"label": "Thai",
+		"value": "th"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/ton.svg",
+		"countryName": "Tonga",
+		"label": "Tonga (Tonga Islands)",
+		"value": "to"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/ukr.svg",
+		"countryName": "Ukraine",
+		"label": "Ukrainian",
+		"value": "uk"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/vut.svg",
+		"countryName": "Vanuatu",
+		"label": "Bislama",
+		"value": "bi"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/vnm.svg",
+		"countryName": "Viet Nam",
+		"label": "Vietnamese",
+		"value": "vi"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/zwe.svg",
+		"countryName": "Zimbabwe",
+		"label": "Shona",
+		"value": "sn"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/zwe.svg",
+		"countryName": "Zimbabwe",
+		"label": "Northern Ndebele",
+		"value": "nd"
+	}
+]

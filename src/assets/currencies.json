@@ -1,0 +1,962 @@
+[
+	{
+		"countryFlag": "https://restcountries.eu/data/afg.svg",
+		"countryName": "Afghanistan",
+		"label": "Afghan afghani (AFN)",
+		"value": "afn"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/ala.svg",
+		"countryName": "Åland Islands",
+		"label": "Euro (EUR)",
+		"value": "eur"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/alb.svg",
+		"countryName": "Albania",
+		"label": "Albanian lek (ALL)",
+		"value": "all"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/dza.svg",
+		"countryName": "Algeria",
+		"label": "Algerian dinar (DZD)",
+		"value": "dzd"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/asm.svg",
+		"countryName": "American Samoa",
+		"label": "United State Dollar (USD)",
+		"value": "usd"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/ago.svg",
+		"countryName": "Angola",
+		"label": "Angolan kwanza (AOA)",
+		"value": "aoa"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/aia.svg",
+		"countryName": "Anguilla",
+		"label": "East Caribbean dollar (XCD)",
+		"value": "xcd"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/ata.svg",
+		"countryName": "Antarctica",
+		"label": "Australian dollar (AUD)",
+		"value": "aud"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/ata.svg",
+		"countryName": "Antarctica",
+		"label": "British pound (GBP)",
+		"value": "gbp"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/arg.svg",
+		"countryName": "Argentina",
+		"label": "Argentine peso (ARS)",
+		"value": "ars"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/arm.svg",
+		"countryName": "Armenia",
+		"label": "Armenian dram (AMD)",
+		"value": "amd"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/abw.svg",
+		"countryName": "Aruba",
+		"label": "Aruban florin (AWG)",
+		"value": "awg"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/aze.svg",
+		"countryName": "Azerbaijan",
+		"label": "Azerbaijani manat (AZN)",
+		"value": "azn"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/bhs.svg",
+		"countryName": "Bahamas",
+		"label": "Bahamian dollar (BSD)",
+		"value": "bsd"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/bhr.svg",
+		"countryName": "Bahrain",
+		"label": "Bahraini dinar (BHD)",
+		"value": "bhd"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/bgd.svg",
+		"countryName": "Bangladesh",
+		"label": "Bangladeshi taka (BDT)",
+		"value": "bdt"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/brb.svg",
+		"countryName": "Barbados",
+		"label": "Barbadian dollar (BBD)",
+		"value": "bbd"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/blr.svg",
+		"countryName": "Belarus",
+		"label": "New Belarusian ruble (BYN)",
+		"value": "byn"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/blr.svg",
+		"countryName": "Belarus",
+		"label": "Old Belarusian ruble (BYR)",
+		"value": "byr"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/blz.svg",
+		"countryName": "Belize",
+		"label": "Belize dollar (BZD)",
+		"value": "bzd"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/ben.svg",
+		"countryName": "Benin",
+		"label": "West African CFA franc (XOF)",
+		"value": "xof"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/bmu.svg",
+		"countryName": "Bermuda",
+		"label": "Bermudian dollar (BMD)",
+		"value": "bmd"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/btn.svg",
+		"countryName": "Bhutan",
+		"label": "Bhutanese ngultrum (BTN)",
+		"value": "btn"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/btn.svg",
+		"countryName": "Bhutan",
+		"label": "Indian rupee (INR)",
+		"value": "inr"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/bol.svg",
+		"countryName": "Bolivia (Plurinational State of)",
+		"label": "Bolivian boliviano (BOB)",
+		"value": "bob"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/bih.svg",
+		"countryName": "Bosnia and Herzegovina",
+		"label": "Bosnia and Herzegovina convertible mark (BAM)",
+		"value": "bam"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/bwa.svg",
+		"countryName": "Botswana",
+		"label": "Botswana pula (BWP)",
+		"value": "bwp"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/bvt.svg",
+		"countryName": "Bouvet Island",
+		"label": "Norwegian krone (NOK)",
+		"value": "nok"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/bra.svg",
+		"countryName": "Brazil",
+		"label": "Brazilian real (BRL)",
+		"value": "brl"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/brn.svg",
+		"countryName": "Brunei Darussalam",
+		"label": "Brunei dollar (BND)",
+		"value": "bnd"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/brn.svg",
+		"countryName": "Brunei Darussalam",
+		"label": "Singapore dollar (SGD)",
+		"value": "sgd"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/bgr.svg",
+		"countryName": "Bulgaria",
+		"label": "Bulgarian lev (BGN)",
+		"value": "bgn"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/bdi.svg",
+		"countryName": "Burundi",
+		"label": "Burundian franc (BIF)",
+		"value": "bif"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/cpv.svg",
+		"countryName": "Cabo Verde",
+		"label": "Cape Verdean escudo (CVE)",
+		"value": "cve"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/khm.svg",
+		"countryName": "Cambodia",
+		"label": "Cambodian riel (KHR)",
+		"value": "khr"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/cmr.svg",
+		"countryName": "Cameroon",
+		"label": "Central African CFA franc (XAF)",
+		"value": "xaf"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/can.svg",
+		"countryName": "Canada",
+		"label": "Canadian dollar (CAD)",
+		"value": "cad"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/cym.svg",
+		"countryName": "Cayman Islands",
+		"label": "Cayman Islands dollar (KYD)",
+		"value": "kyd"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/chl.svg",
+		"countryName": "Chile",
+		"label": "Chilean peso (CLP)",
+		"value": "clp"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/chn.svg",
+		"countryName": "China",
+		"label": "Chinese yuan (CNY)",
+		"value": "cny"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/col.svg",
+		"countryName": "Colombia",
+		"label": "Colombian peso (COP)",
+		"value": "cop"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/com.svg",
+		"countryName": "Comoros",
+		"label": "Comorian franc (KMF)",
+		"value": "kmf"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/cod.svg",
+		"countryName": "Congo (Democratic Republic of the)",
+		"label": "Congolese franc (CDF)",
+		"value": "cdf"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/cok.svg",
+		"countryName": "Cook Islands",
+		"label": "New Zealand dollar (NZD)",
+		"value": "nzd"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/cok.svg",
+		"countryName": "Cook Islands",
+		"label": "Cook Islands dollar (CKD)",
+		"value": "ckd"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/cri.svg",
+		"countryName": "Costa Rica",
+		"label": "Costa Rican colón (CRC)",
+		"value": "crc"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/hrv.svg",
+		"countryName": "Croatia",
+		"label": "Croatian kuna (HRK)",
+		"value": "hrk"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/cub.svg",
+		"countryName": "Cuba",
+		"label": "Cuban convertible peso (CUC)",
+		"value": "cuc"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/cub.svg",
+		"countryName": "Cuba",
+		"label": "Cuban peso (CUP)",
+		"value": "cup"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/cuw.svg",
+		"countryName": "Curaçao",
+		"label": "Netherlands Antillean guilder (ANG)",
+		"value": "ang"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/cze.svg",
+		"countryName": "Czech Republic",
+		"label": "Czech koruna (CZK)",
+		"value": "czk"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/dnk.svg",
+		"countryName": "Denmark",
+		"label": "Danish krone (DKK)",
+		"value": "dkk"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/dji.svg",
+		"countryName": "Djibouti",
+		"label": "Djiboutian franc (DJF)",
+		"value": "djf"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/dom.svg",
+		"countryName": "Dominican Republic",
+		"label": "Dominican peso (DOP)",
+		"value": "dop"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/egy.svg",
+		"countryName": "Egypt",
+		"label": "Egyptian pound (EGP)",
+		"value": "egp"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/eri.svg",
+		"countryName": "Eritrea",
+		"label": "Eritrean nakfa (ERN)",
+		"value": "ern"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/eth.svg",
+		"countryName": "Ethiopia",
+		"label": "Ethiopian birr (ETB)",
+		"value": "etb"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/flk.svg",
+		"countryName": "Falkland Islands (Malvinas)",
+		"label": "Falkland Islands pound (FKP)",
+		"value": "fkp"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/fji.svg",
+		"countryName": "Fiji",
+		"label": "Fijian dollar (FJD)",
+		"value": "fjd"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/pyf.svg",
+		"countryName": "French Polynesia",
+		"label": "CFP franc (XPF)",
+		"value": "xpf"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/gmb.svg",
+		"countryName": "Gambia",
+		"label": "Gambian dalasi (GMD)",
+		"value": "gmd"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/geo.svg",
+		"countryName": "Georgia",
+		"label": "Georgian Lari (GEL)",
+		"value": "gel"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/gha.svg",
+		"countryName": "Ghana",
+		"label": "Ghanaian cedi (GHS)",
+		"value": "ghs"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/gib.svg",
+		"countryName": "Gibraltar",
+		"label": "Gibraltar pound (GIP)",
+		"value": "gip"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/gtm.svg",
+		"countryName": "Guatemala",
+		"label": "Guatemalan quetzal (GTQ)",
+		"value": "gtq"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/gin.svg",
+		"countryName": "Guinea",
+		"label": "Guinean franc (GNF)",
+		"value": "gnf"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/guy.svg",
+		"countryName": "Guyana",
+		"label": "Guyanese dollar (GYD)",
+		"value": "gyd"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/hti.svg",
+		"countryName": "Haiti",
+		"label": "Haitian gourde (HTG)",
+		"value": "htg"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/hnd.svg",
+		"countryName": "Honduras",
+		"label": "Honduran lempira (HNL)",
+		"value": "hnl"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/hkg.svg",
+		"countryName": "Hong Kong",
+		"label": "Hong Kong dollar (HKD)",
+		"value": "hkd"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/hun.svg",
+		"countryName": "Hungary",
+		"label": "Hungarian forint (HUF)",
+		"value": "huf"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/isl.svg",
+		"countryName": "Iceland",
+		"label": "Icelandic króna (ISK)",
+		"value": "isk"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/idn.svg",
+		"countryName": "Indonesia",
+		"label": "Indonesian rupiah (IDR)",
+		"value": "idr"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/irn.svg",
+		"countryName": "Iran (Islamic Republic of)",
+		"label": "Iranian rial (IRR)",
+		"value": "irr"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/irq.svg",
+		"countryName": "Iraq",
+		"label": "Iraqi dinar (IQD)",
+		"value": "iqd"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/imn.svg",
+		"countryName": "Isle of Man",
+		"label": "Manx pound (IMP[G])",
+		"value": "imp[g]"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/isr.svg",
+		"countryName": "Israel",
+		"label": "Israeli new shekel (ILS)",
+		"value": "ils"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/jam.svg",
+		"countryName": "Jamaica",
+		"label": "Jamaican dollar (JMD)",
+		"value": "jmd"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/jpn.svg",
+		"countryName": "Japan",
+		"label": "Japanese yen (JPY)",
+		"value": "jpy"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/jey.svg",
+		"countryName": "Jersey",
+		"label": "Jersey pound (JEP[G])",
+		"value": "jep[g]"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/jor.svg",
+		"countryName": "Jordan",
+		"label": "Jordanian dinar (JOD)",
+		"value": "jod"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/kaz.svg",
+		"countryName": "Kazakhstan",
+		"label": "Kazakhstani tenge (KZT)",
+		"value": "kzt"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/ken.svg",
+		"countryName": "Kenya",
+		"label": "Kenyan shilling (KES)",
+		"value": "kes"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/prk.svg",
+		"countryName": "Korea (Democratic People's Republic of)",
+		"label": "North Korean won (KPW)",
+		"value": "kpw"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/kor.svg",
+		"countryName": "Korea (Republic of)",
+		"label": "South Korean won (KRW)",
+		"value": "krw"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/kwt.svg",
+		"countryName": "Kuwait",
+		"label": "Kuwaiti dinar (KWD)",
+		"value": "kwd"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/kgz.svg",
+		"countryName": "Kyrgyzstan",
+		"label": "Kyrgyzstani som (KGS)",
+		"value": "kgs"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/lao.svg",
+		"countryName": "Lao People's Democratic Republic",
+		"label": "Lao kip (LAK)",
+		"value": "lak"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/lbn.svg",
+		"countryName": "Lebanon",
+		"label": "Lebanese pound (LBP)",
+		"value": "lbp"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/lso.svg",
+		"countryName": "Lesotho",
+		"label": "Lesotho loti (LSL)",
+		"value": "lsl"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/lso.svg",
+		"countryName": "Lesotho",
+		"label": "South African rand (ZAR)",
+		"value": "zar"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/lbr.svg",
+		"countryName": "Liberia",
+		"label": "Liberian dollar (LRD)",
+		"value": "lrd"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/lby.svg",
+		"countryName": "Libya",
+		"label": "Libyan dinar (LYD)",
+		"value": "lyd"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/lie.svg",
+		"countryName": "Liechtenstein",
+		"label": "Swiss franc (CHF)",
+		"value": "chf"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/mac.svg",
+		"countryName": "Macao",
+		"label": "Macanese pataca (MOP)",
+		"value": "mop"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/mkd.svg",
+		"countryName": "Macedonia (the former Yugoslav Republic of)",
+		"label": "Macedonian denar (MKD)",
+		"value": "mkd"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/mdg.svg",
+		"countryName": "Madagascar",
+		"label": "Malagasy ariary (MGA)",
+		"value": "mga"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/mwi.svg",
+		"countryName": "Malawi",
+		"label": "Malawian kwacha (MWK)",
+		"value": "mwk"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/mys.svg",
+		"countryName": "Malaysia",
+		"label": "Malaysian ringgit (MYR)",
+		"value": "myr"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/mdv.svg",
+		"countryName": "Maldives",
+		"label": "Maldivian rufiyaa (MVR)",
+		"value": "mvr"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/mrt.svg",
+		"countryName": "Mauritania",
+		"label": "Mauritanian ouguiya (MRO)",
+		"value": "mro"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/mus.svg",
+		"countryName": "Mauritius",
+		"label": "Mauritian rupee (MUR)",
+		"value": "mur"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/mex.svg",
+		"countryName": "Mexico",
+		"label": "Mexican peso (MXN)",
+		"value": "mxn"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/mda.svg",
+		"countryName": "Moldova (Republic of)",
+		"label": "Moldovan leu (MDL)",
+		"value": "mdl"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/mng.svg",
+		"countryName": "Mongolia",
+		"label": "Mongolian tögrög (MNT)",
+		"value": "mnt"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/mar.svg",
+		"countryName": "Morocco",
+		"label": "Moroccan dirham (MAD)",
+		"value": "mad"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/moz.svg",
+		"countryName": "Mozambique",
+		"label": "Mozambican metical (MZN)",
+		"value": "mzn"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/mmr.svg",
+		"countryName": "Myanmar",
+		"label": "Burmese kyat (MMK)",
+		"value": "mmk"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/nam.svg",
+		"countryName": "Namibia",
+		"label": "Namibian dollar (NAD)",
+		"value": "nad"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/npl.svg",
+		"countryName": "Nepal",
+		"label": "Nepalese rupee (NPR)",
+		"value": "npr"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/nic.svg",
+		"countryName": "Nicaragua",
+		"label": "Nicaraguan córdoba (NIO)",
+		"value": "nio"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/nga.svg",
+		"countryName": "Nigeria",
+		"label": "Nigerian naira (NGN)",
+		"value": "ngn"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/omn.svg",
+		"countryName": "Oman",
+		"label": "Omani rial (OMR)",
+		"value": "omr"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/pak.svg",
+		"countryName": "Pakistan",
+		"label": "Pakistani rupee (PKR)",
+		"value": "pkr"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/pan.svg",
+		"countryName": "Panama",
+		"label": "Panamanian balboa (PAB)",
+		"value": "pab"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/png.svg",
+		"countryName": "Papua New Guinea",
+		"label": "Papua New Guinean kina (PGK)",
+		"value": "pgk"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/pry.svg",
+		"countryName": "Paraguay",
+		"label": "Paraguayan guaraní (PYG)",
+		"value": "pyg"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/per.svg",
+		"countryName": "Peru",
+		"label": "Peruvian sol (PEN)",
+		"value": "pen"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/phl.svg",
+		"countryName": "Philippines",
+		"label": "Philippine peso (PHP)",
+		"value": "php"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/pol.svg",
+		"countryName": "Poland",
+		"label": "Polish złoty (PLN)",
+		"value": "pln"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/qat.svg",
+		"countryName": "Qatar",
+		"label": "Qatari riyal (QAR)",
+		"value": "qar"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/rou.svg",
+		"countryName": "Romania",
+		"label": "Romanian leu (RON)",
+		"value": "ron"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/rus.svg",
+		"countryName": "Russian Federation",
+		"label": "Russian ruble (RUB)",
+		"value": "rub"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/rwa.svg",
+		"countryName": "Rwanda",
+		"label": "Rwandan franc (RWF)",
+		"value": "rwf"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/shn.svg",
+		"countryName": "Saint Helena, Ascension and Tristan da Cunha",
+		"label": "Saint Helena pound (SHP)",
+		"value": "shp"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/wsm.svg",
+		"countryName": "Samoa",
+		"label": "Samoan tālā (WST)",
+		"value": "wst"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/stp.svg",
+		"countryName": "Sao Tome and Principe",
+		"label": "São Tomé and Príncipe dobra (STD)",
+		"value": "std"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/sau.svg",
+		"countryName": "Saudi Arabia",
+		"label": "Saudi riyal (SAR)",
+		"value": "sar"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/srb.svg",
+		"countryName": "Serbia",
+		"label": "Serbian dinar (RSD)",
+		"value": "rsd"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/syc.svg",
+		"countryName": "Seychelles",
+		"label": "Seychellois rupee (SCR)",
+		"value": "scr"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/sle.svg",
+		"countryName": "Sierra Leone",
+		"label": "Sierra Leonean leone (SLL)",
+		"value": "sll"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/slb.svg",
+		"countryName": "Solomon Islands",
+		"label": "Solomon Islands dollar (SBD)",
+		"value": "sbd"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/som.svg",
+		"countryName": "Somalia",
+		"label": "Somali shilling (SOS)",
+		"value": "sos"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/ssd.svg",
+		"countryName": "South Sudan",
+		"label": "South Sudanese pound (SSP)",
+		"value": "ssp"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/lka.svg",
+		"countryName": "Sri Lanka",
+		"label": "Sri Lankan rupee (LKR)",
+		"value": "lkr"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/sdn.svg",
+		"countryName": "Sudan",
+		"label": "Sudanese pound (SDG)",
+		"value": "sdg"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/sur.svg",
+		"countryName": "Suriname",
+		"label": "Surinamese dollar (SRD)",
+		"value": "srd"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/swz.svg",
+		"countryName": "Swaziland",
+		"label": "Swazi lilangeni (SZL)",
+		"value": "szl"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/swe.svg",
+		"countryName": "Sweden",
+		"label": "Swedish krona (SEK)",
+		"value": "sek"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/syr.svg",
+		"countryName": "Syrian Arab Republic",
+		"label": "Syrian pound (SYP)",
+		"value": "syp"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/twn.svg",
+		"countryName": "Taiwan",
+		"label": "New Taiwan dollar (TWD)",
+		"value": "twd"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/tjk.svg",
+		"countryName": "Tajikistan",
+		"label": "Tajikistani somoni (TJS)",
+		"value": "tjs"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/tza.svg",
+		"countryName": "Tanzania, United Republic of",
+		"label": "Tanzanian shilling (TZS)",
+		"value": "tzs"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/tha.svg",
+		"countryName": "Thailand",
+		"label": "Thai baht (THB)",
+		"value": "thb"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/ton.svg",
+		"countryName": "Tonga",
+		"label": "Tongan paʻanga (TOP)",
+		"value": "top"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/tto.svg",
+		"countryName": "Trinidad and Tobago",
+		"label": "Trinidad and Tobago dollar (TTD)",
+		"value": "ttd"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/tun.svg",
+		"countryName": "Tunisia",
+		"label": "Tunisian dinar (TND)",
+		"value": "tnd"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/tur.svg",
+		"countryName": "Turkey",
+		"label": "Turkish lira (TRY)",
+		"value": "try"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/tkm.svg",
+		"countryName": "Turkmenistan",
+		"label": "Turkmenistan manat (TMT)",
+		"value": "tmt"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/tuv.svg",
+		"countryName": "Tuvalu",
+		"label": "Tuvaluan dollar (TVD[G])",
+		"value": "tvd[g]"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/uga.svg",
+		"countryName": "Uganda",
+		"label": "Ugandan shilling (UGX)",
+		"value": "ugx"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/ukr.svg",
+		"countryName": "Ukraine",
+		"label": "Ukrainian hryvnia (UAH)",
+		"value": "uah"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/are.svg",
+		"countryName": "United Arab Emirates",
+		"label": "United Arab Emirates dirham (AED)",
+		"value": "aed"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/ury.svg",
+		"countryName": "Uruguay",
+		"label": "Uruguayan peso (UYU)",
+		"value": "uyu"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/uzb.svg",
+		"countryName": "Uzbekistan",
+		"label": "Uzbekistani so'm (UZS)",
+		"value": "uzs"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/vut.svg",
+		"countryName": "Vanuatu",
+		"label": "Vanuatu vatu (VUV)",
+		"value": "vuv"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/ven.svg",
+		"countryName": "Venezuela (Bolivarian Republic of)",
+		"label": "Venezuelan bolívar (VEF)",
+		"value": "vef"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/vnm.svg",
+		"countryName": "Viet Nam",
+		"label": "Vietnamese đồng (VND)",
+		"value": "vnd"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/yem.svg",
+		"countryName": "Yemen",
+		"label": "Yemeni rial (YER)",
+		"value": "yer"
+	},
+	{
+		"countryFlag": "https://restcountries.eu/data/zmb.svg",
+		"countryName": "Zambia",
+		"label": "Zambian kwacha (ZMW)",
+		"value": "zmw"
+	}
+]
