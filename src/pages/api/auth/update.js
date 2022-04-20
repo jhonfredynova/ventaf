@@ -23,11 +23,8 @@ export default async function updateUser(req, res) {
 
 		// validate model
 		const modelData = {
-			username: req.body.username,
-			phone: req.body.phone,
-			displayName: req.body.displayName,
-			bio: req.body.bio,
-			website: req.body.website,
+			...modelDb,
+			...req.body,
 			updatedAt: Date.now(),
 		};
 		const errors = validateProfileInfo(modelData);

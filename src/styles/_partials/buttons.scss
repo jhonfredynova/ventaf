@@ -1,0 +1,27 @@
+.btn {
+	--btn-background-color: none;
+	--btn-text-color: none;
+
+	background: var(--btn-background-color);
+	border: none;
+	border-radius: var(--spacer);
+	color: var(--btn-text-color);
+	cursor: pointer;
+	padding: var(--spacer);
+	text-decoration: none;
+
+	&:disabled {
+		--btn-background-color: var(--color-secondary);
+		--btn-text-color: var(--color-text);
+	}
+
+	&.primary {
+		--btn-background-color: var(--color-primary);
+		--btn-text-color: var(--color-secondary);
+	}
+
+	&.secondary {
+		--btn-background-color: var(--color-secondary);
+		--btn-text-color: var(--color-text);
+	}
+}

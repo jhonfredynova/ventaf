@@ -1,17 +1,19 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { useSelector, useStore } from 'react-redux';
-import Link from 'next/link';
 import { useRouter } from 'next/router';
 import Image from 'next/image';
 import LoginMethods from './login-methods';
+import EditableInput from './editable-input';
 import { BREAKPOINTS } from '../../utils/style-utils';
-import { uploadProfilePhoto } from '../../store/actions/auth-actions';
+import { uploadProfilePhoto, updateData } from '../../store/actions/auth-actions';
 
 export default function ProfileInfo(props) {
 	const uploadInputPhoto = useRef(null);
 	const { translations, userProfile } = props;
 	const store = useStore();
+	const [isUpdatingProfile, setIsUpdatingProfile] = useState(false);
 	const [isUploadingPhoto, setIsUploadingPhoto] = useState(false);
+	const [profileErrors, setProfileErrors] = useState({});
 	const [profilePhotoUrl, setProfilePhotoUrl] = useState(userProfile.photoURL || '/anonymous.png');
 	const [uploadError, setUploadError] = useState('');
 	const { authData } = useSelector((state) => state.auth);
@@ -24,6 +26,19 @@ export default function ProfileInfo(props) {
 			setProfilePhotoUrl(`${authData.profile.photoURL}?${Date.now()}`);
 		}
 	}, [authData, userProfile]);
+
+	const onUpdateProfileData = async (userInfo) => {
+		try {
+			setIsUpdatingProfile(true);
+			setProfileErrors({});
+			await store.dispatch(updateData(userInfo));
+			setIsUpdatingProfile(false);
+		} catch (error) {
+			const { errors: serverErrors, code } = error?.response?.data || {};
+			setProfileErrors({ ...serverErrors, general: code });
+			setIsUpdatingProfile(false);
+		}
+	};
 
 	const onUploadPhoto = async (event) => {
 		try {
@@ -95,35 +110,38 @@ export default function ProfileInfo(props) {
 			</div>
 
 			<div className="details">
-				<h2>{userProfile.displayName || userProfile.username}</h2>
+				<EditableInput
+					isUpdating={isUpdatingProfile}
+					isProfileOwner={isProfileOwner}
+					elementTag="h2"
+					error={translations[profileErrors.displayName]}
+					inputType="textbox"
+					translations={translations}
+					value={userProfile.displayName}
+					onUpdate={(displayName) => onUpdateProfileData({ ...userProfile, displayName })}
+				/>
+				<EditableInput
+					isUpdating={isUpdatingProfile}
+					isProfileOwner={isProfileOwner}
+					elementTag="p"
+					error={translations[profileErrors.bio]}
+					inputType="textbox"
+					translations={translations}
+					placeholder={translations.enterDescriptionYourProfile}
+					value={userProfile.bio}
+					onUpdate={(bio) => onUpdateProfileData({ ...userProfile, bio })}
+				/>
 				{isProfileOwner && (
 					<div className="profile-options">
+						<p>{userProfile.email}</p>
 						<LoginMethods identities={identities} translations={translations} />
-						<Link href="/account/update-info" passHref>
-							<a href="passHref" className="btn-edit-profile">
-								{translations.editProfile}
-							</a>
-						</Link>
 					</div>
-				)}
-				{userProfile.bio && <p>{userProfile.bio}</p>}
-				{userProfile.isEmailPublic && <p>{userProfile.email}</p>}
-				{userProfile.website && (
-					<p>
-						<a href={userProfile.website} rel="noreferrer" target="_blank">
-							{userProfile.website}
-						</a>
-					</p>
 				)}
 			</div>
 
 			<style jsx>{`
 				.profile-info {
 					margin-bottom: calc(var(--spacer) * 3);
-
-					.error-msg {
-						color: var(--color-alert);
-					}
 
 					.navigation {
 						display: flex;
@@ -163,31 +181,11 @@ export default function ProfileInfo(props) {
 					.details {
 						text-align: center;
 
-						h2 {
-							margin: 0;
-							margin-bottom: var(--spacer);
-						}
-
-						p {
-							margin: 0;
-							margin-bottom: 4px;
-						}
-
 						.profile-options {
 							display: flex;
 							align-items: center;
 							justify-content: center;
 							margin-bottom: 8px;
-
-							.btn-edit-profile {
-								background: var(--color-secondary);
-								border: 1px solid var(--color-border);
-								border-radius: var(--spacer);
-								color: var(--color-text);
-								text-decoration: none;
-								cursor: pointer;
-								padding: var(--spacer);
-							}
 						}
 					}
 

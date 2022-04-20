@@ -1,24 +1,30 @@
 import { isUrl } from '../utils/validation-utils';
 
-export default modelData => {
+export default (modelData) => {
 	const errors = {};
+
+	if (!modelData.displayName?.trim()) {
+		errors.displayName = 'fieldRequired';
+	}
 
 	if (!modelData.username?.trim()) {
 		errors.username = 'fieldRequired';
 	}
 
-	if (!modelData?.phone?.prefix?.trim()) {
-		errors.phone = {
-			...errors.phone,
-			prefix: 'selectPhonePrefix'
-		};
-	}
+	if (modelData.phone) {
+		if (!modelData.phone?.prefix?.trim()) {
+			errors.phone = {
+				...errors.phone,
+				prefix: 'selectPhonePrefix',
+			};
+		}
 
-	if (!modelData?.phone?.number?.trim()) {
-		errors.phone = {
-			...errors.phone,
-			number: 'enterPhoneNumber'
-		};
+		if (!modelData.phone?.number?.trim()) {
+			errors.phone = {
+				...errors.phone,
+				number: 'enterPhoneNumber',
+			};
+		}
 	}
 
 	if (modelData.website && !isUrl(modelData.website)) {

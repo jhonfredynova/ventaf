@@ -1,6 +1,9 @@
 @import 'normalize.css/normalize.css';
-@import './_partials/fonts';
 @import './_partials/variables';
+@import './_partials/fonts';
+@import './_partials/buttons.scss';
+@import './_partials/inputs.scss';
+@import './_partials/messages.scss';
 
 html {
 	font-size: 62.5%;
