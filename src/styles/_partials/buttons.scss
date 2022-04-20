@@ -10,18 +10,19 @@
 	padding: var(--spacer);
 	text-decoration: none;
 
-	&:disabled {
-		--btn-background-color: var(--color-secondary);
-		--btn-text-color: var(--color-text);
-	}
-
 	&.primary {
 		--btn-background-color: var(--color-primary);
-		--btn-text-color: var(--color-secondary);
+		--btn-text-color: var(--color-text);
 	}
 
 	&.secondary {
 		--btn-background-color: var(--color-secondary);
 		--btn-text-color: var(--color-text);
+	}
+
+	&:disabled {
+		--btn-background-color: #e4e4e4;
+		--btn-text-color: black;
+		cursor: default;
 	}
 }
