@@ -60,7 +60,7 @@ export default function SearchBar(props) {
 	return (
 		<form className="search-bar" onSubmit={onSubmitSearch}>
 			{onClose && (
-				<button type="button" className="btn-back" title={translations.close} onClick={onClose}>
+				<button type="button" className="btn" title={translations.close} onClick={onClose}>
 					<i className="fas fa-arrow-left" />
 				</button>
 			)}
@@ -69,7 +69,7 @@ export default function SearchBar(props) {
 				ref={inputRef}
 				id={id}
 				type="text"
-				className="input-search"
+				className="input input-search"
 				placeholder={placeholder || translations.enterSearchTerm}
 				value={keyword}
 				onBlur={onInputBlur}
@@ -78,7 +78,7 @@ export default function SearchBar(props) {
 			/>
 
 			{keyword && (
-				<button type="button" title={translations.clean} className="btn-clean" onMouseDown={onClear}>
+				<button type="button" title={translations.clean} className="btn" onMouseDown={onClear}>
 					<i className="fas fa-times" />
 				</button>
 			)}
@@ -86,7 +86,7 @@ export default function SearchBar(props) {
 			{!hideSearchBtn && (
 				<button
 					type="submit"
-					className="btn-search"
+					className="btn"
 					title={translations.search}
 					onMouseDown={onSubmitSearch}
 				>
@@ -100,26 +100,8 @@ export default function SearchBar(props) {
 					flex-grow: 1;
 
 					.input-search {
-						background-color: var(--color-background);
-						color: var(--color-text);
 						flex-grow: 1;
-						border: 1px solid var(--color-border);
-						padding: var(--spacer);
 						width: 100%;
-
-						&::placeholder {
-							color: #999;
-						}
-					}
-
-					.btn-back,
-					.btn-clean,
-					.btn-search {
-						background: none;
-						border: none;
-						cursor: pointer;
-						color: var(--color-text);
-						padding: var(--spacer);
 					}
 				}
 			`}</style>

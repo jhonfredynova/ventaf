@@ -1,45 +1,45 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useRef } from 'react';
 
 export default function InputPlacesAutocomplete(props) {
 	const inputRef = useRef();
 	const { getInputProps, suggestions, getSuggestionItemProps } = props;
 	const { id, autofocus, className, error, placeholder, translations, searchValue, onBlur, onClear } =
 		props;
-
-	useEffect(() => {
-		if (autofocus) {
-			setTimeout(() => {
-				inputRef.current.focus();
-			}, 50);
-		}
-	}, [autofocus]);
+	const inputClassName = ['input']
+		.concat(error ? 'alert' : '')
+		.concat(className)
+		.join(' ');
 
 	return (
 		<div className="input-places-autocomplete">
 			<div className="icon-place">
 				<i className="fas fa-location-arrow" />
 			</div>
+
 			<input
 				{...getInputProps({
 					id,
-					className,
+					ref: inputRef,
+					class: inputClassName,
+					autofocus,
 					placeholder,
 					onBlur,
-					ref: inputRef,
 				})}
 			/>
+
 			{searchValue && (
-				<button className="btn-clear" type="button" title={translations.clean} onClick={onClear}>
+				<button className="btn alert" type="button" title={translations.clean} onClick={onClear}>
 					<i className="fas fa-times" />
 				</button>
 			)}
+
 			{suggestions.length > 0 && (
 				<ul className="list-suggestions" style={{ zIndex: 2, top: '40px' }}>
 					{suggestions.map((suggestion) => (
 						<li
 							key={suggestion.placeId}
 							{...getSuggestionItemProps(suggestion, {
-								className: suggestion.active ? 'active' : '',
+								class: suggestion.active ? 'active' : '',
 							})}
 						>
 							{suggestion.description}
@@ -47,6 +47,7 @@ export default function InputPlacesAutocomplete(props) {
 					))}
 				</ul>
 			)}
+
 			<style jsx>{`
 				.input-places-autocomplete {
 					display: flex;
@@ -63,20 +64,8 @@ export default function InputPlacesAutocomplete(props) {
 						min-width: 60px;
 					}
 
-					input {
-						border: 1px solid ${error ? 'var(--color-alert)' : 'var(--color-border)'};
-						background-color: var(--color-background);
-						color: var(--color-text);
-						padding: var(--spacer);
-						width: 100%;
-					}
-
-					.btn-clear {
-						background: var(--color-alert);
-						border: 1px solid var(--color-alert);
-						color: white;
-						cursor: pointer;
-						padding: var(--spacer);
+					:global(.input) {
+						flex-grow: 1;
 					}
 
 					.list-suggestions {
@@ -88,14 +77,14 @@ export default function InputPlacesAutocomplete(props) {
 						margin: 0;
 						padding: 0;
 
-						li {
+						:global(li) {
 							cursor: pointer;
-							padding: 10px;
+							padding: var(--spacer);
+						}
 
-							&:hover,
-							&.active {
-								background-color: var(--color-secondary);
-							}
+						:global(li:hover),
+						:global(li.active) {
+							background-color: var(--color-secondary);
 						}
 					}
 				}

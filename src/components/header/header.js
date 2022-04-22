@@ -87,7 +87,7 @@ export default function Header(props) {
 					<Link href="/post" passHref>
 						<a
 							href="passHref"
-							className="btn-post"
+							className="btn btn-post"
 							title={translations.sell}
 							onClick={onClickPost}
 						>
@@ -100,7 +100,7 @@ export default function Header(props) {
 						href={authLoaded && authData ? `/${authData?.profile?.username}` : '/login'}
 						passHref
 					>
-						<a href="passHref" className="btn-profile" title={translations.profile}>
+						<a href="passHref" className="btn btn-profile" title={translations.profile}>
 							{authLoaded && (
 								<Image
 									src={photoUrl.concat(`?${Date.now()}`)}
@@ -173,12 +173,6 @@ export default function Header(props) {
 							.btn-post {
 								display: flex;
 								align-items: center;
-								background: none;
-								border: none;
-								cursor: pointer;
-								color: var(--color-text);
-								padding: var(--spacer);
-								text-decoration: none;
 
 								.fas {
 									margin-right: 5px;
@@ -194,9 +188,8 @@ export default function Header(props) {
 							}
 
 							.btn-profile {
-								color: var(--color-text);
-								text-decoration: none;
 								flex-shrink: 0;
+								padding: 0;
 
 								i {
 									pointer-events: none;

@@ -3,8 +3,7 @@
 	--btn-text-color: none;
 
 	background: var(--btn-background-color);
-	border: none;
-	border-radius: var(--spacer);
+	border: 1px solid var(--btn-background-color);
 	color: var(--btn-text-color);
 	cursor: pointer;
 	padding: var(--spacer);
@@ -18,6 +17,11 @@
 	&.secondary {
 		--btn-background-color: var(--color-secondary);
 		--btn-text-color: var(--color-text);
+	}
+
+	&.alert {
+		--btn-background-color: var(--color-alert);
+		--btn-text-color: white;
 	}
 
 	&:disabled {
