@@ -13,7 +13,7 @@ export default function InputLocation(props) {
 		searchOptions,
 		value,
 		onBlur,
-		onChange
+		onChange,
 	} = props;
 	const [searchValue, setSearch] = useState(value.description || '');
 	const [locationId, setLocationId] = useState(value.placeId || '');
@@ -29,7 +29,7 @@ export default function InputLocation(props) {
 		}
 	};
 
-	const onChangePlace = newValue => {
+	const onChangePlace = (newValue) => {
 		setSearch(newValue);
 		setLocationId('');
 	};
@@ -57,7 +57,7 @@ export default function InputLocation(props) {
 			{({ getInputProps, suggestions, getSuggestionItemProps }) => (
 				<InputPlacesAutocomplete
 					id={id}
-					autofocus={autofocus}
+					autoFocus={autofocus}
 					className={className}
 					error={error}
 					placeholder={placeholder}

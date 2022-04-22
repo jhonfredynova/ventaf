@@ -3,7 +3,7 @@ import React, { useRef } from 'react';
 export default function InputPlacesAutocomplete(props) {
 	const inputRef = useRef();
 	const { getInputProps, suggestions, getSuggestionItemProps } = props;
-	const { id, autofocus, className, error, placeholder, translations, searchValue, onBlur, onClear } =
+	const { id, autoFocus, className, error, placeholder, translations, searchValue, onBlur, onClear } =
 		props;
 	const inputClassName = ['input']
 		.concat(error ? 'alert' : '')
@@ -17,11 +17,11 @@ export default function InputPlacesAutocomplete(props) {
 			</div>
 
 			<input
+				className={inputClassName}
 				{...getInputProps({
 					id,
 					ref: inputRef,
-					class: inputClassName,
-					autofocus,
+					autoFocus,
 					placeholder,
 					onBlur,
 				})}
@@ -38,9 +38,8 @@ export default function InputPlacesAutocomplete(props) {
 					{suggestions.map((suggestion) => (
 						<li
 							key={suggestion.placeId}
-							{...getSuggestionItemProps(suggestion, {
-								class: suggestion.active ? 'active' : '',
-							})}
+							className={suggestion.active ? 'active' : ''}
+							{...getSuggestionItemProps(suggestion, {})}
 						>
 							{suggestion.description}
 						</li>
@@ -64,7 +63,7 @@ export default function InputPlacesAutocomplete(props) {
 						min-width: 60px;
 					}
 
-					:global(.input) {
+					.input {
 						flex-grow: 1;
 					}
 
@@ -77,14 +76,14 @@ export default function InputPlacesAutocomplete(props) {
 						margin: 0;
 						padding: 0;
 
-						:global(li) {
+						li {
 							cursor: pointer;
 							padding: var(--spacer);
-						}
 
-						:global(li:hover),
-						:global(li.active) {
-							background-color: var(--color-secondary);
+							&.active,
+							&:hover {
+								background-color: var(--color-secondary);
+							}
 						}
 					}
 				}
