@@ -4,12 +4,15 @@ import currencies from '../assets/currencies.json';
 import languages from '../assets/languages.json';
 import translations from '../assets/translations.json';
 
-export const getCallingCodes = () => callingCodes;
+// eslint-disable-next-line import/prefer-default-export
+export const getConfig = (locale) => {
+	const configData = {
+		callingCodes,
+		currencies,
+		countries,
+		languages,
+		translations: translations[locale],
+	};
 
-export const getCountries = () => countries;
-
-export const getCurrencies = () => currencies;
-
-export const getLanguages = () => languages;
-
-export const getTranslations = (locale) => translations[locale];
+	return configData;
+};
