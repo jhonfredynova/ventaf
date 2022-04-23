@@ -1,5 +1,9 @@
-import axios from 'axios';
 import { getPosts as getPostsServ, deletePost as deletePostServ } from '../../services/posts-service';
+import {
+	getProfileByEmail as getProfileByEmailServ,
+	getProfileByUsername as getProfileByUsernameServ,
+	getProfileById as getProfileByIdServ,
+} from '../../services/profiles-service';
 
 export const PROFILE_TYPES = {
 	CLEAN: 'CLEAN_PROFILES',
@@ -41,21 +45,16 @@ export const getMoreProfileAds = (profileId, filters) => async (dispatch) => {
 };
 
 export const getProfileByEmail = (email) => async (dispatch) => {
-	const response = await axios.post(
-		`${process.env.NEXT_PUBLIC_SERVER_URL}/api/profiles/get-profile-by-email?email=${email}`
-	);
-	dispatch({ type: PROFILE_TYPES.GET_BY_EMAIL, payload: response.data });
-	return response.data;
+	const profileData = await getProfileByEmailServ(email);
+	dispatch({ type: PROFILE_TYPES.GET_BY_EMAIL, payload: profileData });
+	return profileData;
 };
 
 export const getProfileById = (userId) => async (dispatch, getState) => {
 	let profile = getState().profile.records[userId];
 
 	if (!profile) {
-		profile = await axios.post(
-			`${process.env.NEXT_PUBLIC_SERVER_URL}/api/profiles/get-profile-by-id?userId=${userId}`
-		);
-		profile = profile.data;
+		profile = await getProfileByIdServ(userId);
 	}
 
 	dispatch({ type: PROFILE_TYPES.GET_BY_ID, payload: profile });
@@ -68,10 +67,7 @@ export const getProfileByUsername = (username) => async (dispatch, getState) => 
 		.find((profileData) => profileData.username === username);
 
 	if (!profile) {
-		profile = await axios.post(
-			`${process.env.NEXT_PUBLIC_SERVER_URL}/api/profiles/get-profile-by-username?username=${username}`
-		);
-		profile = profile.data;
+		profile = await getProfileByUsernameServ(username);
 	}
 
 	dispatch({ type: PROFILE_TYPES.GET_BY_USERNAME, payload: profile });
