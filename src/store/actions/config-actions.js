@@ -5,7 +5,7 @@ import {
 	getTranslations,
 	getCountries,
 	getLanguages,
-} from '../../services/assets-service';
+} from '../../services/config-service';
 
 export const CONFIG_TYPES = {
 	CLEAN: 'CLEAN_CONFIG',

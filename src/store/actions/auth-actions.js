@@ -1,4 +1,4 @@
-import axios from 'axios';
+import { getAuth, updateAuthData, uploadAuthProfilePhoto, loginOAuth } from '../../services/auth-service';
 
 export const AUTH_TYPES = {
 	CLEAN: 'CLEAN_AUTH',
@@ -12,15 +12,15 @@ export const AUTH_TYPES = {
 };
 
 export const loginFacebook = (data) => async (dispatch) => {
-	const response = await axios.post(`${process.env.NEXT_PUBLIC_SERVER_URL}/api/auth/login-oauth`, data);
-	dispatch({ type: AUTH_TYPES.LOGIN_FACEBOOK, payload: response.data });
-	return response.data;
+	const authData = await loginOAuth(data);
+	dispatch({ type: AUTH_TYPES.LOGIN_FACEBOOK, payload: authData });
+	return authData;
 };
 
 export const loginGoogle = (data) => async (dispatch) => {
-	const response = await axios.post(`${process.env.NEXT_PUBLIC_SERVER_URL}/api/auth/login-oauth`, data);
-	dispatch({ type: AUTH_TYPES.LOGIN_GOOGLE, payload: response.data });
-	return response.data;
+	const authData = await loginOAuth(data);
+	dispatch({ type: AUTH_TYPES.LOGIN_GOOGLE, payload: authData });
+	return authData;
 };
 
 export const logout = () => async (dispatch) => {
@@ -30,8 +30,8 @@ export const logout = () => async (dispatch) => {
 
 export const me = () => async (dispatch) => {
 	try {
-		const response = await axios.get(`${process.env.NEXT_PUBLIC_SERVER_URL}/api/auth/me`);
-		dispatch({ type: AUTH_TYPES.ME, payload: response.data });
+		const authData = await getAuth();
+		dispatch({ type: AUTH_TYPES.ME, payload: authData });
 	} catch (e) {
 		localStorage.removeItem('token');
 		dispatch({ type: AUTH_TYPES.ME, payload: null });
@@ -44,14 +44,11 @@ export const setToken = (token) => async (dispatch) => {
 };
 
 export const updateData = (data) => async (dispatch) => {
-	const response = await axios.patch(
-		`${process.env.NEXT_PUBLIC_SERVER_URL}/api/auth/update?userId=${data.id}`,
-		data
-	);
-	dispatch({ type: AUTH_TYPES.UPDATE, payload: response.data });
+	const authData = await updateAuthData(data);
+	dispatch({ type: AUTH_TYPES.UPDATE, payload: authData });
 };
 
 export const uploadProfilePhoto = (data) => async (dispatch) => {
-	const response = await axios.post(`${process.env.NEXT_PUBLIC_SERVER_URL}/api/auth/upload-photo`, data);
-	dispatch({ type: AUTH_TYPES.UPDATE_PHOTO, payload: response.data });
+	const authData = await uploadAuthProfilePhoto(data);
+	dispatch({ type: AUTH_TYPES.UPDATE_PHOTO, payload: authData });
 };
