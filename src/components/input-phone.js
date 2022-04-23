@@ -33,7 +33,7 @@ export default function InputPhone(props) {
 			<div className="input-group">
 				<button
 					type="button"
-					className="btn-prefix"
+					className={`btn btn-secondary btn-prefix ${errors?.prefix ? 'alert' : ''}`}
 					title={translations.areaCode}
 					onClick={() => setModalOpen(!isModalOpen)}
 				>
@@ -53,6 +53,7 @@ export default function InputPhone(props) {
 				<input
 					id={id}
 					type="tel"
+					className={`input ${errors?.number ? 'alert' : ''}`}
 					placeholder={translations.phoneNumber}
 					value={phoneValue.number}
 					onChange={(event) =>
@@ -64,7 +65,7 @@ export default function InputPhone(props) {
 				/>
 				{phoneValue.number && (
 					<button
-						className="btn-clear"
+						className="btn btn-alert"
 						type="button"
 						title={translations.clean}
 						onClick={() => onChange({ ...phoneValue, number: '' })}
@@ -97,16 +98,6 @@ export default function InputPhone(props) {
 			<style jsx>
 				{`
 					.input-phone {
-						.error-msg {
-							color: var(--color-alert);
-							margin: 0;
-							margin-top: 5px;
-
-							&:empty {
-								margin-top: 0;
-							}
-						}
-
 						.input-group {
 							display: flex;
 							align-items: center;
@@ -117,39 +108,15 @@ export default function InputPhone(props) {
 								min-height: 40px;
 							}
 
-							input {
-								flex-grow: 1;
-								border: 1px solid
-									${errors?.number ? 'var(--color-alert)' : 'var(--color-border)'};
-								background-color: var(--color-background);
-								color: var(--color-text);
-								padding: var(--spacer);
-								width: 100%;
-							}
-
 							.btn-prefix {
-								background: var(--color-secondary);
-								cursor: pointer;
-								padding: var(--spacer);
-								border: 1px solid
-									${errors?.prefix ? 'var(--color-alert)' : 'var(--color-border)'};
-								border-right: ${errors?.prefix && !errors?.number
-									? '1px solid var(--color-alert)'
-									: '0'};
-								color: var(--color-text);
+								border-right: none;
 								flex-shrink: 0;
-								display: flex;
-								align-items: center;
-								justify-content: center;
 								min-width: 60px;
 							}
 
-							.btn-clear {
-								background: var(--color-alert);
-								border: 1px solid var(--color-alert);
-								cursor: pointer;
-								padding: var(--spacer);
-								color: white;
+							.input {
+								flex-grow: 1;
+								width: 100%;
 							}
 						}
 

@@ -80,7 +80,7 @@ export default function InputSuggestions(props) {
 				type="text"
 				ref={inputRef}
 				aria-required={required}
-				className={className}
+				className={'input '.concat(className)}
 				placeholder={selectedSuggestion ? selectedSuggestion.label : placeholder}
 				value={searchValue}
 				onChange={onInputChange}
@@ -99,7 +99,7 @@ export default function InputSuggestions(props) {
 					<li key={suggestion.label} className={suggestion.label === value ? 'active' : ''}>
 						<button
 							type="button"
-							className="btn-link"
+							className="btn btn-link"
 							onMouseDown={() => onClickSuggestion(suggestion)}
 						>
 							{customOption ? customOption(suggestion) : suggestion.label}
@@ -111,7 +111,7 @@ export default function InputSuggestions(props) {
 				<>
 					{selectedSuggestion && (
 						<button
-							className="btn-check"
+							className="btn btn-primary"
 							type="button"
 							title={translations.ok}
 							onClick={() => onClickSuggestion(selectedSuggestion)}
@@ -119,7 +119,12 @@ export default function InputSuggestions(props) {
 							<i className="fas fa-check" />
 						</button>
 					)}
-					<button className="btn-clear" type="button" title={translations.clean} onClick={onClear}>
+					<button
+						className="btn btn-alert"
+						type="button"
+						title={translations.clean}
+						onClick={onClear}
+					>
 						<i className="fas fa-times" />
 					</button>
 				</>
@@ -130,30 +135,8 @@ export default function InputSuggestions(props) {
 					align-items: center;
 					position: relative;
 
-					input {
+					.input {
 						flex-grow: 1;
-						border: 1px solid var(--color-border);
-						background-color: var(--color-background);
-						color: var(--color-text);
-						padding: var(--spacer);
-					}
-
-					.btn-clear,
-					.btn-check {
-						cursor: pointer;
-						padding: var(--spacer);
-					}
-
-					.btn-clear {
-						background: var(--color-alert);
-						border: 1px solid var(--color-alert);
-						color: white;
-					}
-
-					.btn-check {
-						background: var(--color-primary);
-						border: 1px solid var(--color-primary);
-						color: white;
 					}
 
 					ul {
@@ -169,8 +152,6 @@ export default function InputSuggestions(props) {
 						list-style: none;
 
 						li {
-							cursor: pointer;
-							padding: var(--spacer);
 							text-align: left;
 							padding: 0;
 							margin: 0;
@@ -184,11 +165,6 @@ export default function InputSuggestions(props) {
 							}
 
 							.btn-link {
-								background: none;
-								border: none;
-								cursor: pointer;
-								margin: 0;
-								padding: var(--spacer);
 								text-align: left;
 								width: 100%;
 							}

@@ -83,6 +83,7 @@ export default function FormPost(props) {
 					<textarea
 						id="description"
 						rows="6"
+						className={`input ${errors.description ? 'alert' : ''}`}
 						value={model.description}
 						aria-required="true"
 						placeholder={translations['whatAreYouSelling?']}
@@ -111,7 +112,12 @@ export default function FormPost(props) {
 					/>
 				</div>
 				<div className="buttons-wrapper">
-					<button type="button" className="btn-post" disabled={isPosting} onClick={onSavePost}>
+					<button
+						type="button"
+						className="btn btn-primary btn-post"
+						disabled={isPosting}
+						onClick={onSavePost}
+					>
 						{isPosting && (
 							<>
 								<i className="fas fa-spinner fa-spin" title={translations.saving} />
@@ -128,93 +134,68 @@ export default function FormPost(props) {
 				</div>
 			</form>
 			<style jsx>{`
-				.error-msg {
-					color: var(--color-alert);
-					margin: 0;
-					margin-top: 5px;
-
-					&:empty {
-						margin-top: 0;
-					}
-				}
 				.form-post {
 					display: grid;
 					grid-template-columns: 1fr;
 					column-gap: calc(var(--spacer) * 2);
 					row-gap: calc(var(--spacer) * 2);
-					margin-top: var(--spacer);
+					margin-bottom: 30px;
 
 					textarea {
-						border: 1px solid ${errors.description ? 'var(--color-alert)' : 'var(--color-border)'};
-						background-color: var(--color-background);
-						color: var(--color-text);
-						padding: var(--spacer);
 						height: 100px;
 						width: 100%;
-
-						+ .error-msg {
-							margin-top: 0;
-						}
-
-						@media screen and (min-width: ${BREAKPOINTS.DESKTOP}) {
-							height: 160px;
-						}
 					}
 
 					.buttons-wrapper {
-						grid-column: span 2;
-						margin-top: var(--spacer);
+						position: fixed;
+						left: 0;
+						right: 0;
+						bottom: 0;
+						z-index: 1;
 
 						.btn-post {
-							display: flex;
-							align-items: center;
-							justify-content: center;
-							background: var(--color-primary);
-							border: 1px solid var(--color-border);
-							border-radius: var(--spacer);
-							color: white;
-							cursor: pointer;
-							font-size: 2rem;
-							padding: var(--spacer);
-							margin-left: auto;
-
-							&:disabled {
-								background-color: var(--color-secondary);
-								color: var(--color-text);
-								cursor: default;
-							}
+							flex: 1;
+							margin: 0;
+							border-radius: 0;
+							width: 100%;
 
 							.fas {
 								margin-right: 6px;
 							}
 						}
 					}
+				}
 
-					@media screen and (min-width: ${BREAKPOINTS.DESKTOP}) {
-						grid-template-columns: 1fr 1fr;
+				@media screen and (min-width: ${BREAKPOINTS.TABLET}) {
+					.form-post {
+						margin-bottom: 0px;
 
-						.form-row-full {
-							grid-column: 1/3;
+						.buttons-wrapper {
+							position: static;
+							grid-column: span 2;
+							margin-top: var(--spacer);
+							justify-content: end;
+							text-align: end;
+
+							.btn-post {
+								font-size: 2rem;
+								margin-left: auto;
+								width: auto;
+							}
 						}
 					}
 				}
 
-				@media screen and (max-width: ${BREAKPOINTS.DESKTOP}) {
+				@media screen and (min-width: ${BREAKPOINTS.DESKTOP}) {
 					.form-post {
-						margin-bottom: 30px;
-						.buttons-wrapper {
-							position: fixed;
-							left: 0;
-							bottom: 0;
-							z-index: 2;
-							display: flex;
-							width: 100%;
+						grid-template-columns: 1fr 1fr;
 
-							.btn-post {
-								flex: 1;
-								margin: 0;
-								border-radius: 0;
-							}
+						textarea {
+							height: 160px;
+						}
+
+						.form-row-full {
+							grid-column: 1/3;
 						}
 					}
 				}

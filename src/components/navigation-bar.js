@@ -11,7 +11,7 @@ export default function NavigationBar(props) {
 				<div className="left-box">
 					<button
 						type="button"
-						className="btn-back"
+						className="btn"
 						title={translations.goBack}
 						onClick={() => router.back()}
 					>
@@ -33,14 +33,6 @@ export default function NavigationBar(props) {
 					.left-box {
 						flex-grow: 0;
 						text-align: left;
-
-						.btn-back {
-							background: none;
-							border: none;
-							color: var(--color-text);
-							cursor: pointer;
-							padding: var(--spacer);
-						}
 					}
 
 					.center-box {

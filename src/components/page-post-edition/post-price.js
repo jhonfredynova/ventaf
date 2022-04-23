@@ -38,7 +38,7 @@ export default function PostPrice(props) {
 			<div className="input-group">
 				<button
 					type="button"
-					className="btn-indicative"
+					className={`btn btn-secondary btn-indicative ${errors?.currency ? 'alert' : ''}`}
 					title={translations.currency}
 					onClick={() => setModalOpen(!isModalOpen)}
 				>
@@ -58,7 +58,7 @@ export default function PostPrice(props) {
 					id={id}
 					autocomplete="off"
 					inputType="tel"
-					className="input-price"
+					className={`input ${errors?.value ? 'alert' : ''}`}
 					decimalScale={2}
 					placeholder={translations.price}
 					value={priceValue.value}
@@ -66,7 +66,7 @@ export default function PostPrice(props) {
 				/>
 				{!['', undefined, null].includes(priceValue.value) && (
 					<button
-						className="btn-clear"
+						className="btn btn-alert"
 						type="button"
 						title={translations.clean}
 						onClick={onClearValue}
@@ -99,62 +99,29 @@ export default function PostPrice(props) {
 			</Lightbox>
 			<style jsx>{`
 				.post-price {
-					.error-msg {
-						color: var(--color-alert);
-						margin: 0;
-						margin-top: 5px;
-
-						&:empty {
-							margin-top: 0;
-						}
-					}
-
 					.input-group {
 						display: flex;
 						align-items: center;
 
-						:global(.input-price),
+						:global(.input),
 						.btn-clear,
 						.btn-indicative {
 							min-height: 40px;
 						}
 
-						:global(.input-price) {
+						:global(.input) {
 							flex-grow: 1;
-							border: 1px solid ${errors?.value ? 'var(--color-alert)' : 'var(--color-border)'};
-							background-color: var(--color-background);
-							color: var(--color-text);
-							padding: var(--spacer);
 							width: 100%;
 						}
 
 						.btn-indicative {
-							display: flex;
-							background: var(--color-secondary);
-							border: 1px solid
-								${errors?.currency ? 'var(--color-alert)' : 'var(--color-border)'};
-							border-right: ${errors?.currency && !errors?.value
-								? '1px solid var(--color-alert)'
-								: '0'};
-							color: var(--color-text);
-							cursor: pointer;
-							align-items: center;
-							justify-content: center;
-							padding: var(--spacer);
+							border-right: none;
 							text-transform: uppercase;
 							min-width: 60px;
 
 							img {
 								margin-right: 4px;
 							}
-						}
-
-						.btn-clear {
-							background: var(--color-alert);
-							border: none;
-							cursor: pointer;
-							color: white;
-							padding: var(--spacer);
 						}
 					}
 
@@ -165,6 +132,7 @@ export default function PostPrice(props) {
 						max-width: 100%;
 						width: 400px;
 						padding: var(--spacer);
+
 						h2 {
 							margin-bottom: var(--spacer);
 						}

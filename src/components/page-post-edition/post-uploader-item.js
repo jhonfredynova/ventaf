@@ -11,7 +11,7 @@ export default function PostUploaderItem(props) {
 		mediaIndex,
 		mediaData,
 		onUpload,
-		onDelete
+		onDelete,
 	} = props;
 	const [mediaUrl, setMediaUrl] = useState(null);
 
@@ -24,7 +24,7 @@ export default function PostUploaderItem(props) {
 
 		const mediaReader = new FileReader();
 		mediaReader.readAsDataURL(mediaData);
-		mediaReader.onload = readerEvent => {
+		mediaReader.onload = (readerEvent) => {
 			setMediaUrl(readerEvent.target.result);
 		};
 	}, [mediaData]);
@@ -34,15 +34,12 @@ export default function PostUploaderItem(props) {
 			{!mediaUrl && (
 				<button
 					type="button"
-					className="btn-placeholder"
+					className={`btn btn-secondary btn-placeholder ${error ? 'alert' : ''}`}
 					onClick={() => onUpload(mediaIndex)}
 				>
 					{isLoading && (
 						<div className="loader">
-							<i
-								className="fas fa-spinner fa-spin fa-2x"
-								title={translations.loading}
-							/>
+							<i className="fas fa-spinner fa-spin fa-2x" title={translations.loading} />
 						</div>
 					)}
 					{!isLoading && (
@@ -67,11 +64,7 @@ export default function PostUploaderItem(props) {
 							<i className="fas fa-times" />
 						</button>
 					)}
-					<Image
-						src={mediaUrl}
-						alt={`Media #${mediaIndex}`}
-						layout="fill"
-					/>
+					<Image src={mediaUrl} alt={`Media #${mediaIndex}`} layout="fill" />
 				</>
 			)}
 			<style jsx>{`
@@ -90,14 +83,7 @@ export default function PostUploaderItem(props) {
 
 					.btn-placeholder {
 						position: absolute;
-						background: var(--color-secondary);
-						border: 1px solid
-							${error
-								? 'var(--color-alert)'
-								: 'var(--color-border)'};
 						border-radius: 8px;
-						color: var(--color-text);
-						cursor: pointer;
 						left: 0;
 						top: 0;
 						padding: 0;
@@ -124,7 +110,7 @@ export default function PostUploaderItem(props) {
 						position: absolute;
 						top: -9px;
 						right: -9px;
-						color: #fd5068;
+						color: var(--color-alert);
 						z-index: 1;
 						font-size: 1.2rem;
 						line-height: 0;
@@ -145,8 +131,7 @@ export default function PostUploaderItem(props) {
 						left: 0px;
 						right: 0px;
 						bottom: 0px;
-						transition: transform 0.6s
-							cubic-bezier(0.11, 0, 0.31, 1);
+						transition: transform 0.6s cubic-bezier(0.11, 0, 0.31, 1);
 						pointer-events: none;
 					}
 

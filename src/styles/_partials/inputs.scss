@@ -5,10 +5,6 @@
 	padding: var(--spacer);
 	outline: none;
 
-	&.alert {
-		border-color: var(--color-alert);
-	}
-
 	&:active,
 	&:hover,
 	&:focus {
@@ -17,5 +13,9 @@
 
 	&::placeholder {
 		color: var(--color-border);
+	}
+
+	&.alert {
+		border-color: var(--color-alert);
 	}
 }

@@ -12,7 +12,7 @@ export default function InputPlacesAutocomplete(props) {
 
 	return (
 		<div className="input-places-autocomplete">
-			<div className="icon-place">
+			<div className="btn btn-secondary icon-place">
 				<i className="fas fa-location-arrow" />
 			</div>
 
@@ -28,7 +28,7 @@ export default function InputPlacesAutocomplete(props) {
 			/>
 
 			{searchValue && (
-				<button className="btn alert" type="button" title={translations.clean} onClick={onClear}>
+				<button className="btn btn-alert" type="button" title={translations.clean} onClick={onClear}>
 					<i className="fas fa-times" />
 				</button>
 			)}
@@ -54,12 +54,8 @@ export default function InputPlacesAutocomplete(props) {
 					position: relative;
 
 					.icon-place {
-						background-color: var(--color-secondary);
-						border: 1px solid var(--color-border);
 						border-right: 0;
-						color: var(--color-text);
-						padding: var(--spacer);
-						text-align: center;
+						cursor: default;
 						min-width: 60px;
 					}
 
