@@ -9,13 +9,10 @@
 
 	--container-width: 1200px;
 	--spacer: 10px;
-}
 
-@media (prefers-color-scheme: dark) {
-	:root {
+	.dark {
 		--color-background: #333;
 		--color-border: #ccc;
-		--color-primary: #065fd4;
 		--color-secondary: #555;
 		--color-alert: #ff6a8c;
 		--color-links: #00a9eb;

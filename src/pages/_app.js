@@ -14,6 +14,24 @@ export default function MyApp({ Component, pageProps }) {
 	const gPlacesKey = typeof window !== 'undefined' && window.gPlacesKey;
 
 	useEffect(() => {
+		const onChangeColorScheme = (event) => {
+			if (event.matches) {
+				document.body.classList.add('dark');
+			} else {
+				document.body.classList.remove('dark');
+			}
+		};
+
+		window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', onChangeColorScheme);
+
+		return () => {
+			window
+				.matchMedia('(prefers-color-scheme: dark)')
+				.removeEventListener('change', onChangeColorScheme);
+		};
+	}, []);
+
+	useEffect(() => {
 		ReactGA.initialize(window.gAnalyticsKey, {});
 		store.dispatch(setToken(localStorage.token)).finally(() => {
 			store.dispatch(me());
