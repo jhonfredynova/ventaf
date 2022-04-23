@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { setUrlSearch } from '../../utils/request-utils';
+import { getPosts as getPostsServ, deletePost as deletePostServ } from '../../services/posts-service';
 
 export const PROFILE_TYPES = {
 	CLEAN: 'CLEAN_PROFILES',
@@ -21,30 +21,23 @@ export const getProfileAds = (profileId, filters) => async (dispatch, getState) 
 	let profileAds = (profile && profile.ads) || [];
 
 	if (profileAds.length === 0) {
-		profileAds = await axios.get(
-			`${process.env.NEXT_PUBLIC_SERVER_URL}/api/posts/get-all${setUrlSearch({
-				...filters,
-				user: profileId,
-			})}`
-		);
-		profileAds = profileAds.data;
+		const profilePostFilters = { ...filters, user: profileId };
+		profileAds = await getPostsServ(profilePostFilters);
 	}
 
 	dispatch({ type: PROFILE_TYPES.GET_ALL_ADS, payload: { profileId, profileAds } });
 };
 
 export const getMoreProfileAds = (profileId, filters) => async (dispatch) => {
-	const posts = await axios.get(
-		`${process.env.NEXT_PUBLIC_SERVER_URL}/api/posts/get-all${setUrlSearch({
-			...filters,
-			user: profileId,
-		})}`
-	);
+	const profilePostFilters = { ...filters, user: profileId };
+	const posts = await getPostsServ(profilePostFilters);
+
 	dispatch({
 		type: PROFILE_TYPES.GET_MORE_ADS,
-		payload: { profileId, newAds: posts.data },
+		payload: { profileId, newAds: posts },
 	});
-	return posts.data;
+
+	return posts;
 };
 
 export const getProfileByEmail = (email) => async (dispatch) => {
@@ -86,6 +79,6 @@ export const getProfileByUsername = (username) => async (dispatch, getState) => 
 };
 
 export const deleteProfileAd = (profileId, postId) => async (dispatch) => {
-	await axios.delete(`${process.env.NEXT_PUBLIC_SERVER_URL}/api/posts/remove?postId=${postId}`);
+	await deletePostServ(postId);
 	dispatch({ type: PROFILE_TYPES.DELETE, payload: { profileId, postId } });
 };
