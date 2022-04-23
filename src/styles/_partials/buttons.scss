@@ -3,6 +3,7 @@
 	--btn-border-color: transparent;
 	--btn-text-color: var(--btn-text-color);
 
+	display: inline-block;
 	background: var(--btn-background-color);
 	border: 1px solid var(--btn-border-color);
 	color: var(--btn-text-color);

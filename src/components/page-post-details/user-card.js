@@ -14,24 +14,18 @@ export default function UserCard(props) {
 
 	return (
 		<Link href={`/${profile.username}`} passHref>
-			<a href="passHref" className="user-card">
+			<a href="passHref" className="btn btn-secondary btn-user-card">
 				<Image src={photoURL} width={35} height={35} alt={username} />
 				<span className="username">{username}</span>
 				<span className="arrow-right">
 					<i className="fas fa-arrow-right" />
 				</span>
 				<style jsx>{`
-					:global(.user-card) {
-						background: var(--color-secondary);
-						border: 1px solid var(--color-border);
-						border-radius: var(--spacer);
-						color: var(--color-text);
+					.btn-user-card {
 						margin-top: var(--spacer);
-						margin-bottom: var(--spacer);
-						padding: var(--spacer);
+						margin-bottom: 5px;
 						display: flex;
 						align-items: center;
-						text-decoration: none;
 
 						:global(img) {
 							border-radius: 50%;

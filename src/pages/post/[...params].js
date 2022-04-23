@@ -7,11 +7,7 @@ import ContactInfo from '../../components/page-post-details/contact-info';
 import BreadcumbBar from '../../components/page-post-details/breadcumb-bar';
 import SEO from '../../components/seo';
 import PostList from '../../components/post-list';
-import {
-	getRelatedContent,
-	getPostById,
-	updatePostViews
-} from '../../store/actions/post-actions';
+import { getRelatedContent, getPostById, updatePostViews } from '../../store/actions/post-actions';
 import { getProfileById } from '../../store/actions/profile-actions';
 import { BREAKPOINTS } from '../../utils/style-utils';
 import { initializeStore } from '../../store/store';
@@ -21,34 +17,29 @@ export const getServerSideProps = async ({ locale, query }) => {
 	const store = initializeStore();
 	const postId = query?.params?.[1];
 
-	await Promise.all([
-		store.dispatch(getConfiguration(locale)),
-		store.dispatch(getPostById(postId))
-	]);
+	await Promise.all([store.dispatch(getConfiguration(locale)), store.dispatch(getPostById(postId))]);
 
 	if (!store.getState().post.currentPost) {
 		return {
-			notFound: true
+			notFound: true,
 		};
 	}
 
 	return {
 		props: {
-			initialReduxState: store.getState()
-		}
+			initialReduxState: store.getState(),
+		},
 	};
 };
 
 export default function PostDetails() {
 	const store = useStore();
 	const [sharingUrl, setSharingUrl] = useState('');
-	const authData = useSelector(state => state.auth.authData);
-	const { callingCodes, currencies, translations } = useSelector(
-		state => state.config
-	);
-	const relatedContent = useSelector(state => state.post.relatedContent);
-	const profiles = useSelector(state => state.profile.records);
-	const postData = useSelector(state => state.post.currentPost);
+	const authData = useSelector((state) => state.auth.authData);
+	const { callingCodes, currencies, translations } = useSelector((state) => state.config);
+	const relatedContent = useSelector((state) => state.post.relatedContent);
+	const profiles = useSelector((state) => state.profile.records);
+	const postData = useSelector((state) => state.post.currentPost);
 	const userProfile = postData && profiles[postData.user];
 	const pageTitle = (postData?.description || '')
 		.trim()
@@ -68,24 +59,12 @@ export default function PostDetails() {
 
 	return (
 		<main>
-			<SEO
-				title={pageTitle}
-				description={postData.description}
-				imageUrl={postData.photos[0]}
-			/>
-			<BreadcumbBar
-				translations={translations}
-				pageTitle={pageTitle}
-				sharingUrl={sharingUrl}
-			/>
+			<SEO title={pageTitle} description={postData.description} imageUrl={postData.photos[0]} />
+			<BreadcumbBar translations={translations} pageTitle={pageTitle} sharingUrl={sharingUrl} />
 			<h1>{pageTitle}</h1>
 			<section className="ad-details">
 				<div className="photo-details">
-					<PhotoCarousel
-						autofocus
-						bgColor="black"
-						photos={postData.photos}
-					/>
+					<PhotoCarousel autofocus bgColor="black" photos={postData.photos} />
 				</div>
 				<div className="info">
 					<MainInfo
@@ -125,10 +104,6 @@ export default function PostDetails() {
 						display: none;
 						font-size: 2.4rem;
 						margin-bottom: var(--spacer);
-
-						@media screen and (min-width: ${BREAKPOINTS.TABLET}) {
-							font-size: 2.8rem;
-						}
 					}
 
 					.ad-details {
@@ -139,8 +114,24 @@ export default function PostDetails() {
 						.info {
 							margin-bottom: calc(var(--spacer) * 2);
 						}
+					}
 
-						@media screen and (min-width: ${BREAKPOINTS.DESKTOP}) {
+					.related-content {
+						margin-top: var(--spacer);
+
+						h2 {
+							margin-bottom: var(--spacer);
+						}
+					}
+
+					@media screen and (min-width: ${BREAKPOINTS.TABLET}) {
+						h1 {
+							font-size: 2.8rem;
+						}
+					}
+
+					@media screen and (min-width: ${BREAKPOINTS.DESKTOP}) {
+						.ad-details {
 							display: flex;
 
 							.photo-details {
@@ -152,14 +143,6 @@ export default function PostDetails() {
 								width: 300px;
 								margin-left: var(--spacer);
 							}
-						}
-					}
-
-					.related-content {
-						margin-top: var(--spacer);
-
-						h2 {
-							margin-bottom: var(--spacer);
 						}
 					}
 				}

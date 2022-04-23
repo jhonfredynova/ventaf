@@ -27,7 +27,7 @@ export default function BreadcumbBar(props) {
 		<section className="breadcumb-bar">
 			<button
 				type="button"
-				className="btn-back"
+				className="btn btn-back"
 				title={translations.backToList}
 				onClick={() => router.back()}
 			>
@@ -37,6 +37,7 @@ export default function BreadcumbBar(props) {
 				<li>{translations.share}:</li>
 				<li>
 					<a
+						className="btn"
 						href={`https://facebook.com/sharer.php?u=${sharingUrl}`}
 						rel="noreferrer"
 						target="_blank"
@@ -48,6 +49,7 @@ export default function BreadcumbBar(props) {
 				</li>
 				<li>
 					<a
+						className="btn"
 						href={`https://twitter.com/share?text=${sharingUrl}`}
 						rel="noreferrer"
 						target="_blank"
@@ -59,6 +61,7 @@ export default function BreadcumbBar(props) {
 				</li>
 				<li>
 					<a
+						className="btn"
 						href={`mailto:?subject=${pageTitle}&body=${sharingUrl}`}
 						rel="noreferrer"
 						target="_blank"
@@ -70,7 +73,7 @@ export default function BreadcumbBar(props) {
 				</li>
 				<li>
 					<button
-						className="btn-clipboard btn"
+						className="btn btn-clipboard"
 						type="button"
 						title={translations.shareViaUrl}
 						onClick={() => {
@@ -92,19 +95,9 @@ export default function BreadcumbBar(props) {
 					margin-bottom: var(--spacer);
 
 					.btn-back {
-						background: none;
-						border: none;
-						color: var(--color-text);
-						cursor: pointer;
-						padding: var(--spacer);
-
 						.text {
 							display: none;
 							margin-left: 5px;
-
-							@media screen and (min-width: ${BREAKPOINTS.TABLET}) {
-								display: inline-block;
-							}
 						}
 					}
 
@@ -117,26 +110,21 @@ export default function BreadcumbBar(props) {
 						li {
 							margin-right: 5px;
 
-							a {
-								color: var(--color-text);
-								text-decoration: none;
+							.btn {
+								padding: 5px;
 							}
 
 							.btn-clipboard {
-								background: none;
-								border: none;
-								color: var(--color-text);
-								cursor: pointer;
 								position: relative;
 
 								.copy-clipboard-success {
 									display: none;
 									position: absolute;
-									top: 35px;
+									top: 100%;
 									right: 0;
-									background: black;
+									background: var(--color-secondary);
 									opacity: 0.8;
-									color: white;
+									color: var(--color-text);
 									padding: 3px 8px;
 									width: max-content;
 									z-index: 2;
@@ -170,6 +158,14 @@ export default function BreadcumbBar(props) {
 										}
 									}
 								}
+							}
+						}
+					}
+
+					@media screen and (min-width: ${BREAKPOINTS.TABLET}) {
+						.btn-back {
+							.text {
+								display: inline-block;
 							}
 						}
 					}

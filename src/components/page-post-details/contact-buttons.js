@@ -6,22 +6,19 @@ export default function ContactButtons(props) {
 	const { seller } = postData;
 	const { phone } = seller;
 	const phoneNumber = `${phone.prefix}${phone.number}`;
-	const shareMessage = translations.userInterestedInAd.replace(
-		/{adUrl}/g,
-		sharingUrl
-	);
+	const shareMessage = translations.userInterestedInAd.replace(/{adUrl}/g, sharingUrl);
 	const onContactSeller = (action, value) => {
 		ReactGA.event({
 			category: 'Social',
 			action,
-			value
+			value,
 		});
 	};
 
 	return (
 		<div className="contact-buttons">
 			<a
-				className="link btn btn-call"
+				className="btn btn-call"
 				href={`tel://${phoneNumber}`}
 				rel="noreferrer"
 				target="_blank"
@@ -30,13 +27,11 @@ export default function ContactButtons(props) {
 				<i className="fas fa-phone fa-2x" /> {translations.call}
 			</a>
 			<a
-				className="link btn btn-whatsapp"
+				className="btn btn-whatsapp"
 				href={`https://wa.me/${phoneNumber}?text=${shareMessage}`}
 				rel="noreferrer"
 				target="_blank"
-				onClick={() =>
-					onContactSeller('Contact ad seller via whatsapp', 2)
-				}
+				onClick={() => onContactSeller('Contact ad seller via whatsapp', 2)}
 			>
 				<i className="fab fa-whatsapp fa-2x" /> Whatsapp
 			</a>
@@ -45,23 +40,21 @@ export default function ContactButtons(props) {
 					margin-top: 5px;
 					width: 100%;
 
-					.link {
+					.btn {
 						display: flex;
 						align-items: center;
-						border-radius: var(--spacer);
-						border: 1px solid var(--color-border);
 						text-align: left;
-						padding: var(--spacer);
 						margin-bottom: 5px;
-						text-decoration: none;
 
 						&.btn-call {
 							background-color: var(--color-primary);
+							border: 1px solid var(--color-primary);
 							color: white;
 						}
 
 						&.btn-whatsapp {
 							background-color: #36863e;
+							border: 1px solid #36863e;
 							color: white;
 						}
 
