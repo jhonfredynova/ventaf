@@ -4,7 +4,7 @@ import { isEmail } from '../../../utils/validation-utils';
 import { runMiddleware } from '../../../utils/api-utils';
 import cors from '../../../middlewares/cors';
 
-export default async function getUserProfileByEmail(req, res) {
+export default async function getProfileByEmail(req, res) {
 	try {
 		await runMiddleware(req, res, cors);
 
@@ -26,7 +26,7 @@ export default async function getUserProfileByEmail(req, res) {
 			return;
 		}
 
-		const userProfile = await getDbQuery(db, 'users', {
+		const userProfile = await getDbQuery(db, 'profiles', {
 			where: { email: { '==': modelData.email } },
 		});
 		const responseData = userProfile[0] ? getPublicProfileData(userProfile[0]) : null;

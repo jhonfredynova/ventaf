@@ -17,7 +17,7 @@ export default async function loginOAuth(req, res) {
 
 		// register user profile
 		const db = firebaseAdmin.firestore();
-		const userExist = await getDbDocument(db, 'users', uid);
+		const userExist = await getDbDocument(db, 'profiles', uid);
 
 		if (!userExist) {
 			// Init libraries and variables
@@ -55,7 +55,7 @@ export default async function loginOAuth(req, res) {
 				photoURL: responsePhotoUrl,
 			};
 			const userProfile = getUserProfileData(profileDataOAuth);
-			await db.collection('users').doc(uid).set(userProfile);
+			await db.collection('profiles').doc(uid).set(userProfile);
 			await firebaseAdmin.auth().setCustomUserClaims(uid, { registered: true });
 		}
 

@@ -3,7 +3,7 @@ import { getPublicProfileData } from '../../../utils/user-utils';
 import { runMiddleware } from '../../../utils/api-utils';
 import cors from '../../../middlewares/cors';
 
-export default async function getUserProfileById(req, res) {
+export default async function getProfileById(req, res) {
 	try {
 		await runMiddleware(req, res, cors);
 
@@ -11,7 +11,7 @@ export default async function getUserProfileById(req, res) {
 		const { getFirebaseAdmin } = require('../../../utils/api-utils');
 		const firebaseAdmin = getFirebaseAdmin();
 		const db = firebaseAdmin.firestore();
-		const modelDb = await getDbDocument(db, 'users', req.query.userId);
+		const modelDb = await getDbDocument(db, 'profiles', req.query.userId);
 
 		if (!modelDb) {
 			res.status(400).json({ code: 'recordNotFound' });

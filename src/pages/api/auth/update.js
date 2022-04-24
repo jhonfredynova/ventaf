@@ -14,7 +14,7 @@ export default async function updateUser(req, res) {
 		const firebaseAdmin = getFirebaseAdmin();
 		const db = firebaseAdmin.firestore();
 		const { userId } = req.query;
-		const modelDb = await getDbDocument(db, 'users', userId);
+		const modelDb = await getDbDocument(db, 'profiles', userId);
 
 		if (!modelDb) {
 			res.status(400).json({ code: 'record-not-found' });
@@ -30,7 +30,7 @@ export default async function updateUser(req, res) {
 		const errors = validateProfileInfo(modelData);
 
 		if (modelData.username) {
-			const queryUsername = await getDbQuery(db, 'users', {
+			const queryUsername = await getDbQuery(db, 'profiles', {
 				where: {
 					email: { '!=': modelDb.email },
 					username: { '==': modelData.username },
@@ -48,7 +48,7 @@ export default async function updateUser(req, res) {
 		}
 
 		// update user
-		await db.collection('users').doc(userId).update(modelData);
+		await db.collection('profiles').doc(userId).update(modelData);
 
 		const response = Object.assign(modelDb, modelData);
 		res.json(response);

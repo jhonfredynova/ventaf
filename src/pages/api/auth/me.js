@@ -13,7 +13,7 @@ export default async function me(req, res) {
 		const firebaseAdmin = getFirebaseAdmin();
 		const userData = req.user;
 		const db = firebaseAdmin.firestore();
-		const profile = await getDbDocument(db, 'users', userData.uid);
+		const profile = await getDbDocument(db, 'profiles', userData.uid);
 
 		// If user does not have a profile token is not valid
 		if (!profile) {

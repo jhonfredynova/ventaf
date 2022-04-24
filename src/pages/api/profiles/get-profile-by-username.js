@@ -12,7 +12,7 @@ export default async function getProfileByUsername(req, res) {
 		const firebaseAdmin = getFirebaseAdmin();
 		const db = firebaseAdmin.firestore();
 		const modelData = { username: req.query.username };
-		const userResults = await getDbQuery(db, 'users', {
+		const userResults = await getDbQuery(db, 'profiles', {
 			where: { username: { '==': modelData.username } },
 		});
 		const userData = userResults[0] || null;

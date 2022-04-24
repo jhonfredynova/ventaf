@@ -37,7 +37,7 @@ export default async function uploadPhoto(req, res) {
 		const uploadedFiles = await uploadToStorage(dataToUpload);
 		const photoURL = uploadedFiles[0];
 
-		await db.collection('users').doc(userId).update({ photoURL });
+		await db.collection('profiles').doc(userId).update({ photoURL });
 
 		res.json({ photoURL });
 	} catch (error) {

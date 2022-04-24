@@ -2,7 +2,7 @@ import { getDbQuery } from '../../../utils/database-utils';
 import { runMiddleware } from '../../../utils/api-utils';
 import cors from '../../../middlewares/cors';
 
-export default async function getAllUsers(req, res) {
+export default async function getAllProfiles(req, res) {
 	try {
 		await runMiddleware(req, res, cors);
 
@@ -20,7 +20,7 @@ export default async function getAllUsers(req, res) {
 				...(req.query.plan && { plan: { '==': req.query.plan } }),
 			},
 		};
-		const response = await getDbQuery(db, 'users', userQuery);
+		const response = await getDbQuery(db, 'profiles', userQuery);
 
 		res.json(response);
 	} catch (error) {
