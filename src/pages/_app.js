@@ -3,7 +3,6 @@ import React, { useEffect } from 'react';
 import ReactGA from 'react-ga';
 import { Provider } from 'react-redux';
 import { useRouter } from 'next/router';
-import Script from 'next/script';
 import Layout from '../components/layout';
 import { initStore } from '../store/store';
 import { me, setToken } from '../store/actions/auth-actions';
@@ -12,7 +11,6 @@ import { getConfig } from '../services/config-service';
 export default function MyApp({ Component, pageProps }) {
 	const router = useRouter();
 	const { locale } = router;
-	const gPlacesKey = typeof window !== 'undefined' && window.gPlacesKey;
 	const config = getConfig(locale);
 	const store = initStore({ config });
 
@@ -52,9 +50,6 @@ export default function MyApp({ Component, pageProps }) {
 			<Layout>
 				<Component {...pageProps} />
 			</Layout>
-			<Script
-				src={`https://maps.googleapis.com/maps/api/js?key=${gPlacesKey}&libraries=places&callback=gPlacesCb`}
-			/>
 		</Provider>
 	);
 }

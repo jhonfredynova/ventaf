@@ -1,4 +1,5 @@
 import React from 'react';
+import Script from 'next/script';
 import InputLocation from '../input-location/input-location';
 import InputPhone from '../input-phone';
 import PostPrice from './post-price';
@@ -18,10 +19,12 @@ export default function FormPost(props) {
 		onChangeModel,
 		onSavePost,
 	} = props;
+	const gPlacesKey = typeof window !== 'undefined' && window.gPlacesKey;
 
 	return (
 		<>
 			{errors.general && <p className="error-msg">{errors.general}</p>}
+
 			<form className="form-post" onSubmit={onSavePost}>
 				<div className="form-row-full">
 					<label className="sr-only" htmlFor="city">
@@ -133,6 +136,11 @@ export default function FormPost(props) {
 					</button>
 				</div>
 			</form>
+
+			<Script
+				src={`https://maps.googleapis.com/maps/api/js?key=${gPlacesKey}&libraries=places&callback=gPlacesCb`}
+			/>
+
 			<style jsx>{`
 				.form-post {
 					display: grid;
