@@ -3,17 +3,17 @@ import { useSelector, useStore } from 'react-redux';
 import { useRouter } from 'next/router';
 import Image from 'next/image';
 import LoginMethods from './login-methods';
-import EditableInput from './editable-input';
+// import EditableInput from './editable-input';
 import { BREAKPOINTS } from '../../utils/style-utils';
-import { uploadProfilePhoto, updateData } from '../../store/actions/auth-actions';
+import { uploadProfilePhoto } from '../../store/actions/auth-actions';
 
 export default function ProfileInfo(props) {
 	const uploadInputPhoto = useRef(null);
 	const { translations, userProfile } = props;
 	const store = useStore();
-	const [isUpdatingProfile, setIsUpdatingProfile] = useState(false);
+	// const [isUpdatingProfile, setIsUpdatingProfile] = useState(false);
 	const [isUploadingPhoto, setIsUploadingPhoto] = useState(false);
-	const [profileErrors, setProfileErrors] = useState({});
+	// const [profileErrors, setProfileErrors] = useState({});
 	const [profilePhotoUrl, setProfilePhotoUrl] = useState(userProfile.photoURL || '/anonymous.png');
 	const [uploadError, setUploadError] = useState('');
 	const { authData } = useSelector((state) => state.auth);
@@ -27,6 +27,7 @@ export default function ProfileInfo(props) {
 		}
 	}, [authData, userProfile]);
 
+	/*
 	const onUpdateProfileData = async (userInfo) => {
 		try {
 			setIsUpdatingProfile(true);
@@ -39,6 +40,7 @@ export default function ProfileInfo(props) {
 			setIsUpdatingProfile(false);
 		}
 	};
+	*/
 
 	const onUploadPhoto = async (event) => {
 		try {
@@ -72,6 +74,7 @@ export default function ProfileInfo(props) {
 					<i className="fas fa-arrow-left" />
 				</button>
 				<input ref={uploadInputPhoto} type="file" hidden onChange={onUploadPhoto} />
+
 				{isProfileOwner && (
 					<button
 						type="button"
@@ -96,6 +99,7 @@ export default function ProfileInfo(props) {
 						{uploadError && <p className="error-msg">{uploadError}</p>}
 					</button>
 				)}
+
 				{!isProfileOwner && (
 					<div className="profile-img-wrapper">
 						<Image
@@ -110,6 +114,7 @@ export default function ProfileInfo(props) {
 			</div>
 
 			<div className="details">
+				{/*
 				<EditableInput
 					isUpdating={isUpdatingProfile}
 					isProfileOwner={isProfileOwner}
@@ -131,9 +136,14 @@ export default function ProfileInfo(props) {
 					value={userProfile.bio}
 					onUpdate={(bio) => onUpdateProfileData({ ...userProfile, bio })}
 				/>
+				*/}
+
+				{userProfile.displayName && <h2>{userProfile.displayName}</h2>}
+				{userProfile.bio && <p>{userProfile.bio}</p>}
+				{isProfileOwner && userProfile.email && <p>{userProfile.email}</p>}
+
 				{isProfileOwner && (
 					<div className="profile-options">
-						<p>{userProfile.email}</p>
 						<LoginMethods identities={identities} translations={translations} />
 					</div>
 				)}
@@ -180,6 +190,12 @@ export default function ProfileInfo(props) {
 
 					.details {
 						text-align: center;
+
+						h2,
+						p {
+							margin: 0;
+							margin-bottom: 5px;
+						}
 
 						.profile-options {
 							display: flex;
