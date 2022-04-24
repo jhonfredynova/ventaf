@@ -4,8 +4,8 @@ export default function PrivacyEn() {
 	return (
 		<>
 			<p>
-				Your privacy is important to us. It is the policy of Construction and Technology SAS respects
-				your privacy regarding any information we may collect from you on our site web,&nbsp;
+				Your privacy is important to us. It is the policy of Ventaf respects your privacy regarding
+				any information we may collect from you on our site web,&nbsp;
 				<a href="https://ventaf.com" rel="noopener noreferrer" target="_blank">
 					https://ventaf.com
 				</a>{' '}

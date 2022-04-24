@@ -28,8 +28,7 @@ export default function TermsEn() {
 					non-commercial);
 				</li>
 				<li>
-					Attempt to decompile or reverse engineer any software contained on the website of
-					Construction and Technology SAS.
+					Attempt to decompile or reverse engineer any software contained on the website of Ventaf.
 				</li>
 				<li>Remove any copyright or other proprietary notices from the materials</li>
 				<li>
@@ -62,27 +61,24 @@ export default function TermsEn() {
 			<p>
 				Under no circumstances shall Ventaf or its suppliers be liable for any damage (including,
 				without limitation, damages for loss of data or profits, or due to interruption of the
-				business) arising out of the use or inability to use the materials on Construction{`'`}s
-				website and Tecnologia SAS, even if Ventaf or an authorized representative of Construccion y
-				Tecnologia Tecnologia SAS has been notified orally or in writing of the possibility of such
-				damages. Because Some jurisdictions do not allow limitations on implied warranties, or
-				limitations of liability for consequential or incidental damages, these limitations may not
-				apply to you.
+				business) arising out of the use or inability to use the materials on Ventaf website, even if
+				Ventaf or an authorized representative of Ventaf has been notified orally or in writing of the
+				possibility of such damages. Because Some jurisdictions do not allow limitations on implied
+				warranties, or limitations of liability for consequential or incidental damages, these
+				limitations may not apply to you.
 			</p>
 			<h3>5. Material precision</h3>
 			<p>
 				The materials appearing on Ventaf{`'`}s website may include errors. technical, typographical
 				or photographic. v does not warrant that any of the materials on its website are accurate,
 				complete or current. Ventaf may make changes to the materials content on your website at any
-				time without notice. However, Construction and Technology SAS makes no commitment to update
-				the materials.
+				time without notice. However, Ventaf makes no commitment to update the materials.
 			</p>
 			<h3>6. Links</h3>
 			<p>
 				Ventaf has not reviewed all of the sites linked to its website and is not responsible for the
-				content of any of them. The inclusion of any link does not imply endorsement by Construction
-				and Technology SAS of the site. Use of any of these linked websites is at your own risk. and
-				user risk.
+				content of any of them. The inclusion of any link does not imply endorsement by Ventaf. Use of
+				any of these linked websites is at your own risk. and user risk.
 			</p>
 			<h3>7. Modifications</h3>
 			<p>

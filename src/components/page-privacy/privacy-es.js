@@ -4,9 +4,8 @@ export default function PrivacyEs() {
 	return (
 		<>
 			<p>
-				Su privacidad es importante para nosotros. Es política de Construccion y Tecnologia SAS
-				respetar su privacidad con respecto a cualquier información que podamos recopilar de usted en
-				nuestro sitio web,&nbsp;
+				Su privacidad es importante para nosotros. Es política de Ventaf respetar su privacidad con
+				respecto a cualquier información que podamos recopilar de usted en nuestro sitio web,&nbsp;
 				<a href="https://ventaf.com" rel="noopener noreferrer" target="_blank">
 					https://ventaf.com
 				</a>{' '}
