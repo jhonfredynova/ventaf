@@ -50,9 +50,7 @@ export default function Theme() {
 
 				<div className="elements">
 					<input id="checkbox-input" type="checkbox" />
-					<label htmlFor="checkbox-input">Checkbox</label>
 					<input id="radio-input" type="radio" />
-					<label htmlFor="radio-input">Radio Button</label>
 				</div>
 			</section>
 
@@ -86,7 +84,7 @@ export default function Theme() {
 						color: var(--color-text);
 						border: 1px solid var(--color-border);
 						border-radius: var(--spacer);
-						
+
 						margin: calc(var(--spacer) * 2) 0;
 						padding: var(--spacer);
 
