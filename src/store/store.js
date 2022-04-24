@@ -7,13 +7,11 @@ import thunkMiddleware from './middlewares/thunk-middleware';
 import appReducer from './reducers/app-reducer';
 import authReducer from './reducers/auth-reducer';
 import configReducer from './reducers/config-reducer';
-import postReducer from './reducers/post-reducer';
 
 const reducers = combineReducers({
 	app: appReducer,
 	auth: authReducer,
 	config: configReducer,
-	post: postReducer,
 });
 
 const middlewares = composeWithDevTools(applyMiddleware(requestMiddleware, thunkMiddleware));

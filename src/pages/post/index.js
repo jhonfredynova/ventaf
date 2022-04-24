@@ -1,14 +1,13 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { useSelector, useStore } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { useRouter } from 'next/router';
 import SEO from '../../components/seo';
 import NavigationBar from '../../components/navigation-bar';
 import FormPost from '../../components/page-post-edition/form-post';
-import { createPost } from '../../store/actions/post-actions';
+import { createPost } from '../../services/posts-service';
 
 export default function NewPost() {
 	const router = useRouter();
-	const store = useStore();
 	const changedData = useRef(false);
 	const [isPosting, setIsPosting] = useState(false);
 	const [errors, setErrors] = useState(false);
@@ -59,7 +58,7 @@ export default function NewPost() {
 			const formData = new FormData();
 			formData.append('data', JSON.stringify(postInfo));
 			photos.forEach((file) => formData.append('photos', file));
-			await store.dispatch(createPost(formData));
+			await createPost(formData);
 
 			// redirecting to the user ads
 			setIsPosting(false);
