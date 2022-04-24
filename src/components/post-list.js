@@ -36,6 +36,7 @@ export default function HomeContents(props) {
 			setIsDeletingPost(false);
 			setPostToDelete(null);
 			setShowModalDeleteAd(false);
+			router.reload();
 		} catch (error) {
 			const { code } = error?.response?.data || {};
 			setMessageDeleteError(translations[code]);
