@@ -105,8 +105,9 @@ export default function Header(props) {
 								<Image
 									src={photoUrl.concat(`?${Date.now()}`)}
 									alt={translations.profile}
-									width={40}
-									height={40}
+									layout="fixed"
+									width={35}
+									height={35}
 								/>
 							)}
 							{!authLoaded && (

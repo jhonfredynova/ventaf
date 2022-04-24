@@ -6,7 +6,7 @@ export default function Logo(props) {
 
 	return (
 		<div className="logo">
-			<Image src="/logo.png" alt={translations.slogan} width={35} height={35} />{' '}
+			<Image src="/logo.png" alt={translations.slogan} layout="fixed" width={35} height={35} />{' '}
 			<span className="text">Ventaf</span>
 			<style jsx>{`
 				.logo {
