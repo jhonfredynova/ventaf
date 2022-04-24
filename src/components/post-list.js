@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { useStore } from 'react-redux';
 import { useRouter } from 'next/router';
 import PostTile from './post-tile';
 import Lightbox from './lightbox';
@@ -7,25 +6,13 @@ import InfiniteScroll from './infinite-scroll';
 import NoResults from './no-results';
 import PostEditionBar from './post-edition-bar';
 import { BREAKPOINTS } from '../utils/style-utils';
-import {
-	getProfileAds,
-	deleteProfileAd,
-} from '../store/actions/profile-actions';
+import { deletePost } from '../services/posts-service';
 import ConfirmationModal from './modals/confirmation-modal';
 import AlertModal from './modals/alert-modal';
 
 export default function HomeContents(props) {
-	const {
-		isLoading,
-		hasMoreData,
-		authData,
-		translations,
-		posts,
-		showEditBtns,
-		onLoadMore,
-	} = props;
+	const { isLoading, hasMoreData, authData, translations, posts, showEditBtns, onLoadMore } = props;
 	const router = useRouter();
-	const store = useStore();
 	const [isDeletingPost, setIsDeletingPost] = useState(false);
 	const [messageDeleteError, setMessageDeleteError] = useState('');
 	const [postToDelete, setPostToDelete] = useState(null);
@@ -45,10 +32,7 @@ export default function HomeContents(props) {
 	const onDelete = async () => {
 		try {
 			setIsDeletingPost(true);
-			await store.dispatch(
-				deleteProfileAd(postToDelete.user, postToDelete.id)
-			);
-			store.dispatch(getProfileAds(postToDelete.user, {}));
+			await deletePost(postToDelete.id);
 			setIsDeletingPost(false);
 			setPostToDelete(null);
 			setShowModalDeleteAd(false);
@@ -65,16 +49,9 @@ export default function HomeContents(props) {
 	return (
 		<>
 			{!isLoading && posts.length === 0 && (
-				<NoResults
-					message={getDefaultNoResultMsg(router.pathname)}
-					translations={translations}
-				/>
+				<NoResults message={getDefaultNoResultMsg(router.pathname)} translations={translations} />
 			)}
-			<InfiniteScroll
-				isLoading={isLoading}
-				hasMoreData={hasMoreData}
-				onLoadMore={onLoadMore}
-			>
+			<InfiniteScroll isLoading={isLoading} hasMoreData={hasMoreData} onLoadMore={onLoadMore}>
 				<section className="posts-section">
 					{posts.map((post) => (
 						<div key={post.id} className="post-wrapper">
@@ -83,30 +60,19 @@ export default function HomeContents(props) {
 									isLoading={isLoading}
 									translations={translations}
 									data={post}
-									onEdit={(postData) =>
-										router.push(
-											`/post/edit?postId=${postData.id}`
-										)
-									}
+									onEdit={(postData) => router.push(`/post/edit?postId=${postData.id}`)}
 									onDelete={(postData) => {
 										setPostToDelete(postData);
 										setShowModalDeleteAd(true);
 									}}
 								/>
 							)}
-							<PostTile
-								isLoading={isLoading}
-								translations={translations}
-								data={post}
-							/>
+							<PostTile isLoading={isLoading} translations={translations} data={post} />
 						</div>
 					))}
 				</section>
 			</InfiniteScroll>
-			<Lightbox
-				isOpen={showModalDeleteAd}
-				onToggle={() => setShowModalDeleteAd(!showModalDeleteAd)}
-			>
+			<Lightbox isOpen={showModalDeleteAd} onToggle={() => setShowModalDeleteAd(!showModalDeleteAd)}>
 				<ConfirmationModal
 					isLoading={isDeletingPost}
 					title={translations.deleteAd}
@@ -124,9 +90,7 @@ export default function HomeContents(props) {
 					title={translations.error}
 					message={messageDeleteError}
 					translations={translations}
-					onClose={() =>
-						setShowModalDeleteError(!showModalDeleteError)
-					}
+					onClose={() => setShowModalDeleteError(!showModalDeleteError)}
 				/>
 			</Lightbox>
 			<style jsx>{`

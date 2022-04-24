@@ -1,24 +1,23 @@
 import React, { useState } from 'react';
-import { useStore } from 'react-redux';
-import { getMoreProfileAds } from '../../store/actions/profile-actions';
+import { getPosts } from '../../services/posts-service';
 import PostList from '../post-list';
 
 export default function ProfileContents(props) {
 	const { authData, translations, posts, userProfile } = props;
-	const store = useStore();
 	const [isLoadingMore, setIsLoadingMore] = useState(false);
-	const [isThereMoreContents, setIsThereMoreContents] = useState(
-		posts.length > 0
-	);
+	const [isThereMoreContents, setIsThereMoreContents] = useState(posts.length > 0);
+	const [profilePosts, setProfilePosts] = useState(posts);
 
 	const onLoadMore = async () => {
 		setIsLoadingMore(true);
-		const lastPostDate = posts[posts.length - 1].createdAt;
-		const newContents = await store.dispatch(
-			getMoreProfileAds(userProfile.id, { olderThan: lastPostDate })
-		);
-		setIsThereMoreContents(newContents.length > 0);
-		setIsLoadingMore(false);
+		const lastPostDate = profilePosts[profilePosts.length - 1].createdAt;
+		const postsFilters = { user: userProfile.id, olderThan: lastPostDate };
+
+		getPosts(postsFilters).then((newPosts) => {
+			setProfilePosts(profilePosts.concat(newPosts));
+			setIsThereMoreContents(newPosts.length > 0);
+			setIsLoadingMore(false);
+		});
 	};
 
 	return (
@@ -27,7 +26,7 @@ export default function ProfileContents(props) {
 			hasMoreData={isThereMoreContents}
 			authData={authData}
 			translations={translations}
-			posts={posts}
+			posts={profilePosts}
 			showEditBtns
 			onLoadMore={onLoadMore}
 		/>

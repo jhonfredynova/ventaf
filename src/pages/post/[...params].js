@@ -9,7 +9,7 @@ import SEO from '../../components/seo';
 import PostList from '../../components/post-list';
 import { getPostById } from '../../services/posts-service';
 import { getRelatedContent, updatePostViews } from '../../store/actions/post-actions';
-import { getProfileById } from '../../store/actions/profile-actions';
+import { getProfileById } from '../../services/profiles-service';
 import { BREAKPOINTS } from '../../utils/style-utils';
 
 export const getServerSideProps = async ({ query }) => {
@@ -33,11 +33,10 @@ export default function PostDetails(props) {
 	const { postData } = props;
 	const store = useStore();
 	const [sharingUrl, setSharingUrl] = useState('');
+	const [profile, setProfile] = useState(null);
 	const authData = useSelector((state) => state.auth.authData);
 	const { callingCodes, currencies, translations } = useSelector((state) => state.config);
 	const relatedContent = useSelector((state) => state.post.relatedContent);
-	const profiles = useSelector((state) => state.profile.records);
-	const userProfile = postData && profiles[postData.user];
 	const pageTitle = (postData?.description || '')
 		.trim()
 		.substring(0, 80)
@@ -45,7 +44,7 @@ export default function PostDetails(props) {
 		.concat(postData?.location?.description);
 
 	useEffect(() => {
-		store.dispatch(getProfileById(postData.user));
+		getProfileById(postData.user).then(setProfile);
 		store.dispatch(updatePostViews(postData.id));
 		setSharingUrl(window.location.href);
 
@@ -68,7 +67,7 @@ export default function PostDetails(props) {
 						postData={postData}
 						currencies={currencies}
 						translations={translations}
-						userProfile={userProfile}
+						userProfile={profile}
 					/>
 					<ContactInfo
 						postData={postData}
