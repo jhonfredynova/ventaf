@@ -7,19 +7,16 @@ import ContactInfo from '../../components/page-post-details/contact-info';
 import BreadcumbBar from '../../components/page-post-details/breadcumb-bar';
 import SEO from '../../components/seo';
 import PostList from '../../components/post-list';
-import { getRelatedContent, getPostById, updatePostViews } from '../../store/actions/post-actions';
+import { getPostById } from '../../services/posts-service';
+import { getRelatedContent, updatePostViews } from '../../store/actions/post-actions';
 import { getProfileById } from '../../store/actions/profile-actions';
 import { BREAKPOINTS } from '../../utils/style-utils';
-import { initializeStore } from '../../store/store';
-import { getConfiguration } from '../../store/actions/config-actions';
 
-export const getServerSideProps = async ({ locale, query }) => {
-	const store = initializeStore();
+export const getServerSideProps = async ({ query }) => {
 	const postId = query?.params?.[1];
+	const postData = await getPostById(postId);
 
-	await Promise.all([store.dispatch(getConfiguration(locale)), store.dispatch(getPostById(postId))]);
-
-	if (!store.getState().post.currentPost) {
+	if (!postData) {
 		return {
 			notFound: true,
 		};
@@ -27,19 +24,19 @@ export const getServerSideProps = async ({ locale, query }) => {
 
 	return {
 		props: {
-			initialReduxState: store.getState(),
+			postData,
 		},
 	};
 };
 
-export default function PostDetails() {
+export default function PostDetails(props) {
+	const { postData } = props;
 	const store = useStore();
 	const [sharingUrl, setSharingUrl] = useState('');
 	const authData = useSelector((state) => state.auth.authData);
 	const { callingCodes, currencies, translations } = useSelector((state) => state.config);
 	const relatedContent = useSelector((state) => state.post.relatedContent);
 	const profiles = useSelector((state) => state.profile.records);
-	const postData = useSelector((state) => state.post.currentPost);
 	const userProfile = postData && profiles[postData.user];
 	const pageTitle = (postData?.description || '')
 		.trim()

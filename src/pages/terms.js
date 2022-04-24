@@ -3,21 +3,8 @@ import { useSelector } from 'react-redux';
 import { useRouter } from 'next/router';
 import SEO from '../components/seo';
 import NavigationBar from '../components/navigation-bar';
-import { initializeStore } from '../store/store';
-import { getConfiguration } from '../store/actions/config-actions';
 import TermsEn from '../components/page-terms/terms-en';
 import TermsEs from '../components/page-terms/terms-es';
-
-export const getStaticProps = async ({ locale }) => {
-	const store = initializeStore();
-	await store.dispatch(getConfiguration(locale));
-
-	return {
-		props: {
-			initialReduxState: store.getState(),
-		},
-	};
-};
 
 export default function Terms() {
 	const { locale } = useRouter();

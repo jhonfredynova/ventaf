@@ -4,20 +4,7 @@ import { useRouter } from 'next/router';
 import SEO from '../components/seo';
 import NavigationBar from '../components/navigation-bar';
 import UserLogin from '../components/user-login/user-login';
-import { initializeStore } from '../store/store';
-import { getConfiguration } from '../store/actions/config-actions';
 import Footer from '../components/footer';
-
-export const getStaticProps = async ({ locale }) => {
-	const store = initializeStore();
-	await store.dispatch(getConfiguration(locale));
-
-	return {
-		props: {
-			initialReduxState: store.getState(),
-		},
-	};
-};
 
 export default function Login() {
 	const authData = useSelector((state) => state.auth.authData);

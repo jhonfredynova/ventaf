@@ -5,13 +5,16 @@ import { Provider } from 'react-redux';
 import { useRouter } from 'next/router';
 import Script from 'next/script';
 import Layout from '../components/layout';
-import { useStore } from '../store/store';
+import { initStore } from '../store/store';
 import { me, setToken } from '../store/actions/auth-actions';
+import { getConfig } from '../services/config-service';
 
 export default function MyApp({ Component, pageProps }) {
-	const store = useStore(pageProps.initialReduxState);
 	const router = useRouter();
+	const { locale } = router;
 	const gPlacesKey = typeof window !== 'undefined' && window.gPlacesKey;
+	const config = getConfig(locale);
+	const store = initStore({ config });
 
 	useEffect(() => {
 		const onChangeColorScheme = (event) => {

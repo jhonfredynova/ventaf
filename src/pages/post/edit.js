@@ -1,64 +1,53 @@
 import React, { useState, useEffect } from 'react';
-import { useSelector, useStore } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { useRouter } from 'next/router';
 import Authorization from '../../components/authorization';
 import SEO from '../../components/seo';
 import NavigationBar from '../../components/navigation-bar';
 import FormPost from '../../components/page-post-edition/form-post';
-import { getPostById, updatePost } from '../../store/actions/post-actions';
-import { cleanProfile } from '../../store/actions/profile-actions';
-import { initializeStore } from '../../store/store';
-import { getConfiguration } from '../../store/actions/config-actions';
+import { getPostById, updatePost } from '../../services/posts-service';
 import { getFilesFromUrls } from '../../utils/upload-utils';
 
-export const getServerSideProps = async ({ locale, query }) => {
-	const store = initializeStore();
+export const getServerSideProps = async ({ query }) => {
 	const { postId } = query;
+	const postData = await getPostById(postId);
 
-	await Promise.all([
-		store.dispatch(getConfiguration(locale)),
-		store.dispatch(getPostById(postId))
-	]);
-
-	if (!store.getState().post.currentPost) {
+	if (!postData) {
 		return {
-			notFound: true
+			notFound: true,
 		};
 	}
 
 	return {
 		props: {
-			initialReduxState: store.getState()
-		}
+			postData,
+		},
 	};
 };
 
-function EditPost() {
-	const store = useStore();
-	const { authData } = useSelector(state => state.auth);
-	const postData = useSelector(state => state.post.currentPost);
+function EditPost(props) {
+	const { postData } = props;
+	const { authData } = useSelector((state) => state.auth);
 	const router = useRouter();
 	const [isPosting, setIsPosting] = useState(false);
 	const [isPhotosLoaded, setIsPhotosLoaded] = useState(false);
 	const [changePhotos, setChangePhotos] = useState(false);
 	const [errors, setErrors] = useState(false);
 	const [model, setModel] = useState(postData);
-	const { callingCodes, currencies, translations } = useSelector(
-		state => state.config
-	);
+	const { callingCodes, currencies, translations } = useSelector((state) => state.config);
 	const pageTitle = translations.adEditionTitle;
 	const pageDescription = translations.adEditionDescription;
 
 	useEffect(() => {
 		if (!isPhotosLoaded && postData) {
-			getFilesFromUrls(postData.photos).then(filesData => {
+			getFilesFromUrls(postData.photos).then((filesData) => {
 				setModel({ ...model, photos: filesData });
 				setIsPhotosLoaded(true);
 			});
 		}
 	}, [isPhotosLoaded, model, postData]);
 
-	const onSavePost = async event => {
+	const onSavePost = async (event) => {
 		try {
 			if (event) {
 				event.preventDefault();
@@ -71,9 +60,9 @@ function EditPost() {
 				...modelData,
 				seller: {
 					...model.seller,
-					email: authData && authData.email
+					email: authData && authData.email,
 				},
-				user: authData && authData.uid
+				user: authData && authData.uid,
 			};
 
 			// updating post info
@@ -81,22 +70,20 @@ function EditPost() {
 			formData.append('data', JSON.stringify(postInfo));
 
 			if (changePhotos) {
-				photos.forEach(file => formData.append('photos', file));
+				photos.forEach((file) => formData.append('photos', file));
 			}
 
-			await store.dispatch(updatePost(postInfo.id, formData));
+			await updatePost(postInfo.id, formData);
 
 			// redirecting to the user ads
-			await store.dispatch(cleanProfile(authData.uid));
 			setIsPosting(false);
 			router.push(`/${authData.profile.username}`);
 		} catch (error) {
-			const { errors: serverErrors, code, message } =
-				error?.response?.data || {};
+			const { errors: serverErrors, code, message } = error?.response?.data || {};
 			setIsPosting(false);
 			setErrors({
 				...serverErrors,
-				general: translations[code] || message
+				general: translations[code] || message,
 			});
 		}
 	};

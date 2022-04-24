@@ -5,19 +5,6 @@ import SEO from '../../components/seo';
 import NavigationBar from '../../components/navigation-bar';
 import FormPost from '../../components/page-post-edition/form-post';
 import { createPost } from '../../store/actions/post-actions';
-import { initializeStore } from '../../store/store';
-import { getConfiguration } from '../../store/actions/config-actions';
-
-export const getStaticProps = async ({ locale }) => {
-	const store = initializeStore();
-	await store.dispatch(getConfiguration(locale));
-
-	return {
-		props: {
-			initialReduxState: store.getState()
-		}
-	};
-};
 
 export default function NewPost() {
 	const router = useRouter();
@@ -28,7 +15,7 @@ export default function NewPost() {
 	const [model, setModel] = useState({
 		price: {
 			currency: 'cop',
-			value: ''
+			value: '',
 		},
 		description: '',
 		location: {},
@@ -38,25 +25,23 @@ export default function NewPost() {
 			email: '',
 			phone: {
 				prefix: '+57',
-				number: ''
-			}
+				number: '',
+			},
 		},
-		user: null
+		user: null,
 	});
-	const { authData } = useSelector(state => state.auth);
-	const { callingCodes, currencies, translations } = useSelector(
-		state => state.config
-	);
+	const { authData } = useSelector((state) => state.auth);
+	const { callingCodes, currencies, translations } = useSelector((state) => state.config);
 
 	const pageTitle = translations.sellNowTitle;
 	const pageDescription = translations.sellNowDescription;
 
-	const onChangeModel = newModel => {
+	const onChangeModel = (newModel) => {
 		changedData.current = true;
 		setModel(newModel);
 	};
 
-	const onSavePost = async event => {
+	const onSavePost = async (event) => {
 		try {
 			if (event) {
 				event.preventDefault();
@@ -67,13 +52,13 @@ export default function NewPost() {
 			const { photos, ...modelData } = model;
 			const postInfo = {
 				...modelData,
-				user: authData?.uid
+				user: authData?.uid,
 			};
 
 			// create post
 			const formData = new FormData();
 			formData.append('data', JSON.stringify(postInfo));
-			photos.forEach(file => formData.append('photos', file));
+			photos.forEach((file) => formData.append('photos', file));
 			await store.dispatch(createPost(formData));
 
 			// redirecting to the user ads
@@ -81,18 +66,17 @@ export default function NewPost() {
 			changedData.current = false;
 			router.push('/');
 		} catch (error) {
-			const { errors: serverErrors, code, message } =
-				error?.response?.data || {};
+			const { errors: serverErrors, code, message } = error?.response?.data || {};
 			setIsPosting(false);
 			setErrors({
 				...serverErrors,
-				general: translations[code] || message
+				general: translations[code] || message,
 			});
 		}
 	};
 
 	useEffect(() => {
-		const onLeavePage = event => {
+		const onLeavePage = (event) => {
 			if (changedData.current) {
 				event.preventDefault();
 				// eslint-disable-next-line no-param-reassign
@@ -128,7 +112,7 @@ export default function NewPost() {
 		if (userPhone && !model.seller.phone) {
 			setModel({
 				...model,
-				seller: { ...model.seller, phone: userPhone }
+				seller: { ...model.seller, phone: userPhone },
 			});
 		}
 	}, [authData, model]);

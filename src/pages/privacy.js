@@ -3,21 +3,8 @@ import { useSelector } from 'react-redux';
 import { useRouter } from 'next/router';
 import SEO from '../components/seo';
 import NavigationBar from '../components/navigation-bar';
-import { initializeStore } from '../store/store';
-import { getConfiguration } from '../store/actions/config-actions';
 import PrivacyEn from '../components/page-privacy/privacy-en';
 import PrivacyEs from '../components/page-privacy/privacy-es';
-
-export const getStaticProps = async ({ locale }) => {
-	const store = initializeStore();
-	await store.dispatch(getConfiguration(locale));
-
-	return {
-		props: {
-			initialReduxState: store.getState(),
-		},
-	};
-};
 
 export default function Privacy() {
 	const { locale } = useRouter();
@@ -32,10 +19,12 @@ export default function Privacy() {
 				showBackBtn
 				translations={translations}
 			/>
+
 			<article>
 				{locale === 'en' && <PrivacyEn />}
 				{locale === 'es' && <PrivacyEs />}
 			</article>
+
 			<style jsx>{`
 				main {
 					max-width: var(--container-width);

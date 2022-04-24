@@ -1,31 +1,20 @@
 import React from 'react';
-import { useRouter } from 'next/router';
 import { useSelector } from 'react-redux';
 import ProfileInfo from '../components/page-profile/profile-info';
 import ProfileContents from '../components/page-profile/profile-contents';
 import SEO from '../components/seo';
-import { initializeStore } from '../store/store';
-import { getConfiguration } from '../store/actions/config-actions';
-import {
-	getProfileByUsername,
-	getProfileAds,
-} from '../store/actions/profile-actions';
+import { getProfileByUsername } from '../services/profiles-service';
+import { getPosts } from '../services/posts-service';
 
-export const getServerSideProps = async ({ locale, query }) => {
+export const getServerSideProps = async ({ query }) => {
 	try {
-		const store = initializeStore();
-		const profile = await store.dispatch(
-			getProfileByUsername(query.username)
-		);
-
-		await Promise.all([
-			store.dispatch(getConfiguration(locale)),
-			store.dispatch(getProfileAds(profile.id, {})),
-		]);
+		const profile = await getProfileByUsername(query.username);
+		const profilePosts = await getPosts({ user: profile.id });
 
 		return {
 			props: {
-				initialReduxState: store.getState(),
+				profile,
+				profilePosts,
 			},
 		};
 	} catch (error) {
@@ -33,44 +22,33 @@ export const getServerSideProps = async ({ locale, query }) => {
 	}
 };
 
-export default function ProfileView() {
-	const router = useRouter();
-	const { username } = router.query;
+export default function ProfileView(props) {
+	const { profile, profilePosts } = props;
 	const authData = useSelector((state) => state.auth.authData);
 	const { translations } = useSelector((state) => state.config);
-	const profiles = useSelector((state) => state.profile.records);
-	const profileInfo = Object.keys(profiles)
-		.map((profileId) => profiles[profileId])
-		.find((profile) => profile.username === username);
-	const pageTitle =
-		profileInfo && `${profileInfo.displayName} (@${profileInfo.username})`;
+	const pageTitle = profile && `${profile.displayName} (@${profile.username})`;
 	const pageDescription = translations.slogan;
-	const ads = (profileInfo && profileInfo.ads) || [];
 
-	if (!profileInfo) {
+	if (!profile) {
 		return null;
 	}
 
 	return (
 		<main>
-			<SEO
-				title={pageTitle}
-				description={pageDescription}
-				imageUrl={profileInfo.photoURL}
-			/>
+			<SEO title={pageTitle} description={pageDescription} imageUrl={profile.photoURL} />
+
 			<h1 className="sr-only">{pageTitle}</h1>
 			<article className="sr-only">{pageDescription}</article>
-			<ProfileInfo
-				translations={translations}
-				userProfile={profileInfo}
-			/>
+			<ProfileInfo translations={translations} userProfile={profile} />
+
 			<h2>{translations.ads}</h2>
 			<ProfileContents
 				authData={authData}
-				posts={ads}
+				posts={profilePosts}
 				translations={translations}
-				userProfile={profileInfo}
+				userProfile={profile}
 			/>
+
 			<style jsx>{`
 				main {
 					max-width: var(--container-width);

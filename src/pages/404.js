@@ -3,22 +3,9 @@ import { useSelector } from 'react-redux';
 import Link from 'next/link';
 import Image from 'next/image';
 import NavigationBar from '../components/navigation-bar';
-import { initializeStore } from '../store/store';
-import { getConfiguration } from '../store/actions/config-actions';
-
-export const getStaticProps = async ({ locale }) => {
-	const store = initializeStore();
-	await store.dispatch(getConfiguration(locale));
-
-	return {
-		props: {
-			initialReduxState: store.getState()
-		}
-	};
-};
 
 export default function Custom404() {
-	const { translations } = useSelector(state => state.config);
+	const { translations } = useSelector((state) => state.config);
 	const redirectLink = '/';
 	const redirectText = translations.goHomePage;
 
