@@ -17,26 +17,37 @@ export default function ContactInfo(props) {
 			<style jsx>{`
 				.contact-info {
 					margin-top: var(--spacer);
+					margin-bottom: 50px;
 
 					h2 {
 						display: none;
 					}
+
+					:global(.contact-buttons) {
+						position: fixed;
+						display: flex;
+						left: 0;
+						right: 0;
+						bottom: 0;
+						z-index: 2;
+
+						:global(.btn) {
+							flex: 1;
+							margin: 0;
+						}
+					}
 				}
 
-				@media screen and (max-width: ${BREAKPOINTS.DESKTOP}) {
+				@media screen and (min-width: ${BREAKPOINTS.DESKTOP}) {
 					.contact-info {
-						margin-bottom: 50px;
-						:global(.contact-buttons) {
-							position: fixed;
-							left: 0;
-							bottom: 0;
-							z-index: 2;
-							display: flex;
+						margin-bottom: 0;
 
-							:global(.link) {
-								flex: 1;
-								margin: 0;
-								border-radius: 0;
+						:global(.contact-buttons) {
+							position: static;
+							display: block;
+
+							:global(.btn) {
+								margin-bottom: 5px;
 							}
 						}
 					}
