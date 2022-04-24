@@ -17,6 +17,7 @@ export default function MyApp({ Component, pageProps }) {
 	const store = initStore({ config });
 
 	useEffect(() => {
+		const colorSchemeMatchMedia = window.matchMedia('(prefers-color-scheme: dark)');
 		const onChangeColorScheme = (event) => {
 			if (event.matches) {
 				document.body.classList.add('dark');
@@ -25,7 +26,8 @@ export default function MyApp({ Component, pageProps }) {
 			}
 		};
 
-		window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', onChangeColorScheme);
+		colorSchemeMatchMedia.addEventListener('change', onChangeColorScheme);
+		onChangeColorScheme(colorSchemeMatchMedia);
 
 		return () => {
 			window
