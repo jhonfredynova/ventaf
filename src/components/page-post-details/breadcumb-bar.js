@@ -67,7 +67,7 @@ export default function BreadcumbBar(props) {
 				</li>
 				<li>
 					<ButtonCopyClipboard
-						className="btn btn-clipboard"
+						className="btn"
 						title={translations.shareViaUrl}
 						translations={translations}
 						value={sharingUrl}
@@ -101,7 +101,8 @@ export default function BreadcumbBar(props) {
 						li {
 							margin-right: 5px;
 
-							.btn {
+							.btn,
+							:global(.btn) {
 								padding: 5px;
 							}
 						}

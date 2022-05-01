@@ -35,6 +35,7 @@ export default function ContactButtons(props) {
 			>
 				<i className="fab fa-whatsapp fa-2x" /> Whatsapp
 			</a>
+
 			<style jsx>{`
 				.contact-buttons {
 					margin-top: 5px;

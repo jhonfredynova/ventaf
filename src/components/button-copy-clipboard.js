@@ -4,6 +4,7 @@ import { copyToClipboard } from '../utils/text-utils';
 export default function ButtonCopyClipboard(props) {
 	const { children, className, translations, value, ...btnProps } = props;
 	const copyClipboardSucessElem = useRef();
+	const btnClassName = ['btn-copy-clipboard', className || 'btn-basic'].join(' ');
 
 	const onClickBtnClipboard = () => {
 		copyClipboardSucessElem.current.classList.add('show');
@@ -12,12 +13,7 @@ export default function ButtonCopyClipboard(props) {
 	};
 
 	return (
-		<button
-			{...btnProps}
-			type="button"
-			className={'btn-copy-clipboard '.concat(className)}
-			onClick={onClickBtnClipboard}
-		>
+		<button {...btnProps} type="button" className={btnClassName} onClick={onClickBtnClipboard}>
 			{children}
 
 			<span ref={copyClipboardSucessElem} className="copy-clipboard-success">
@@ -68,6 +64,14 @@ export default function ButtonCopyClipboard(props) {
 								opacity: 0;
 							}
 						}
+					}
+
+					&.btn-basic {
+						background: none;
+						border: none;
+						cursor: pointer;
+						margin: 0;
+						padding: 0;
 					}
 				}
 			`}</style>
