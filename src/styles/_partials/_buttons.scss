@@ -1,7 +1,7 @@
 .btn {
 	--btn-background-color: transparent;
 	--btn-border-color: transparent;
-	--btn-text-color: var(--btn-text-color);
+	--btn-text-color: var(--color-text);
 
 	display: inline-block;
 	background: var(--btn-background-color);
@@ -16,7 +16,7 @@
 	&:focus,
 	&:hover,
 	&:visited {
-		color: inherit;
+		color: var(--btn-text-color);
 		text-decoration: none;
 	}
 
