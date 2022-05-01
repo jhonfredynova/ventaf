@@ -1,4 +1,4 @@
-.link {
+a {
 	color: var(--color-links);
 	text-decoration: none;
 
@@ -6,5 +6,9 @@
 	&:focus,
 	&:hover {
 		text-decoration: underline;
+	}
+
+	&:visited {
+		color: var(--color-text);
 	}
 }

@@ -12,6 +12,14 @@
 	text-align: center;
 	text-decoration: none;
 
+	&:active,
+	&:focus,
+	&:hover,
+	&:visited {
+		color: inherit;
+		text-decoration: none;
+	}
+
 	&:disabled {
 		--btn-background-color: #e4e4e4;
 		--btn-text-color: black;

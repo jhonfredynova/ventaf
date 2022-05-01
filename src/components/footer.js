@@ -39,11 +39,6 @@ export default function Footer(props) {
 						padding: 0;
 						> li {
 							padding: 0 4px;
-
-							:global(a) {
-								color: var(--color-links);
-								text-decoration: none;
-							}
 						}
 					}
 				}
