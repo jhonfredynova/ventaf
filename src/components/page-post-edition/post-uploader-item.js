@@ -100,7 +100,7 @@ export default function PostUploaderItem(props) {
 					}
 
 					.btn-delete {
-						background: var(--color-background);
+						background: white;
 						border: 0;
 						border-radius: 50%;
 						box-shadow: -1px 2px 5px 0px #333;
@@ -112,7 +112,6 @@ export default function PostUploaderItem(props) {
 						right: -9px;
 						color: var(--color-alert);
 						z-index: 1;
-						font-size: 1.2rem;
 						line-height: 0;
 						height: 23px;
 						width: 23px;
