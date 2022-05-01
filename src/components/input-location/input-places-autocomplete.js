@@ -65,8 +65,8 @@ export default function InputPlacesAutocomplete(props) {
 
 					.list-suggestions {
 						position: absolute;
-						box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
 						background: var(--color-background);
+						border: 1px solid var(--color-border);
 						width: 100%;
 						list-style: none;
 						margin: 0;

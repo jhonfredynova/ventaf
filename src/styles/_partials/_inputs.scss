@@ -3,13 +3,6 @@
 	border: 1px solid var(--color-border);
 	color: var(--color-text);
 	padding: var(--spacer);
-	outline: none;
-
-	&:active,
-	&:hover,
-	&:focus {
-		border-color: var(--color-primary);
-	}
 
 	&::placeholder {
 		color: var(--color-border);

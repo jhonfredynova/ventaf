@@ -141,7 +141,7 @@ export default function InputSuggestions(props) {
 
 					ul {
 						background: var(--color-background);
-						border: 1px solid #ccc;
+						border: 1px solid var(--color-border);
 						border-top: 0;
 						max-height: 250px;
 						width: 100%;
