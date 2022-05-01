@@ -129,7 +129,7 @@ export default function FormPost(props) {
 						)}
 						{!isPosting && (
 							<>
-								<i className="fas fa-solid fa-check" title={btnLabel} />
+								<i className="fas fa-solid fa-plus" title={btnLabel} />
 								{btnLabel}
 							</>
 						)}
@@ -147,7 +147,6 @@ export default function FormPost(props) {
 					grid-template-columns: 1fr;
 					column-gap: calc(var(--spacer) * 2);
 					row-gap: calc(var(--spacer) * 2);
-					margin-bottom: 30px;
 
 					textarea {
 						height: 100px;
@@ -163,15 +162,23 @@ export default function FormPost(props) {
 
 						.btn-post {
 							flex: 1;
+							display: flex;
+							align-items: center;
+							justify-content: center;
 							margin: 0;
 							border-radius: 0;
+							font-size: 2.4rem;
 							width: 100%;
 
 							.fas {
-								margin-right: 6px;
+								margin-right: var(--spacer);
 							}
 						}
 					}
+				}
+
+				:global(body) {
+					margin-bottom: 50px;
 				}
 
 				@media screen and (min-width: ${BREAKPOINTS.TABLET}) {
@@ -205,6 +212,10 @@ export default function FormPost(props) {
 						.form-row-full {
 							grid-column: 1/3;
 						}
+					}
+
+					:global(body) {
+						margin-bottom: 0;
 					}
 				}
 			`}</style>

@@ -107,9 +107,11 @@ export default function PostDetails(props) {
 					}
 
 					.ad-details {
-						.photo-details,
-						.info {
+						.photo-details {
 							margin-bottom: calc(var(--spacer) * 2);
+						}
+						.info {
+							margin-bottom: ${relatedContent.length === 0 ? '0px' : 'calc(var(--spacer) * 2)'};
 						}
 					}
 

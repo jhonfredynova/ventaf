@@ -37,10 +37,13 @@ export default function ContactInfo(props) {
 					}
 				}
 
+				:global(body) {
+					margin-bottom: 50px;
+				}
+
 				@media screen and (min-width: ${BREAKPOINTS.DESKTOP}) {
 					.contact-info {
 						margin-top: var(--spacer);
-						margin-bottom: 50px;
 
 						:global(.contact-buttons) {
 							position: static;
@@ -50,6 +53,10 @@ export default function ContactInfo(props) {
 								margin-bottom: 5px;
 							}
 						}
+					}
+
+					:global(body) {
+						margin-bottom: 0;
 					}
 				}
 			`}</style>
