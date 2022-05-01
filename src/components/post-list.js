@@ -52,6 +52,7 @@ export default function HomeContents(props) {
 			{!isLoading && posts.length === 0 && (
 				<NoResults message={getDefaultNoResultMsg(router.pathname)} translations={translations} />
 			)}
+
 			<InfiniteScroll isLoading={isLoading} hasMoreData={hasMoreData} onLoadMore={onLoadMore}>
 				<section className="posts-section">
 					{posts.map((post) => (
@@ -73,6 +74,7 @@ export default function HomeContents(props) {
 					))}
 				</section>
 			</InfiniteScroll>
+
 			<Lightbox isOpen={showModalDeleteAd} onToggle={() => setShowModalDeleteAd(!showModalDeleteAd)}>
 				<ConfirmationModal
 					isLoading={isDeletingPost}
@@ -83,6 +85,7 @@ export default function HomeContents(props) {
 					onCancel={() => setShowModalDeleteAd(!showModalDeleteAd)}
 				/>
 			</Lightbox>
+
 			<Lightbox
 				isOpen={showModalDeleteError}
 				onToggle={() => setShowModalDeleteError(!showModalDeleteError)}
@@ -94,6 +97,7 @@ export default function HomeContents(props) {
 					onClose={() => setShowModalDeleteError(!showModalDeleteError)}
 				/>
 			</Lightbox>
+
 			<style jsx>{`
 				.posts-section {
 					display: grid;
