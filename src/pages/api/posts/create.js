@@ -7,14 +7,13 @@ import cors from '../../../middlewares/cors';
 export const config = {
 	api: {
 		bodyParser: false,
-		sizeLimit: '1mb',
 	},
 };
 
 export default async function createPost(req, res) {
 	try {
 		await runMiddleware(req, res, cors);
-		await runMiddleware(req, res, files({ maxFileSize: 1, maxFiles: 6 }));
+		await runMiddleware(req, res, files({ maxFileSize: 2, maxFiles: 6 }));
 
 		// eslint-disable-next-line global-require
 		const { getFirebaseAdmin } = require('../../../utils/api-utils');

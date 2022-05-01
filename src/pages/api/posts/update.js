@@ -9,14 +9,13 @@ import validatePost from '../../../validations/validate-post';
 export const config = {
 	api: {
 		bodyParser: false,
-		sizeLimit: '1mb',
 	},
 };
 
 export default async function updatePost(req, res) {
 	try {
 		await runMiddleware(req, res, cors);
-		await runMiddleware(req, res, files({ maxFileSize: 1, maxFiles: 6 }));
+		await runMiddleware(req, res, files({ maxFileSize: 2, maxFiles: 6 }));
 		await runMiddleware(req, res, authorization('registered'));
 
 		// eslint-disable-next-line global-require
