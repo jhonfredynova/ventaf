@@ -14,6 +14,7 @@ export default function ProfileInfo(props) {
 		uploadError,
 		translations,
 		userProfile,
+		onCancelUpdateProfile,
 		onUpdateProfile,
 		onUploadProfilePhoto,
 	} = props;
@@ -99,6 +100,7 @@ export default function ProfileInfo(props) {
 						errors={profileErrors}
 						translations={translations}
 						userProfile={userProfile}
+						onCancelUpdate={onCancelUpdateProfile}
 						onUpdate={onUpdateProfile}
 					/>
 				) : (

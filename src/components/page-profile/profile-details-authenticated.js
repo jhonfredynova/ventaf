@@ -3,7 +3,8 @@ import EditableInput from './editable-input';
 import LoginMethods from './login-methods';
 
 export default function ProfileDetailsAuthenticated(props) {
-	const { isUpdatingProfile, authData, errors, translations, userProfile, onUpdate } = props;
+	const { isUpdatingProfile, authData, errors, translations, userProfile, onCancelUpdate, onUpdate } =
+		props;
 	const identities = authData?.providerData || {};
 
 	const onValidateUsername = (value) => {
@@ -14,13 +15,13 @@ export default function ProfileDetailsAuthenticated(props) {
 	return (
 		<>
 			<EditableInput
-				isRequired
 				isUpdating={isUpdatingProfile}
 				elementTag="h2"
 				error={translations[errors.displayName]}
 				inputType="textbox"
 				translations={translations}
 				value={userProfile.displayName}
+				onCancel={onCancelUpdate}
 				onUpdate={(displayName) => onUpdate({ ...userProfile, displayName })}
 			/>
 
@@ -32,11 +33,11 @@ export default function ProfileDetailsAuthenticated(props) {
 				translations={translations}
 				placeholder={translations.enterDescriptionYourProfile}
 				value={userProfile.bio}
+				onCancel={onCancelUpdate}
 				onUpdate={(bio) => onUpdate({ ...userProfile, bio })}
 			/>
 
 			<EditableInput
-				isRequired
 				isUpdating={isUpdatingProfile}
 				elementTag="p"
 				error={translations[errors.username]}
@@ -45,6 +46,7 @@ export default function ProfileDetailsAuthenticated(props) {
 				translations={translations}
 				value={userProfile.username}
 				onValidateInput={onValidateUsername}
+				onCancel={onCancelUpdate}
 				onUpdate={(username) => onUpdate({ ...userProfile, username })}
 			/>
 

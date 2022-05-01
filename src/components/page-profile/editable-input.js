@@ -1,9 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { BREAKPOINTS } from '../../utils/style-utils';
 
 export default function EditableInput(props) {
 	const {
-		isRequired,
 		isUpdating,
 		error,
 		elementTag,
@@ -13,27 +12,16 @@ export default function EditableInput(props) {
 		prefixValue,
 		value,
 		onValidateInput,
+		onCancel,
 		onUpdate,
 	} = props;
 	const [isEditing, setIsEditing] = useState(false);
 	const [inputValue, setInputValue] = useState(value);
-	const [inputError, setInputError] = useState(error || '');
-
-	const isValidInput = () => {
-		setInputError('');
-
-		if (isRequired && !inputValue.trim()) {
-			setInputError(translations.fieldIsRequired);
-			return false;
-		}
-
-		return true;
-	};
 
 	const onCancelEdition = () => {
-		setInputError('');
 		setIsEditing(false);
 		setInputValue(value);
+		onCancel();
 	};
 
 	const onInputChange = (event) => {
@@ -47,24 +35,23 @@ export default function EditableInput(props) {
 	};
 
 	const onInputBlur = () => {
-		if (!isValidInput()) {
-			return;
-		}
-
 		setIsEditing(false);
 		onUpdate(inputValue);
 	};
 
 	const onSubmitForm = (event) => {
 		event.preventDefault();
-
-		if (!isValidInput()) {
-			return;
-		}
-
 		setIsEditing(false);
 		onUpdate(inputValue);
 	};
+
+	useEffect(() => {
+		if (error?.trim()) {
+			setIsEditing(true);
+		} else {
+			setIsEditing(false);
+		}
+	}, [error]);
 
 	return (
 		<div className="editable-input">
@@ -82,7 +69,7 @@ export default function EditableInput(props) {
 							type="button"
 							className="btn"
 							title={translations.goBack}
-							onClick={onCancelEdition}
+							onMouseDown={onCancelEdition}
 						>
 							<i className="fas fa-arrow-left" />
 						</button>
@@ -129,7 +116,7 @@ export default function EditableInput(props) {
 				</button>
 			</form>
 
-			<p className="error-msg">{inputError}</p>
+			{isEditing && <p className="error-msg">{error}</p>}
 
 			<style jsx>{`
 				.form-editable {
@@ -156,6 +143,7 @@ export default function EditableInput(props) {
 
 				.error-msg {
 					margin-left: 34px;
+					margin-bottom: 10px;
 				}
 
 				@media screen and (min-width: ${BREAKPOINTS.TABLET}) {

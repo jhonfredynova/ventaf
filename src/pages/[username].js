@@ -86,6 +86,7 @@ export default function ProfileView(props) {
 				uploadError={uploadError}
 				translations={translations}
 				userProfile={profileData}
+				onCancelUpdateProfile={() => setProfileErrors({})}
 				onUpdateProfile={onUpdateProfile}
 				onUploadProfilePhoto={onUploadProfilePhoto}
 			/>
