@@ -102,14 +102,12 @@ export default function PostDetails(props) {
 					h1 {
 						display: none;
 						font-size: 2.4rem;
+						margin: 0;
 						margin-bottom: var(--spacer);
 					}
 
 					.ad-details {
-						.photo-details {
-							margin-bottom: calc(var(--spacer) * 2);
-						}
-
+						.photo-details,
 						.info {
 							margin-bottom: calc(var(--spacer) * 2);
 						}
@@ -119,6 +117,7 @@ export default function PostDetails(props) {
 						margin-top: var(--spacer);
 
 						h2 {
+							margin: 0;
 							margin-bottom: var(--spacer);
 						}
 					}

@@ -104,6 +104,7 @@ export default function BreadcumbBar(props) {
 					ul.share-bar {
 						display: flex;
 						align-items: center;
+						margin: 0;
 						margin-left: auto;
 						list-style: none;
 

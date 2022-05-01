@@ -16,9 +16,6 @@ export default function ContactInfo(props) {
 			/>
 			<style jsx>{`
 				.contact-info {
-					margin-top: var(--spacer);
-					margin-bottom: 50px;
-
 					h2 {
 						display: none;
 					}
@@ -40,7 +37,8 @@ export default function ContactInfo(props) {
 
 				@media screen and (min-width: ${BREAKPOINTS.DESKTOP}) {
 					.contact-info {
-						margin-bottom: 0;
+						margin-top: var(--spacer);
+						margin-bottom: 50px;
 
 						:global(.contact-buttons) {
 							position: static;

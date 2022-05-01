@@ -9,16 +9,9 @@ export default function MainInfo(props) {
 
 	return (
 		<section className="main-info">
-			<PriceInfo
-				currencies={currencies}
-				price={price}
-				translations={translations}
-			/>
+			<PriceInfo currencies={currencies} price={price} translations={translations} />
 			<p>
-				<i
-					className="fas fa-location-arrow"
-					title={translations.location}
-				/>
+				<i className="fas fa-location-arrow" title={translations.location} />
 				{postData.location.description}
 			</p>
 			<p>
@@ -29,21 +22,24 @@ export default function MainInfo(props) {
 				<i className="far fa-eye" title={translations.views} />
 				{postData.views} {translations.visits}
 			</p>
-			<article>{postData.description}</article>
+			<p className="description">{postData.description}</p>
 			<UserCard profile={userProfile} />
 			<style jsx>{`
 				.main-info {
+					:global(h2),
 					p {
+						margin: 0;
 						margin-bottom: var(--spacer);
+					}
 
+					p {
 						i {
 							margin-right: 4px;
 						}
-					}
 
-					article {
-						font-size: 2rem;
-						margin-top: var(--spacer);
+						&.description {
+							font-size: 2rem;
+						}
 					}
 				}
 			`}</style>

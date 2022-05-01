@@ -107,7 +107,8 @@ export default function ProfileView(props) {
 					padding: 15px;
 
 					h2 {
-						margin-bottom: 15px;
+						margin: 0;
+						margin-bottom: var(--spacer);
 					}
 				}
 			`}</style>
