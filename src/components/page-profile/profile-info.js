@@ -1,62 +1,33 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { useSelector, useStore } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { useRouter } from 'next/router';
 import Image from 'next/image';
-import LoginMethods from './login-methods';
-// import EditableInput from './editable-input';
+import ProfileDetailsAuthenticated from './profile-details-authenticated';
+import ProfileDetailsPublic from './profile-details-public';
 import { BREAKPOINTS } from '../../utils/style-utils';
-import { uploadProfilePhoto } from '../../store/actions/auth-actions';
 
 export default function ProfileInfo(props) {
+	const {
+		isUpdatingProfile,
+		isUploadingPhoto,
+		profileErrors,
+		uploadError,
+		translations,
+		userProfile,
+		onUpdateProfile,
+		onUploadProfilePhoto,
+	} = props;
 	const uploadInputPhoto = useRef(null);
-	const { translations, userProfile } = props;
-	const store = useStore();
-	// const [isUpdatingProfile, setIsUpdatingProfile] = useState(false);
-	const [isUploadingPhoto, setIsUploadingPhoto] = useState(false);
-	// const [profileErrors, setProfileErrors] = useState({});
 	const [profilePhotoUrl, setProfilePhotoUrl] = useState(userProfile.photoURL || '/anonymous.png');
-	const [uploadError, setUploadError] = useState('');
 	const { authData } = useSelector((state) => state.auth);
 	const router = useRouter();
 	const isProfileOwner = authData?.uid === userProfile.id;
-	const identities = authData?.providerData || {};
 
 	useEffect(() => {
 		if (authData?.uid === userProfile.id) {
 			setProfilePhotoUrl(`${authData.profile.photoURL}?${Date.now()}`);
 		}
 	}, [authData, userProfile]);
-
-	/*
-	const onUpdateProfileData = async (userInfo) => {
-		try {
-			setIsUpdatingProfile(true);
-			setProfileErrors({});
-			await store.dispatch(updateData(userInfo));
-			setIsUpdatingProfile(false);
-		} catch (error) {
-			const { errors: serverErrors, code } = error?.response?.data || {};
-			setProfileErrors({ ...serverErrors, general: code });
-			setIsUpdatingProfile(false);
-		}
-	};
-	*/
-
-	const onUploadPhoto = async (event) => {
-		try {
-			setIsUploadingPhoto(true);
-			setUploadError('');
-			const formData = new FormData();
-			formData.append('id', authData.uid);
-			formData.append('photo', event.target.files[0]);
-			await store.dispatch(uploadProfilePhoto(formData));
-			setIsUploadingPhoto(false);
-		} catch (error) {
-			const { code, message } = error?.response?.data || {};
-			setUploadError(translations[code] || message);
-			setIsUploadingPhoto(false);
-		}
-	};
 
 	if (!userProfile) {
 		return null;
@@ -73,7 +44,14 @@ export default function ProfileInfo(props) {
 				>
 					<i className="fas fa-arrow-left" />
 				</button>
-				<input ref={uploadInputPhoto} type="file" hidden onChange={onUploadPhoto} />
+
+				<input
+					ref={uploadInputPhoto}
+					accept="image/*"
+					type="file"
+					hidden
+					onChange={onUploadProfilePhoto}
+				/>
 
 				{isProfileOwner && (
 					<button
@@ -114,38 +92,17 @@ export default function ProfileInfo(props) {
 			</div>
 
 			<div className="details">
-				{/*
-				<EditableInput
-					isUpdating={isUpdatingProfile}
-					isProfileOwner={isProfileOwner}
-					elementTag="h2"
-					error={translations[profileErrors.displayName]}
-					inputType="textbox"
-					translations={translations}
-					value={userProfile.displayName}
-					onUpdate={(displayName) => onUpdateProfileData({ ...userProfile, displayName })}
-				/>
-				<EditableInput
-					isUpdating={isUpdatingProfile}
-					isProfileOwner={isProfileOwner}
-					elementTag="p"
-					error={translations[profileErrors.bio]}
-					inputType="textbox"
-					translations={translations}
-					placeholder={translations.enterDescriptionYourProfile}
-					value={userProfile.bio}
-					onUpdate={(bio) => onUpdateProfileData({ ...userProfile, bio })}
-				/>
-				*/}
-
-				{userProfile.displayName && <h2>{userProfile.displayName}</h2>}
-				{userProfile.bio && <p>{userProfile.bio}</p>}
-				{isProfileOwner && userProfile.email && <p>{userProfile.email}</p>}
-
-				{isProfileOwner && (
-					<div className="profile-options">
-						<LoginMethods identities={identities} translations={translations} />
-					</div>
+				{isProfileOwner ? (
+					<ProfileDetailsAuthenticated
+						isUpdatingProfile={isUpdatingProfile}
+						authData={authData}
+						errors={profileErrors}
+						translations={translations}
+						userProfile={userProfile}
+						onUpdate={onUpdateProfile}
+					/>
+				) : (
+					<ProfileDetailsPublic translations={translations} userProfile={userProfile} />
 				)}
 			</div>
 
@@ -156,7 +113,6 @@ export default function ProfileInfo(props) {
 					.navigation {
 						display: flex;
 						align-items: center;
-						margin-right: 15px;
 
 						.btn-back,
 						.btn-profile-menu {
@@ -190,27 +146,17 @@ export default function ProfileInfo(props) {
 
 					.details {
 						text-align: center;
-
-						h2,
-						p {
-							margin: 0;
-							margin-bottom: 5px;
-						}
-
-						.profile-options {
-							display: flex;
-							align-items: center;
-							justify-content: center;
-							margin-bottom: 8px;
-						}
 					}
+				}
 
-					@media screen and (min-width: ${BREAKPOINTS.TABLET}) {
+				@media screen and (min-width: ${BREAKPOINTS.TABLET}) {
+					.profile-info {
 						display: flex;
 						align-items: center;
 
 						.navigation {
 							flex-grow: 0;
+							margin-right: calc(var(--spacer) * 2);
 							width: 190px;
 						}
 
@@ -219,10 +165,6 @@ export default function ProfileInfo(props) {
 							flex-shrink: 0;
 							text-align: left;
 							margin-left: calc(var(--spacer) * 2);
-
-							.profile-options {
-								justify-content: flex-start;
-							}
 						}
 					}
 				}

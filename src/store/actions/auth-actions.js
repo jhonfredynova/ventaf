@@ -46,6 +46,7 @@ export const setToken = (token) => async (dispatch) => {
 export const updateData = (data) => async (dispatch) => {
 	const authData = await updateAuthData(data);
 	dispatch({ type: AUTH_TYPES.UPDATE, payload: authData });
+	return authData;
 };
 
 export const uploadProfilePhoto = (data) => async (dispatch) => {
