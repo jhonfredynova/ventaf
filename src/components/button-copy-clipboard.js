@@ -70,6 +70,7 @@ export default function ButtonCopyClipboard(props) {
 						background: none;
 						border: none;
 						cursor: pointer;
+						color: var(--color-text);
 						margin: 0;
 						padding: 0;
 					}
