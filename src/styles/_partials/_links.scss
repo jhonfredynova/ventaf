@@ -1,14 +1,10 @@
 a {
 	color: var(--color-links);
-	text-decoration: none;
+	text-decoration: underline;
 
 	&:active,
 	&:focus,
 	&:hover {
-		text-decoration: underline;
-	}
-
-	&:visited {
-		color: var(--color-text);
+		text-decoration: none;
 	}
 }
