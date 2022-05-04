@@ -10,7 +10,9 @@ import { BREAKPOINTS } from '../../utils/style-utils';
 export default function Header(props) {
 	const { authData, authLoaded, translations } = props;
 	const [isMobileDevice, setIsMobileDevice] = useState(false);
+	const [isScrollinUp, setIsScrollinUp] = useState(false);
 	const [showMobileSearch, setShowMobileSearch] = useState(false);
+	const [lastScrollPos, setLastScrollPos] = useState(0);
 	const router = useRouter();
 	const { query } = router;
 	const photoUrl = (authLoaded && authData?.profile?.photoURL) || '/anonymous.png';
@@ -49,16 +51,31 @@ export default function Header(props) {
 	};
 
 	useEffect(() => {
+		const onScrollWindow = () => {
+			const currentScollPos = window.pageYOffset || document.documentElement.scrollTop;
+
+			if (currentScollPos <= 60 || currentScollPos > lastScrollPos) {
+				setIsScrollinUp(false);
+			} else {
+				setIsScrollinUp(true);
+			}
+
+			// For Mobile or negative scrolling
+			setLastScrollPos(currentScollPos <= 0 ? 0 : currentScollPos);
+		};
+
+		window.addEventListener('scroll', onScrollWindow);
 		window.addEventListener('resize', onResizeWindow);
 		window.dispatchEvent(new Event('resize'));
 
 		return () => {
+			window.removeEventListener('scroll', onScrollWindow);
 			window.removeEventListener('resize', onResizeWindow);
 		};
-	}, []);
+	}, [lastScrollPos]);
 
 	return (
-		<header>
+		<header className={isScrollinUp ? 'scrolling-up' : ''}>
 			<nav className={`navbar ${isMobileDevice && showMobileSearch ? 'hide' : ''}`}>
 				<div className="logo-wrapper">
 					<Link href="/" passHref>
@@ -135,6 +152,12 @@ export default function Header(props) {
 					box-shadow: var(--color-secondary) 0px 1px 2px 0px, var(--color-secondary) 0px 1px 4px 0px,
 						var(--color-secondary) 0px 2px 8px 0px;
 					padding: var(--spacer);
+
+					&.scrolling-up {
+						position: fixed;
+						width: 100%;
+						z-index: 1;
+					}
 
 					.hide {
 						display: none !important;

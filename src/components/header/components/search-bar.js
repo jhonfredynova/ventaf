@@ -101,6 +101,7 @@ export default function SearchBar(props) {
 
 					.input-search {
 						flex-grow: 1;
+						box-shadow: inset 0 1px 2px var(--color-secondary);
 						width: 100%;
 					}
 				}
