@@ -16,5 +16,4 @@ const reducers = combineReducers({
 
 const middlewares = composeWithDevTools(applyMiddleware(requestMiddleware, thunkMiddleware));
 
-// eslint-disable-next-line import/prefer-default-export
-export const initStore = (preloadedState) => createStore(reducers, preloadedState, middlewares);
+export default createStore(reducers, {}, middlewares);
