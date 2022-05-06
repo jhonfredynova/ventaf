@@ -184,6 +184,11 @@ export default function FormPost(props) {
 				@media screen and (min-width: ${BREAKPOINTS.TABLET}) {
 					.form-post {
 						margin-bottom: 0px;
+						grid-template-columns: 1fr 1fr;
+
+						.form-row-full {
+							grid-column: 1/3;
+						}
 
 						.buttons-wrapper {
 							position: static;
@@ -205,12 +210,12 @@ export default function FormPost(props) {
 					.form-post {
 						grid-template-columns: 1fr 1fr;
 
-						textarea {
-							height: 160px;
-						}
-
 						.form-row-full {
 							grid-column: 1/3;
+						}
+
+						textarea {
+							height: 160px;
 						}
 					}
 

@@ -20,14 +20,12 @@ export default function PostUploader(props) {
 		fileInput.current.click();
 	};
 
-	const onDeleteMedia = mediaIndex => {
-		const updatedPhotos = photos.filter(
-			(photo, photoIndex) => photoIndex !== mediaIndex
-		);
+	const onDeleteMedia = (mediaIndex) => {
+		const updatedPhotos = photos.filter((photo, photoIndex) => photoIndex !== mediaIndex);
 		onChange(updatedPhotos);
 	};
 
-	const onUpload = async event => {
+	const onUpload = async (event) => {
 		setShowModalWarning(false);
 		setWarningMsg('');
 
@@ -41,7 +39,7 @@ export default function PostUploader(props) {
 				allowedExtentions.join(', ')
 			);
 			const wrongFilesFormatted = selectedFiles.filter(
-				item => !validFiles.find(file => file.name === item.name)
+				(item) => !validFiles.find((file) => file.name === item.name)
 			);
 			setShowModalWarning(true);
 			setWarningMsg(warningMsgFormatted);
@@ -51,9 +49,7 @@ export default function PostUploader(props) {
 		// optimizing files size
 		setIsProcessingPhotos(true);
 		const optimizedFiles = await resizeImage(validFiles, 800, 800);
-		const updatedPhotos = [...photos, ...optimizedFiles]
-			.filter(photo => photo)
-			.slice(0, 6);
+		const updatedPhotos = [...photos, ...optimizedFiles].filter((photo) => photo).slice(0, 6);
 		setIsProcessingPhotos(false);
 
 		// trigering on change event
@@ -65,19 +61,13 @@ export default function PostUploader(props) {
 		<section className="post-uploader">
 			<input
 				ref={fileInput}
-				accept={allowedExtentions.map(item => `.${item}`).join(',')}
+				accept={allowedExtentions.map((item) => `.${item}`).join(',')}
 				className="input-file"
 				type="file"
 				multiple
 				onChange={onUpload}
 			/>
-			<Sortable
-				tag="section"
-				className="photos"
-				handle=".drag"
-				value={photos}
-				onChange={onChange}
-			>
+			<Sortable tag="section" className="photos" handle=".drag" value={photos} onChange={onChange}>
 				{[...Array(6).keys()]
 					.filter((mediaSequence, mediaIndex) => photos[mediaIndex])
 					.map((mediaSequence, mediaIndex) => (
@@ -85,7 +75,7 @@ export default function PostUploader(props) {
 							key={`${photos[mediaIndex].name}-${mediaSequence}`}
 							isLoading={isProcessingPhotos}
 							allowDeletion
-							className={`drag media-${mediaSequence}`}
+							className="drag"
 							error={error}
 							translations={translations}
 							mediaIndex={mediaIndex}
@@ -106,10 +96,7 @@ export default function PostUploader(props) {
 				)}
 			</Sortable>
 			<span className="error-msg">{error}</span>
-			<Lightbox
-				isOpen={showModalWarning}
-				onToggle={() => setShowModalWarning(!showModalWarning)}
-			>
+			<Lightbox isOpen={showModalWarning} onToggle={() => setShowModalWarning(!showModalWarning)}>
 				<PostInvalidFiles
 					warningMsg={warningMsg}
 					wrongFiles={wrongFiles}
@@ -119,10 +106,6 @@ export default function PostUploader(props) {
 			</Lightbox>
 			<style jsx>{`
 				.post-uploader {
-					.error-msg {
-						color: var(--color-alert);
-					}
-
 					.warning-msg {
 						margin-top: 2px;
 						line-height: 1;
@@ -135,37 +118,15 @@ export default function PostUploader(props) {
 					:global(section.photos) {
 						display: grid;
 						grid-gap: 10px;
-						grid-template:
-							'media-0 media-1'
-							'media-2 media-3'
-							'media-4 media-5';
 						grid-template-columns: 1fr 1fr;
 						width: 100%;
-
-						@media screen and (min-width: ${BREAKPOINTS.TABLET}) {
-							grid-template:
-								'media-0 media-1 media-2'
-								'media-3 media-4 media-5';
-							grid-template-columns: 1fr 1fr 1fr;
-						}
 
 						:global(.drag) {
 							cursor: move;
 						}
-						:global(.media-0) {
-							grid-area: media-0;
-						}
-						:global(.media-1) {
-							grid-area: media-1;
-						}
-						:global(.media-2) {
-							grid-area: media-2;
-						}
-						:global(.media-3) {
-							grid-area: media-3;
-						}
-						:global(.media-4) {
-							grid-area: media-4;
+
+						@media screen and (min-width: ${BREAKPOINTS.TABLET}) {
+							grid-template-columns: 1fr 1fr 1fr;
 						}
 					}
 				}
