@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { useRouter } from 'next/router';
+import Image from 'next/image';
 import PostList from '../components/post-list';
 import SEO from '../components/seo';
 import { getHomePageTitle } from '../utils/seo-utils';
@@ -58,6 +59,18 @@ export default function Home(props) {
 			<h1 className="sr-only">{pageTitle}</h1>
 			<article className="sr-only">{pageDescription}</article>
 
+			{!isLoadingPosts && posts.length === 0 && (
+				<div className="no-posts">
+					<h2>{translations.noResults}</h2>
+					<Image
+						src="https://storage.googleapis.com/construccionytecnologia-f556c.appspot.com/no-results.svg"
+						alt={translations.noResults}
+						width="800"
+						height="600"
+					/>
+				</div>
+			)}
+
 			<PostList
 				isLoading={isLoadingPosts}
 				hasMoreData={hasMorePosts}
@@ -73,6 +86,14 @@ export default function Home(props) {
 					max-width: var(--container-width);
 					margin: 0 auto;
 					padding: calc(var(--spacer) * 2);
+
+					.no-posts {
+						text-align: center;
+
+						h2 {
+							margin-bottom: 0;
+						}
+					}
 				}
 			`}</style>
 		</main>

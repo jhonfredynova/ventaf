@@ -3,7 +3,6 @@ import { useRouter } from 'next/router';
 import PostTile from './post-tile';
 import Lightbox from './lightbox';
 import InfiniteScroll from './infinite-scroll';
-import NoResults from './no-results';
 import PostEditionBar from './post-edition-bar';
 import { BREAKPOINTS } from '../utils/style-utils';
 import { deletePost } from '../services/posts-service';
@@ -18,16 +17,6 @@ export default function HomeContents(props) {
 	const [postToDelete, setPostToDelete] = useState(null);
 	const [showModalDeleteAd, setShowModalDeleteAd] = useState(false);
 	const [showModalDeleteError, setShowModalDeleteError] = useState(false);
-
-	const getDefaultNoResultMsg = (pathname) => {
-		switch (pathname) {
-			case '/[username]':
-				return translations.youHaveNotPostAnyAd;
-
-			default:
-				return translations.noResults;
-		}
-	};
 
 	const onDelete = async () => {
 		try {
@@ -49,10 +38,6 @@ export default function HomeContents(props) {
 
 	return (
 		<>
-			{!isLoading && posts.length === 0 && (
-				<NoResults message={getDefaultNoResultMsg(router.pathname)} translations={translations} />
-			)}
-
 			<InfiniteScroll isLoading={isLoading} hasMoreData={hasMoreData} onLoadMore={onLoadMore}>
 				<section className="posts-section">
 					{posts.map((post) => (

@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import Image from 'next/image';
 import { getPosts } from '../../services/posts-service';
 import PostList from '../post-list';
 
@@ -21,14 +22,38 @@ export default function ProfileContents(props) {
 	};
 
 	return (
-		<PostList
-			isLoadingMore={isLoadingMore}
-			hasMoreData={isThereMoreContents}
-			authData={authData}
-			translations={translations}
-			posts={profilePosts}
-			showEditBtns
-			onLoadMore={onLoadMore}
-		/>
+		<>
+			{!isLoadingMore && posts.length === 0 && (
+				<div className="no-posts">
+					<h3>{translations.noPostsYet}</h3>
+					<Image
+						src="https://storage.googleapis.com/construccionytecnologia-f556c.appspot.com/cats.png"
+						alt={translations.noPostsYet}
+						width="600"
+						height="400"
+					/>
+				</div>
+			)}
+			<PostList
+				isLoadingMore={isLoadingMore}
+				hasMoreData={isThereMoreContents}
+				authData={authData}
+				translations={translations}
+				posts={profilePosts}
+				showEditBtns
+				onLoadMore={onLoadMore}
+			/>
+
+			<style jsx>{`
+				.no-posts {
+					text-align: center;
+
+					h3 {
+						font-size: 2.8rem;
+						font-weight: normal;
+					}
+				}
+			`}</style>
+		</>
 	);
 }
